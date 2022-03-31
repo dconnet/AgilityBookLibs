@@ -1,0 +1,76 @@
+################################################################################
+# Variables required by the global make rules.                                 #
+################################################################################
+# TOPSRCDIR   - Points to the top level directory of the project.              #
+# SRCDIR      - Points to the actual directory where the source code files for #
+#               this Makefile exists.                                          #
+# VPATH       - Directory to look for source files if not in the current       #
+#               directory.  Must be equal to SRCDIR.                           #
+# TOPBUILDDIR - The top level directory we initially ran make from, used for   #
+#               generating nice output of the working directories.             #
+################################################################################
+TOPSRCDIR   = @top_srcdir@
+SRCDIR      = @srcdir@
+VPATH       = @srcdir@
+TOPBUILDDIR = ./@top_builddir@
+
+##########
+# Compile flags, list include directories
+##########
+INCLUDES += -I$(SRCDIR)/../Include -I$(SRCDIR)/../3rdParty/LibFmt/include -I$(SRCDIR)/../3rdParty/LibTidyHtml/include -I$(SRCDIR)/../3rdParty/catch -DUSING_CATCH2
+
+##########
+# List of programs and archives to link
+##########
+PROGRAMS = @PACKAGE_TESTLIB_SHORTNAME@
+
+##########
+# Source files for each target
+##########
+@PACKAGE_TESTLIB_SHORTNAME@_SRCS = \
+	stdafx.cpp \
+	TestARBLib.cpp \
+	TestArchive.cpp \
+	TestBinaryData.cpp \
+	TestBreakLine.cpp \
+	TestDate.cpp \
+	TestDouble.cpp \
+	TestElement.cpp \
+	TestMailto.cpp \
+	TestMD5.cpp \
+	TestMisc.cpp \
+	TestString.cpp \
+	TestTidy.cpp \
+	TestUtils.cpp \
+	TestVersion.cpp
+
+##########
+# Extra libraries for link stage (only if needed)
+##########
+@PACKAGE_TESTLIB_SHORTNAME@_LIBS = -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/LibARBWin -larbwin -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/ARBCommon -larbcommon -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/3rdParty/LibTidyHtml -ltidyhtml -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/3rdParty/LibFmt -lfmt
+
+##########
+# Precompiled headers
+##########
+PRECOMP_HEADER = $(SRCDIR)/stdafx.h
+
+##########
+# Stuff to install
+##########
+INSTALL_BIN = @PACKAGE_TESTLIB_SHORTNAME@
+
+@NAM_RULES@
+
+@PACKAGE_TESTLIB_SHORTNAME@.dat: res/CompileDatList.txt
+	echo "LANGDIR $(CURDIR)"
+	python3 $(SRCDIR)/../Projects/CompileLang.py -w $(WXWIN) -s $(SRCDIR)/../../src/lang arb.po $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@
+	python3 $(SRCDIR)/../Projects/CompileDatafile.py -x -l $(CURDIR)/../src/lang "$(SRCDIR)/res/CompileDatList.txt" $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@
+
+all: @PACKAGE_TESTLIB_SHORTNAME@.dat @PACKAGE_TESTLIB_SHORTNAME@
+	python3 $(SRCDIR)/../Projects/RunARBTests.py $(SRCDIR) $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@ Mac
+
+dist:: all $(PHONY)
+
+################################################################################
+# End of File: Makefile                                                        #
+################################################################################

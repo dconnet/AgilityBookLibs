@@ -1,0 +1,30 @@
+# Ignore MSW build directory
+/bin/*
+
+/build/**/*.pyc
+
+/Projects/**/.vs/
+/Projects/**/*.opendb
+/Projects/**/*.sdf
+/Projects/**/*.suo
+/Projects/**/*.user
+/Projects/**/*.VC.*
+/Projects/**/ipch/*
+
+.vscode
+
+# Ignore (recommended and things I do) Mac build directory (and generated files)
+/build-rel/*
+/build-debug/*
+
+/autom4te.cache/*
+/configure
+/configure~
+
+xcuserdata/
+/Projects/xcode*/build/*
+.DS_Store
+*~.nib
+
+# Ignore vim tmp files
+*.swp

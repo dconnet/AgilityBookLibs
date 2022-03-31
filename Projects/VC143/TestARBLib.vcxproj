@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugDLL|ARM64">
+      <Configuration>DebugDLL</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugDLL|Win32">
+      <Configuration>DebugDLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugDLL|x64">
+      <Configuration>DebugDLL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseDLL|ARM64">
+      <Configuration>ReleaseDLL</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseDLL|Win32">
+      <Configuration>ReleaseDLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseDLL|x64">
+      <Configuration>ReleaseDLL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E1B661F3-F1C6-4A8C-9F37-F951D5EF8CFE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TestARBLib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonDebugLibARM64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsLibARM64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonDebugLib32.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsLib32.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonDebugLib64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsLib64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonDebugDllARM64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsDllARM64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonDebugDll32.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsDll32.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonDebugDll64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsDll64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonReleaseLibARM64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsLibARM64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonReleaseLib32.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsLib32.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonReleaseLib64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsLib64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonReleaseDllARM64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsDllARM64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonReleaseDll32.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsDll32.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(ProjectDir)\..\props\CommonReleaseDll64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
+    <Import Project="$(ProjectDir)\..\props\wxWidgetsDll64.props" />
+    <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
+    <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <CustomBuildBeforeTargets>ResourceCompile</CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent />
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../TestARBLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>python "$(BuildScriptDir)CompileLang.py" -w $(wxWin) -s $(ProjectDir)..\..\..\src\lang arb.po "$(IntDir)." "$(TargetName)"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>python "$(BuildScriptDir)RunARBTests.py" "$(ProjectDir)\..\.." "$(OutDir) " "$(TargetName) " $(PlatformShortName)</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>python "$(BuildScriptDir)CompileDatafile.py" -x -l "$(IntDir)lang" "$(ProjectDir)..\..\TestARBLib\res\CompileDatList.txt" "$(IntDir)." "$(TargetName)"</Command>
+      <Outputs>$(IntDir)$(TargetName).dat</Outputs>
+      <Message>Generating Data File and Running Tests</Message>
+      <Inputs>$(ProjectDir)..\..\TestARB\res\CompileDatList.txt;$(ProjectDir)..\..\Win\res\DefaultConfig.xml;$(ProjectDir)..\..\Win\res\AgilityRecordBook.dtd;%(Inputs)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\TestARBLib\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">Create</PrecompiledHeader>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">false</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">false</MultiProcessorCompilation>
+    </ClCompile>
+    <ClCompile Include="..\..\TestARBLib\TestARBLib.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestArchive.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestBinaryData.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestBreakLine.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestDate.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestDouble.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestElement.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestMailto.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestMD5.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestMisc.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestString.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestTidy.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestUtils.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestVersion.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\TestARBLib\stdafx.h" />
+    <ClInclude Include="..\..\TestARBLib\TestARBLib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="LibFmt.vcxproj">
+      <Project>{c28fcb5f-b8a7-4214-9b3f-9d1d9fb6976e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="LibTidyHtml.vcxproj">
+      <Project>{05967875-9726-4f06-8ec8-db6170c00bf3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="LibwxARBCommon.vcxproj">
+      <Project>{b8e4cee7-cd97-4355-b998-c5c37fa2f285}</Project>
+    </ProjectReference>
+    <ProjectReference Include="LibwxARBWin.vcxproj">
+      <Project>{73c15f6d-530f-4b95-9a2c-81ad1958573f}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\TestARBLib\TestARBLib.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\TestARBLib\res\TestARBLib.rc2" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E10F3A9B25264A3600E83AB0 /* TestUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F3A9925264A3600E83AB0 /* TestUtils.cpp */; };
+		E10F3A9C25264A3600E83AB0 /* TestTidy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F3A9A25264A3600E83AB0 /* TestTidy.cpp */; };
+		E15106B418089179002AC401 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E151068018089179002AC401 /* stdafx.cpp */; };
+		E15106B718089179002AC401 /* TestArchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E151068618089179002AC401 /* TestArchive.cpp */; };
+		E15106B818089179002AC401 /* TestBinaryData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E151068718089179002AC401 /* TestBinaryData.cpp */; };
+		E15106B918089179002AC401 /* TestBreakLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E151068818089179002AC401 /* TestBreakLine.cpp */; };
+		E15106CC18089179002AC401 /* TestDate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E151069B18089179002AC401 /* TestDate.cpp */; };
+		E15106D918089179002AC401 /* TestDouble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E15106A818089179002AC401 /* TestDouble.cpp */; };
+		E15106DA18089179002AC401 /* TestElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E15106A918089179002AC401 /* TestElement.cpp */; };
+		E15106DD18089179002AC401 /* TestMD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E15106AC18089179002AC401 /* TestMD5.cpp */; };
+		E15106DE18089179002AC401 /* TestMisc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E15106AD18089179002AC401 /* TestMisc.cpp */; };
+		E15106E018089179002AC401 /* TestString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E15106AF18089179002AC401 /* TestString.cpp */; };
+		E15106E218089179002AC401 /* TestVersion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E15106B118089179002AC401 /* TestVersion.cpp */; };
+		E1A4DBDB2616491200FCD08D /* TestMailto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1A4DBDA2616491200FCD08D /* TestMailto.cpp */; };
+		E1AF196927F61164004764B5 /* TestARBLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1AF196827F61164004764B5 /* TestARBLib.cpp */; };
+		E1CE2E4E27F616C800701C8F /* libARBCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CE2E4D27F616C800701C8F /* libARBCommon.a */; };
+		E1CE2E5027F616CC00701C8F /* libLibARBWin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CE2E4F27F616CC00701C8F /* libLibARBWin.a */; };
+		E1CE2E5227F616D000701C8F /* libLibFmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CE2E5127F616D000701C8F /* libLibFmt.a */; };
+		E1CE2E5427F616D300701C8F /* libLibTidyHtml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CE2E5327F616D300701C8F /* libLibTidyHtml.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E151064A1808913A002AC401 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E10F3A9925264A3600E83AB0 /* TestUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestUtils.cpp; sourceTree = "<group>"; };
+		E10F3A9A25264A3600E83AB0 /* TestTidy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestTidy.cpp; sourceTree = "<group>"; };
+		E151064C1808913A002AC401 /* TestARBLib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestARBLib; sourceTree = BUILT_PRODUCTS_DIR; };
+		E151068018089179002AC401 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		E151068118089179002AC401 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		E151068618089179002AC401 /* TestArchive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestArchive.cpp; sourceTree = "<group>"; };
+		E151068718089179002AC401 /* TestBinaryData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestBinaryData.cpp; sourceTree = "<group>"; };
+		E151068818089179002AC401 /* TestBreakLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestBreakLine.cpp; sourceTree = "<group>"; };
+		E151069B18089179002AC401 /* TestDate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestDate.cpp; sourceTree = "<group>"; };
+		E15106A818089179002AC401 /* TestDouble.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestDouble.cpp; sourceTree = "<group>"; };
+		E15106A918089179002AC401 /* TestElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestElement.cpp; sourceTree = "<group>"; };
+		E15106AC18089179002AC401 /* TestMD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMD5.cpp; sourceTree = "<group>"; };
+		E15106AD18089179002AC401 /* TestMisc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMisc.cpp; sourceTree = "<group>"; };
+		E15106AF18089179002AC401 /* TestString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestString.cpp; sourceTree = "<group>"; };
+		E15106B118089179002AC401 /* TestVersion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestVersion.cpp; sourceTree = "<group>"; };
+		E1A4DBDA2616491200FCD08D /* TestMailto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMailto.cpp; sourceTree = "<group>"; };
+		E1AF196727F61164004764B5 /* TestARBLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestARBLib.h; sourceTree = "<group>"; };
+		E1AF196827F61164004764B5 /* TestARBLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestARBLib.cpp; sourceTree = "<group>"; };
+		E1CE2E4D27F616C800701C8F /* libARBCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libARBCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1CE2E4F27F616CC00701C8F /* libLibARBWin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibARBWin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1CE2E5127F616D000701C8F /* libLibFmt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibFmt.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1CE2E5327F616D300701C8F /* libLibTidyHtml.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTidyHtml.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E15106491808913A002AC401 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1CE2E5227F616D000701C8F /* libLibFmt.a in Frameworks */,
+				E1CE2E5427F616D300701C8F /* libLibTidyHtml.a in Frameworks */,
+				E1CE2E4E27F616C800701C8F /* libARBCommon.a in Frameworks */,
+				E1CE2E5027F616CC00701C8F /* libLibARBWin.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E15106431808913A002AC401 = {
+			isa = PBXGroup;
+			children = (
+				E151065818089169002AC401 /* Source */,
+				E151064D1808913A002AC401 /* Products */,
+				E19851D02170E6FD003E7B92 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E151064D1808913A002AC401 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E151064C1808913A002AC401 /* TestARBLib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E151065818089169002AC401 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E151065918089179002AC401 /* TestARBLib */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		E151065918089179002AC401 /* TestARBLib */ = {
+			isa = PBXGroup;
+			children = (
+				E151068018089179002AC401 /* stdafx.cpp */,
+				E151068118089179002AC401 /* stdafx.h */,
+				E1AF196727F61164004764B5 /* TestARBLib.h */,
+				E1AF196827F61164004764B5 /* TestARBLib.cpp */,
+				E151068618089179002AC401 /* TestArchive.cpp */,
+				E151068718089179002AC401 /* TestBinaryData.cpp */,
+				E151068818089179002AC401 /* TestBreakLine.cpp */,
+				E151069B18089179002AC401 /* TestDate.cpp */,
+				E15106A818089179002AC401 /* TestDouble.cpp */,
+				E15106A918089179002AC401 /* TestElement.cpp */,
+				E15106AC18089179002AC401 /* TestMD5.cpp */,
+				E1A4DBDA2616491200FCD08D /* TestMailto.cpp */,
+				E15106AD18089179002AC401 /* TestMisc.cpp */,
+				E15106AF18089179002AC401 /* TestString.cpp */,
+				E10F3A9A25264A3600E83AB0 /* TestTidy.cpp */,
+				E10F3A9925264A3600E83AB0 /* TestUtils.cpp */,
+				E15106B118089179002AC401 /* TestVersion.cpp */,
+			);
+			name = TestARBLib;
+			path = ../../../TestARBLib;
+			sourceTree = "<group>";
+		};
+		E19851D02170E6FD003E7B92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1CE2E5327F616D300701C8F /* libLibTidyHtml.a */,
+				E1CE2E5127F616D000701C8F /* libLibFmt.a */,
+				E1CE2E4F27F616CC00701C8F /* libLibARBWin.a */,
+				E1CE2E4D27F616C800701C8F /* libARBCommon.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E151064B1808913A002AC401 /* TestARBLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E15106551808913A002AC401 /* Build configuration list for PBXNativeTarget "TestARBLib" */;
+			buildPhases = (
+				E15106481808913A002AC401 /* Sources */,
+				E15106491808913A002AC401 /* Frameworks */,
+				E151064A1808913A002AC401 /* CopyFiles */,
+				E15106E6180896D3002AC401 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestARBLib;
+			productName = TestARBLib;
+			productReference = E151064C1808913A002AC401 /* TestARBLib */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E15106441808913A002AC401 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				ORGANIZATIONNAME = "David Connet";
+				TargetAttributes = {
+					E151064B1808913A002AC401 = {
+						DevelopmentTeam = Q54PT9JQ7G;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E15106471808913A002AC401 /* Build configuration list for PBXProject "TestARBLib" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E15106431808913A002AC401;
+			productRefGroup = E151064D1808913A002AC401 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E151064B1808913A002AC401 /* TestARBLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E15106E6180896D3002AC401 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "OUTPUTDIR=${CONFIGURATION_BUILD_DIR}\n# Note: SOURCE_ROOT is the xcode project root\nSCRIPTDIR=${SOURCE_ROOT}/../..\nLANGDIR=${SOURCE_ROOT}/../../../src/lang\nRESDIR=${SOURCE_ROOT}/../../../TestARBLib/res\n# msgcat/etc\nPATH=${PATH}:/opt/local/bin\n\npython3 \"${SCRIPTDIR}/CompileLang.py\" -s \"${LANGDIR}\" arb.po \"${OUTPUTDIR}\" testarb\n\npython3 \"${SCRIPTDIR}/CompileDataFile.py\" -x -l \"${OUTPUTDIR}/lang\" \"${RESDIR}/CompileDatList.txt\" \"${OUTPUTDIR}\" testarb\n\npython3 ${SOURCE_ROOT}/../../../Projects/RunARBTests.py ${SOURCE_ROOT}/../../../ \"${OUTPUTDIR}\" TestARBLib Mac\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E15106481808913A002AC401 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1AF196927F61164004764B5 /* TestARBLib.cpp in Sources */,
+				E15106B418089179002AC401 /* stdafx.cpp in Sources */,
+				E15106B718089179002AC401 /* TestArchive.cpp in Sources */,
+				E15106B818089179002AC401 /* TestBinaryData.cpp in Sources */,
+				E15106B918089179002AC401 /* TestBreakLine.cpp in Sources */,
+				E1A4DBDB2616491200FCD08D /* TestMailto.cpp in Sources */,
+				E15106CC18089179002AC401 /* TestDate.cpp in Sources */,
+				E10F3A9B25264A3600E83AB0 /* TestUtils.cpp in Sources */,
+				E15106D918089179002AC401 /* TestDouble.cpp in Sources */,
+				E15106DA18089179002AC401 /* TestElement.cpp in Sources */,
+				E10F3A9C25264A3600E83AB0 /* TestTidy.cpp in Sources */,
+				E15106DD18089179002AC401 /* TestMD5.cpp in Sources */,
+				E15106DE18089179002AC401 /* TestMisc.cpp in Sources */,
+				E15106E018089179002AC401 /* TestString.cpp in Sources */,
+				E15106E218089179002AC401 /* TestVersion.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E15106531808913A002AC401 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-I$SRCROOT/../../../Include",
+					"-I$SRCROOT/../../../3rdParty/LibFmt/include",
+					"-I$SRCROOT/../../../3rdParty/LibTidyHtml/include",
+					"-I$SRCROOT/../../../3rdParty/catch",
+					"-I$WXWIN/build-debug/lib/wx/include/osx_cocoa-unicode-static-3.1",
+					"-I$WXWIN/include",
+					"-D_FILE_OFFSET_BITS=64",
+					"-D__WXMAC__",
+					"-D__WXOSX__",
+					"-D__WXOSX_COCOA__",
+					"-DUSE_WXWIDGETS",
+					"-DUSING_CATCH2",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-D_GLIBCXX_EXTERN_TEMPLATE=0",
+				);
+				OTHER_LDFLAGS = (
+					"-L$WXWIN/build-debug/lib",
+					"-framework",
+					IOKit,
+					"-framework",
+					Carbon,
+					"-framework",
+					Cocoa,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					System,
+					"-framework",
+					OpenGL,
+					"-lwx_osx_cocoau_xrc-3.1",
+					"-lwx_osx_cocoau_qa-3.1",
+					"-lwx_baseu_net-3.1",
+					"-lwx_osx_cocoau_html-3.1",
+					"-lwx_osx_cocoau_core-3.1",
+					"-lwx_baseu_xml-3.1",
+					"-lwx_baseu-3.1",
+					"-framework",
+					WebKit,
+					"-lwxtiff-3.1",
+					"-lwxjpeg-3.1",
+					"-lwxpng-3.1",
+					"-lwxregexu-3.1",
+					"-lwxscintilla-3.1",
+					"-lwxexpat-3.1",
+					"-lwxzlib-3.1",
+					"-framework",
+					Security,
+					"-lpthread",
+					"-lc++",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E15106541808913A002AC401 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_CFLAGS = (
+					"-I$SRCROOT/../../../Include",
+					"-I$SRCROOT/../../../3rdParty/LibFmt/include",
+					"-I$SRCROOT/../../../3rdParty/LibTidyHtml/include",
+					"-I$SRCROOT/../../../3rdParty/catch",
+					"-I$WXWIN/build-release/lib/wx/include/osx_cocoa-unicode-static-3.1",
+					"-I$WXWIN/include",
+					"-D_FILE_OFFSET_BITS=64",
+					"-DwxDEBUG_LEVEL=0",
+					"-D__WXMAC__",
+					"-D__WXOSX__",
+					"-D__WXOSX_COCOA__",
+					"-DUSE_WXWIDGETS",
+					"-DUSING_CATCH2",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-D_GLIBCXX_EXTERN_TEMPLATE=0",
+				);
+				OTHER_LDFLAGS = (
+					"-L$WXWIN/build-release/lib",
+					"-framework",
+					IOKit,
+					"-framework",
+					Carbon,
+					"-framework",
+					Cocoa,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					System,
+					"-framework",
+					OpenGL,
+					"-lwx_osx_cocoau_xrc-3.1",
+					"-lwx_osx_cocoau_qa-3.1",
+					"-lwx_baseu_net-3.1",
+					"-lwx_osx_cocoau_html-3.1",
+					"-lwx_osx_cocoau_core-3.1",
+					"-lwx_baseu_xml-3.1",
+					"-lwx_baseu-3.1",
+					"-framework",
+					WebKit,
+					"-lwxtiff-3.1",
+					"-lwxjpeg-3.1",
+					"-lwxpng-3.1",
+					"-lwxregexu-3.1",
+					"-lwxscintilla-3.1",
+					"-lwxexpat-3.1",
+					"-lwxzlib-3.1",
+					"-framework",
+					Security,
+					"-lpthread",
+					"-lc++",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E15106561808913A002AC401 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Q54PT9JQ7G;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E15106571808913A002AC401 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Q54PT9JQ7G;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E15106471808913A002AC401 /* Build configuration list for PBXProject "TestARBLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E15106531808913A002AC401 /* Debug */,
+				E15106541808913A002AC401 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E15106551808913A002AC401 /* Build configuration list for PBXNativeTarget "TestARBLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E15106561808913A002AC401 /* Debug */,
+				E15106571808913A002AC401 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E15106441808913A002AC401 /* Project object */;
+}

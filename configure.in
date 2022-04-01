@@ -13,6 +13,7 @@ AC_SUBST(ARBLIBS_DIR, "")
 
 AC_SUBST(PACKAGE_TESTLIB_SHORTNAME, "TestARBLib")
 AC_SUBST(PACKAGE_COPYRIGHT, "Copyright (c) 2002-2022 David Connet. All Rights Reserved.")
+
 ################################################################################
 # Check for programs used to build my_prg                                      #
 ################################################################################

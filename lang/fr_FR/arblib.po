@@ -1,0 +1,233 @@
+# Agility Record Book translations.
+# Copyright (C) David Connet. All Rights Reserved.
+# This file is distributed under the same license as the Agility Record Book package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Agility Record Book\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-01 10:39-0700\n"
+"PO-Revision-Date: 2022-04-01 10:39-0700\n"
+"Last-Translator: David Connet <help@agilityrecordbook.com>\n"
+"Language-Team: Language <help@agilityrecordbook.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _;arbT\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-SearchPath-0: Include\n"
+"X-Poedit-SearchPath-1: ARBCommon\n"
+"X-Poedit-SearchPath-2: LibARBWin\n"
+"X-Poedit-SearchPath-3: TestARBLib\n"
+
+#: ARBCommon/VersionNum.cpp:79
+#, c-format
+msgid ""
+"%s version %s\n"
+"%s"
+msgstr ""
+"%s version %s\n"
+"%s"
+
+#: ARBCommon/VersionNum.cpp:94
+#, fuzzy, c-format
+msgid "Compiled on %s at %s"
+msgstr "Compiled on %s at %s"
+
+#: LibARBWin/ARBDebug.cpp:210
+msgid "Unable to determine version information"
+msgstr "Impossible de determiner information version"
+
+# DlgAuthenticate
+#: LibARBWin/DlgAuthenticate.cpp:43
+msgid "Authentication"
+msgstr "Authentification"
+
+#: LibARBWin/DlgAuthenticate.cpp:54
+msgid "User Name"
+msgstr "Nom d'utilisateur"
+
+#: LibARBWin/DlgAuthenticate.cpp:66
+msgid "Password"
+msgstr "Mot de passe"
+
+#: LibARBWin/DlgConfigAccel.cpp:99
+#, fuzzy
+msgid "Assign Key"
+msgstr "Assign Key"
+
+#: LibARBWin/DlgConfigAccel.cpp:102
+#, fuzzy
+msgid "Key:"
+msgstr "Key:"
+
+#: LibARBWin/DlgConfigAccel.cpp:113
+#, fuzzy
+msgid "Modifiers:"
+msgstr "Modifiers:"
+
+#: LibARBWin/DlgConfigAccel.cpp:118
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: LibARBWin/DlgConfigAccel.cpp:127
+msgid "Alt"
+msgstr "Alt"
+
+#: LibARBWin/DlgConfigAccel.cpp:136
+msgid "Shift"
+msgstr "Majuscule"
+
+#: LibARBWin/DlgConfigAccel.cpp:142 LibARBWin/DlgConfigAccel.cpp:490
+#, fuzzy
+msgid "Clear"
+msgstr "Clear"
+
+#: LibARBWin/DlgConfigAccel.cpp:231
+#, fuzzy
+msgid "ERROR: This accelerator is already in use."
+msgstr "ERROR: This accelerator is already in use."
+
+#: LibARBWin/DlgConfigAccel.cpp:298 LibARBWin/MenuHelper.cpp:707
+msgid "Ctrl+"
+msgstr "Ctrl+"
+
+#: LibARBWin/DlgConfigAccel.cpp:300 LibARBWin/MenuHelper.cpp:709
+msgid "Alt+"
+msgstr "Alt+"
+
+#: LibARBWin/DlgConfigAccel.cpp:302 LibARBWin/MenuHelper.cpp:711
+msgid "Shift+"
+msgstr "Majuscule+"
+
+#: LibARBWin/DlgConfigAccel.cpp:458
+#, fuzzy
+msgid "Configure Keyboard Shortcuts"
+msgstr "Configure Keyboard Shortcuts"
+
+#: LibARBWin/DlgConfigAccel.cpp:476
+#, fuzzy
+msgid "Keyboard Shortcut"
+msgstr "Keyboard Shortcut"
+
+#: LibARBWin/DlgConfigAccel.cpp:477
+msgid "Description"
+msgstr "Description"
+
+#: LibARBWin/DlgConfigAccel.cpp:479
+msgid "Location"
+msgstr "Endroit"
+
+#: LibARBWin/DlgConfigAccel.cpp:484
+msgid "New..."
+msgstr "Nouveau..."
+
+#: LibARBWin/DlgConfigAccel.cpp:487
+msgid "Edit..."
+msgstr "Édition..."
+
+#: LibARBWin/DlgConfigAccel.cpp:493
+#, fuzzy
+msgid "Set Defaults"
+msgstr "Set Defaults"
+
+# DlgMessage
+#: LibARBWin/DlgMessage.cpp:34
+msgid "IDD_MESSAGE"
+msgstr "Message"
+
+#: LibARBWin/DlgMessage.cpp:47
+msgid "IDC_MESSAGE_CLOSE"
+msgstr "Quitter"
+
+# DlgProgress
+#: LibARBWin/DlgProgress.cpp:122
+msgid "Progress"
+msgstr "Progression"
+
+#: LibARBWin/LanguageManager.cpp:223 LibARBWin/LanguageManager.cpp:228
+#, fuzzy
+msgid "No other languages are available."
+msgstr "No other languages are available."
+
+#: LibARBWin/LanguageManager.cpp:233
+msgid "Choose a language:"
+msgstr "Choisir la Langue:"
+
+# DlgLanguage
+#: LibARBWin/LanguageManager.cpp:233
+msgid "Language Selection"
+msgstr "Choisir la Langue"
+
+#: LibARBWin/LanguageManager.cpp:234
+msgid "Select a language to use."
+msgstr "Choisir une langue."
+
+# Description strings returned by wxWidgets wxLocale.
+# Keep each one in the native form (like Win7's display language selection)
+#: LibARBWin/LanguageManager.cpp:319
+msgid "English (U.S.)"
+msgstr "English"
+
+#: LibARBWin/LanguageManager.cpp:320
+msgid "French"
+msgstr "français"
+
+# Description strings returned by wxWidgets wxLocale.
+# Keep each one in the native form (like Win7's display language selection)
+#: LibARBWin/LanguageManager.cpp:322
+msgid "English (United States)"
+msgstr "English"
+
+#: LibARBWin/LanguageManager.cpp:323
+msgid "French (France)"
+msgstr "français"
+
+#: LibARBWin/ReadHttp.cpp:146
+#, fuzzy
+msgid "Please enter credentials for accessing:"
+msgstr "Please enter credentials for accessing:"
+
+#: LibARBWin/ReadHttp.cpp:147
+#, fuzzy
+msgid "Credentials"
+msgstr "Credentials"
+
+#: LibARBWin/ReportListHeader.cpp:516
+msgid "Restore"
+msgstr "restaurer"
+
+#: LibARBWin/SetupApp.cpp:121
+#, fuzzy, c-format
+msgid "Report generated in \"%s\"."
+msgstr "Report generated in \"%s\"."
+
+#: LibARBWin/SpreadSheet.cpp:641
+msgid "Reading {0} rows and {1} columns"
+msgstr "Lire {0} lignes and {1} colonnes"
+
+#: LibARBWin/SpreadSheet.cpp:1019
+msgid "Reading {} rows"
+msgstr "Lire {} lignes"
+
+#: LibARBWin/Validators.cpp:429 LibARBWin/Validators.cpp:448
+#: LibARBWin/Validators.cpp:463
+msgid "Please enter a valid number"
+msgstr "Merci d'enter un nombre valide."
+
+#: LibARBWin/Validators.cpp:477
+#, fuzzy
+#| msgid "Please enter a valid number"
+msgid "Please enter a valid time"
+msgstr "Please enter a valid time"
+
+#: LibARBWin/Validators.cpp:487 LibARBWin/Validators.cpp:585
+msgid "Please enter a value"
+msgstr "Renseignez le champ, svp."
+
+#: LibARBWin/Validators.cpp:492 LibARBWin/Validators.cpp:591
+msgid "Validation conflict"
+msgstr "Conflit de validation"

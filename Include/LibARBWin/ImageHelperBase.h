@@ -58,8 +58,3 @@ ARBWIN_API wxIcon CreateIconFromBitmap(const wxBitmap& bitmap);
 #define ImageMgrUnChecked wxART_MAKE_ART_ID(ImageMgrUnChecked)
 #define ImageMgrCheck     wxART_MAKE_ART_ID(ImageMgrCheck)
 #define ImageMgrQuestion  wxART_MAKE_ART_ID(ImageMgrQuestion)
-
-#if !wxCHECK_VERSION(3, 1, 6)
-#define ImageMgrHeaderDown wxART_MAKE_ART_ID(ImageMgrHeaderDown)
-#define ImageMgrHeaderUp   wxART_MAKE_ART_ID(ImageMgrHeaderUp)
-#endif

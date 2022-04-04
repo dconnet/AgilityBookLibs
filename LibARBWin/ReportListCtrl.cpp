@@ -143,10 +143,6 @@ bool CReportListCtrl::Create(
 	{
 		m_ImageList.Create(DPI::Scale(this, 16), DPI::Scale(this, 16));
 		m_imgEmpty = m_ImageList.Add(CResourceManager::Get()->GetIcon(ImageMgrBlank));
-#if !wxCHECK_VERSION(3, 1, 6)
-		m_imgSortUp = m_ImageList.Add(CResourceManager::Get()->GetIcon(ImageMgrHeaderUp));
-		m_imgSortDn = m_ImageList.Add(CResourceManager::Get()->GetIcon(ImageMgrHeaderDown));
-#endif
 		CListCtrl::SetImageList(&m_ImageList, wxIMAGE_LIST_SMALL);
 	}
 	return true;

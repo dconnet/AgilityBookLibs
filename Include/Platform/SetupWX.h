@@ -15,6 +15,7 @@
  * include files that are used frequently, but are changed infrequently
  *
  * Revision History
+ * 2022-04-04 Up minimum wx to 3.1.6.
  * 2021-12-28 Simplify OnInit macro to a single one that uses a lamba.
  * 2020-04-14 Up minimum wx to 3.1.2.
  * 2019-08-24 Up minimum wx to 3.1.
@@ -88,8 +89,8 @@
 
 #include "Platform/arbWarningPop.h"
 
-// wx3.1.5 is min since I'm using wxWebRequest.
-#if !wxCHECK_VERSION(3, 1, 5)
+// wx3.1.6 is min since I'm using SVGs.
+#if !wxCHECK_VERSION(3, 1, 6)
 #error Unsupported wxWidget version
 #endif
 

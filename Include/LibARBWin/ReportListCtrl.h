@@ -88,16 +88,6 @@ public:
 	{
 		return m_imgEmpty;
 	}
-#if !wxCHECK_VERSION(3, 1, 6)
-	int ImageSortUp() const
-	{
-		return m_imgSortUp;
-	}
-	int ImageSortDown() const
-	{
-		return m_imgSortDn;
-	}
-#endif
 	int AddIcon(wxIcon const& icon)
 	{
 		return m_ImageList.Add(icon);
@@ -206,10 +196,6 @@ protected:
 
 	wxImageList m_ImageList;
 	int m_imgEmpty;
-#if !wxCHECK_VERSION(3, 1, 6)
-	int m_imgSortUp;
-	int m_imgSortDn;
-#endif
 	std::vector<CListDataPtr> m_items;
 
 private:

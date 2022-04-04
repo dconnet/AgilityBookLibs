@@ -21,9 +21,7 @@
 #include "LibARBWin/DPI.h"
 #include "LibARBWin/ImageHelperBase.h"
 
-#if wxCHECK_VERSION(3, 1, 6)
 #include <wx/bmpbndl.h>
-#endif
 #include <wx/mstream.h>
 #include <wx/stdpaths.h>
 #include <sstream>
@@ -135,7 +133,6 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 		{
 			if (isSvg)
 			{
-#if wxCHECK_VERSION(3, 1, 6)
 				name += L".svg";
 				std::ostringstream str;
 #ifdef _DEBUG
@@ -149,9 +146,6 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 				wxBitmapBundle bundle = wxBitmapBundle::FromSVG(str.str().c_str(), wxSize(imageSize, imageSize));
 				assert(bundle.IsOk());
 				bmp = bundle.GetBitmap(wxSize(imageSize, imageSize));
-#else
-				assert(!"SVG not supported in pre wx3.1.6");
-#endif
 			}
 			else
 			{

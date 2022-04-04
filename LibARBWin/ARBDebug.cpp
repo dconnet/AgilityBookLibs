@@ -120,11 +120,7 @@ std::wstring GetArchName()
 {
 #if defined(__WXWINDOWS__)
 	wxPlatformInfo info;
-#if wxCHECK_VERSION(3, 1, 5)
 	return StringUtil::stringW(info.GetBitnessName());
-#else
-	return StringUtil::stringW(info.GetArchName());
-#endif
 
 #elif defined(_WIN32)
 	SYSTEM_INFO si;

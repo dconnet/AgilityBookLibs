@@ -26,25 +26,24 @@
  * (the version number is auto-updated)
  *
  * Revision History
- * 2022-03-30 Separated AgilityBook and AgilityBookLibs
  * 2019-02-13 Created
  */
 
 
-#include "VersionNumberLibs.h"
+#include "VersionNumber.h"
 
 #define _STR(x) #x
 #define STR(x)  _STR(x)
 
-#define ARBLIBS_VER_STR_MAJOR   STR(ARBLIBS_VER_MAJOR)
-#define ARBLIBS_VER_STR_MINOR   STR(ARBLIBS_VER_MINOR)
-#define ARBLIBS_VER_STR_DOT     STR(ARBLIBS_VER_DOT)
-#define ARBLIBS_VER_STR_FILEVER STR(ARBLIBS_VER_BUILD)
+#define ARB_VER_STR_MAJOR   STR(ARB_VER_MAJOR)
+#define ARB_VER_STR_MINOR   STR(ARB_VER_MINOR)
+#define ARB_VER_STR_DOT     STR(ARB_VER_DOT)
+#define ARB_VER_STR_FILEVER STR(ARB_VER_BUILD)
 
-#define ARBLIBS_VERSION        ARBLIBS_VER_MAJOR, ARBLIBS_VER_MINOR, ARBLIBS_VER_DOT, ARBLIBS_VER_BUILD
-#define ARBLIBS_VERSION_STRING ARBLIBS_VER_STR_MAJOR "." ARBLIBS_VER_STR_MINOR "." ARBLIBS_VER_STR_DOT "." ARBLIBS_VER_STR_FILEVER
+#define ARB_VERSION        ARB_VER_MAJOR, ARB_VER_MINOR, ARB_VER_DOT, ARB_VER_BUILD
+#define ARB_VERSION_STRING ARB_VER_STR_MAJOR "." ARB_VER_STR_MINOR "." ARB_VER_STR_DOT "." ARB_VER_STR_FILEVER
 
-#define ARBLIBS_VERSION_CompanyName     "dcon Software"
-#define ARBLIBS_VERSION_FileDescription "Agility Record Book"
-#define ARBLIBS_VERSION_LegalCopyright  "Copyright (c) 2002-2022 David Connet. All Rights Reserved."
-#define ARBLIBS_VERSION_ProductName     "Agility Record Book"
+#define ARB_VERSION_CompanyName     "dcon Software"
+#define ARB_VERSION_FileDescription "Agility Record Book"
+#define ARB_VERSION_LegalCopyright  "Copyright (c) 2002-2022 David Connet. All Rights Reserved."
+#define ARB_VERSION_ProductName     "Agility Record Book"

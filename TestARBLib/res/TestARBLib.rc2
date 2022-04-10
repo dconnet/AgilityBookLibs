@@ -6,7 +6,7 @@
 	#error this file is not editable by Microsoft Visual C++
 #endif //APSTUDIO_INVOKED
 
-#include "VersionInfoLibsARB.h"
+#include "VersionInfoARB.h"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -14,8 +14,8 @@
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION ARBLIBS_VERSION
- PRODUCTVERSION ARBLIBS_VERSION
+ FILEVERSION ARB_VERSION
+ PRODUCTVERSION ARB_VERSION
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -30,14 +30,14 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", ARBLIBS_VERSION_CompanyName
-            VALUE "FileDescription", ARBLIBS_VERSION_FileDescription
-            VALUE "FileVersion", ARBLIBS_VERSION_STRING
+            VALUE "CompanyName", ARB_VERSION_CompanyName
+            VALUE "FileDescription", ARB_VERSION_FileDescription
+            VALUE "FileVersion", ARB_VERSION_STRING
             VALUE "InternalName", "TestARBLib.exe"
-            VALUE "LegalCopyright", ARBLIBS_VERSION_LegalCopyright
+            VALUE "LegalCopyright", ARB_VERSION_LegalCopyright
             VALUE "OriginalFilename", "TestARBLib.exe"
-            VALUE "ProductName", ARBLIBS_VERSION_ProductName
-            VALUE "ProductVersion", ARBLIBS_VERSION_STRING
+            VALUE "ProductName", ARB_VERSION_ProductName
+            VALUE "ProductVersion", ARB_VERSION_STRING
         END
     END
     BLOCK "VarFileInfo"

@@ -191,10 +191,10 @@
     <ClInclude Include="..\..\Include\LibARBWin\LibwxARBWin.h">
       <Filter>Include\LibARBWin</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\VersionInfoLibsARB.h">
+    <ClInclude Include="..\..\Include\VersionInfoARB.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\VersionNumberLibs.h">
+    <ClInclude Include="..\..\Include\VersionNumber.h">
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\LibARBWin\ReportListCtrl.h">

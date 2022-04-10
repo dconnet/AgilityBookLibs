@@ -137,10 +137,10 @@
     <ClInclude Include="..\..\Include\ARBCommon\LibwxARBCommon.h">
       <Filter>Include\ARBCommon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\VersionInfoLibsARB.h">
+    <ClInclude Include="..\..\Include\VersionInfoARB.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\VersionNumberLibs.h">
+    <ClInclude Include="..\..\Include\VersionNumber.h">
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\ARBCommon\MailTo.h">

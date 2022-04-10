@@ -327,8 +327,8 @@
     <ClInclude Include="..\..\Include\Platform\SetupARBPre.h" />
     <ClInclude Include="..\..\Include\Platform\SetupMessages.h" />
     <ClInclude Include="..\..\Include\Platform\SetupWX.h" />
-    <ClInclude Include="..\..\Include\VersionInfoLibsARB.h" />
-    <ClInclude Include="..\..\Include\VersionNumberLibs.h" />
+    <ClInclude Include="..\..\Include\VersionInfoARB.h" />
+    <ClInclude Include="..\..\Include\VersionNumber.h" />
     <ClInclude Include="..\..\ARBCommon\stdafx.h" />
     <ClInclude Include="..\..\ARBCommon\ARBMsgDigestImpl.h" />
   </ItemGroup>

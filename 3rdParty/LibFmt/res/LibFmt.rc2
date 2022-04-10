@@ -6,7 +6,7 @@
 	#error this file is not editable by Microsoft Visual C++
 #endif //APSTUDIO_INVOKED
 
-#include "VersionInfoLibsARB.h"
+#include "VersionInfoARB.h"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -35,8 +35,8 @@ BEGIN
             VALUE "InternalName", "LibFmt.dll"
             VALUE "LegalCopyright", "Copyright (c) 2012 - present, Victor Zverovich"
             VALUE "OriginalFilename", "LibFmt.dll"
-            VALUE "ProductName", ARBLIBS_VERSION_ProductName
-            VALUE "ProductVersion", ARBLIBS_VERSION_STRING
+            VALUE "ProductName", ARB_VERSION_ProductName
+            VALUE "ProductVersion", ARB_VERSION_STRING
         END
     END
     BLOCK "VarFileInfo"

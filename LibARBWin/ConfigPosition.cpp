@@ -4,10 +4,20 @@
 
 /**
  * @file
- * @brief DlgLocations
+ * @brief Save window position
  * @author David Connet
  *
+ * Note: When transitioning from "dpiAware:True" to "dpiAware:True/PM",
+ * the x/y position may be off initially if you have more than 1 monitor
+ * and they're at different scaling factors.
+ *
+ * Note2: This code is slightly incompatible with the previous version.
+ * That stored the x/y in 100% numbers. We don't do that anymore. Those
+ * are stored in raw form (so we can put the window back and scale properly
+ * on a multi-monitor setup).
+ *
  * Revision History
+ * 2022-04-15 Fix sizing so it works per-monitor.
  * 2022-04-15 Use wx DPI support.
  * 2021-09-23 Fix reading of last state.
  * 2021-09-19 Changed default config paths.
@@ -64,36 +74,43 @@ bool CConfigPosition::Set(wxWindow* wnd, bool bUseExisting, bool* pPosSet)
 		y = r.GetTop();
 	}
 
-	if (pPosSet)
-		*pPosSet = false;
-
+	bool setPos = false;
 	if (!LastX().empty())
 	{
 		if (wxConfig::Get()->Read(LastX(), &x, x))
-		{
-			x = wnd->FromDIP(x);
-			if (pPosSet)
-				*pPosSet = true;
-		}
+			setPos = true;
 	}
 	if (!LastY().empty())
 	{
 		if (wxConfig::Get()->Read(LastY(), &y, y))
-		{
-			y = wnd->FromDIP(y);
-			if (pPosSet)
-				*pPosSet = true;
-		}
+			setPos = true;
 	}
+	if (pPosSet)
+		*pPosSet = setPos;
+
+	double scale = 1.0;
+	if (setPos)
+	{
+		int display = wxDisplay::GetFromPoint(wxPoint(x, y));
+		// If the display can't be found, use the primary.
+		// Position will be adjusted below.
+		if (wxNOT_FOUND == display)
+			display = 0;
+		wxDisplay monitor(display);
+		scale = monitor.GetScaleFactor();
+	}
+
 	if (!LastCX().empty())
 	{
+		// Note: Don't use FromDIP because the display 'wnd' is currently on
+		// may have a different scaling than where we're going.
 		if (wxConfig::Get()->Read(LastCX(), &width, width))
-			width = wnd->FromDIP(width);
+			width = static_cast<int>(width * scale);
 	}
 	if (!LastCY().empty())
 	{
 		if (wxConfig::Get()->Read(LastCY(), &height, height))
-			height = wnd->FromDIP(height);
+			height = static_cast<int>(height * scale);
 	}
 
 	long state = 0;
@@ -194,10 +211,12 @@ void CConfigPosition::Save(wxTopLevelWindow* wnd)
 void CConfigPosition::SaveWindow(wxWindow* wnd)
 {
 	wxRect r = wnd->GetScreenRect();
+	// Save x/y in native pixels.
 	if (!LastX().empty())
-		wxConfig::Get()->Write(LastX(), wnd->ToDIP(r.x));
+		wxConfig::Get()->Write(LastX(), r.x);
 	if (!LastY().empty())
-		wxConfig::Get()->Write(LastY(), wnd->ToDIP(r.y));
+		wxConfig::Get()->Write(LastY(), r.y);
+	// Save w/h in 100% factor pixels.
 	if (!LastCX().empty())
 		wxConfig::Get()->Write(LastCX(), wnd->ToDIP(r.width));
 	if (!LastCY().empty())

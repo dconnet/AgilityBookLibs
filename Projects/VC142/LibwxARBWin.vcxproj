@@ -272,7 +272,6 @@
     <ClCompile Include="..\..\LibARBWin\DlgConfigAccel.cpp" />
     <ClCompile Include="..\..\LibARBWin\DlgMessage.cpp" />
     <ClCompile Include="..\..\LibARBWin\DlgProgress.cpp" />
-    <ClCompile Include="..\..\LibARBWin\DPI.cpp" />
     <ClCompile Include="..\..\LibARBWin\ImageHelperBase.cpp" />
     <ClCompile Include="..\..\LibARBWin\LanguageManager.cpp" />
     <ClCompile Include="..\..\LibARBWin\ListData.cpp" />
@@ -324,7 +323,6 @@
     <ClInclude Include="..\..\Include\LibARBWin\DlgAuthenticate.h" />
     <ClInclude Include="..\..\Include\LibARBWin\DlgMessage.h" />
     <ClInclude Include="..\..\Include\LibARBWin\DlgProgress.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\DPI.h" />
     <ClInclude Include="..\..\Include\LibARBWin\ImageHelperBase.h" />
     <ClInclude Include="..\..\Include\LibARBWin\LanguageManager.h" />
     <ClInclude Include="..\..\Include\LibARBWin\LibwxARBWin.h" />

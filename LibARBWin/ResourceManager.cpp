@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-04-15 Use wx DPI support.
  * 2021-12-18 Created.
  */
 
@@ -18,7 +19,6 @@
 
 #include "ARBCommon/ARBUtils.h"
 #include "ARBCommon/LibArchive.h"
-#include "LibARBWin/DPI.h"
 #include "LibARBWin/ImageHelperBase.h"
 
 #include <wx/bmpbndl.h>
@@ -112,9 +112,9 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 	if (imageSize <= 0)
 	{
 		if (wxART_OTHER == client)
-			imageSize = 16 * DPI::GetScale(pWindow) / 100;
+			imageSize = pWindow->FromDIP(16);
 		else if (wxART_MESSAGE_BOX == client)
-			imageSize = 32 * DPI::GetScale(pWindow) / 100;
+			imageSize = pWindow->FromDIP(32);
 	}
 	assert(imageSize > 0);
 
@@ -152,7 +152,7 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 				std::ostringstream str;
 
 				wxLogNull suppress;
-				unsigned int scale = DPI::GetScale(pWindow);
+				unsigned int scale = static_cast<unsigned int>(pWindow->GetDPIScaleFactor() * 100);
 				unsigned int rescale = 1;
 				if (scale > 100)
 				{

@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-04-15 Use wx DPI support.
  * 2021-07-11 Added compiled-at info, use wxGetLibraryVersionInfo for wx version
  * 2019-01-31 Moved from ARB.
  * 2018-12-16 Convert to fmt.
@@ -23,7 +24,6 @@
 #include "ARBCommon/ARBUtils.h"
 #include "ARBCommon/StringUtil.h"
 #include "ARBCommon/VersionNum.h"
-#include "LibARBWin/DPI.h"
 #include <wx/config.h>
 #include <wx/platinfo.h>
 #include <wx/stdpaths.h>
@@ -186,7 +186,7 @@ std::wstring GetSystemInfo(wxWindow const* pWindow, CVersionNum const& ver)
 
 	// DPI
 
-	fmt::format_to(std::back_inserter(str), L"DPI Scaling: {}\n", DPI::GetScale(pWindow));
+	fmt::format_to(std::back_inserter(str), L"DPI Scaling: {}\n", pWindow->GetDPIScaleFactor());
 
 	// Me.
 	{

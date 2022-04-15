@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-04-15 Use wx DPI support.
  * 2021-09-09 Add support for EnableCheckBoxes.
  * 2020-12-11 Moved to ReportListCtrl.cpp
  * 2020-12-07 Add a generic way to handle sorting/moving columns.
@@ -40,7 +41,6 @@
 #include "LibARBWin/ReportListCtrl.h"
 
 #include "LibARBWin/ARBWinUtilities.h"
-#include "LibARBWin/DPI.h"
 #include "LibARBWin/ImageHelperBase.h"
 #include "LibARBWin/ListData.h"
 #include "LibARBWin/ResourceManager.h"
@@ -129,7 +129,7 @@ bool CReportListCtrl::Create(
 	// it will use this by default
 	if (bHasImageList)
 	{
-		m_ImageList.Create(DPI::Scale(this, 16), DPI::Scale(this, 16));
+		m_ImageList.Create(FromDIP(16), FromDIP(16));
 		m_imgEmpty = m_ImageList.Add(CResourceManager::Get()->GetIcon(ImageMgrBlank));
 		CListCtrl::SetImageList(&m_ImageList, wxIMAGE_LIST_SMALL);
 	}

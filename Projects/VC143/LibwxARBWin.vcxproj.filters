@@ -42,9 +42,6 @@
     <ClCompile Include="..\..\LibARBWin\DlgProgress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\LibARBWin\DPI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\LibARBWin\LanguageManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -144,9 +141,6 @@
       <Filter>Include\LibARBWin</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\LibARBWin\DlgProgress.h">
-      <Filter>Include\LibARBWin</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\LibARBWin\DPI.h">
       <Filter>Include\LibARBWin</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\LibARBWin\LanguageManager.h">

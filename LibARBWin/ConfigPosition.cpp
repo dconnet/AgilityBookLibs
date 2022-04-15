@@ -8,6 +8,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-04-15 Use wx DPI support.
  * 2021-09-23 Fix reading of last state.
  * 2021-09-19 Changed default config paths.
  * 2021-03-06 Moved into LibARBWin.
@@ -20,7 +21,6 @@
 #include "stdafx.h"
 #include "LibARBWin/ConfigPosition.h"
 
-#include "LibARBWin/DPI.h"
 #include <wx/config.h>
 #include <wx/display.h>
 
@@ -71,7 +71,7 @@ bool CConfigPosition::Set(wxWindow* wnd, bool bUseExisting, bool* pPosSet)
 	{
 		if (wxConfig::Get()->Read(LastX(), &x, x))
 		{
-			x = DPI::Scale(x);
+			x = wnd->FromDIP(x);
 			if (pPosSet)
 				*pPosSet = true;
 		}
@@ -80,7 +80,7 @@ bool CConfigPosition::Set(wxWindow* wnd, bool bUseExisting, bool* pPosSet)
 	{
 		if (wxConfig::Get()->Read(LastY(), &y, y))
 		{
-			y = DPI::Scale(y);
+			y = wnd->FromDIP(y);
 			if (pPosSet)
 				*pPosSet = true;
 		}
@@ -88,12 +88,12 @@ bool CConfigPosition::Set(wxWindow* wnd, bool bUseExisting, bool* pPosSet)
 	if (!LastCX().empty())
 	{
 		if (wxConfig::Get()->Read(LastCX(), &width, width))
-			width = DPI::Scale(width);
+			width = wnd->FromDIP(width);
 	}
 	if (!LastCY().empty())
 	{
 		if (wxConfig::Get()->Read(LastCY(), &height, height))
-			height = DPI::Scale(height);
+			height = wnd->FromDIP(height);
 	}
 
 	long state = 0;
@@ -195,11 +195,11 @@ void CConfigPosition::SaveWindow(wxWindow* wnd)
 {
 	wxRect r = wnd->GetScreenRect();
 	if (!LastX().empty())
-		wxConfig::Get()->Write(LastX(), DPI::UnScale(wnd, r.x));
+		wxConfig::Get()->Write(LastX(), wnd->ToDIP(r.x));
 	if (!LastY().empty())
-		wxConfig::Get()->Write(LastY(), DPI::UnScale(wnd, r.y));
+		wxConfig::Get()->Write(LastY(), wnd->ToDIP(r.y));
 	if (!LastCX().empty())
-		wxConfig::Get()->Write(LastCX(), DPI::UnScale(wnd, r.width));
+		wxConfig::Get()->Write(LastCX(), wnd->ToDIP(r.width));
 	if (!LastCY().empty())
-		wxConfig::Get()->Write(LastCY(), DPI::UnScale(wnd, r.height));
+		wxConfig::Get()->Write(LastCY(), wnd->ToDIP(r.height));
 }

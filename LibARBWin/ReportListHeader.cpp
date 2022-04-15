@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-04-15 Use wx DPI support.
  * 2022-03-15 Add save flag to do registry clean up.
  * 2022-03-09 Changed ColumnInfo::name to a string to allow dynamically adding.
  * 2021-10-15 Add ability to disable sort headers.
@@ -21,7 +22,6 @@
 #include "LibARBWin/ReportListHeader.h"
 
 #include "ARBCommon/StringUtil.h"
-#include "LibARBWin/DPI.h"
 #include "LibARBWin/ListData.h"
 #include "LibARBWin/RegItemsBase.h"
 #include "LibARBWin/ReportListCtrl.h"
@@ -168,12 +168,9 @@ void CReportListHeader::CreateColumns(
 	{
 		assert(pColWidths->size() == m_columnInfo.size());
 		m_defaultWidths = *pColWidths;
-		if (DPI::GetScale(m_parent) != 100)
+		for (size_t i = 0; i < m_defaultWidths.size(); ++i)
 		{
-			for (size_t i = 0; i < m_defaultWidths.size(); ++i)
-			{
-				m_defaultWidths[i] = DPI::Scale(m_defaultWidths[i]);
-			}
+			m_defaultWidths[i] = m_parent->FromDIP(m_defaultWidths[i]);
 		}
 		m_colWidths = m_defaultWidths;
 	}
@@ -463,7 +460,7 @@ void CReportListHeader::OnSave()
 				if (m_columnVisible[i])
 					str << m_ctrlList->GetColumnWidth(i);
 				else if (i < static_cast<int>(m_colWidths.size()))
-					str << m_colWidths[i];
+					str << m_parent->ToDIP(m_colWidths[i]);
 				else
 					str << "0";
 			}

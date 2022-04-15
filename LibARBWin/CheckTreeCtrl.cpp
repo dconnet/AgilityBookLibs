@@ -23,6 +23,7 @@
  * [wxWidgets] The above comments are still pertinent.
  *
  * Revision History
+ * 2022-04-15 Use wx DPI support.
  * 2018-10-11 Moved to Win LibARBWin
  * 2011-12-22 Switch to using Bind on wx2.9+.
  * 2009-09-13 Add support for wxWidgets 2.9, deprecate tstring.
@@ -31,7 +32,6 @@
 #include "stdafx.h"
 #include "LibARBWin/CheckTreeCtrl.h"
 
-#include "LibARBWin/DPI.h"
 #include "LibARBWin/ImageHelperBase.h"
 #include "LibARBWin/ResourceManager.h"
 
@@ -62,7 +62,7 @@ CCheckTreeCtrl::CCheckTreeCtrl(wxWindow* pParent, const wxPoint& pos, const wxSi
 	Bind(wxEVT_LEFT_DOWN, &CCheckTreeCtrl::OnClick, this);
 	Bind(wxEVT_KEY_DOWN, &CCheckTreeCtrl::OnKeyDown, this);
 
-	m_stateList.Create(DPI::Scale(this, 16), DPI::Scale(this, 16));
+	m_stateList.Create(FromDIP(16), FromDIP(16));
 
 	m_stateNone = m_stateList.Add(CResourceManager::Get()->GetIcon(ImageMgrBlank));
 	m_stateUnChecked = m_stateList.Add(CResourceManager::Get()->GetIcon(ImageMgrUnChecked));

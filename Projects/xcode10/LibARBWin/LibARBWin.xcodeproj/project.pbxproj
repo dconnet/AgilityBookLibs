@@ -15,7 +15,6 @@
 		E10F397C2526428D00E83AB0 /* ARBDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = E10F397A2526428D00E83AB0 /* ARBDebug.h */; };
 		E10F39C02526445500E83AB0 /* ARBDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F39BF2526445500E83AB0 /* ARBDebug.cpp */; };
 		E10F39DA2526448600E83AB0 /* RichEditCtrl2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F39C12526448200E83AB0 /* RichEditCtrl2.cpp */; };
-		E10F39DB2526448600E83AB0 /* DPI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F39C22526448200E83AB0 /* DPI.cpp */; };
 		E10F39DC2526448600E83AB0 /* ReadHttp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F39C32526448200E83AB0 /* ReadHttp.cpp */; };
 		E10F39DD2526448600E83AB0 /* ListData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F39C42526448200E83AB0 /* ListData.cpp */; };
 		E10F39DE2526448600E83AB0 /* ARBWinUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F39C52526448200E83AB0 /* ARBWinUtilities.cpp */; };
@@ -50,7 +49,6 @@
 		E198519A2170E5C5003E7B92 /* TaskbarProgress.h in Headers */ = {isa = PBXBuildFile; fileRef = E19851852170E5C5003E7B92 /* TaskbarProgress.h */; };
 		E198519B2170E5C5003E7B92 /* DlgProgress.h in Headers */ = {isa = PBXBuildFile; fileRef = E19851862170E5C5003E7B92 /* DlgProgress.h */; };
 		E198519C2170E5C5003E7B92 /* RegItemsBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E19851872170E5C5003E7B92 /* RegItemsBase.h */; };
-		E198519E2170E5C5003E7B92 /* DPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E19851892170E5C5003E7B92 /* DPI.h */; };
 		E198519F2170E5C5003E7B92 /* ImageHelperBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E198518A2170E5C5003E7B92 /* ImageHelperBase.h */; };
 		E19851A02170E5C5003E7B92 /* CheckLink.h in Headers */ = {isa = PBXBuildFile; fileRef = E198518B2170E5C5003E7B92 /* CheckLink.h */; };
 		E19851A12170E5C5003E7B92 /* Validators.h in Headers */ = {isa = PBXBuildFile; fileRef = E198518C2170E5C5003E7B92 /* Validators.h */; };
@@ -77,7 +75,6 @@
 		E10F397A2526428D00E83AB0 /* ARBDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBDebug.h; sourceTree = "<group>"; };
 		E10F39BF2526445500E83AB0 /* ARBDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ARBDebug.cpp; sourceTree = "<group>"; };
 		E10F39C12526448200E83AB0 /* RichEditCtrl2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RichEditCtrl2.cpp; sourceTree = "<group>"; };
-		E10F39C22526448200E83AB0 /* DPI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DPI.cpp; sourceTree = "<group>"; };
 		E10F39C32526448200E83AB0 /* ReadHttp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReadHttp.cpp; sourceTree = "<group>"; };
 		E10F39C42526448200E83AB0 /* ListData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListData.cpp; sourceTree = "<group>"; };
 		E10F39C52526448200E83AB0 /* ARBWinUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ARBWinUtilities.cpp; sourceTree = "<group>"; };
@@ -112,7 +109,6 @@
 		E19851852170E5C5003E7B92 /* TaskbarProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskbarProgress.h; sourceTree = "<group>"; };
 		E19851862170E5C5003E7B92 /* DlgProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DlgProgress.h; sourceTree = "<group>"; };
 		E19851872170E5C5003E7B92 /* RegItemsBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegItemsBase.h; sourceTree = "<group>"; };
-		E19851892170E5C5003E7B92 /* DPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPI.h; sourceTree = "<group>"; };
 		E198518A2170E5C5003E7B92 /* ImageHelperBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHelperBase.h; sourceTree = "<group>"; };
 		E198518B2170E5C5003E7B92 /* CheckLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckLink.h; sourceTree = "<group>"; };
 		E198518C2170E5C5003E7B92 /* Validators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Validators.h; sourceTree = "<group>"; };
@@ -153,7 +149,6 @@
 				E198517F2170E5C5003E7B92 /* DlgAuthenticate.h */,
 				E1AF196227F610BA004764B5 /* DlgMessage.h */,
 				E19851862170E5C5003E7B92 /* DlgProgress.h */,
-				E19851892170E5C5003E7B92 /* DPI.h */,
 				E198518A2170E5C5003E7B92 /* ImageHelperBase.h */,
 				E19851812170E5C5003E7B92 /* LanguageManager.h */,
 				E10F39792526428D00E83AB0 /* LibwxARBWin.h */,
@@ -203,17 +198,16 @@
 		E19B62F3166C090F004DEDA4 /* LibARBWin */ = {
 			isa = PBXGroup;
 			children = (
-				E14A806226F7DFF400CBD1D9 /* ConfigPosition.cpp */,
 				E10F39BF2526445500E83AB0 /* ARBDebug.cpp */,
 				E10F39C52526448200E83AB0 /* ARBWinUtilities.cpp */,
 				E10F39C62526448300E83AB0 /* CheckLink.cpp */,
 				E10F39D62526448500E83AB0 /* CheckTreeCtrl.cpp */,
+				E14A806226F7DFF400CBD1D9 /* ConfigPosition.cpp */,
 				E10F39CB2526448300E83AB0 /* DlgAuthenticate.cpp */,
 				E10F39CC2526448300E83AB0 /* DlgConfigAccel.cpp */,
 				E10F39CE2526448400E83AB0 /* DlgConfigAccel.h */,
 				E1AF196527F610EA004764B5 /* DlgMessage.cpp */,
 				E10F39D02526448400E83AB0 /* DlgProgress.cpp */,
-				E10F39C22526448200E83AB0 /* DPI.cpp */,
 				E10F39C92526448300E83AB0 /* ImageHelperBase.cpp */,
 				E10F39D82526448600E83AB0 /* LanguageManager.cpp */,
 				E10F39C42526448200E83AB0 /* ListData.cpp */,
@@ -267,7 +261,6 @@
 			files = (
 				E112AE9321FE3DEA00D6FE27 /* StatusBarHelper.h in Headers */,
 				E10F39E72526448600E83AB0 /* DlgConfigAccel.h in Headers */,
-				E198519E2170E5C5003E7B92 /* DPI.h in Headers */,
 				E19851902170E5C5003E7B92 /* RichEditCtrl2.h in Headers */,
 				E19851A12170E5C5003E7B92 /* Validators.h in Headers */,
 				E19851932170E5C5003E7B92 /* SpreadSheet.h in Headers */,
@@ -353,7 +346,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E10F39DB2526448600E83AB0 /* DPI.cpp in Sources */,
 				E1B89C332787A088008ACA56 /* ResourceManager.cpp in Sources */,
 				E10F39DC2526448600E83AB0 /* ReadHttp.cpp in Sources */,
 				E10F39E22526448600E83AB0 /* ImageHelperBase.cpp in Sources */,

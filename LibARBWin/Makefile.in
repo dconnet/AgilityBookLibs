@@ -37,7 +37,6 @@ libarbwin_SRCS = \
 	DlgConfigAccel.cpp \
 	DlgMessage.cpp \
 	DlgProgress.cpp \
-	DPI.cpp \
 	ImageHelperBase.cpp \
 	LanguageManager.cpp \
 	ListData.cpp \

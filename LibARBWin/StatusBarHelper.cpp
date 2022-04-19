@@ -170,7 +170,7 @@ void CStatusBarHelper::SetStatusBarWidths(wxStatusBar* statusbar, int nColumn)
 			m_Widths[m_Widths.size() - 1] += statusbar->FromDIP(10);
 #if defined(__WXGTK__)
 		// The last column is cut off because of the gripper on linux.
-		m_Widths[m_Widths.size() - 1] += DPI::Scale(statusbar, 20);
+		m_Widths[m_Widths.size() - 1] += statusbar->FromDIP(20);
 #endif
 	}
 

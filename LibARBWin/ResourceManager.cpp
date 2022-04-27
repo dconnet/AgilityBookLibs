@@ -154,6 +154,9 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 				wxLogNull suppress;
 				unsigned int scale = static_cast<unsigned int>(pWindow->GetDPIScaleFactor() * 100);
 				unsigned int rescale = 1;
+#if defined(wxHAS_DPI_INDEPENDENT_PIXELS)
+				scale = 100;
+#else
 				if (scale > 100)
 				{
 					wxString png(name);
@@ -167,6 +170,7 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 					if (bmp.IsOk())
 						rescale = 2;
 				}
+#endif
 				if (!bmp.IsOk())
 				{
 					name += L".png";

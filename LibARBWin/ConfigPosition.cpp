@@ -89,9 +89,7 @@ bool CConfigPosition::Set(wxWindow* wnd, bool bUseExisting, bool* pPosSet)
 		*pPosSet = setPos;
 
 	double scale = 1.0;
-#if defined(__WXMSW__)
-	// Note: Scaling these values on Mac/Linux does the wrong thing. It seems
-	// SetSize is using logical values there, where Windows is using physical.
+#if !defined(wxHAS_DPI_INDEPENDENT_PIXELS)
 	if (setPos)
 	{
 		int display = wxDisplay::GetFromPoint(wxPoint(x, y));

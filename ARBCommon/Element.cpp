@@ -549,7 +549,7 @@ static std::wstring GetIndentBuffer(int indent)
 	return str;
 }
 
-static void LogMessage(fmt::wmemory_buffer& msg)
+static void LogMessage(fmt::wmemory_buffer const& msg)
 {
 #if defined(__WXWINDOWS__)
 	wxLogMessage(L"%s", fmt::to_string(msg).c_str());
@@ -1298,7 +1298,7 @@ static bool LoadXMLNode(ElementNode& node, Poco::XML::Document* pDoc, fmt::wmemo
 
 #elif __USE_WX
 
-static bool LoadXMLNode(ElementNode& node, wxXmlDocument& inSource, fmt::wmemory_buffer& ioErrMsg)
+static bool LoadXMLNode(ElementNode& node, wxXmlDocument const& inSource, fmt::wmemory_buffer& ioErrMsg)
 {
 	node.clear();
 

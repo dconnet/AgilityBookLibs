@@ -328,16 +328,19 @@ public:
 
 	int GetSortOrder(int inCol) const
 	{
+		int order = 0;
 		switch (inCol)
 		{
+		default:
+			break;
 		case 0:
-			if (m_accels.size() == 0)
-				return 0;
-			return m_accels[0].keyCode;
+			order = m_accels.empty() ? 0 : m_accels[0].keyCode;
+			break;
 		case 1:
-			return m_order;
+			order = m_order;
+			break;
 		}
-		return 0;
+		return order;
 	}
 
 	bool Configure(std::vector<CMenuHelper::ItemAccel> const& accelData, bool bAdd, bool bAllowDups, wxWindow* pParent)

@@ -302,7 +302,7 @@ bool CLanguageManager::SetLang(wxLanguage langId)
 }
 
 
-int CLanguageManager::GetAvailableLanguages(wxLanguage& lang, std::vector<wxLanguage>& langId, wxArrayString& choices)
+int CLanguageManager::GetAvailableLanguages(wxLanguage const& lang, std::vector<wxLanguage>& langId, wxArrayString& choices)
 	const
 {
 	int idxLang = -1;

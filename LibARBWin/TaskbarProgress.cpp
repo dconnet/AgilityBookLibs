@@ -36,12 +36,14 @@ public:
 		, m_pTaskbarList(nullptr)
 	{
 		if (IsWin7OrBetter())
-			::CoCreateInstance(
+		{
+			static_cast<void>(::CoCreateInstance(
 				CLSID_TaskbarList,
 				nullptr,
 				CLSCTX_ALL,
 				__uuidof(ITaskbarList3),
-				(void**)&m_pTaskbarList);
+				(void**)&m_pTaskbarList));
+		}
 	}
 
 	~CTaskbarProgressImpl()

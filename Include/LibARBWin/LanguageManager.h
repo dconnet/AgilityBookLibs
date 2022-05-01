@@ -64,7 +64,7 @@ public:
 	bool SetLang(wxLanguage langId);
 
 private:
-	int GetAvailableLanguages(wxLanguage& lang, std::vector<wxLanguage>& langId, wxArrayString& choices) const;
+	int GetAvailableLanguages(wxLanguage const& lang, std::vector<wxLanguage>& langId, wxArrayString& choices) const;
 
 	ILanguageCallback* m_pCallback;
 	wxLanguage m_CurLang;

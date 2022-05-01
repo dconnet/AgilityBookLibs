@@ -604,7 +604,7 @@ CWizardExcelImport::~CWizardExcelImport()
 bool CWizardExcelImport::OpenFile(std::wstring const& inFilename)
 {
 	wxVariant bk = m_App.CallMethod(L"Workbooks.Open", inFilename.c_str());
-	wxAutomationObject book((WXIDISPATCH*)bk.GetVoidPtr());
+	wxAutomationObject book(bk.GetVoidPtr());
 	if (!book.GetDispatchPtr())
 		return false;
 	m_FileName = inFilename;

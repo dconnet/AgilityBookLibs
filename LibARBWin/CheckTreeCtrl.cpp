@@ -212,6 +212,8 @@ void CCheckTreeCtrl::OnKeyDown(wxKeyEvent& evt)
 {
 	switch (evt.GetKeyCode())
 	{
+	default:
+		break;
 	case WXK_SPACE:
 	case WXK_NUMPAD_SPACE:
 	{

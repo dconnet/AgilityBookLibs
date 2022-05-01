@@ -56,16 +56,23 @@ bool CVersionNum::Parse(std::wstring const& inVer)
 
 std::wstring CVersionNum::GetVersionString(int parts) const
 {
+	std::wstring ver;
 	switch (parts)
 	{
+	default:
+		ver = fmt::format(L"{}.{}.{}.{}", m_Version[0], m_Version[1], m_Version[2], m_Version[3]);
+		break;
 	case 3:
-		return fmt::format(L"{}.{}.{}", m_Version[0], m_Version[1], m_Version[2]);
+		ver = fmt::format(L"{}.{}.{}", m_Version[0], m_Version[1], m_Version[2]);
+		break;
 	case 2:
-		return fmt::format(L"{}.{}", m_Version[0], m_Version[1]);
+		ver = fmt::format(L"{}.{}", m_Version[0], m_Version[1]);
+		break;
 	case 1:
-		return fmt::format(L"{}", m_Version[0]);
+		ver = fmt::format(L"{}", m_Version[0]);
+		break;
 	}
-	return fmt::format(L"{}.{}.{}.{}", m_Version[0], m_Version[1], m_Version[2], m_Version[3]);
+	return ver;
 }
 
 

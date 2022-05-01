@@ -129,9 +129,9 @@ std::wstring ARBDouble::ToString(double inValue, int inPrec, ARBDouble::ZeroStri
 // http://groups.google.com/group/comp.lang.c++.moderated/msg/518274ddc6fb8541?hl=en&
 bool ARBDouble::equal(double const& inVal1, double const& inVal2, double inPrec)
 {
-	int mag1, mag2;
-	frexp(inVal1, &mag1);
-	frexp(inVal2, &mag2);
+	int mag1 = 0, mag2 = 0;
+	static_cast<void>(frexp(inVal1, &mag1));
+	static_cast<void>(frexp(inVal2, &mag2));
 	if (mag1 != mag2)
 		return false;
 

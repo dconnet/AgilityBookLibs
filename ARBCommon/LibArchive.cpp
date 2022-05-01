@@ -234,7 +234,7 @@ bool CLibArchive::ExtractFile(wxString const& inArchiveFile, std::ostream& outDa
 		wxInputStream* input = file->GetStream();
 		while (input->CanRead())
 		{
-			char buffer[BUFFER_SIZE];
+			char buffer[BUFFER_SIZE] = {0};
 			size_t num = BUFFER_SIZE;
 			input->Read(buffer, num);
 			outData.write(buffer, input->LastRead());

@@ -176,7 +176,7 @@ int SpecialToCode(wxString const& special)
 	if (special.empty())
 		return 0;
 
-	for (auto iter : GetKeyCodes())
+	for (auto const& iter : GetKeyCodes())
 	{
 		if (special == iter.second.special)
 			return iter.second.wxCode;
@@ -220,7 +220,7 @@ wxString StripMnemonics(wxString const& str, bool isPopup)
 
 	wxString s(str);
 	size_t found = 0;
-	while ((size_t)-1 != (found = s.find(L"&", found)))
+	while (static_cast<size_t>(-1) != (found = s.find(L"&", found)))
 	{
 		// If there's a "&&", skip it.
 		if (found + 1 < s.length() && s[found + 1] == '&')

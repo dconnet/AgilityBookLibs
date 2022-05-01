@@ -99,6 +99,7 @@
 // clang-format off
 // Using a toolkit where we pass in the raw pointer, we have to turn these off.
 #pragma warning (disable : 26400) // Do not assign the result of an allocation or a function call with an owner<T> return value to a raw pointer, use owner<T> instead (i.11).
+#pragma warning (disable : 26401) // Do not delete a raw pointer that is not an owner<T> (i.11).
 #pragma warning (disable : 26409) // Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11).
 
 #pragma warning (disable : 26415) // Smart pointer parameter '<var>' is used only to access contained pointer. Use T* or T& instead (r.30).

@@ -30,6 +30,11 @@ class wxOutputStream;
 
 class ARBWIN_API CReadHttp
 {
+	CReadHttp& operator=(CReadHttp const& rhs) = delete;
+	CReadHttp& operator=(CReadHttp const&& rhs) = delete;
+	CReadHttp(CReadHttp const& rhs) = delete;
+	CReadHttp(CReadHttp const&& rhs) = delete;
+
 public:
 	enum class ReturnCode
 	{
@@ -66,11 +71,6 @@ public:
 		OnFileComplete callback);
 
 private:
-	CReadHttp& operator=(CReadHttp const& rhs) = delete;
-	CReadHttp& operator=(CReadHttp const&& rhs) = delete;
-	CReadHttp(CReadHttp const& rhs) = delete;
-	CReadHttp(CReadHttp const&& rhs) = delete;
-
 	bool m_pendingCancel;
 	wxWebRequest m_currentRequest;
 	IDlgProgress* m_progress;

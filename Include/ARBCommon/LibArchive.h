@@ -40,6 +40,11 @@ enum class ArchiveLocation
 
 class ARBCOMMON_API CLibArchive
 {
+	CLibArchive& operator=(CLibArchive const& rhs) = delete;
+	CLibArchive& operator=(CLibArchive const&& rhs) = delete;
+	CLibArchive(CLibArchive const& rhs) = delete;
+	CLibArchive(CLibArchive const&& rhs) = delete;
+
 public:
 	CLibArchive(wxString const& zipFile, ArchiveLocation location = ArchiveLocation::ResourceOrFileSystem);
 	~CLibArchive();
@@ -55,8 +60,4 @@ public:
 
 private:
 	class CLibArchiveImpl* m_pImpl;
-	CLibArchive& operator=(CLibArchive const& rhs) = delete;
-	CLibArchive& operator=(CLibArchive const&& rhs) = delete;
-	CLibArchive(CLibArchive const& rhs) = delete;
-	CLibArchive(CLibArchive const&& rhs) = delete;
 };

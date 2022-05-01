@@ -30,11 +30,7 @@ class wxOutputStream;
 
 class ARBWIN_API CReadHttp
 {
-	CReadHttp& operator=(CReadHttp const& rhs) = delete;
-	CReadHttp& operator=(CReadHttp const&& rhs) = delete;
-	CReadHttp(CReadHttp const& rhs) = delete;
-	CReadHttp(CReadHttp const&& rhs) = delete;
-
+	DECLARE_NO_COPY_IMPLEMENTED(CReadHttp)
 public:
 	enum class ReturnCode
 	{

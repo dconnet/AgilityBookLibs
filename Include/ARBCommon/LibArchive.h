@@ -40,11 +40,7 @@ enum class ArchiveLocation
 
 class ARBCOMMON_API CLibArchive
 {
-	CLibArchive& operator=(CLibArchive const& rhs) = delete;
-	CLibArchive& operator=(CLibArchive const&& rhs) = delete;
-	CLibArchive(CLibArchive const& rhs) = delete;
-	CLibArchive(CLibArchive const&& rhs) = delete;
-
+	DECLARE_NO_COPY_IMPLEMENTED(CLibArchive)
 public:
 	CLibArchive(wxString const& zipFile, ArchiveLocation location = ArchiveLocation::ResourceOrFileSystem);
 	~CLibArchive();

@@ -488,8 +488,8 @@ bool CGenericValidator::Validate(wxWindow* parent)
 
 		if (pTextControl)
 			pTextControl->SelectAll();
-		m_validatorWindow->SetFocus();
 		wxMessageBox(errormsg, _("Validation conflict"), wxOK | wxICON_EXCLAMATION, parent);
+		m_validatorWindow->SetFocus();
 	}
 	return ok;
 }
@@ -587,8 +587,8 @@ bool CTrimValidator::Validate(wxWindow* parent)
 
 	if (!ok)
 	{
-		m_validatorWindow->SetFocus();
 		wxMessageBox(errormsg, _("Validation conflict"), wxOK | wxICON_EXCLAMATION, parent);
+		m_validatorWindow->SetFocus();
 	}
 	return ok;
 }

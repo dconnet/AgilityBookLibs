@@ -26,10 +26,8 @@
 
 #include <string>
 
-#if defined(__WXWINDOWS__)
 #include <wx/string.h>
 class wxMemoryOutputStream;
-#endif
 
 
 /**
@@ -39,7 +37,6 @@ namespace StringUtil
 {
 ARBCOMMON_API std::wstring GetTranslation(wchar_t const* const inId);
 
-#if defined(__WXWINDOWS__)
 // Some explicit conversion between wxString and std.
 // In general, we want to always work in std (based on discussion on list)
 ARBCOMMON_API wxString stringWX(wchar_t const* const inStr, size_t inLen);
@@ -49,7 +46,6 @@ ARBCOMMON_API wxString stringWX(std::string const& inStr);
 ARBCOMMON_API std::wstring stringW(wxString const& inStr);
 ARBCOMMON_API std::string stringA(wxString const& inStr);
 ARBCOMMON_API std::string stringA(wxMemoryOutputStream const& inStr);
-#endif
 
 // String conversion
 ARBCOMMON_API std::string stringA(wchar_t const* const inStr, size_t inLen);
@@ -88,9 +84,7 @@ ARBCOMMON_API bool CanCompareDigits();
 // Case insensitive comparison (for better lexical comparison)
 // It does not mean that lower case sorts before (or after) upper case.
 ARBCOMMON_API int CompareNoCase(std::wstring const& inStr1, std::wstring const& inStr2);
-#if defined(__WXWINDOWS__)
 ARBCOMMON_API int CompareNoCase(wxString const& inStr1, wxString const& inStr2);
-#endif
 
 // Some CString-style functions
 

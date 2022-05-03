@@ -22,7 +22,6 @@
 #include "stdafx.h"
 #include "TestARBLib.h"
 
-#include "ARBCommon/ARBTypes.h"
 #include "ARBCommon/StringUtil.h"
 #include "fmt/xchar.h"
 #if FMT_VERSION < 80000
@@ -44,7 +43,11 @@ static void RunDblTests(bool bUseLocale)
 {
 	std::wstring decimalPt = L".";
 	if (bUseLocale)
-		decimalPt = CLocaleWrapper::GetDecimalPt();
+	{
+		wxString pt = wxLocale::GetInfo(wxLOCALE_DECIMAL_POINT, wxLOCALE_CAT_NUMBER);
+		if (0 < pt.length())
+			decimalPt = pt.wc_str();
+	}
 
 	// ARBDouble always strips 0s unless prec ==2, unless =".00"
 	double p = 3.14159265358979323846;
@@ -183,11 +186,7 @@ TEST_CASE("Double")
 
 	SECTION("strPrecUS")
 	{
-#if defined(__WXWINDOWS__) && !USE_CRT
 		wxLocale locale(wxLANGUAGE_ENGLISH_US);
-#else
-		CLocaleWrapper locale(LC_ALL, "english-us");
-#endif
 		RunDblTests(true);
 		RunDblTests(false);
 	}
@@ -196,11 +195,7 @@ TEST_CASE("Double")
 	SECTION("strPrecFR")
 	{
 		// Using French since the default decimal separator is a comma.
-#if defined(__WXWINDOWS__) && !USE_CRT
 		wxLocale locale(wxLANGUAGE_FRENCH);
-#else
-		CLocaleWrapper locale(LC_ALL, "french");
-#endif
 		RunDblTests(true);
 		RunDblTests(false);
 	}

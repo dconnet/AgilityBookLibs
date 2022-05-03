@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-05-03 Changed API to return string (because this is compiled as MBCS)
  * 2018-12-16 Convert to fmt.
  * 2017-12-19 Added pRawFileBaseName for debugging.
  *            Fixed tidy calls to properly quote "&" from web data.
@@ -19,8 +20,6 @@
 #include "stdafx.h"
 #include "LibTidyHtml/LibTidyHtml.h"
 
-#include "ARBCommon/Element.h"
-#include "ARBCommon/StringUtil.h"
 #include "tidy.h"
 #include "tidybuffio.h"
 #include <fstream>
@@ -32,9 +31,9 @@
 #endif
 
 
-ElementNodePtr TidyHtmlData(std::string const& data, fmt::wmemory_buffer& err, std::string const* pRawFileBaseName)
+std::string TidyHtmlData(std::string const& data, fmt::memory_buffer& err, std::string const* pRawFileBaseName)
 {
-	ElementNodePtr tree;
+	std::string tidyData;
 
 	if (!data.empty())
 	{
@@ -48,7 +47,7 @@ ElementNodePtr TidyHtmlData(std::string const& data, fmt::wmemory_buffer& err, s
 		if (0 > tidySetErrorBuffer(tdoc, &errbuf))
 		{
 			tidyRelease(tdoc);
-			return tree;
+			return tidyData;
 		}
 
 		if (0 > tidyParseString(tdoc, data.c_str()))
@@ -56,11 +55,11 @@ ElementNodePtr TidyHtmlData(std::string const& data, fmt::wmemory_buffer& err, s
 			if (errbuf.size > 0)
 			{
 				std::string errmsg((const char*)errbuf.bp, errbuf.size);
-				fmt::format_to(std::back_inserter(err), L"TIDY Error: {}", StringUtil::stringW(errmsg));
+				fmt::format_to(std::back_inserter(err), "TIDY Error: {}", errmsg);
 			}
 			tidyBufFree(&errbuf);
 			tidyRelease(tdoc);
-			return tree;
+			return tidyData;
 		}
 
 		if (0 > tidyCleanAndRepair(tdoc))
@@ -68,11 +67,11 @@ ElementNodePtr TidyHtmlData(std::string const& data, fmt::wmemory_buffer& err, s
 			if (errbuf.size > 0)
 			{
 				std::string errmsg((const char*)errbuf.bp, errbuf.size);
-				fmt::format_to(std::back_inserter(err), L"TIDY Error: {}", StringUtil::stringW(errmsg));
+				fmt::format_to(std::back_inserter(err), "TIDY Error: {}", errmsg);
 			}
 			tidyBufFree(&errbuf);
 			tidyRelease(tdoc);
-			return tree;
+			return tidyData;
 		}
 
 		tidyRunDiagnostics(tdoc);
@@ -84,12 +83,12 @@ ElementNodePtr TidyHtmlData(std::string const& data, fmt::wmemory_buffer& err, s
 			if (errbuf.size > 0)
 			{
 				std::string errmsg((const char*)errbuf.bp, errbuf.size);
-				fmt::format_to(std::back_inserter(err), L"TIDY Error: {}", StringUtil::stringW(errmsg));
+				fmt::format_to(std::back_inserter(err), "TIDY Error: {}", errmsg);
 			}
 			tidyBufFree(&errbuf);
 			tidyBufFree(&output);
 			tidyRelease(tdoc);
-			return tree;
+			return tidyData;
 		}
 
 		if (pRawFileBaseName && !pRawFileBaseName->empty())
@@ -104,25 +103,11 @@ ElementNodePtr TidyHtmlData(std::string const& data, fmt::wmemory_buffer& err, s
 			}
 		}
 
-		tree = ElementNode::New();
-		if (!tree->LoadXML((const char*)output.bp, output.size, err))
-		{
-			tree.reset();
-		}
-		else
-		{
-			if (pRawFileBaseName && !pRawFileBaseName->empty())
-			{
-				std::string out(*pRawFileBaseName);
-				out += ".tree";
-				std::ofstream file(out.c_str(), std::ios_base::out | std::ios_base::binary);
-				tree->SaveXML(file);
-			}
-		}
+		tidyData = std::string((const char*)output.bp, output.size);
 
 		tidyBufFree(&errbuf);
 		tidyBufFree(&output);
 		tidyRelease(tdoc);
 	}
-	return tree;
+	return tidyData;
 }

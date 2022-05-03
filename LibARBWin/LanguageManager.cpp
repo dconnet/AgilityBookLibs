@@ -105,7 +105,6 @@ CLanguageManager::CLanguageManager(ILanguageCallback* pCallback)
 	: m_pCallback(pCallback)
 	, m_CurLang(wxLANGUAGE_DEFAULT)
 	, m_dirLoadedLang()
-	, m_locale(nullptr)
 {
 	wxTranslations::Set(new wxTranslations);
 }
@@ -143,8 +142,6 @@ bool CLanguageManager::InitLanguage()
 
 	wxDatTranslationsLoader* loader = new wxDatTranslationsLoader;
 	wxTranslations::Get()->SetLoader(loader);
-
-	m_locale = std::make_unique<wxLocale>(wxLANGUAGE_DEFAULT); // Initialize wx with the default system settings
 
 	if (m_pCallback)
 	{

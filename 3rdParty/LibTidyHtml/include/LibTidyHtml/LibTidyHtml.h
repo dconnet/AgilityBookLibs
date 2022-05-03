@@ -12,6 +12,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-05-03 Changed API to return string (because this is compiled as MBCS)
  * 2018-12-16 Convert to fmt.
  * 2017-12-19 Added pRawFileBaseName for debugging.
  * 2013-06-10 Separated from Win/CalendarSiteUSDAA.cpp
@@ -27,8 +28,11 @@
 #define LIBTIDYHTML_API
 #endif
 
-#include "ARBCommon/Element.h"
+#include "fmt/xchar.h"
 #include <string>
 
-LIBTIDYHTML_API ElementNodePtr
-TidyHtmlData(std::string const& data, fmt::wmemory_buffer& err, std::string const* pRawFileBaseName = nullptr);
+
+LIBTIDYHTML_API std::string TidyHtmlData(
+	std::string const& data,
+	fmt::memory_buffer& err,
+	std::string const* pRawFileBaseName = nullptr);

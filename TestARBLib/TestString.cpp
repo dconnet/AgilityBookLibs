@@ -124,11 +124,7 @@ TEST_CASE("String")
 
 	SECTION("AtodUS")
 	{
-#if defined(__WXWINDOWS__) && !USE_CRT
 		wxLocale locale(wxLANGUAGE_ENGLISH_US, wxLOCALE_DONT_LOAD_DEFAULT);
-#else
-		CLocaleWrapper locale(LC_NUMERIC, "english-us");
-#endif
 		std::wstring s1(L"12.3");
 		double a1 = StringUtil::ToDouble(s1);
 		REQUIRE(a1 == 12.3);
@@ -142,11 +138,7 @@ TEST_CASE("String")
 
 	SECTION("AtodFR")
 	{
-#if defined(__WXWINDOWS__) && !USE_CRT
 		wxLocale locale(wxLANGUAGE_FRENCH, wxLOCALE_DONT_LOAD_DEFAULT);
-#else
-		CLocaleWrapper locale(LC_NUMERIC, "french");
-#endif
 		std::wstring s1(L"12,3");
 		double a1 = StringUtil::ToDouble(s1);
 		REQUIRE(a1 == 12.3);
@@ -161,11 +153,7 @@ TEST_CASE("String")
 	SECTION("AtodFR2")
 	{
 		// Even in French, I want to have "." separators parse properly.
-#if defined(__WXWINDOWS__) && !USE_CRT
 		wxLocale locale(wxLANGUAGE_FRENCH, wxLOCALE_DONT_LOAD_DEFAULT);
-#else
-		CLocaleWrapper locale(LC_NUMERIC, "french");
-#endif
 		std::wstring s1(L"12.3");
 		double a1 = StringUtil::ToDouble(s1);
 		REQUIRE(a1 == 12.3);

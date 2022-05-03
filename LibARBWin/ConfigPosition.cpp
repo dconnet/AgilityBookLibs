@@ -14,9 +14,10 @@
  * Note2: This code is slightly incompatible with the previous version.
  * That stored the x/y in 100% numbers. We don't do that anymore. Those
  * are stored in raw form (so we can put the window back and scale properly
- * on a multi-monitor setup).
+ * on a multi-monitor setup). (Hence the Last[XY]old apis)
  *
  * Revision History
+ * 2022-05-03 Add back-compatibility for X/Y changes.
  * 2022-04-15 Fix sizing so it works per-monitor.
  * 2022-04-15 Use wx DPI support.
  * 2021-09-23 Fix reading of last state.
@@ -37,6 +38,37 @@
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
 #endif
+
+
+namespace
+{
+enum class EntryStatus
+{
+	NoChange,
+	ValueSet,
+	OldValueSet,
+};
+
+EntryStatus GetEntry(wxString entry, wxString oldEntry, int& value, bool preserve)
+{
+	EntryStatus status = EntryStatus::NoChange;
+	if (entry.empty())
+		return status;
+	if (wxConfig::Get()->HasEntry(entry))
+	{
+		if (wxConfig::Get()->Read(entry, &value, value))
+			status = EntryStatus::ValueSet;
+		if (!preserve && !oldEntry.empty() && wxConfig::Get()->HasEntry(oldEntry))
+			wxConfig::Get()->DeleteEntry(oldEntry);
+	}
+	else if (!oldEntry.empty() && wxConfig::Get()->HasEntry(oldEntry))
+	{
+		if (wxConfig::Get()->Read(oldEntry, &value, value))
+			status = EntryStatus::OldValueSet;
+	}
+	return status;
+}
+} // namespace
 
 
 CConfigPosition::CConfigPosition(uint8_t flags)
@@ -74,17 +106,9 @@ bool CConfigPosition::Set(wxWindow* wnd, bool bUseExisting, bool* pPosSet)
 		y = r.GetTop();
 	}
 
-	bool setPos = false;
-	if (!LastX().empty())
-	{
-		if (wxConfig::Get()->Read(LastX(), &x, x))
-			setPos = true;
-	}
-	if (!LastY().empty())
-	{
-		if (wxConfig::Get()->Read(LastY(), &y, y))
-			setPos = true;
-	}
+	EntryStatus statusX = GetEntry(LastX(), LastXold(), x, PreserveOldValue());
+	EntryStatus statusY = GetEntry(LastY(), LastYold(), y, PreserveOldValue());
+	bool setPos = (statusX != EntryStatus::NoChange || statusY != EntryStatus::NoChange);
 	if (pPosSet)
 		*pPosSet = setPos;
 
@@ -99,6 +123,14 @@ bool CConfigPosition::Set(wxWindow* wnd, bool bUseExisting, bool* pPosSet)
 			display = 0;
 		wxDisplay monitor(display);
 		scale = monitor.GetScaleFactor();
+
+		if (scale > 1.0)
+		{
+			if (statusX == EntryStatus::OldValueSet)
+				x = static_cast<int>(x * scale);
+			if (statusY == EntryStatus::OldValueSet)
+				y = static_cast<int>(y * scale);
+		}
 	}
 #endif
 

@@ -42,9 +42,7 @@
 #include <math.h>
 #include <time.h>
 
-#if defined(__WXWINDOWS__)
 #include <wx/string.h>
-#endif
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -65,9 +63,9 @@ std::wstring ARBDouble::ToString(double inValue, int inPrec, bool bUseCurrentLoc
 	if (bUseCurrentLocale)
 	{
 		if (0 < inPrec)
-			retVal = wxString::Format(L"%.*f", inPrec, inValue);
+			retVal = wxString::Format(L"%.*f", inPrec, inValue).wc_str();
 		else
-			retVal = wxString::Format(L"%g", inValue);
+			retVal = wxString::Format(L"%g", inValue).wc_str();
 	}
 	else
 	{
@@ -77,9 +75,13 @@ std::wstring ARBDouble::ToString(double inValue, int inPrec, bool bUseCurrentLoc
 			retVal = fmt::format(L"{:g}", inValue);
 	}
 
-	wchar_t pt = '.';
+	std::wstring pt(L".");
 	if (bUseCurrentLocale)
-		pt = CLocaleWrapper::GetDecimalPt();
+	{
+		wxString decimalPt = wxLocale::GetInfo(wxLOCALE_DECIMAL_POINT, wxLOCALE_CAT_NUMBER);
+		if (0 < decimalPt.length())
+			pt = decimalPt.wc_str();
+	}
 
 	if (ZeroStrip::AsIs != eStripZeros)
 	{

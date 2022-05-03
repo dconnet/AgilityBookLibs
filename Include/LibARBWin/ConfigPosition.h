@@ -64,11 +64,11 @@ protected:
 	}
 	virtual wxString LastX() const
 	{
-		return (m_flags & eConfigPos) ? wxString::Format(L"%s/%sLastX", SectionName(), m_name) : wxString();
+		return (m_flags & eConfigPos) ? wxString::Format(L"%s/%sLastXPos", SectionName(), m_name) : wxString();
 	}
 	virtual wxString LastY() const
 	{
-		return (m_flags & eConfigPos) ? wxString::Format(L"%s/%sLastY", SectionName(), m_name) : wxString();
+		return (m_flags & eConfigPos) ? wxString::Format(L"%s/%sLastYPos", SectionName(), m_name) : wxString();
 	}
 	virtual wxString LastCX() const
 	{
@@ -81,5 +81,20 @@ protected:
 	virtual wxString LastState() const
 	{
 		return (m_flags & eConfigState) ? wxString::Format(L"%s/%sLastState", SectionName(), m_name) : wxString();
+	}
+	// For back-compatibility. X/Y are now stored in native coords.
+	// They used to be stored at normalized 100% values.
+	virtual wxString LastXold() const
+	{
+		return (m_flags & eConfigPos) ? wxString::Format(L"%s/%sLastX", SectionName(), m_name) : wxString();
+	}
+	virtual wxString LastYold() const
+	{
+		return (m_flags & eConfigPos) ? wxString::Format(L"%s/%sLastY", SectionName(), m_name) : wxString();
+	}
+	// Delete the old settings on conversion.
+	virtual bool PreserveOldValue() const
+	{
+		return false;
 	}
 };

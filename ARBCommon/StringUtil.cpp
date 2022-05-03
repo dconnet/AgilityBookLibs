@@ -33,12 +33,11 @@
 #include "ARBCommon/ARBMisc.h"
 #include "ARBCommon/ARBTypes.h"
 #include "fmt/xchar.h"
-#include <algorithm>
-#include <sstream>
-#if defined(__WXWINDOWS__)
 #include <wx/mstream.h>
 #include <wx/strconv.h>
-#endif
+#include <wx/uilocale.h>
+#include <algorithm>
+#include <sstream>
 
 #if defined(WIN32) && (_WIN32_IE >= _WIN32_IE_IE55)
 #include "Shlwapi.h"
@@ -46,17 +45,10 @@
 #endif
 
 #ifdef _WIN32
-#define HAS_WIDECHARTOMULTIBYTE
-
 #if !defined(SORT_DIGITSASNUMBERS)
 // Only defined when: (WINVER >= _WIN32_WINNT_WIN7)
 // Note: Move to CompareStringEx once XP support is dropped
 #define SORT_DIGITSASNUMBERS 0x00000008 // use digits as numbers sort method
-#endif
-
-#else
-#if !defined(__WXWINDOWS__)
-#pragma PRAGMA_TODO(This will not produce UTF8, hence will fail tests)
 #endif
 #endif
 
@@ -71,15 +63,9 @@ namespace StringUtil
 
 std::wstring GetTranslation(wchar_t const* const inId)
 {
-#if defined(__WXWINDOWS__)
 	return stringW(wxGetTranslation(inId));
-#else
-#pragma PRAGMA_TODO(nonWx i18n)
-	return std::wstring(inId);
-#endif
 }
 
-#if defined(__WXWINDOWS__)
 
 wxString stringWX(wchar_t const* const inStr, size_t inLen)
 {
@@ -139,160 +125,35 @@ std::string stringA(wxMemoryOutputStream const& inStr)
 	return str;
 }
 
-#endif // __WXWINDOWS__
-
-// Note, if not on Windows (HAS_WIDECHARTOMULTIBYTE not set) and not using
-// wxWidgets, MBCS/Unicode conversions won't necessarily work right.
 
 std::string stringA(wchar_t const* const inStr, size_t inLen)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	return std::string(stringWX(inStr, inLen).ToUTF8());
-#else // __WXWINDOWS__
-	std::string str;
-	if (inStr && *inStr)
-	{
-#if defined(HAS_WIDECHARTOMULTIBYTE)
-		int bytes = ::WideCharToMultiByte(CP_UTF8, 0, inStr, static_cast<int>(inLen), 0, 0, nullptr, nullptr);
-		if (bytes > 0)
-		{
-			char* ansistr = new char[bytes + 1];
-			::WideCharToMultiByte(CP_UTF8, 0, inStr, static_cast<int>(inLen), ansistr, bytes, nullptr, nullptr);
-			ansistr[bytes] = 0;
-			str = std::string(ansistr, bytes);
-			delete[] ansistr;
-		}
-		else
-		{
-			// handle the error
-			// DWORD dwErr = GetLastError();
-		}
-#else
-		// Create a copy because wcstombs doesn't use length.
-		str = stringA(std::wstring(inStr, inLen));
-#endif
-	}
-	return str;
-#endif // __WXWINDOWS__
 }
 
 
 std::string stringA(std::wstring const& inStr)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	return std::string(stringWX(inStr).ToUTF8());
-#else // __WXWINDOWS__
-	std::string str;
-	if (!inStr.empty())
-	{
-#if defined(HAS_WIDECHARTOMULTIBYTE)
-		str = stringA(inStr.c_str(), inStr.length());
-#else
-		size_t nNeeded;
-#if defined(ARB_HAS_SECURE_MBS_WCS)
-		wcstombs_s(&nNeeded, nullptr, 0, inStr.c_str(), inStr.length());
-#else
-		nNeeded = wcstombs(nullptr, inStr.c_str(), inStr.length());
-#endif
-		if (0 < nNeeded)
-		{
-			char* ansistr = new char[nNeeded + 1];
-#if defined(ARB_HAS_SECURE_MBS_WCS)
-			wcstombs_s(nullptr, ansistr, nNeeded + 1, inStr.c_str(), _TRUNCATE);
-#else
-			wcstombs(ansistr, inStr.c_str(), nNeeded);
-#endif
-			ansistr[nNeeded] = nullptr;
-			str = ansistr;
-			delete[] ansistr;
-		}
-#endif
-	}
-	return str;
-#endif // __WXWINDOWS__
 }
 
 
 std::wstring stringW(char const* const inStr, size_t inLen)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	return StringUtil::stringW(stringWX(inStr, inLen));
-#else // __WXWINDOWS__
-	std::wstring str;
-	if (inStr && *inStr)
-	{
-#if defined(HAS_WIDECHARTOMULTIBYTE)
-		int chars = ::MultiByteToWideChar(CP_UTF8, 0, inStr, static_cast<int>(inLen), 0, 0);
-		if (chars > 0)
-		{
-			// Check whether conversion was successful
-			wchar_t* unicodestr = new wchar_t[chars + 1];
-			::MultiByteToWideChar(CP_UTF8, 0, inStr, static_cast<int>(inLen), unicodestr, chars);
-			unicodestr[chars] = 0;
-			str = unicodestr;
-			delete[] unicodestr;
-		}
-		else
-		{
-			// handle the error
-			// DWORD dwErr = GetLastError();
-		}
-#else
-		// Create a copy because mbstowcs doesn't use length.
-		str = stringW(std::string(inStr, inLen));
-#endif
-	}
-	return str;
-#endif // __WXWINDOWS__
 }
 
 
 std::wstring stringW(std::string const& inStr)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	return StringUtil::stringW(stringWX(inStr));
-#else // __WXWINDOWS__
-	std::wstring str;
-	if (!inStr.empty())
-	{
-#if defined(HAS_WIDECHARTOMULTIBYTE)
-		str = stringW(inStr.c_str(), inStr.length());
-#else
-		size_t nNeeded;
-#if defined(ARB_HAS_SECURE_MBS_WCS)
-		mbstowcs_s(&nNeeded, nullptr, 0, inStr.c_str(), 0);
-#else
-		nNeeded = mbstowcs(nullptr, inStr.c_str(), 0);
-#endif
-		if (0 < nNeeded)
-		{
-			wchar_t* unicodestr = new wchar_t[nNeeded + 1];
-#if defined(ARB_HAS_SECURE_MBS_WCS)
-			mbstowcs_s(nullptr, unicodestr, nNeeded + 1, inStr.c_str(), _TRUNCATE);
-#else
-			mbstowcs(unicodestr, inStr.c_str(), nNeeded);
-#endif
-			unicodestr[nNeeded] = nullptr;
-			str = unicodestr;
-			delete[] unicodestr;
-		}
-#endif
-	}
-	return str;
-#endif // __WXWINDOWS__
 }
 
 
 bool ToLong(std::wstring const& inStr, long& outValue)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	wxString s(inStr.c_str());
 	return s.ToLong(&outValue);
-#else
-	wchar_t* end = nullptr;
-	outValue = wcstol(inStr.c_str(), &end, 10);
-	return !end || !*end;
-#endif
 }
 
 
@@ -306,14 +167,8 @@ long ToLong(std::wstring const& inStr)
 
 bool ToULong(std::wstring const& inStr, unsigned long& outValue)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	wxString s(inStr.c_str());
 	return s.ToULong(&outValue);
-#else
-	wchar_t* end = nullptr;
-	outValue = wcstoul(inStr.c_str(), &end, 10);
-	return !end || !*end;
-#endif
 }
 
 
@@ -327,50 +182,24 @@ unsigned long ToULong(std::wstring const& inStr)
 
 bool ToDouble(std::wstring const& inStr, double& outValue)
 {
-	bool rc = false;
-	wchar_t pt = L'.';
-#if defined(__WXWINDOWS__) && !USE_CRT
 	wxString s(inStr.c_str());
-	{
-		rc = s.ToDouble(&outValue);
+	bool rc = s.ToDouble(&outValue);
 
-		// Get the decimal pt while using the appropriate locale
-		if (!rc)
-		{
-			pt = CLocaleWrapper::GetDecimalPt();
-		}
-	}
-#else
-	{
-		wchar_t* end = nullptr;
-		outValue = wcstod(inStr.c_str(), &end);
-		rc = (!end || !*end);
-	}
-#endif
 	if (!rc)
 	{
 		// This may have failed for 2 reasons:
 		// - Bad data.
 		// - Different decimal point from Locale (using "." in non"." locale)
-#if defined(__WXWINDOWS__) && !USE_CRT
-		// Code moved above
-#else
-		pt = CLocaleWrapper::GetDecimalPt();
-#endif
+
+		std::wstring pt(L".");
+		wxString decimalPt = wxLocale::GetInfo(wxLOCALE_DECIMAL_POINT, wxLOCALE_CAT_NUMBER);
+		if (0 < decimalPt.length())
+			pt = decimalPt.wc_str();
+
 		// So we only reparse if the incoming string does not contain
 		// the locale's decimal point.
-		if (pt != L'.' && std::wstring::npos == inStr.find(pt))
-		{
-#if defined(__WXWINDOWS__) && !USE_CRT
-			wxLocale locale(wxLANGUAGE_ENGLISH_US, wxLOCALE_DONT_LOAD_DEFAULT);
-			rc = s.ToDouble(&outValue);
-#else
-			CLocaleWrapper locale(LC_NUMERIC, "C");
-			wchar_t* end = nullptr;
-			outValue = wcstod(inStr.c_str(), &end);
-			rc = (!end || !*end);
-#endif
-		}
+		if (pt != L"." && wxNOT_FOUND == s.Find(pt))
+			rc = s.ToCDouble(&outValue);
 	}
 	return rc;
 }
@@ -386,7 +215,6 @@ double ToDouble(std::wstring const& inStr)
 
 bool ToCLong(std::wstring const& inStr, long& outValue, bool bRetry)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	wxString s(inStr.c_str());
 	bool bOk = s.ToCLong(&outValue);
 	// The above fails for "123-45" and returns 0. Before it returned 123.
@@ -397,12 +225,6 @@ bool ToCLong(std::wstring const& inStr, long& outValue, bool bRetry)
 		str >> outValue;
 	}
 	return bOk;
-#else
-	CLocaleWrapper locale(LC_NUMERIC, "C");
-	wchar_t* end = nullptr;
-	outValue = wcstol(inStr.c_str(), &end, 10);
-	return !end || !*end;
-#endif
 }
 
 
@@ -416,7 +238,6 @@ long ToCLong(std::wstring const& inStr)
 
 bool ToCULong(std::wstring const& inStr, unsigned long& outValue, bool bRetry)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	wxString s(inStr.c_str());
 	bool bOk = s.ToCULong(&outValue);
 	// The above fails for "123-45" and returns 0. Before it returned 123.
@@ -427,12 +248,6 @@ bool ToCULong(std::wstring const& inStr, unsigned long& outValue, bool bRetry)
 		str >> outValue;
 	}
 	return bOk;
-#else
-	CLocaleWrapper locale(LC_NUMERIC, "C");
-	wchar_t* end = nullptr;
-	outValue = wcstoul(inStr.c_str(), &end, 10);
-	return !end || !*end;
-#endif
 }
 
 
@@ -446,16 +261,9 @@ unsigned long ToCULong(std::wstring const& inStr)
 
 bool ToCDouble(std::wstring const& inStr, double& outValue)
 {
-#if defined(__WXWINDOWS__) && !USE_CRT
 	// This will fail on "1.2-3". That's ok. The only time this is used
 	// is for parsing an actual number in Element.
 	return stringWX(inStr).ToCDouble(&outValue);
-#else
-	CLocaleWrapper locale(LC_NUMERIC, "C");
-	wchar_t* end = nullptr;
-	outValue = wcstod(inStr.c_str(), &end);
-	return !end || !*end;
-#endif
 }
 
 
@@ -576,7 +384,6 @@ int CompareNoCase(std::wstring const& inStr1, std::wstring const& inStr2)
 }
 
 
-#if defined(__WXWINDOWS__)
 int CompareNoCase(wxString const& inStr1, wxString const& inStr2)
 {
 #ifdef WIN32
@@ -589,7 +396,6 @@ int CompareNoCase(wxString const& inStr1, wxString const& inStr2)
 	return inStr1.CmpNoCase(inStr2);
 #endif
 }
-#endif
 
 
 std::string Trim(std::string const& inStr)

@@ -17,6 +17,8 @@
 #include "TestARBLib.h"
 
 #include "ARBCommon/ARBUtils.h"
+#include "ARBCommon/Element.h"
+#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ResourceManager.h"
 #include "LibTidyHtml/LibTidyHtml.h"
 #include "fmt/printf.h"
@@ -41,9 +43,21 @@ TEST_CASE("LibTidy")
 
 		std::string data(filedata.str());
 
-		fmt::wmemory_buffer err;
+		fmt::memory_buffer errTidy;
 		std::string debug;
-		ElementNodePtr tidyTree = TidyHtmlData(data, err, &debug);
+		auto treeData = TidyHtmlData(data, errTidy, &debug);
+		REQUIRE(!treeData.empty());
+
+		fmt::wmemory_buffer err;
+		auto msgTidy = StringUtil::stringW(fmt::to_string(errTidy));
+		if (!msgTidy.empty())
+			fmt::format_to(std::back_inserter(err), L"{}", msgTidy);
+
+		ElementNodePtr tidyTree = ElementNode::New();
+		if (!tidyTree->LoadXML(treeData.data(), treeData.length(), err))
+		{
+			tidyTree.reset();
+		}
 		REQUIRE(tidyTree);
 		// if (!tidyTree)
 		//{

@@ -21,7 +21,6 @@
  */
 
 #include "LibwxARBWin.h"
-class wxLocale;
 
 
 class ARBWIN_API ILanguageCallback
@@ -69,5 +68,4 @@ private:
 	ILanguageCallback* m_pCallback;
 	wxLanguage m_CurLang;
 	std::wstring m_dirLoadedLang; /// 'en'/'fr' etc
-	std::unique_ptr<wxLocale> m_locale;
 };

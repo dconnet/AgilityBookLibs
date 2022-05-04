@@ -59,7 +59,6 @@ TEST_CASE("MailTo")
 		// \u00A3 is the Pound currency sign
 		std::wstring s(L"Line 1\r\nLine 2\u00A3");
 		mailto.SetBody(s);
-		REQUIRE(
-			"mailto:someone@example.com?subject=My%20Subject&body=Line%201%0d%0aLine%202%c2%a3" == mailto.Uri());
+		REQUIRE("mailto:someone@example.com?subject=My%20Subject&body=Line%201%0d%0aLine%202%c2%a3" == mailto.Uri());
 	}
 }

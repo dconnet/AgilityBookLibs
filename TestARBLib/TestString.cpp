@@ -61,8 +61,7 @@ TEST_CASE("String")
 	SECTION("Convert_Multi")
 	{
 		// http://www.ftrain.com/unicode/#65275
-		wchar_t w
-			= 0xFEFB; // In courier new, Arabic Ligature Lam With Alef Isolated Form (see 'Character Map' program)
+		wchar_t w = 0xFEFB; // In courier new, Arabic Ligature Lam With Alef Isolated Form (see 'Character Map' program)
 		std::wstring s(1, w);
 		std::string s2 = StringUtil::stringA(s);
 		REQUIRE(s.length() == 1u);

@@ -262,16 +262,18 @@ bool CLanguageManager::SetLang(wxLanguage langId)
 
 	bool rc = false;
 	{
+		// Completely reset the translations. We don't want to accumulate catalogs.
+		// Otherwise, when switching from FR->EN, I'm seeing some controls (like Cancel)
+		// remain in French.
+		if (wxTranslations::Get()->IsLoaded(m_pCallback->OnGetCatalogName()))
+		{
+			wxTranslations::Set(new wxTranslations);
+			wxDatTranslationsLoader* loader = new wxDatTranslationsLoader;
+			wxTranslations::Get()->SetLoader(loader);
+		}
+
 		wxLocale locale(m_CurLang);
-		// The wx3.1.2 release had an incompatible change in AddCatalog. 3.1.3 restores it.
-#if wxMAJOR_VERSION == 3 && wxMINOR_VERSION == 1 && wxRELEASE_NUMBER == 2
-		if (m_CurLang == wxLANGUAGE_ENGLISH_US)
-			rc = wxTranslations::Get()->AddCatalog(m_pCallback->OnGetCatalogName(), wxLANGUAGE_USER_DEFINED);
-		else
-			rc = wxTranslations::Get()->AddCatalog(m_pCallback->OnGetCatalogName());
-#else
 		rc = wxTranslations::Get()->AddCatalog(m_pCallback->OnGetCatalogName(), m_CurLang);
-#endif
 		if (rc)
 		{
 			// In wxTranslations::LoadCatalog(const wxString& domain, const wxString& lang, const wxString& msgIdLang),
@@ -299,8 +301,10 @@ bool CLanguageManager::SetLang(wxLanguage langId)
 }
 
 
-int CLanguageManager::GetAvailableLanguages(wxLanguage const& lang, std::vector<wxLanguage>& langId, wxArrayString& choices)
-	const
+int CLanguageManager::GetAvailableLanguages(
+	wxLanguage const& lang,
+	std::vector<wxLanguage>& langId,
+	wxArrayString& choices) const
 {
 	int idxLang = -1;
 

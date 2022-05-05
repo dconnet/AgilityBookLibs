@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-01 10:39-0700\n"
-"PO-Revision-Date: 2022-04-01 10:39-0700\n"
+"POT-Creation-Date: 2022-05-05 13:17-0700\n"
+"PO-Revision-Date: 2022-05-05 13:17-0700\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: fr_FR\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-SearchPath-2: LibARBWin\n"
 "X-Poedit-SearchPath-3: TestARBLib\n"
 
-#: ARBCommon/VersionNum.cpp:79
+#: ARBCommon/VersionNum.cpp:86
 #, c-format
 msgid ""
 "%s version %s\n"
@@ -32,12 +32,12 @@ msgstr ""
 "%s version %s\n"
 "%s"
 
-#: ARBCommon/VersionNum.cpp:94
+#: ARBCommon/VersionNum.cpp:101
 #, fuzzy, c-format
 msgid "Compiled on %s at %s"
 msgstr "Compiled on %s at %s"
 
-#: LibARBWin/ARBDebug.cpp:210
+#: LibARBWin/ARBDebug.cpp:206
 msgid "Unable to determine version information"
 msgstr "Impossible de determiner information version"
 
@@ -81,7 +81,7 @@ msgstr "Alt"
 msgid "Shift"
 msgstr "Majuscule"
 
-#: LibARBWin/DlgConfigAccel.cpp:142 LibARBWin/DlgConfigAccel.cpp:490
+#: LibARBWin/DlgConfigAccel.cpp:142 LibARBWin/DlgConfigAccel.cpp:493
 #, fuzzy
 msgid "Clear"
 msgstr "Clear"
@@ -103,33 +103,33 @@ msgstr "Alt+"
 msgid "Shift+"
 msgstr "Majuscule+"
 
-#: LibARBWin/DlgConfigAccel.cpp:458
+#: LibARBWin/DlgConfigAccel.cpp:461
 #, fuzzy
 msgid "Configure Keyboard Shortcuts"
 msgstr "Configure Keyboard Shortcuts"
 
-#: LibARBWin/DlgConfigAccel.cpp:476
+#: LibARBWin/DlgConfigAccel.cpp:479
 #, fuzzy
 msgid "Keyboard Shortcut"
 msgstr "Keyboard Shortcut"
 
-#: LibARBWin/DlgConfigAccel.cpp:477
+#: LibARBWin/DlgConfigAccel.cpp:480
 msgid "Description"
 msgstr "Description"
 
-#: LibARBWin/DlgConfigAccel.cpp:479
+#: LibARBWin/DlgConfigAccel.cpp:482
 msgid "Location"
 msgstr "Endroit"
 
-#: LibARBWin/DlgConfigAccel.cpp:484
+#: LibARBWin/DlgConfigAccel.cpp:487
 msgid "New..."
 msgstr "Nouveau..."
 
-#: LibARBWin/DlgConfigAccel.cpp:487
+#: LibARBWin/DlgConfigAccel.cpp:490
 msgid "Edit..."
 msgstr "Édition..."
 
-#: LibARBWin/DlgConfigAccel.cpp:493
+#: LibARBWin/DlgConfigAccel.cpp:496
 #, fuzzy
 msgid "Set Defaults"
 msgstr "Set Defaults"
@@ -148,41 +148,41 @@ msgstr "Quitter"
 msgid "Progress"
 msgstr "Progression"
 
-#: LibARBWin/LanguageManager.cpp:223 LibARBWin/LanguageManager.cpp:228
+#: LibARBWin/LanguageManager.cpp:221 LibARBWin/LanguageManager.cpp:226
 #, fuzzy
 msgid "No other languages are available."
 msgstr "No other languages are available."
 
-#: LibARBWin/LanguageManager.cpp:233
+#: LibARBWin/LanguageManager.cpp:231
 msgid "Choose a language:"
 msgstr "Choisir la Langue:"
 
 # DlgLanguage
-#: LibARBWin/LanguageManager.cpp:233
+#: LibARBWin/LanguageManager.cpp:231
 msgid "Language Selection"
 msgstr "Choisir la Langue"
 
-#: LibARBWin/LanguageManager.cpp:234
+#: LibARBWin/LanguageManager.cpp:232
 msgid "Select a language to use."
 msgstr "Choisir une langue."
 
-# Description strings returned by wxWidgets wxLocale.
+# Description strings returned by wxWidgets wxTranslations.
 # Keep each one in the native form (like Win7's display language selection)
-#: LibARBWin/LanguageManager.cpp:319
+#: LibARBWin/LanguageManager.cpp:321
 msgid "English (U.S.)"
 msgstr "English"
 
-#: LibARBWin/LanguageManager.cpp:320
+#: LibARBWin/LanguageManager.cpp:322
 msgid "French"
 msgstr "français"
 
-# Description strings returned by wxWidgets wxLocale.
+# Description strings returned by wxWidgets wxTranslations.
 # Keep each one in the native form (like Win7's display language selection)
-#: LibARBWin/LanguageManager.cpp:322
+#: LibARBWin/LanguageManager.cpp:324
 msgid "English (United States)"
 msgstr "English"
 
-#: LibARBWin/LanguageManager.cpp:323
+#: LibARBWin/LanguageManager.cpp:325
 msgid "French (France)"
 msgstr "français"
 
@@ -196,11 +196,11 @@ msgstr "Please enter credentials for accessing:"
 msgid "Credentials"
 msgstr "Credentials"
 
-#: LibARBWin/ReportListHeader.cpp:516
+#: LibARBWin/ReportListHeader.cpp:513
 msgid "Restore"
 msgstr "restaurer"
 
-#: LibARBWin/SetupApp.cpp:121
+#: LibARBWin/SetupApp.cpp:122
 #, fuzzy, c-format
 msgid "Report generated in \"%s\"."
 msgstr "Report generated in \"%s\"."
@@ -228,6 +228,6 @@ msgstr "Please enter a valid time"
 msgid "Please enter a value"
 msgstr "Renseignez le champ, svp."
 
-#: LibARBWin/Validators.cpp:492 LibARBWin/Validators.cpp:591
+#: LibARBWin/Validators.cpp:491 LibARBWin/Validators.cpp:590
 msgid "Validation conflict"
 msgstr "Conflit de validation"

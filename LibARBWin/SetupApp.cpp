@@ -40,6 +40,7 @@
 #include <wx/fs_arc.h>
 #include <wx/fs_mem.h>
 #include <wx/stdpaths.h>
+#include <wx/uilocale.h>
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -154,6 +155,8 @@ bool CBaseApp::OnInit()
 #if defined(__WXGTK__)
 	GTKSuppressDiagnostics();
 #endif
+
+	wxUILocale::UseDefault();
 
 	// Initialize critical handlers
 	wxImage::AddHandler(new wxPNGHandler);

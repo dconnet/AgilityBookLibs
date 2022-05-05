@@ -42,6 +42,7 @@
 #include <wx/fileconf.h>
 #include <wx/stdpaths.h>
 #include <wx/translation.h>
+#include <wx/uilocale.h>
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -150,15 +151,15 @@ bool CLanguageManager::InitLanguage()
 		{
 			wxLanguage lang2 = lang;
 			{
-				wxLocale tmp(wxLANGUAGE_DEFAULT);
-				lang2 = static_cast<wxLanguage>(tmp.GetLanguage());
+				auto info = wxUILocale::GetLanguageInfo(wxLANGUAGE_DEFAULT);
+				lang2 = static_cast<wxLanguage>(info->Language);
 			}
 			// See if we have this language...
 			bool bSet = false;
 			wxArrayString files = wxTranslations::Get()->GetAvailableTranslations(m_pCallback->OnGetCatalogName());
 			for (auto it = files.begin(); !bSet && it != files.end(); ++it)
 			{
-				wxLanguageInfo const* info = wxLocale::FindLanguageInfo(*it);
+				wxLanguageInfo const* info = wxUILocale::FindLanguageInfo(*it);
 				if (info)
 				{
 					if (info->Language == lang2)
@@ -241,7 +242,7 @@ wxLanguage CLanguageManager::SelectLang(wxWindow* parent)
 		}
 	}
 
-	wxLanguageInfo const* langInfo = wxLocale::GetLanguageInfo(lang);
+	wxLanguageInfo const* langInfo = wxUILocale::GetLanguageInfo(lang);
 	if (langInfo && m_pCallback && !m_pCallback->OnGetLangConfigName().empty())
 		wxConfig::Get()->Write(m_pCallback->OnGetLangConfigName(), langInfo->CanonicalName);
 
@@ -286,7 +287,7 @@ bool CLanguageManager::SetLang(wxLanguage langId)
 	if (rc)
 	{
 		wxTranslations::Get()->SetLanguage(m_CurLang);
-		m_dirLoadedLang = wxLocale::GetLanguageCanonicalName(m_CurLang);
+		m_dirLoadedLang = wxUILocale::GetLanguageCanonicalName(m_CurLang);
 		if (2 < m_dirLoadedLang.length())
 			m_dirLoadedLang = m_dirLoadedLang.substr(0, 2);
 		m_pCallback->OnSetLanguage(m_CurLang);
@@ -311,7 +312,7 @@ int CLanguageManager::GetAvailableLanguages(
 	wxArrayString files = wxTranslations::Get()->GetAvailableTranslations(m_pCallback->OnGetCatalogName());
 	for (auto it = files.begin(); it != files.end(); ++it)
 	{
-		wxLanguageInfo const* info = wxLocale::FindLanguageInfo(*it);
+		wxLanguageInfo const* info = wxUILocale::FindLanguageInfo(*it);
 		if (info)
 		{
 			// Trigger poedit to capture these.

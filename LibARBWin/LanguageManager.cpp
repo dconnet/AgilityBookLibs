@@ -121,7 +121,7 @@ wxLanguage CLanguageManager::GetDefaultLanguage() const
 	wxString langStr = wxConfig::Get()->Read(m_pCallback->OnGetLangConfigName(), wxEmptyString);
 	if (!langStr.empty())
 	{
-		const wxLanguageInfo* langInfo = wxLocale::FindLanguageInfo(langStr);
+		const wxLanguageInfo* langInfo = wxUILocale::FindLanguageInfo(langStr);
 		if (langInfo)
 			lang = static_cast<wxLanguage>(langInfo->Language);
 	}

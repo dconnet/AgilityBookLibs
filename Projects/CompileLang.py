@@ -4,6 +4,7 @@
 # Requires msgcat/msgfmt (gettext) in PATH
 #
 # Revision History
+# 2022-05-05 Don't create lang dir until we know skip status.
 # 2022-05-04 Change msgcat '-u' to '--use-first'
 # 2020-12-27 Add missing '-u' option in msgcat to remove duplicates.
 # 2019-05-20 Changed sourceDir argument to '-s' so multiple can be supported.
@@ -150,13 +151,6 @@ def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDe
 		poFile1 = ''
 		poFiles = []
 
-		installPath = os.path.join(langDir, langName)
-		if not os.access(installPath, os.F_OK):
-			os.mkdir(installPath)
-
-		# This is the temporary file created by msgcat
-		autogen = os.path.join(installPath, autogenFile)
-
 		# Get all the PO files
 		for srcPath in langPaths:
 			if os.path.basename(srcPath) == langName:
@@ -176,6 +170,13 @@ def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDe
 		if len(poFile1) == 0:
 			++skipped
 			continue
+
+		installPath = os.path.join(langDir, langName)
+		if not os.access(installPath, os.F_OK):
+			os.mkdir(installPath)
+
+		# This is the temporary file created by msgcat
+		autogen = os.path.join(installPath, autogenFile)
 
 		# -t: output encoding
 		cmd = ['msgcat', '--use-first', '-t', 'utf-8', '-o', autogen, poFile1]

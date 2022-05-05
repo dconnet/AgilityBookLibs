@@ -144,6 +144,27 @@ bool CLanguageManager::InitLanguage()
 	wxDatTranslationsLoader* loader = new wxDatTranslationsLoader;
 	wxTranslations::Get()->SetLoader(loader);
 
+#ifdef _DEBUG
+	// Add support for a pseudo language for i18n testing. Since this is not
+	// added in Release, when we query for available languages, FindLanguageInfo
+	// will fail and we won't show it.
+	{
+		wxLanguageInfo info;
+		info.Language = wxLANGUAGE_USER_DEFINED + 1;
+		info.LocaleTag = L"xxx";
+		info.CanonicalName = L"xxx";
+		info.CanonicalRef = L"";
+#ifdef __WINDOWS__
+		info.WinLang = LANG_NEUTRAL;
+		info.WinSublang = SUBLANG_NEUTRAL;
+#endif
+		info.Description = L"PseudoLang";
+		info.DescriptionNative = L"PseudoLang";
+		info.LayoutDirection = wxLayoutDirection::wxLayout_LeftToRight;
+		wxLocale::AddLanguage(info);
+	}
+#endif
+
 	if (m_pCallback)
 	{
 		wxLanguage lang = m_pCallback->OnGetLanguage();
@@ -315,16 +336,7 @@ int CLanguageManager::GetAvailableLanguages(
 		wxLanguageInfo const* info = wxUILocale::FindLanguageInfo(*it);
 		if (info)
 		{
-			// Trigger poedit to capture these.
-			// These are the strings wx returns.
-#if 0
-			wchar_t* x1 = _("English (U.S.)");
-			wchar_t* x1 = _("French");
-			// This changed in 3.1.6
-			wchar_t* x1 = _("English (United States)");
-			wchar_t* x1 = _("French (France)");
-#endif
-			choices.Add(wxGetTranslation(info->Description));
+			choices.Add(info->DescriptionNative);
 			langId.push_back(static_cast<wxLanguage>(info->Language));
 			if (info->Language == lang)
 				idxLang = static_cast<int>(langId.size()) - 1;

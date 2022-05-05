@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 13:17-0700\n"
-"PO-Revision-Date: 2022-05-05 13:17-0700\n"
+"POT-Creation-Date: 2022-05-05 14:33-0700\n"
+"PO-Revision-Date: 2022-05-05 14:33-0700\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: fr_FR\n"
@@ -148,43 +148,23 @@ msgstr "Quitter"
 msgid "Progress"
 msgstr "Progression"
 
-#: LibARBWin/LanguageManager.cpp:221 LibARBWin/LanguageManager.cpp:226
+#: LibARBWin/LanguageManager.cpp:242 LibARBWin/LanguageManager.cpp:247
 #, fuzzy
 msgid "No other languages are available."
 msgstr "No other languages are available."
 
-#: LibARBWin/LanguageManager.cpp:231
+#: LibARBWin/LanguageManager.cpp:252
 msgid "Choose a language:"
 msgstr "Choisir la Langue:"
 
 # DlgLanguage
-#: LibARBWin/LanguageManager.cpp:231
+#: LibARBWin/LanguageManager.cpp:252
 msgid "Language Selection"
 msgstr "Choisir la Langue"
 
-#: LibARBWin/LanguageManager.cpp:232
+#: LibARBWin/LanguageManager.cpp:253
 msgid "Select a language to use."
 msgstr "Choisir une langue."
-
-# Description strings returned by wxWidgets wxTranslations.
-# Keep each one in the native form (like Win7's display language selection)
-#: LibARBWin/LanguageManager.cpp:321
-msgid "English (U.S.)"
-msgstr "English"
-
-#: LibARBWin/LanguageManager.cpp:322
-msgid "French"
-msgstr "français"
-
-# Description strings returned by wxWidgets wxTranslations.
-# Keep each one in the native form (like Win7's display language selection)
-#: LibARBWin/LanguageManager.cpp:324
-msgid "English (United States)"
-msgstr "English"
-
-#: LibARBWin/LanguageManager.cpp:325
-msgid "French (France)"
-msgstr "français"
 
 #: LibARBWin/ReadHttp.cpp:146
 #, fuzzy

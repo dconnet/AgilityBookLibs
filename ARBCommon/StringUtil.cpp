@@ -34,6 +34,7 @@
 #include "ARBCommon/ARBTypes.h"
 #include "fmt/xchar.h"
 #include <wx/mstream.h>
+#include <wx/numformatter.h>
 #include <wx/strconv.h>
 #include <wx/uilocale.h>
 #include <algorithm>
@@ -191,14 +192,11 @@ bool ToDouble(std::wstring const& inStr, double& outValue)
 		// - Bad data.
 		// - Different decimal point from Locale (using "." in non"." locale)
 
-		std::wstring pt(L".");
-		wxString decimalPt = wxLocale::GetInfo(wxLOCALE_DECIMAL_POINT, wxLOCALE_CAT_NUMBER);
-		if (0 < decimalPt.length())
-			pt = decimalPt.wc_str();
+		wxChar pt = wxNumberFormatter::GetDecimalSeparator();
 
 		// So we only reparse if the incoming string does not contain
 		// the locale's decimal point.
-		if (pt != L"." && wxNOT_FOUND == s.Find(pt))
+		if (pt != L'.' && wxNOT_FOUND == s.Find(pt))
 			rc = s.ToCDouble(&outValue);
 	}
 	return rc;

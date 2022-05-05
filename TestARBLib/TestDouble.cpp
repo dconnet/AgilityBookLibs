@@ -24,6 +24,7 @@
 
 #include "ARBCommon/StringUtil.h"
 #include "fmt/xchar.h"
+#include <wx/numformatter.h>
 #if FMT_VERSION < 80000
 #include "fmt/locale.h"
 #endif
@@ -33,7 +34,7 @@
 #endif
 
 
-static std::wstring FormNumber(std::wstring const& d1, std::wstring const& dec, std::wstring const& d2)
+static std::wstring FormNumber(std::wstring const& d1, wxChar const& dec, std::wstring const& d2)
 {
 	return fmt::format(L"{}{}{}", d1, dec, d2);
 }
@@ -41,13 +42,9 @@ static std::wstring FormNumber(std::wstring const& d1, std::wstring const& dec, 
 
 static void RunDblTests(bool bUseLocale)
 {
-	std::wstring decimalPt = L".";
+	wxChar decimalPt = L'.';
 	if (bUseLocale)
-	{
-		wxString pt = wxLocale::GetInfo(wxLOCALE_DECIMAL_POINT, wxLOCALE_CAT_NUMBER);
-		if (0 < pt.length())
-			decimalPt = pt.wc_str();
-	}
+		decimalPt = wxNumberFormatter::GetDecimalSeparator();
 
 	// ARBDouble always strips 0s unless prec ==2, unless =".00"
 	double p = 3.14159265358979323846;

@@ -39,6 +39,7 @@
 #include "ARBCommon/Element.h"
 #include "ARBCommon/StringUtil.h"
 #include "fmt/xchar.h"
+#include <wx/numformatter.h>
 #include <math.h>
 #include <time.h>
 
@@ -75,13 +76,9 @@ std::wstring ARBDouble::ToString(double inValue, int inPrec, bool bUseCurrentLoc
 			retVal = fmt::format(L"{:g}", inValue);
 	}
 
-	std::wstring pt(L".");
+	wxChar pt(L'.');
 	if (bUseCurrentLocale)
-	{
-		wxString decimalPt = wxLocale::GetInfo(wxLOCALE_DECIMAL_POINT, wxLOCALE_CAT_NUMBER);
-		if (0 < decimalPt.length())
-			pt = decimalPt.wc_str();
-	}
+		pt = wxNumberFormatter::GetDecimalSeparator();
 
 	if (ZeroStrip::AsIs != eStripZeros)
 	{

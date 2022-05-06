@@ -49,6 +49,8 @@
 #endif
 
 
+namespace
+{
 class wxDatTranslationsLoader : public wxTranslationsLoader
 {
 public:
@@ -100,6 +102,16 @@ wxArrayString wxDatTranslationsLoader::GetAvailableTranslations(const wxString& 
 	return langs;
 }
 
+
+static void SetNewTranslation()
+{
+	auto translations = new wxTranslations;
+	translations->SetLoader(new wxDatTranslationsLoader);
+	wxTranslations::Set(translations);
+}
+
+} // namespace
+
 /////////////////////////////////////////////////////////////////////////////
 
 CLanguageManager::CLanguageManager(ILanguageCallback* pCallback)
@@ -107,7 +119,6 @@ CLanguageManager::CLanguageManager(ILanguageCallback* pCallback)
 	, m_CurLang(wxLANGUAGE_DEFAULT)
 	, m_dirLoadedLang()
 {
-	wxTranslations::Set(new wxTranslations);
 }
 
 
@@ -141,8 +152,7 @@ bool CLanguageManager::InitLanguage()
 {
 	bool bInit = true;
 
-	wxDatTranslationsLoader* loader = new wxDatTranslationsLoader;
-	wxTranslations::Get()->SetLoader(loader);
+	SetNewTranslation();
 
 #ifdef _DEBUG
 	// Add support for a pseudo language for i18n testing. Since this is not
@@ -161,7 +171,7 @@ bool CLanguageManager::InitLanguage()
 		info.Description = L"PseudoLang";
 		info.DescriptionNative = L"PseudoLang";
 		info.LayoutDirection = wxLayoutDirection::wxLayout_LeftToRight;
-		wxLocale::AddLanguage(info);
+		wxUILocale::AddLanguage(info);
 	}
 #endif
 
@@ -283,31 +293,25 @@ bool CLanguageManager::SetLang(wxLanguage langId)
 	m_CurLang = langId;
 
 	bool rc = false;
-	{
-		// Completely reset the translations. We don't want to accumulate catalogs.
-		// Otherwise, when switching from FR->EN, I'm seeing some controls (like Cancel)
-		// remain in French.
-		if (wxTranslations::Get()->IsLoaded(m_pCallback->OnGetCatalogName()))
-		{
-			wxTranslations::Set(new wxTranslations);
-			wxDatTranslationsLoader* loader = new wxDatTranslationsLoader;
-			wxTranslations::Get()->SetLoader(loader);
-		}
 
-		wxLocale locale(m_CurLang);
-		rc = wxTranslations::Get()->AddCatalog(m_pCallback->OnGetCatalogName(), m_CurLang);
-		if (rc)
-		{
-			// In wxTranslations::LoadCatalog(const wxString& domain, const wxString& lang, const wxString& msgIdLang),
-			// wx assumes that if lang == msgIdLang, everything is fine. Um. No.
-			// So ask if there are any available translations and fail if not.
-			if (0 == wxTranslations::Get()->GetAvailableTranslations(m_pCallback->OnGetCatalogName()).size())
-				rc = false;
-		}
+	// Completely reset the translations. We don't want to accumulate catalogs.
+	// Otherwise, when switching from FR->EN, I'm seeing some controls (like Cancel)
+	// remain in French.
+	if (wxTranslations::Get()->IsLoaded(m_pCallback->OnGetCatalogName()))
+		SetNewTranslation();
+
+	wxTranslations::Get()->SetLanguage(m_CurLang);
+	rc = wxTranslations::Get()->AddCatalog(m_pCallback->OnGetCatalogName(), m_CurLang);
+	if (rc)
+	{
+		// In wxTranslations::LoadCatalog(const wxString& domain, const wxString& lang, const wxString& msgIdLang),
+		// wx assumes that if lang == msgIdLang, everything is fine. Um. No.
+		// So ask if there are any available translations and fail if not.
+		if (0 == wxTranslations::Get()->GetAvailableTranslations(m_pCallback->OnGetCatalogName()).size())
+			rc = false;
 	}
 	if (rc)
 	{
-		wxTranslations::Get()->SetLanguage(m_CurLang);
 		m_dirLoadedLang = wxUILocale::GetLanguageCanonicalName(m_CurLang);
 		if (2 < m_dirLoadedLang.length())
 			m_dirLoadedLang = m_dirLoadedLang.substr(0, 2);

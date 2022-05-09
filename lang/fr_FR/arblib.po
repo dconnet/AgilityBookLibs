@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 14:33-0700\n"
-"PO-Revision-Date: 2022-05-05 14:33-0700\n"
+"POT-Creation-Date: 2022-05-09 10:19-0700\n"
+"PO-Revision-Date: 2022-05-09 10:19-0700\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: fr_FR\n"
@@ -148,21 +148,21 @@ msgstr "Quitter"
 msgid "Progress"
 msgstr "Progression"
 
-#: LibARBWin/LanguageManager.cpp:242 LibARBWin/LanguageManager.cpp:247
+#: LibARBWin/LanguageManager.cpp:259 LibARBWin/LanguageManager.cpp:264
 #, fuzzy
 msgid "No other languages are available."
 msgstr "No other languages are available."
 
-#: LibARBWin/LanguageManager.cpp:252
+#: LibARBWin/LanguageManager.cpp:269
 msgid "Choose a language:"
 msgstr "Choisir la Langue:"
 
 # DlgLanguage
-#: LibARBWin/LanguageManager.cpp:252
+#: LibARBWin/LanguageManager.cpp:269
 msgid "Language Selection"
 msgstr "Choisir la Langue"
 
-#: LibARBWin/LanguageManager.cpp:253
+#: LibARBWin/LanguageManager.cpp:270
 msgid "Select a language to use."
 msgstr "Choisir une langue."
 

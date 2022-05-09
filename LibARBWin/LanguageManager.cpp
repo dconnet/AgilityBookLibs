@@ -118,6 +118,7 @@ CLanguageManager::CLanguageManager(ILanguageCallback* pCallback)
 	: m_pCallback(pCallback)
 	, m_CurLang(wxLANGUAGE_DEFAULT)
 	, m_dirLoadedLang()
+	, m_locale(nullptr)
 {
 }
 
@@ -151,6 +152,12 @@ wxString CLanguageManager::GetDefaultCatalogName() const
 bool CLanguageManager::InitLanguage()
 {
 	bool bInit = true;
+
+	// Create a default locale so user formatting is set properly.
+	// wxUILocale doesn't seem to be doing this correctly. (For instance,
+	// I have "MM/DD/YYYY" as my default short date. Without this, I get
+	// "MM/DD/YY".)
+	m_locale = std::make_unique<wxLocale>(wxLANGUAGE_DEFAULT);
 
 	SetNewTranslation();
 

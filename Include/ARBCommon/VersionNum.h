@@ -39,7 +39,7 @@ public:
 	}
 	CVersionNum(unsigned short inMajor, unsigned short inMinor, unsigned short inDot, unsigned short inBuild)
 		: m_Valid(true)
-		, m_Version({inMajor, inMinor, inDot, inBuild})
+		, m_Version({{inMajor, inMinor, inDot, inBuild}})
 	{
 	}
 	explicit CVersionNum(std::wstring const& inVer)
@@ -88,7 +88,7 @@ public:
 	void Assign(unsigned short inMajor, unsigned short inMinor, unsigned short inDot, unsigned short inBuild)
 	{
 		m_Valid = (inMajor > 0 || inMinor > 0 || inDot > 0 || inBuild > 0);
-		m_Version = {inMajor, inMinor, inDot, inBuild};
+		m_Version = {{inMajor, inMinor, inDot, inBuild}};
 	}
 
 	/**
@@ -118,7 +118,7 @@ public:
 	void clear()
 	{
 		m_Valid = false;
-		m_Version = {0, 0, 0, 0};
+		m_Version = {{0, 0, 0, 0}};
 	}
 
 	bool Valid() const

@@ -142,7 +142,7 @@ bool ARBDouble::equal(double const& inVal1, double const& inVal2, double inPrec)
 /////////////////////////////////////////////////////////////////////////////
 
 ARBVersion::ARBVersion(std::wstring inStr)
-	: m_Version({0, 0})
+	: m_Version({{0, 0}})
 {
 	std::wstring::size_type pos = inStr.find('.');
 	if (std::wstring::npos != pos)

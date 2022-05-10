@@ -108,12 +108,12 @@ class ARBCOMMON_API ARBVersion
 
 public:
 	ARBVersion()
-		: m_Version({0, 0})
+		: m_Version({{0, 0}})
 	{
 	}
 
 	ARBVersion(unsigned short major, unsigned short minor)
-		: m_Version({major, minor})
+		: m_Version({{major, minor}})
 	{
 	}
 
@@ -176,11 +176,11 @@ public:
 
 	void clear()
 	{
-		m_Version = {0, 0};
+		m_Version = {{0, 0}};
 	}
 	bool IsSet()
 	{
-		return m_Version > VERSION_ARB({0, 0});
+		return m_Version > VERSION_ARB({{0, 0}});
 	}
 
 	unsigned short Major() const

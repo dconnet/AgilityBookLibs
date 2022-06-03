@@ -17,39 +17,6 @@ TOPBUILDDIR = ./@top_builddir@
 ##########
 # Recursively make in these subdirectories
 ##########
-SUBDIRS = LibFmt LibTidyHtml
-
-##########
-# Compile flags, list include directories
-##########
-INCLUDES =
-
-##########
-# List of programs and archives to link
-##########
-#PROGRAMS = arb testarb
-#ARCHIVES = arblib
-
-##########
-# Source files for each target
-##########
-
-
-##########
-# Extra libraries for link stage (only if needed)
-##########
-# prog1_LIBS = -lextralib
-# prog1_LDFLAGS = -L/path/to/extralib
-
-##########
-# Stuff to install
-##########
-#INSTALL_BIN = arb
-#INSTALL_SBIN = prog2
-#INSTALL_MAN = prog1.5
+SUBDIRS = LibFmt LibTidyHtml catch
 
 @NAM_RULES@
-
-################################################################################
-# End of File: Makefile                                                        #
-################################################################################

@@ -5,6 +5,13 @@ Catch: v2.13.8
 - https://github.com/philsquared/Catch/releases
 -- #include "catch2/catch.hpp"
 
+Catch: v3.0.1
+.../catch/catch3/
+- https://github.com/philsquared/Catch/releases
+- Only copied 'src' from github, plus LICENSE.txt, README.md
+-- #include "catch2/catch_all.hpp"
+
+
 LibFmt: fmtlib v8.1.1
 .../LibFmt/
 DevNote: When updating, update .../res/LibFmt.rc2 with version number and copyright
@@ -68,6 +75,7 @@ DevNote: When updating, update .../res/LibFmt.rc2 with version number and copyri
       throw_format_error("invalid type specifier");
     }
     return out;
+
 
 LibTidyHtml: tidy v5.8.0: My wrapper to hide tidy
 .../LibTidyHtml/

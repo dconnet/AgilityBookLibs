@@ -1410,7 +1410,6 @@ bool ElementNode::LoadXML(std::istream& inStream, fmt::wmemory_buffer& ioErrMsg)
 	// wxLogChain will delete the log given to it.
 	wxLogChain chain(log);
 	chain.PassMessages(false);
-	chain.DisableTimestamp();
 
 	wxInputStdStream stream(inStream);
 	wxXmlDocument source;

@@ -65,6 +65,7 @@ CBaseApp::CBaseApp(wxString const& appName, wxString const& appRegKey, ARBLangua
 	, m_langMgr(nullptr)
 {
 	SetVendorName(L"dcon Software");
+	wxStandardPaths::Get().UseAppInfo(wxStandardPaths::AppInfo_AppName | wxStandardPaths::AppInfo_VendorName);
 	wxStandardPaths::Get().SetFileLayout(wxStandardPaths::FileLayout_XDG);
 
 #if USE_DBGREPORT

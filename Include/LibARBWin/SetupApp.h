@@ -135,8 +135,6 @@ protected:
 	virtual bool InitLanguage();
 	virtual int SelectLang(wxWindow* parent = nullptr);
 
-	// Vendor name (default: 'dcon Software')
-	wxString m_VendorName;
 	// Name displayed in caption.
 	wxString m_BaseAppName;
 	// Name used as registry key.

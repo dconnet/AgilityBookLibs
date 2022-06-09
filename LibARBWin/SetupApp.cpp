@@ -54,8 +54,7 @@ CBaseApp::CBaseApp(wxString const& appName, ARBLanguageCatalog useLangCatalog)
 
 
 CBaseApp::CBaseApp(wxString const& appName, wxString const& appRegKey, ARBLanguageCatalog useLangCatalog)
-	: m_VendorName(L"dcon Software")
-	, m_BaseAppName(appName)
+	: m_BaseAppName(appName)
 	, m_BaseRegName(appRegKey)
 	, m_BaseInfoName()
 	, m_bReadOnlyInfo(false)
@@ -65,6 +64,7 @@ CBaseApp::CBaseApp(wxString const& appName, wxString const& appRegKey, ARBLangua
 	, m_useLangCatalog(useLangCatalog)
 	, m_langMgr(nullptr)
 {
+	SetVendorName(L"dcon Software");
 	wxStandardPaths::Get().SetFileLayout(wxStandardPaths::FileLayout_XDG);
 
 #if USE_DBGREPORT
@@ -210,7 +210,7 @@ bool CBaseApp::OnInit()
 			{
 				wxLogNull suppress;
 				wxFileConfig* pConfig
-					= new wxFileConfig(m_BaseRegName, m_VendorName, inifile, wxEmptyString, wxCONFIG_USE_LOCAL_FILE);
+					= new wxFileConfig(m_BaseRegName, GetVendorName(), inifile, wxEmptyString, wxCONFIG_USE_LOCAL_FILE);
 				if (!m_bReadOnlyInfo)
 				{
 					pConfig->Write(m_ConfigTest, true); // Write-only value to test info file viability
@@ -231,7 +231,7 @@ bool CBaseApp::OnInit()
 			}
 
 			if (!pBaseConfig)
-				pBaseConfig = new wxConfig(m_BaseRegName, m_VendorName);
+				pBaseConfig = new wxConfig(m_BaseRegName, GetVendorName());
 			wxConfig::Set(pBaseConfig);
 			bConfigSet = true;
 		}

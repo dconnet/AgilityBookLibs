@@ -275,6 +275,7 @@
     <ClCompile Include="..\..\LibARBWin\ImageHelperBase.cpp" />
     <ClCompile Include="..\..\LibARBWin\LanguageManager.cpp" />
     <ClCompile Include="..\..\LibARBWin\ListData.cpp" />
+    <ClCompile Include="..\..\LibARBWin\Logger.cpp" />
     <ClCompile Include="..\..\LibARBWin\MenuHelper.cpp" />
     <ClCompile Include="..\..\LibARBWin\ReadHttp.cpp" />
     <ClCompile Include="..\..\LibARBWin\ReportListCtrl.cpp" />
@@ -327,6 +328,7 @@
     <ClInclude Include="..\..\Include\LibARBWin\LanguageManager.h" />
     <ClInclude Include="..\..\Include\LibARBWin\LibwxARBWin.h" />
     <ClInclude Include="..\..\Include\LibARBWin\ListData.h" />
+    <ClInclude Include="..\..\Include\LibARBWin\Logger.h" />
     <ClInclude Include="..\..\Include\LibARBWin\MenuHelper.h" />
     <ClInclude Include="..\..\Include\LibARBWin\ReadHttp.h" />
     <ClInclude Include="..\..\Include\LibARBWin\RegItemsBase.h" />

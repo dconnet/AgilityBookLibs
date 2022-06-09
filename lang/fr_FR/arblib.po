@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-09 10:19-0700\n"
-"PO-Revision-Date: 2022-05-09 10:19-0700\n"
+"POT-Creation-Date: 2022-06-09 14:15-0700\n"
+"PO-Revision-Date: 2022-06-09 14:15-0700\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: fr_FR\n"
@@ -166,6 +166,11 @@ msgstr "Choisir la Langue"
 msgid "Select a language to use."
 msgstr "Choisir une langue."
 
+#: LibARBWin/Logger.cpp:62
+#, fuzzy
+msgid "Logging"
+msgstr "Logging"
+
 #: LibARBWin/ReadHttp.cpp:146
 #, fuzzy
 msgid "Please enter credentials for accessing:"
@@ -180,7 +185,7 @@ msgstr "Credentials"
 msgid "Restore"
 msgstr "restaurer"
 
-#: LibARBWin/SetupApp.cpp:122
+#: LibARBWin/SetupApp.cpp:123
 #, fuzzy, c-format
 msgid "Report generated in \"%s\"."
 msgstr "Report generated in \"%s\"."

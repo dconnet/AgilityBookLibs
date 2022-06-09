@@ -99,6 +99,9 @@
     <ClCompile Include="..\..\LibARBWin\DlgMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\LibARBWin\Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\LibARBWin\DlgConfigAccel.h">
@@ -204,6 +207,9 @@
       <Filter>Include\LibARBWin</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\LibARBWin\DlgMessage.h">
+      <Filter>Include\LibARBWin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\LibARBWin\Logger.h">
       <Filter>Include\LibARBWin</Filter>
     </ClInclude>
   </ItemGroup>

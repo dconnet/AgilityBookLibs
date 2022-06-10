@@ -28,18 +28,22 @@ public:
 
 	CLogger();
 
-	void EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFilename, int keepNlogs = 5);
+	// keep = 0 means keep all.
+	void EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFilename, size_t keepNlogs = 5);
 
+	// These functions are only valid if logging has been enabled
 	wxString GetCurrentLogDir() const;
 	wxString GetCurrentLogName() const;
+	size_t FindExistingLogs(wxArrayString& files);
 
 	wxFrame* GetFrame() const;
 	void Show(bool show = true);
 
 private:
 	wxString GetTimeStamp() const;
-	void RotateLogs(int keepNlogs);
+	wxString RotateLogs(size_t keepNlogs);
 
 	wxLogWindow* m_logger;
+	wxString m_baseFilename;
 	wxFileName m_currentLogName;
 };

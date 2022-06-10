@@ -243,7 +243,6 @@ wxString CLogger::GetTimeStamp() const
 
 wxString CLogger::RotateLogs(size_t keepNlogs)
 {
-	keepNlogs = 1;
 	if (0 == keepNlogs)
 		return wxString();
 

@@ -31,6 +31,8 @@ namespace
 constexpr wchar_t k_logTimestamp[] = L"%Y-%m-%d %H:%M:%S.%l";
 constexpr wxLogLevelValues k_defLogLevel = wxLOG_User;
 constexpr wchar_t k_logExtension[] = L"log";
+constexpr wchar_t k_logFormat[] = L"%Y%m%d";
+
 
 
 class CFileMatcher : public wxDirTraverser
@@ -181,7 +183,7 @@ void CLogger::EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFi
 		// Note: m_logger does not need to be cleaned up. wxWidgets auto-hooks
 		// this into the logging framework and it is cleaned up there.
 		m_logger = new wxLogWindow(parent, _("Logging"), show, !!baseFilename);
-		wxLogGeneric(k_defLogLevel, L"Starting logging");
+		wxLogGeneric(k_defLogLevel, L"%s", L"Starting logging");
 		if (!rotateResults.empty())
 			wxLogGeneric(k_defLogLevel, L"%s", rotateResults);
 	}
@@ -215,6 +217,7 @@ size_t CLogger::FindExistingLogs(wxArrayString& files)
 	if (dir.IsOpened())
 	{
 		CFileMatcher traverser(m_baseFilename, files);
+		// We'll further reduce via regex, this does an initial pass using the OS.
 		dir.Traverse(traverser, wxString::Format(L"%s*.%s", m_baseFilename, k_logExtension), wxDIR_FILES);
 	}
 	return files.size();
@@ -237,7 +240,7 @@ void CLogger::Show(bool show)
 wxString CLogger::GetTimeStamp() const
 {
 	auto now = wxDateTime::Now();
-	return now.Format(L"%Y%m%d");
+	return now.Format(k_logFormat);
 }
 
 

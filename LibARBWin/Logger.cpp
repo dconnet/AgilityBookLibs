@@ -34,7 +34,6 @@ constexpr wchar_t k_logExtension[] = L"log";
 constexpr wchar_t k_logFormat[] = L"%Y%m%d";
 
 
-
 class CFileMatcher : public wxDirTraverser
 {
 public:

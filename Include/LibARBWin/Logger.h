@@ -14,6 +14,7 @@
  */
 
 #include "LibwxARBWin.h"
+#include <wx/filename.h>
 #include <wx/log.h>
 
 

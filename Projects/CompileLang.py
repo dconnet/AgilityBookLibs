@@ -225,9 +225,9 @@ def main():
 			return 1
 		wxwin = os.environ['WXWIN']
 	if not os.access(wxwin, os.F_OK):
-		print(outputDir, 'does not exist')
+		print(wxwin, 'does not exist')
 		return False
- 
+
 	wxBaseName = os.path.basename(wxwin)
 	firstFile = args[0]
 	outputDir = args[1]

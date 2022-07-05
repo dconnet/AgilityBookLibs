@@ -67,7 +67,7 @@ wxMsgCatalog* wxDatTranslationsLoader::LoadCatalog(const wxString& domain, const
 	if (!resMgr)
 		return catalog;
 
-	std::wstring name = fmt::format(L"lang/{}/{}.mo", lang, domain);
+	std::wstring name = fmt::format(L"lang/{}/{}.mo", lang.wc_str(), domain.wc_str());
 
 	std::ostringstream str;
 	if (resMgr->LoadFile(name, str))
@@ -92,7 +92,7 @@ wxArrayString wxDatTranslationsLoader::GetAvailableTranslations(const wxString& 
 		{
 			for (auto dir : directories)
 			{
-				std::wstring name = fmt::format(L"lang/{}/{}.mo", dir, domain);
+				std::wstring name = fmt::format(L"lang/{}/{}.mo", dir.wc_str(), domain.wc_str());
 				if (resMgr->Exists(name))
 					langs.Add(dir);
 			}

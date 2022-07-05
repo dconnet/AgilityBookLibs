@@ -37,7 +37,6 @@
 #include "ARBCommon/Element.h"
 #include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ResourceManager.h"
-#include "fmt/printf.h"
 #include <iostream>
 #include <stdexcept>
 

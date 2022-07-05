@@ -282,11 +282,11 @@
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\core.h" />
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\format.h" />
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\format-inl.h" />
-    <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\locale.h" />
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\os.h" />
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\ostream.h" />
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\printf.h" />
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\ranges.h" />
+    <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\std.h" />
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\xchar.h" />
   </ItemGroup>
   <ItemGroup>

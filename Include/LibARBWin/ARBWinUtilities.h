@@ -27,10 +27,16 @@
 
 #include "ARBCommon/ARBTypes.h"
 #include <wx/treebase.h>
-class CListCtrl;
 class wxDateTime;
 class wxFileName;
 class wxTreeCtrl;
+
+
+namespace dconSoft
+{
+namespace ARBWin
+{
+class CListCtrl;
 
 
 /**
@@ -72,3 +78,6 @@ ARBWIN_API void RefreshTreeItem(wxTreeCtrl* tree, wxTreeItemId item, bool bRecur
  * @param bCalc Determine rectangle or do actual drawing
  */
 ARBWIN_API void DrawBetterLabel(wxDC* pDC, wxString const& inStr, wxRect& rect, int flags, bool bCalc);
+
+} // namespace ARBWin
+} // namespace dconSoft

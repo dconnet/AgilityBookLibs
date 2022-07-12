@@ -27,8 +27,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 namespace
 {
@@ -235,3 +237,5 @@ TEST_CASE("Utils")
 
 #pragma PRAGMA_TODO(Add tests for new backupdir parameter)
 }
+
+} // namespace dconSoft

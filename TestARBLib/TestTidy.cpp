@@ -33,8 +33,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
-using namespace dconSoft::ARBCommon;
+
+namespace dconSoft
+{
+using namespace ARBCommon;
+using namespace ARBWin;
 
 
 TEST_CASE("LibTidy")
@@ -71,3 +74,5 @@ TEST_CASE("LibTidy")
 		//}
 	}
 }
+
+} // namespace dconSoft

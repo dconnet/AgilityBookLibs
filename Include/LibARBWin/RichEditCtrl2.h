@@ -23,6 +23,11 @@
 class wxTextUrlEvent;
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 class ARBWIN_API CRichEditCtrl2 : public CTextCtrl
 {
 public:
@@ -39,3 +44,6 @@ public:
 protected:
 	void OnUrl(wxTextUrlEvent& evt);
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

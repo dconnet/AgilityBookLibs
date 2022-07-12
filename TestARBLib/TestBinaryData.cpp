@@ -24,7 +24,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
+
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 
 #if !defined(__WXWINDOWS__)
@@ -105,3 +108,5 @@ TEST_CASE("BinaryData")
 	}
 }
 #endif
+
+} // namespace dconSoft

@@ -25,7 +25,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
+
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 
 TEST_CASE("MailTo")
@@ -64,3 +67,5 @@ TEST_CASE("MailTo")
 		REQUIRE("mailto:someone@example.com?subject=My%20Subject&body=Line%201%0d%0aLine%202%c2%a3" == mailto.Uri());
 	}
 }
+
+} // namespace dconSoft

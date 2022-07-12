@@ -23,6 +23,12 @@
 
 #include <string>
 #include <vector>
+
+
+namespace dconSoft
+{
+namespace ARBWin
+{
 class CReportListCtrl;
 
 
@@ -156,3 +162,6 @@ protected:
 	bool m_bIsSorted;
 	unsigned int m_saveFlags;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

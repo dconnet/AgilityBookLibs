@@ -24,8 +24,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 namespace
 {
@@ -177,3 +179,5 @@ TEST_CASE("BreakLine")
 		REQUIRE(data == record5);
 	}
 }
+
+} // namespace dconSoft

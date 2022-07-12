@@ -30,8 +30,12 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 CResourceManager* CResourceManager::Get()
 {
@@ -237,3 +241,6 @@ wxIconBundle CResourceManager::CreateIconBundle(wxArtID const& id, wxArtClient c
 		return bundle;
 	return wxArtProvider::CreateIconBundle(id, client);
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

@@ -25,6 +25,10 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
 namespace ImageHelper
 {
 
@@ -58,3 +62,5 @@ wxIcon CreateIconFromBitmap(const wxBitmap& bitmap)
 }
 
 } // namespace ImageHelper
+} // namespace ARBWin
+} // namespace dconSoft

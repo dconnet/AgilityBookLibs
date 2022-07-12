@@ -23,6 +23,11 @@
 #include "LibwxARBWin.h"
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 class ARBWIN_API ILanguageCallback
 {
 public:
@@ -70,3 +75,6 @@ private:
 	std::wstring m_dirLoadedLang; /// 'en'/'fr' etc
 	std::unique_ptr<wxLocale> m_locale;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

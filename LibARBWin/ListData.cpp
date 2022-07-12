@@ -26,8 +26,12 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 CListData::CListData()
 {
@@ -66,3 +70,6 @@ CTreeData::CTreeData()
 CTreeData::~CTreeData()
 {
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

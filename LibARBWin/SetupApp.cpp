@@ -46,8 +46,12 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 CBaseApp::CBaseApp(wxString const& appName, ARBLanguageCatalog useLangCatalog)
 	: CBaseApp(appName, appName, useLangCatalog)
@@ -356,3 +360,6 @@ int CBaseApp::SelectLang(wxWindow* parent)
 {
 	return m_langMgr->SelectLang(parent);
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

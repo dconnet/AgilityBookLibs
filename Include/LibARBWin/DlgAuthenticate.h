@@ -20,6 +20,11 @@
 #include "LibwxARBWin.h"
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 class ARBWIN_API CDlgAuthenticate : public wxDialog
 {
 public:
@@ -36,3 +41,6 @@ private:
 	wxString m_Name;
 	wxString m_Password;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

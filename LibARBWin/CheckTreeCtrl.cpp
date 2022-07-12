@@ -40,6 +40,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 wxIMPLEMENT_CLASS(CCheckTreeCtrl, CTreeCtrl)
 
 
@@ -229,3 +234,6 @@ void CCheckTreeCtrl::OnKeyDown(wxKeyEvent& evt)
 	}
 	evt.Skip();
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

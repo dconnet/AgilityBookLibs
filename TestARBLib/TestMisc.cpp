@@ -43,8 +43,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
+using namespace ARBWin;
 
 namespace
 {
@@ -251,3 +254,5 @@ TEST_CASE("Misc")
 		}
 	}
 }
+
+} // namespace dconSoft

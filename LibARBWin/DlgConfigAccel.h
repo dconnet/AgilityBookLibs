@@ -19,6 +19,13 @@
 #include "LibARBWin/ReportListHeader.h"
 #include <unordered_map>
 #include <vector>
+
+
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 class CReportListCtrl;
 
 
@@ -83,3 +90,6 @@ private:
 	wxButton* m_ctrlEdit;
 	wxButton* m_ctrlClear;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

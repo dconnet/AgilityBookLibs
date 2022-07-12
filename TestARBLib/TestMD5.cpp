@@ -23,7 +23,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
+
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 
 TEST_CASE("MsgDigest")
@@ -58,3 +61,5 @@ TEST_CASE("MsgDigest")
 		REQUIRE(digest == DigestStringSHA256);
 	}
 }
+
+} // namespace dconSoft

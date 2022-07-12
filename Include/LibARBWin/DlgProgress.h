@@ -24,6 +24,11 @@
 #include "LibwxARBWin.h"
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 class ARBWIN_API IDlgProgress
 {
 public:
@@ -55,3 +60,6 @@ public:
 	/// Shut down (delete) the dialog.
 	virtual void Dismiss() = 0;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

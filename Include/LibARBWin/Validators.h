@@ -20,11 +20,13 @@
 
 #include "LibwxARBWin.h"
 
+#include "ARBCommon/ARBDate.h"
 #include "ARBCommon/ARBTypes.h"
 #include <wx/valgen.h>
 #include <wx/valtext.h>
 
 class wxDateTime;
+
 
 namespace dconSoft
 {
@@ -32,8 +34,9 @@ namespace ARBCommon
 {
 class ARBDate;
 } // namespace ARBCommon
-} // namespace dconSoft
 
+namespace ARBWin
+{
 
 /// wxGenericValidator doesn't do shorts and doubles
 // Would have preferred to inherit from wxGenericValidator, but there's
@@ -64,12 +67,12 @@ public:
 		wxChar const* errMsg = nullptr);
 	CGenericValidator(
 		double* val,
-		dconSoft::ARBCommon::ARBDouble::ZeroStrip strip,
+		ARBCommon::ARBDouble::ZeroStrip strip,
 		int inPrec = 2,
 		double defVal = 0.0,
 		bool bUseDefOnEmpty = true,
 		wxChar const* errMsg = nullptr);
-	explicit CGenericValidator(dconSoft::ARBCommon::ARBDate* val, wxChar const* errMsg = nullptr);
+	explicit CGenericValidator(ARBCommon::ARBDate* val, wxChar const* errMsg = nullptr);
 	explicit CGenericValidator(wxDateTime* val, wxChar const* errMsg = nullptr);
 	explicit CGenericValidator(wxDateTime* val, bool showSeconds, wxChar const* errMsg = nullptr);
 	CGenericValidator(CGenericValidator const& rhs);
@@ -92,7 +95,7 @@ private:
 	short* m_pShort;
 	long* m_pLong;
 	double* m_pDouble;
-	dconSoft::ARBCommon::ARBDouble::ZeroStrip m_strip;
+	ARBCommon::ARBDouble::ZeroStrip m_strip;
 	int m_Prec;
 	union
 	{
@@ -102,7 +105,7 @@ private:
 		double dbl;
 	} m_Default;
 	bool m_bUseDefOnEmpty;
-	dconSoft::ARBCommon::ARBDate* m_pDate;
+	ARBCommon::ARBDate* m_pDate;
 	wxDateTime* m_pTime;
 	bool m_showTimeSeconds;
 	wxString m_ErrMsg;
@@ -146,3 +149,6 @@ protected:
 	long m_TrimStyle;
 	wxString m_ErrMsg;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

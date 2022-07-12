@@ -49,6 +49,12 @@
 #endif
 
 
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
+
 namespace
 {
 class wxDatTranslationsLoader : public wxTranslationsLoader
@@ -103,7 +109,7 @@ wxArrayString wxDatTranslationsLoader::GetAvailableTranslations(const wxString& 
 }
 
 
-static void SetNewTranslation()
+void SetNewTranslation()
 {
 	auto translations = new wxTranslations;
 	translations->SetLoader(new wxDatTranslationsLoader);
@@ -111,8 +117,6 @@ static void SetNewTranslation()
 }
 
 } // namespace
-
-/////////////////////////////////////////////////////////////////////////////
 
 CLanguageManager::CLanguageManager(ILanguageCallback* pCallback)
 	: m_pCallback(pCallback)
@@ -356,3 +360,6 @@ int CLanguageManager::GetAvailableLanguages(
 
 	return idxLang;
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

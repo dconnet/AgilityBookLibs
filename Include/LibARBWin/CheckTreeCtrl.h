@@ -23,6 +23,11 @@
 #include <wx/imaglist.h>
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 class ARBWIN_API CCheckTreeCtrl : public CTreeCtrl
 {
 	DECLARE_CLASS(CCheckTreeCtrl)
@@ -64,3 +69,6 @@ private:
 DECLARE_EXPORTED_EVENT_TYPE(ARBWIN_API, wxEVT_COMMAND_TREE_CHECK_CHANGED, 621)
 
 #define EVT_TREE_CHECK_CHANGED(id, fn) wx__DECLARE_TREEEVT(CHECK_CHANGED, id, fn)
+
+} // namespace ARBWin
+} // namespace dconSoft

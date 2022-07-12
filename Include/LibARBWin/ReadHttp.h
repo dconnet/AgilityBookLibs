@@ -24,8 +24,14 @@
 #include "LibwxARBWin.h"
 #include <wx/webrequest.h>
 
-class IDlgProgress;
 class wxOutputStream;
+
+
+namespace dconSoft
+{
+namespace ARBWin
+{
+class IDlgProgress;
 
 
 class ARBWIN_API CReadHttp
@@ -78,3 +84,6 @@ private:
 	// difficult. So we'll just hold them in memory here.
 	wxWebCredentials m_credentials;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

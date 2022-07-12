@@ -36,10 +36,14 @@
 
 namespace
 {
-constexpr int _defWidth = 250;
+constexpr int k_defWidth = 250;
 } // namespace
 
-using namespace dconSoft;
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 /////////////////////////////////////////////////////////////////////////////
 // I used the wxProgressDialog as a guide
@@ -139,7 +143,7 @@ CDlgProgress::CDlgProgress(short nBars, wxWindow* parent)
 		wxID_ANY,
 		10,
 		wxDefaultPosition,
-		wxDLG_UNIT(this, wxSize(_defWidth, -1)),
+		wxDLG_UNIT(this, wxSize(k_defWidth, -1)),
 		wxGA_HORIZONTAL | wxGA_SMOOTH)));
 	for (int nBar = 1; nBar < nBars; ++nBar)
 		m_ctrlBars.push_back(GaugeData(new wxGauge(
@@ -147,7 +151,7 @@ CDlgProgress::CDlgProgress(short nBars, wxWindow* parent)
 			wxID_ANY,
 			10,
 			wxDefaultPosition,
-			wxDLG_UNIT(this, wxSize(_defWidth, -1)),
+			wxDLG_UNIT(this, wxSize(k_defWidth, -1)),
 			wxGA_HORIZONTAL | wxGA_SMOOTH)));
 
 	// Sizers
@@ -230,14 +234,14 @@ void CDlgProgress::OnCancel(wxCommandEvent& evt)
 void CDlgProgress::SetCaption(std::wstring const& inCaption)
 {
 	assert(wxIsMainThread());
-	SetLabel(ARBCommon::StringUtil::stringWX(inCaption));
+	SetLabel(StringUtil::stringWX(inCaption));
 }
 
 
 void CDlgProgress::SetMessage(std::wstring const& inMessage)
 {
 	assert(wxIsMainThread());
-	wxString msg(ARBCommon::StringUtil::stringWX(inMessage));
+	wxString msg(StringUtil::stringWX(inMessage));
 	if (!inMessage.empty() && msg != m_ctrlMessage->GetLabel())
 	{
 		m_ctrlMessage->SetLabel(msg);
@@ -389,3 +393,6 @@ IDlgProgress* IDlgProgress::CreateProgress(short nBars, wxWindow* parent)
 	CDlgProgress* pDlg = new CDlgProgress(nBars, parent);
 	return pDlg;
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

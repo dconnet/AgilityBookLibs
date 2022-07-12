@@ -21,6 +21,12 @@
 
 #include "fmt/xchar.h"
 
+
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 // Sorting:
 #define CFG_KEY_SORTING L"Sorting"
 //	ST [key]Order (ColumnOrder.cpp)
@@ -61,3 +67,6 @@ inline std::wstring CFG_SORT_COLUMN(std::wstring const& item)
 #define CFG_ACCEL_MOD L"mod"
 
 #define CFG_KEY_RECENT_FILES L"Recent File List" // Named this way for compatibility with existing MFC app
+
+} // namespace ARBWin
+} // namespace dconSoft

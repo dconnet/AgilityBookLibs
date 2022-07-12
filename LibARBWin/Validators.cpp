@@ -34,8 +34,6 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
-
 
 namespace
 {
@@ -43,6 +41,11 @@ constexpr wchar_t k_TimeFormatHMS[] = L"%I:%M:%S %p";
 constexpr wchar_t k_TimeFormatHM[] = L"%I:%M %p";
 } // namespace
 
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 wxIMPLEMENT_CLASS(CGenericValidator, wxValidator)
 wxIMPLEMENT_CLASS(CTrimValidator, wxGenericValidator)
@@ -58,7 +61,7 @@ CGenericValidator::CGenericValidator(
 	, m_pShort(nullptr)
 	, m_pLong(nullptr)
 	, m_pDouble(nullptr)
-	, m_strip(ARBCommon::ARBDouble::ZeroStrip::Compatible)
+	, m_strip(ARBDouble::ZeroStrip::Compatible)
 	, m_Prec(0)
 	, m_Default()
 	, m_bUseDefOnEmpty(bUseDefOnEmpty)
@@ -78,7 +81,7 @@ CGenericValidator::CGenericValidator(short* val, short defVal, bool bUseDefOnEmp
 	, m_pShort(val)
 	, m_pLong(nullptr)
 	, m_pDouble(nullptr)
-	, m_strip(ARBCommon::ARBDouble::ZeroStrip::Compatible)
+	, m_strip(ARBDouble::ZeroStrip::Compatible)
 	, m_Prec(0)
 	, m_Default()
 	, m_bUseDefOnEmpty(bUseDefOnEmpty)
@@ -98,7 +101,7 @@ CGenericValidator::CGenericValidator(long* val, long defVal, bool bUseDefOnEmpty
 	, m_pShort(nullptr)
 	, m_pLong(val)
 	, m_pDouble(nullptr)
-	, m_strip(ARBCommon::ARBDouble::ZeroStrip::Compatible)
+	, m_strip(ARBDouble::ZeroStrip::Compatible)
 	, m_Prec(0)
 	, m_Default()
 	, m_bUseDefOnEmpty(bUseDefOnEmpty)
@@ -114,14 +117,14 @@ CGenericValidator::CGenericValidator(long* val, long defVal, bool bUseDefOnEmpty
 
 
 CGenericValidator::CGenericValidator(double* val, int inPrec, double defVal, bool bUseDefOnEmpty, wxChar const* errMsg)
-	: CGenericValidator(val, ARBCommon::ARBDouble::ZeroStrip::Compatible, inPrec, defVal, bUseDefOnEmpty, errMsg)
+	: CGenericValidator(val, ARBDouble::ZeroStrip::Compatible, inPrec, defVal, bUseDefOnEmpty, errMsg)
 {
 }
 
 
 CGenericValidator::CGenericValidator(
 	double* val,
-	ARBCommon::ARBDouble::ZeroStrip strip,
+	ARBDouble::ZeroStrip strip,
 	int inPrec,
 	double defVal,
 	bool bUseDefOnEmpty,
@@ -145,12 +148,12 @@ CGenericValidator::CGenericValidator(
 }
 
 
-CGenericValidator::CGenericValidator(ARBCommon::ARBDate* val, wxChar const* errMsg)
+CGenericValidator::CGenericValidator(ARBDate* val, wxChar const* errMsg)
 	: m_pUShort(nullptr)
 	, m_pShort(nullptr)
 	, m_pLong(nullptr)
 	, m_pDouble(nullptr)
-	, m_strip(ARBCommon::ARBDouble::ZeroStrip::Compatible)
+	, m_strip(ARBDouble::ZeroStrip::Compatible)
 	, m_Prec(0)
 	, m_Default()
 	, m_bUseDefOnEmpty(false)
@@ -169,7 +172,7 @@ CGenericValidator::CGenericValidator(wxDateTime* val, wxChar const* errMsg)
 	, m_pShort(nullptr)
 	, m_pLong(nullptr)
 	, m_pDouble(nullptr)
-	, m_strip(ARBCommon::ARBDouble::ZeroStrip::Compatible)
+	, m_strip(ARBDouble::ZeroStrip::Compatible)
 	, m_Prec(0)
 	, m_Default()
 	, m_bUseDefOnEmpty(false)
@@ -188,7 +191,7 @@ CGenericValidator::CGenericValidator(wxDateTime* val, bool showSeconds, wxChar c
 	, m_pShort(nullptr)
 	, m_pLong(nullptr)
 	, m_pDouble(nullptr)
-	, m_strip(ARBCommon::ARBDouble::ZeroStrip::Compatible)
+	, m_strip(ARBDouble::ZeroStrip::Compatible)
 	, m_Prec(0)
 	, m_Default()
 	, m_bUseDefOnEmpty(false)
@@ -255,7 +258,7 @@ bool CGenericValidator::TransferFromWindow()
 			else
 			{
 				long val;
-				if (!ARBCommon::StringUtil::ToLong(ARBCommon::StringUtil::stringW(textVal), val))
+				if (!StringUtil::ToLong(StringUtil::stringW(textVal), val))
 					return false;
 				*m_pUShort = static_cast<unsigned short>(val);
 			}
@@ -270,7 +273,7 @@ bool CGenericValidator::TransferFromWindow()
 			else
 			{
 				long val;
-				if (!ARBCommon::StringUtil::ToLong(ARBCommon::StringUtil::stringW(textVal), val))
+				if (!StringUtil::ToLong(StringUtil::stringW(textVal), val))
 					return false;
 				*m_pShort = static_cast<short>(val);
 			}
@@ -283,7 +286,7 @@ bool CGenericValidator::TransferFromWindow()
 				*m_pLong = m_Default.l;
 				return true;
 			}
-			return ARBCommon::StringUtil::ToLong(ARBCommon::StringUtil::stringW(textVal), *m_pLong);
+			return StringUtil::ToLong(StringUtil::stringW(textVal), *m_pLong);
 		}
 		else if (m_pDouble)
 		{
@@ -292,7 +295,7 @@ bool CGenericValidator::TransferFromWindow()
 				*m_pDouble = m_Default.dbl;
 				return true;
 			}
-			return ARBCommon::StringUtil::ToDouble(ARBCommon::StringUtil::stringW(textVal), *m_pDouble);
+			return StringUtil::ToDouble(StringUtil::stringW(textVal), *m_pDouble);
 		}
 		else if (m_pTime)
 		{
@@ -353,8 +356,7 @@ bool CGenericValidator::TransferToWindow()
 		}
 		else if (m_pDouble)
 		{
-			pTextControl->ChangeValue(
-				ARBCommon::StringUtil::stringWX(ARBCommon::ARBDouble::ToString(*m_pDouble, m_Prec, true, m_strip)));
+			pTextControl->ChangeValue(StringUtil::stringWX(ARBDouble::ToString(*m_pDouble, m_Prec, true, m_strip)));
 			return true;
 		}
 		else if (m_pTime)
@@ -388,7 +390,7 @@ bool CGenericValidator::TransferToWindow()
 				else
 				{
 					wxDateTime date;
-					if (ARBCommon::ARBDate::Today().GetDate(date))
+					if (ARBDate::Today().GetDate(date))
 						pControl->SetValue(date);
 				}
 				return true;
@@ -427,7 +429,7 @@ bool CGenericValidator::Validate(wxWindow* parent)
 					str.Printf(L"%hu", m_Default.us);
 					pTextControl->ChangeValue(str);
 				}
-				else if (!ARBCommon::StringUtil::ToLong(ARBCommon::StringUtil::stringW(textVal), val))
+				else if (!StringUtil::ToLong(StringUtil::stringW(textVal), val))
 				{
 					ok = false;
 					if (errormsg.empty())
@@ -446,7 +448,7 @@ bool CGenericValidator::Validate(wxWindow* parent)
 						str.Printf(L"%ld", m_Default.l);
 					pTextControl->ChangeValue(str);
 				}
-				else if (!ARBCommon::StringUtil::ToLong(ARBCommon::StringUtil::stringW(textVal), val))
+				else if (!StringUtil::ToLong(StringUtil::stringW(textVal), val))
 				{
 					ok = false;
 					if (errormsg.empty())
@@ -458,10 +460,10 @@ bool CGenericValidator::Validate(wxWindow* parent)
 				double dbl = 0.0;
 				if (textVal.empty() && m_bUseDefOnEmpty)
 				{
-					pTextControl->ChangeValue(ARBCommon::StringUtil::stringWX(
-						ARBCommon::ARBDouble::ToString(m_Default.dbl, m_Prec, true, m_strip)));
+					pTextControl->ChangeValue(
+						StringUtil::stringWX(ARBDouble::ToString(m_Default.dbl, m_Prec, true, m_strip)));
 				}
-				else if (!ARBCommon::StringUtil::ToDouble(ARBCommon::StringUtil::stringW(textVal), dbl))
+				else if (!StringUtil::ToDouble(StringUtil::stringW(textVal), dbl))
 				{
 					ok = false;
 					if (errormsg.empty())
@@ -597,3 +599,6 @@ bool CTrimValidator::Validate(wxWindow* parent)
 	}
 	return ok;
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

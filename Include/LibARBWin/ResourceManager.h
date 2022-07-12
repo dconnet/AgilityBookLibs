@@ -28,8 +28,8 @@ namespace ARBCommon
 {
 class CLibArchive;
 } // namespace ARBCommon
-} // namespace dconSoft
-
+namespace ARBWin
+{
 
 class ARBWIN_API IResourceManagerCallback
 {
@@ -70,5 +70,8 @@ public:
 
 private:
 	IResourceManagerCallback* m_callback;
-	dconSoft::ARBCommon::CLibArchive* m_archive;
+	ARBCommon::CLibArchive* m_archive;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

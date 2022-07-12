@@ -25,6 +25,12 @@
 #include <vector>
 class wxFrame;
 
+
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 // MENU_SEP/MENU_ITEM/MENU_MRU are mutually exclusive
 #define MENU_SEP  0x01 ///< Menu separator
 #define MENU_ITEM 0x02 ///< Menu item
@@ -286,3 +292,6 @@ private:
 	std::vector<ItemAccel> m_accelData;
 	bool m_bAllowDups;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

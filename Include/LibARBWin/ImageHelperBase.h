@@ -29,8 +29,13 @@
 #include <wx/icon.h>
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
 namespace ImageHelper
 {
+
 ARBWIN_API wxBitmap GetBitmap(
 	wxWindow* pWindow,
 	const wxArtID& id,
@@ -44,7 +49,6 @@ ARBWIN_API wxIcon GetIcon(
 	const wxSize& size = wxDefaultSize);
 
 ARBWIN_API wxIcon CreateIconFromBitmap(const wxBitmap& bitmap);
-} // namespace ImageHelper
 
 
 // Setup image ids for things used in LibARBWin.
@@ -58,3 +62,7 @@ ARBWIN_API wxIcon CreateIconFromBitmap(const wxBitmap& bitmap);
 #define ImageMgrUnChecked wxART_MAKE_ART_ID(ImageMgrUnChecked)
 #define ImageMgrCheck     wxART_MAKE_ART_ID(ImageMgrCheck)
 #define ImageMgrQuestion  wxART_MAKE_ART_ID(ImageMgrQuestion)
+
+} // namespace ImageHelper
+} // namespace ARBWin
+} // namespace dconSoft

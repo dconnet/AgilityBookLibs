@@ -22,6 +22,11 @@
 class wxStatusBar;
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 /**
  * Helper class for setting status bar widths.
  * Column 0 is reserved for menu tips (variable width).
@@ -51,3 +56,6 @@ private:
 
 	void SetStatusBarWidths(wxStatusBar* statusbar, int nColumn);
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

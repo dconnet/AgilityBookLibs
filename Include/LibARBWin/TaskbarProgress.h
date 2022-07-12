@@ -35,6 +35,11 @@ typedef enum
 typedef unsigned int ULONGLONG;
 #endif
 
+
+namespace dconSoft
+{
+namespace ARBWin
+{
 class CTaskbarProgress;
 typedef std::shared_ptr<CTaskbarProgress> CTaskbarProgressPtr;
 
@@ -53,3 +58,6 @@ public:
 	virtual bool SetProgressState(TBPFLAG tbpFlags) = 0;
 	virtual bool SetProgressValue(ULONGLONG ullCompleted, ULONGLONG ullTotal) = 0;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

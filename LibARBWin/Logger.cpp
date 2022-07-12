@@ -121,6 +121,11 @@ private:
 } // namespace
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 wxLogLevelValues CLogger::GetLogLevel()
 {
 	return k_defLogLevel;
@@ -273,3 +278,6 @@ wxString CLogger::RotateLogs(size_t keepNlogs)
 	}
 	return results;
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

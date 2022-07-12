@@ -30,8 +30,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
-
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 CDlgAuthenticate::CDlgAuthenticate(
 	std::wstring const& userName,
@@ -122,3 +125,6 @@ std::wstring CDlgAuthenticate::GetPassword() const
 {
 	return ARBCommon::StringUtil::stringW(m_Password);
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

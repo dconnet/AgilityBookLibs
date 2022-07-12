@@ -26,6 +26,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 CRichEditCtrl2::CRichEditCtrl2(
 	wxWindow* parent,
 	wxWindowID id,
@@ -74,3 +79,6 @@ void CRichEditCtrl2::OnUrl(wxTextUrlEvent& evt)
 		wxLaunchDefaultBrowser(url);
 	}
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

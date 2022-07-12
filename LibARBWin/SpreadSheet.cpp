@@ -45,13 +45,17 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
-
 // General note about data and formulas - in both Excel and Calc writing
 // individual cells auto-formats (formulas work) and writing of arrays
 // acts like raw data - even if you call the put_Formula method.
 
 /////////////////////////////////////////////////////////////////////////////
+
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 #if HAS_AUTOMATION
 
@@ -1132,3 +1136,6 @@ bool ISpreadSheet::GetRowCol(long inRow, long inCol, std::wstring& outCell)
 	outCell = fmt::to_string(output);
 	return bOk;
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

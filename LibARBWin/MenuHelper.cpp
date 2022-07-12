@@ -37,8 +37,12 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 namespace
 {
@@ -234,7 +238,6 @@ wxString StripMnemonics(wxString const& str, bool isPopup)
 }
 } // namespace
 
-/////////////////////////////////////////////////////////////////////////////
 
 CMenuHelper::CMenuHelper(
 	std::vector<CMenuHelper::ItemData> const& menuItems,
@@ -294,14 +297,14 @@ void CMenuHelper::LoadAccelerators()
 		for (ItemAccel& item : m_accelData)
 			item.Clear();
 
-		ARBCommon::CConfigPathHelper config(CFG_KEY_ACCELERATORS);
+		CConfigPathHelper config(CFG_KEY_ACCELERATORS);
 		wxString entry;
 		long index = 0;
 		if (wxConfig::Get()->GetFirstGroup(entry, index))
 		{
 			do
 			{
-				ARBCommon::CConfigPathHelper configEntry(entry);
+				CConfigPathHelper configEntry(entry);
 				int key = 0;
 				key = wxConfig::Get()->Read(L"id", key);
 				if (key)
@@ -370,7 +373,7 @@ void CMenuHelper::SaveAccelerators()
 
 		if (m_accelDataDefaults != m_accelData)
 		{
-			ARBCommon::CConfigPathHelper config(CFG_KEY_ACCELERATORS);
+			CConfigPathHelper config(CFG_KEY_ACCELERATORS);
 
 			// Save
 			int nKey = 1;
@@ -379,7 +382,7 @@ void CMenuHelper::SaveAccelerators()
 				if (!iter->keyCode)
 					continue;
 				wxString key = wxString::Format(L"Item%d", nKey++);
-				ARBCommon::CConfigPathHelper configKey(key);
+				CConfigPathHelper configKey(key);
 				wxString special = CodeToSpecial(iter->keyCode, true);
 				assert(!special.empty());
 				wxConfig::Get()->Write(L"KeyCode", special);
@@ -390,7 +393,7 @@ void CMenuHelper::SaveAccelerators()
 			if (1 == nKey)
 			{
 				wxString key = wxString::Format(L"Item%d", nKey++);
-				ARBCommon::CConfigPathHelper configKey(key);
+				CConfigPathHelper configKey(key);
 				wxConfig::Get()->Write(L"id", 1);
 			}
 		}
@@ -892,3 +895,6 @@ void CMenuHelper::DoSubMenu(wxMenu const* parent, MenuHandle const& handle)
 		handle.pMenu->SetHelpString(data->id, wxGetTranslation(data->desc.c_str()));
 	}
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

@@ -40,6 +40,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 namespace
 {
 enum class EntryStatus
@@ -256,3 +261,6 @@ void CConfigPosition::SaveWindow(wxWindow* wnd)
 	if (!LastCY().empty())
 		wxConfig::Get()->Write(LastCY(), wnd->ToDIP(r.height));
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

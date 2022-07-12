@@ -37,6 +37,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 enum class ARBLanguageCatalog
 {
 	None,     // Not using MO files.
@@ -156,3 +161,6 @@ private:
 	ARBLanguageCatalog m_useLangCatalog;
 	std::unique_ptr<CLanguageManager> m_langMgr;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

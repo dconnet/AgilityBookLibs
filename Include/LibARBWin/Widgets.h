@@ -30,6 +30,11 @@
 #include <wx/treectrl.h>
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 class ARBWIN_API CListCtrl : public wxListView
 {
 	DECLARE_CLASS(CListCtrl)
@@ -192,3 +197,6 @@ public:
 		EnableSpellChecking(bPlainText);
 	}
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

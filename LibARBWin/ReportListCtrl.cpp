@@ -50,6 +50,12 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 bool CReportListCtrl::m_enableRowColors = true;
 
 // Note to self: If this is immediately after includes, doxygen throws a hissy fit.
@@ -441,3 +447,6 @@ void CReportListCtrl::OnDeleteItem(wxListEvent& evt)
 	}
 	evt.Skip();
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

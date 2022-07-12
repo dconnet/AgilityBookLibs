@@ -30,6 +30,13 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
+
 // TODO: wx-generic is missing the G/SetColumnsOrder api
 // (this define section is the same as wx/listctrl.h)
 #if defined(__WXMSW__) && !defined(__WXUNIVERSAL__)
@@ -39,8 +46,6 @@
 #else
 #define HAS_COLUMNSORDER 0
 #endif
-
-using namespace dconSoft;
 
 
 int wxCALLBACK ReportListCompareItems(CListDataPtr const& item1, CListDataPtr const& item2, SortInfo const* pSortInfo)
@@ -589,3 +594,6 @@ void CReportListHeader::OnRestore(wxCommandEvent& evt)
 	}
 	m_ctrlList->Refresh();
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

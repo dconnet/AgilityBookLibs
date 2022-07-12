@@ -34,21 +34,23 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
-
-
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 namespace ARBDebug
 {
 
 std::wstring GetCompileDate()
 {
-	return ARBCommon::StringUtil::stringW(std::string(__DATE__));
+	return StringUtil::stringW(std::string(__DATE__));
 }
 
 
 std::wstring GetCompileTime()
 {
-	return ARBCommon::StringUtil::stringW(std::string(__TIME__));
+	return StringUtil::stringW(std::string(__TIME__));
 }
 
 
@@ -58,7 +60,7 @@ std::wstring GetOSName()
 
 	int majVer;
 	int minVer;
-	if (!ARBCommon::GetOSInfo(majVer, minVer))
+	if (!GetOSInfo(majVer, minVer))
 		return std::wstring();
 
 #if defined(__WXWINDOWS__)
@@ -122,7 +124,7 @@ std::wstring GetArchName()
 {
 #if defined(__WXWINDOWS__)
 	wxPlatformInfo info;
-	return ARBCommon::StringUtil::stringW(info.GetBitnessName());
+	return StringUtil::stringW(info.GetBitnessName());
 
 #elif defined(_WIN32)
 	SYSTEM_INFO si;
@@ -153,7 +155,7 @@ std::wstring GetEndiannessName()
 {
 #if defined(__WXWINDOWS__)
 	wxPlatformInfo info;
-	return ARBCommon::StringUtil::stringW(info.GetEndiannessName());
+	return StringUtil::stringW(info.GetEndiannessName());
 
 #else
 	// Copied from wxWidgets 2.9.5: utilscmn.cpp: wxIsPlatformLittleEndian
@@ -176,7 +178,7 @@ std::wstring GetEndiannessName()
 
 /////////////////////////////////////////////////////////////////////////////
 
-std::wstring GetSystemInfo(wxWindow const* pWindow, ARBCommon::CVersionNum const& ver)
+std::wstring GetSystemInfo(wxWindow const* pWindow, CVersionNum const& ver)
 {
 	fmt::wmemory_buffer str;
 
@@ -273,7 +275,7 @@ size_t DumpRegistryGroup(wxString const& inGroup, fmt::wmemory_buffer* outData, 
 {
 	size_t added = 0; // Added to outData
 
-	ARBCommon::CConfigPathHelper config(inGroup);
+	CConfigPathHelper config(inGroup);
 
 	wxString str;
 	long dummy;
@@ -310,7 +312,7 @@ size_t DumpRegistryGroup(wxString const& inGroup, fmt::wmemory_buffer* outData, 
 						wxConfig::Get()->Read(str, wxEmptyString).wx_str());
 				}
 				if (outItems)
-					outItems->push_back(ARBCommon::StringUtil::stringW(wxConfig::Get()->Read(str, wxEmptyString)));
+					outItems->push_back(StringUtil::stringW(wxConfig::Get()->Read(str, wxEmptyString)));
 				break;
 			case wxConfigBase::Type_Boolean:
 				if (outData)
@@ -368,3 +370,5 @@ size_t DumpRegistryGroup(wxString const& inGroup, fmt::wmemory_buffer* outData, 
 }
 
 } // namespace ARBDebug
+} // namespace ARBWin
+} // namespace dconSoft

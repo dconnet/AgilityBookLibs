@@ -30,7 +30,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
+
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 
 TEST_CASE("String")
@@ -280,3 +283,5 @@ TEST_CASE("String")
 		}
 	}
 }
+
+} // namespace dconSoft

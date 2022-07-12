@@ -27,7 +27,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
+
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 
 TEST_CASE("ARBVersion")
@@ -191,3 +194,5 @@ TEST_CASE("VersionNum")
 		REQUIRE(v.GetVersionString(5) == L"1.2.3.4");
 	}
 }
+
+} // namespace dconSoft

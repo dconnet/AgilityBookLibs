@@ -18,6 +18,11 @@
 #include "LibwxARBWin.h"
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 /**
  * Set/Save application's location/size.
  * Must have set up wxConfig already.
@@ -98,3 +103,6 @@ protected:
 		return false;
 	}
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

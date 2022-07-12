@@ -27,7 +27,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
+
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 
 TEST_CASE("Date")
@@ -276,3 +279,5 @@ TEST_CASE("Date")
 		}
 	}
 }
+
+} // namespace dconSoft

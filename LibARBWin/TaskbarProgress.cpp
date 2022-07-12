@@ -24,8 +24,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
 
+namespace dconSoft
+{
+namespace ARBWin
+{
 
 #ifdef WIN32
 
@@ -86,3 +89,6 @@ CTaskbarProgressPtr CTaskbarProgress::Get(HWND hwnd)
 CTaskbarProgress::~CTaskbarProgress()
 {
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

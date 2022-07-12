@@ -37,6 +37,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 CReadHttp::CReadHttp()
 	: m_pendingCancel(false)
 	, m_currentRequest()
@@ -174,3 +179,6 @@ CReadHttp::ReturnCode CReadHttp::DownloadFile(
 	m_currentRequest.Start();
 	return CReadHttp::ReturnCode::Busy;
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

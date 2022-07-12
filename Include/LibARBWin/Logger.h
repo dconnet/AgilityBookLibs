@@ -18,6 +18,11 @@
 #include <wx/log.h>
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 class ARBWIN_API CLogger
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CLogger)
@@ -49,3 +54,6 @@ private:
 	wxString m_baseFilename;
 	wxFileName m_currentLogName;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

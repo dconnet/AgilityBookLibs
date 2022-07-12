@@ -38,8 +38,12 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
+namespace ARBWin
+{
 
 wxWindow* FindWindowInSizer(wxSizer* sizer, int id)
 {
@@ -198,3 +202,6 @@ void DrawBetterLabel(wxDC* pDC, wxString const& inStr, wxRect& rect, int flags, 
 	if (!bCalc)
 		pDC->DestroyClippingRegion();
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

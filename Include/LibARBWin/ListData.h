@@ -28,8 +28,13 @@
 #include <wx/treectrl.h>
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
 class CListData;
 typedef std::shared_ptr<CListData> CListDataPtr;
+
 class ARBWIN_API CListData
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CListData)
@@ -57,3 +62,6 @@ public:
 	~CTreeData();
 	virtual std::wstring OnNeedText() const = 0;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

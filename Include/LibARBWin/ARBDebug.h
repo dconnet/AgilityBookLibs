@@ -27,8 +27,14 @@
 /**
  * General information to be reported
  */
+
+namespace dconSoft
+{
+namespace ARBWin
+{
 namespace ARBDebug
 {
+
 // These are for consistent reporting in About dialog and sysinfo.
 // The libraries and exe are always compiled together at one time.
 ARBWIN_API std::wstring GetCompileDate();
@@ -38,7 +44,7 @@ ARBWIN_API std::wstring GetOSName();
 ARBWIN_API std::wstring GetArchName();
 ARBWIN_API std::wstring GetEndiannessName();
 
-ARBWIN_API std::wstring GetSystemInfo(wxWindow const* pWindow, dconSoft::ARBCommon::CVersionNum const& ver);
+ARBWIN_API std::wstring GetSystemInfo(wxWindow const* pWindow, ARBCommon::CVersionNum const& ver);
 ARBWIN_API std::wstring GetRegistryInfo();
 
 /**
@@ -50,4 +56,7 @@ ARBWIN_API std::wstring GetRegistryInfo();
  */
 ARBWIN_API size_t
 DumpRegistryGroup(wxString const& inGroup, fmt::wmemory_buffer* outData, std::vector<std::wstring>* outItems);
+
 } // namespace ARBDebug
+} // namespace ARBWin
+} // namespace dconSoft

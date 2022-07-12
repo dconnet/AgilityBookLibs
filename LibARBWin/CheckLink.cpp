@@ -28,6 +28,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 bool CheckLink(std::wstring const& inLink, wxWindow* parent)
 {
 	bool bOk = false;
@@ -44,3 +49,6 @@ bool CheckLink(std::wstring const& inLink, wxWindow* parent)
 	}
 	return bOk;
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

@@ -30,6 +30,12 @@
 #include <wx/imaglist.h>
 #include <vector>
 
+
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 ARB_TYPEDEF(CListData)
 
 
@@ -213,3 +219,6 @@ private:
 	{
 	}
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

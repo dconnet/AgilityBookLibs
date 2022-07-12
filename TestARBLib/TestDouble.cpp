@@ -33,8 +33,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
 
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 namespace
 {
@@ -215,3 +217,5 @@ TEST_CASE("Double")
 		REQUIRE(ARBDouble::equal(p1, p3, 0.00000001));
 	}
 }
+
+} // namespace dconSoft

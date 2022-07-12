@@ -34,6 +34,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 wxIMPLEMENT_CLASS(CListCtrl, wxListView)
 wxIMPLEMENT_CLASS(CTreeCtrl, wxTreeCtrl)
 wxIMPLEMENT_CLASS(CTextCtrl, wxTextCtrl)
@@ -114,3 +119,6 @@ bool CTextCtrl::EnableSpellChecking(bool bForceRtfAsPlainText)
 #endif
 	return bChanged;
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

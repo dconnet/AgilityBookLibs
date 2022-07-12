@@ -35,7 +35,10 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-using namespace dconSoft::ARBCommon;
+
+namespace dconSoft
+{
+using namespace ARBCommon;
 
 
 TEST_CASE("Element")
@@ -305,3 +308,5 @@ TEST_CASE("Element")
 		REQUIRE(tmp1data == tmp2data);
 	}
 }
+
+} // namespace dconSoft

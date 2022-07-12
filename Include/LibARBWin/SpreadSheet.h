@@ -31,7 +31,14 @@
 #include "ARBCommon/ARBTypes.h"
 #include <string>
 #include <vector>
+
+
+namespace dconSoft
+{
+namespace ARBWin
+{
 class IDlgProgress;
+
 
 ARB_TYPEDEF(ISpreadSheet)
 ARB_TYPEDEF(ISpreadSheetExporter)
@@ -122,3 +129,6 @@ public:
 	virtual ISpreadSheetExporterPtr GetExporter() const = 0;
 	virtual ISpreadSheetImporterPtr GetImporter() const = 0;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

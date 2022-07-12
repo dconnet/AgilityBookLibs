@@ -23,7 +23,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
+
+namespace dconSoft
+{
+namespace ARBWin
+{
 
 CStatusBarHelper::CStatusBarHelper(wxFrame* frame, size_t nColumns)
 	: m_frame(frame)
@@ -189,3 +193,6 @@ void CStatusBarHelper::SetStatusBarWidths(wxStatusBar* statusbar, int nColumn)
 
 	statusbar->SetStatusWidths(static_cast<int>(widths.size()), widths.data());
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

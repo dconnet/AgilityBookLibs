@@ -26,6 +26,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBWin
+{
+
 CDlgMessage::CDlgMessage(wxString const& msg, wxString caption, wxWindow* pParent, wxSize szDlgUnits)
 	: wxDialog()
 	, m_textCtrl(nullptr)
@@ -76,3 +81,6 @@ bool CDlgMessage::LoadFile(wxString const& filename)
 
 	return m_textCtrl->LoadFile(filename);
 }
+
+} // namespace ARBWin
+} // namespace dconSoft

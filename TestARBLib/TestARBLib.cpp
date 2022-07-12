@@ -51,8 +51,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+
 namespace dconSoft
 {
+using namespace ARBCommon;
+using namespace ARBWin;
 
 namespace
 {
@@ -60,7 +63,7 @@ wxString GetDataFile()
 {
 #if defined(__WXWINDOWS__)
 	wxFileName fileName(wxStandardPaths::Get().GetExecutablePath());
-	wxString datafile = ARBCommon::GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".dat";
+	wxString datafile = GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".dat";
 #else
 #pragma PRAGMA_TODO(write LoadXMLData)
 #ifdef WIN32
@@ -175,7 +178,7 @@ int main(int argc, char** argv)
 #endif
 
 	std::wstring errs;
-	if (!ARBCommon::Element::Initialize(errs))
+	if (!Element::Initialize(errs))
 	{
 		return 1;
 	}
@@ -196,7 +199,7 @@ int main(int argc, char** argv)
 		rc = Catch::Session().run(ac, av);
 	}
 
-	ARBCommon::Element::Terminate();
+	Element::Terminate();
 	delete g_callbackMgr;
 	g_callbackMgr = nullptr;
 

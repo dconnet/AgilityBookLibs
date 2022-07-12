@@ -18,6 +18,11 @@
 
 #include "LibwxARBWin.h"
 
+
+namespace dconSoft
+{
+namespace ARBWin
+{
 class CTextCtrl;
 
 
@@ -38,3 +43,6 @@ public:
 private:
 	CTextCtrl* m_textCtrl;
 };
+
+} // namespace ARBWin
+} // namespace dconSoft

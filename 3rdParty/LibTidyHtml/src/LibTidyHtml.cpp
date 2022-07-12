@@ -31,6 +31,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace TidyHtml
+{
+
 std::string TidyHtmlData(std::string const& data, fmt::memory_buffer& err, std::string const* pRawFileBaseName)
 {
 	std::string tidyData;
@@ -111,3 +116,6 @@ std::string TidyHtmlData(std::string const& data, fmt::memory_buffer& err, std::
 	}
 	return tidyData;
 }
+
+} // namespace TidyHtml
+} // namespace dconSoft

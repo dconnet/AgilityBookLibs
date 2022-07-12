@@ -33,6 +33,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
+
 
 TEST_CASE("LibTidy")
 {
@@ -45,7 +47,7 @@ TEST_CASE("LibTidy")
 
 		fmt::memory_buffer errTidy;
 		std::string debug;
-		auto treeData = TidyHtmlData(data, errTidy, &debug);
+		auto treeData = TidyHtml::TidyHtmlData(data, errTidy, &debug);
 		REQUIRE(!treeData.empty());
 
 		fmt::wmemory_buffer err;

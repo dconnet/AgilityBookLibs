@@ -32,7 +32,15 @@
 #include <string>
 
 
+namespace dconSoft
+{
+namespace TidyHtml
+{
+
 LIBTIDYHTML_API std::string TidyHtmlData(
 	std::string const& data,
 	fmt::memory_buffer& err,
 	std::string const* pRawFileBaseName = nullptr);
+
+} // namespace TidyHtml
+} // namespace dconSoft

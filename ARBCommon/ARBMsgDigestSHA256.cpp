@@ -45,6 +45,9 @@
 //#define BYTE_ORDER BIG_ENDIAN
 #endif
 
+namespace
+{
+
 /////////////////////////////////////////////////////////////////////////////
 // From README
 /////////////////////////////////////////////////////////////////////////////
@@ -1339,7 +1342,13 @@ char* SHA384_Data(const sha2_byte* data, size_t len, char digest[SHA384_DIGEST_S
 
 // clang-format on
 /////////////////////////////////////////////////////////////////////////////
+} // namespace
 
+
+namespace dconSoft
+{
+namespace ARBCommon
+{
 // Note, error checking of arguments handled in ARBMsgDigest::Compute
 
 std::wstring ARBMsgDigestComputeSHA256(std::istream& inFile, size_t* outSize)
@@ -1364,3 +1373,6 @@ std::wstring ARBMsgDigestComputeSHA256(std::istream& inFile, size_t* outSize)
 
 	return StringUtil::stringW(std::string(buf));
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

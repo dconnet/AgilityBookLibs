@@ -30,6 +30,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 enum class ArchiveLocation
 {
 	ResourceOrFileSystem, // Try resource, fallback to FS
@@ -57,3 +62,6 @@ public:
 private:
 	class CLibArchiveImpl* m_pImpl;
 };
+
+} // namespace ARBCommon
+} // namespace dconSoft

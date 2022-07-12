@@ -23,6 +23,10 @@
 #include "LibwxARBCommon.h"
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
 namespace BinaryData
 {
 /**
@@ -43,4 +47,6 @@ ARBCOMMON_API bool EncodeFile(std::wstring const& inFileName, std::wstring& outB
 
 ARBCOMMON_API bool DecodeString(std::wstring const& inBase64, std::wstring& outData);
 ARBCOMMON_API bool EncodeString(std::wstring const& inData, std::wstring& outBase64);
-}; // namespace BinaryData
+} // namespace BinaryData
+} // namespace ARBCommon
+} // namespace dconSoft

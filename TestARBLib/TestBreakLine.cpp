@@ -24,6 +24,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft::ARBCommon;
+
+
+namespace
+{
 
 void GetFields(std::vector<std::wstring>& fields)
 {
@@ -50,6 +55,8 @@ bool VerifyFields(std::vector<std::wstring> const& fields1, std::vector<std::wst
 	}
 	return true;
 }
+
+} // namespace
 
 
 TEST_CASE("BreakLine")

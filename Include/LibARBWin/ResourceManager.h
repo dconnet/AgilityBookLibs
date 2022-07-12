@@ -22,7 +22,13 @@
 
 #include <wx/artprov.h>
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
 class CLibArchive;
+} // namespace ARBCommon
+} // namespace dconSoft
 
 
 class ARBWIN_API IResourceManagerCallback
@@ -64,5 +70,5 @@ public:
 
 private:
 	IResourceManagerCallback* m_callback;
-	CLibArchive* m_archive;
+	dconSoft::ARBCommon::CLibArchive* m_archive;
 };

@@ -30,6 +30,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
+
 
 CDlgAuthenticate::CDlgAuthenticate(
 	std::wstring const& userName,
@@ -40,7 +42,7 @@ CDlgAuthenticate::CDlgAuthenticate(
 	, m_Name(userName.c_str())
 {
 	if (caption.empty())
-		caption = StringUtil::stringW(_("Authentication"));
+		caption = ARBCommon::StringUtil::stringW(_("Authentication"));
 	Create(parent, wxID_ANY, caption.c_str(), wxDefaultPosition, wxDefaultSize);
 	// Controls (these are done first to control tab order)
 
@@ -112,11 +114,11 @@ CDlgAuthenticate::CDlgAuthenticate(
 
 std::wstring CDlgAuthenticate::GetUserName() const
 {
-	return StringUtil::stringW(m_Name);
+	return ARBCommon::StringUtil::stringW(m_Name);
 }
 
 
 std::wstring CDlgAuthenticate::GetPassword() const
 {
-	return StringUtil::stringW(m_Password);
+	return ARBCommon::StringUtil::stringW(m_Password);
 }

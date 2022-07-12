@@ -59,6 +59,11 @@
 	typedef std::weak_ptr<name> name##WPtr; \
 	typedef std::shared_ptr<name> name##Ptr;
 
+
+namespace dconSoft
+{
+namespace ARBCommon
+{
 ARB_TYPEDEF(Element)
 ARB_TYPEDEF2(ElementNode)
 ARB_TYPEDEF2(ElementText)
@@ -92,7 +97,8 @@ ARBCOMMON_API std::wstring ToString(double inValue, int inPrec, ZeroStrip eStrip
  * Compare two doubles, allowing for 'prec' error.
  */
 ARBCOMMON_API bool equal(double const& inVal1, double const& inVal2, double inPrec = 1e-9);
-}; // namespace ARBDouble
+
+} // namespace ARBDouble
 
 /////////////////////////////////////////////////////////////////////////////
 /**
@@ -196,3 +202,6 @@ public:
 private:
 	VERSION_ARB m_Version;
 };
+
+} // namespace ARBCommon
+} // namespace dconSoft

@@ -33,6 +33,10 @@ class wxMemoryOutputStream;
 /**
  * String utility functions
  */
+namespace dconSoft
+{
+namespace ARBCommon
+{
 namespace StringUtil
 {
 ARBCOMMON_API std::wstring GetTranslation(wchar_t const* const inId);
@@ -134,4 +138,7 @@ ARBCOMMON_API std::wstring FormatBytes(
 	double inSize,
 	int inPrec = 2,
 	ByteSizeStyle inSizeStyle = ByteSizeStyle::Binary);
-}; // namespace StringUtil
+
+} // namespace StringUtil
+} // namespace ARBCommon
+} // namespace dconSoft

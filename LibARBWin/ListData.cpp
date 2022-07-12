@@ -26,6 +26,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
+
 
 CListData::CListData()
 {
@@ -46,7 +48,7 @@ int CListData::OnCompare(CListDataPtr const& item, long iCol) const
 void CListData::OnNeedListItem(long iCol, wxListItem& info) const
 {
 	info.SetMask(info.GetMask() | wxLIST_MASK_TEXT);
-	info.SetText(StringUtil::stringWX(OnNeedText(iCol)));
+	info.SetText(ARBCommon::StringUtil::stringWX(OnNeedText(iCol)));
 }
 
 

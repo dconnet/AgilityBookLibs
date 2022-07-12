@@ -38,7 +38,7 @@ ARBWIN_API std::wstring GetOSName();
 ARBWIN_API std::wstring GetArchName();
 ARBWIN_API std::wstring GetEndiannessName();
 
-ARBWIN_API std::wstring GetSystemInfo(wxWindow const* pWindow, CVersionNum const& ver);
+ARBWIN_API std::wstring GetSystemInfo(wxWindow const* pWindow, dconSoft::ARBCommon::CVersionNum const& ver);
 ARBWIN_API std::wstring GetRegistryInfo();
 
 /**

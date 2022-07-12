@@ -33,10 +33,13 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+
 namespace
 {
 constexpr int _defWidth = 250;
 } // namespace
+
+using namespace dconSoft;
 
 /////////////////////////////////////////////////////////////////////////////
 // I used the wxProgressDialog as a guide
@@ -227,14 +230,14 @@ void CDlgProgress::OnCancel(wxCommandEvent& evt)
 void CDlgProgress::SetCaption(std::wstring const& inCaption)
 {
 	assert(wxIsMainThread());
-	SetLabel(StringUtil::stringWX(inCaption));
+	SetLabel(ARBCommon::StringUtil::stringWX(inCaption));
 }
 
 
 void CDlgProgress::SetMessage(std::wstring const& inMessage)
 {
 	assert(wxIsMainThread());
-	wxString msg(StringUtil::stringWX(inMessage));
+	wxString msg(ARBCommon::StringUtil::stringWX(inMessage));
 	if (!inMessage.empty() && msg != m_ctrlMessage->GetLabel())
 	{
 		m_ctrlMessage->SetLabel(msg);

@@ -40,6 +40,8 @@
 #define HAS_COLUMNSORDER 0
 #endif
 
+using namespace dconSoft;
+
 
 int wxCALLBACK ReportListCompareItems(CListDataPtr const& item1, CListDataPtr const& item2, SortInfo const* pSortInfo)
 {
@@ -365,7 +367,7 @@ void CReportListHeader::OnLoad()
 		wxString str = wxConfig::Get()->Read(CFG_SORTING_ORDER2(m_baseConfig), L"");
 		for (size_t i = 0; i < m_columnInfo.size() && !str.IsEmpty(); ++i)
 		{
-			m_columnOrder[i] = StringUtil::ToCLong(StringUtil::stringW(str));
+			m_columnOrder[i] = ARBCommon::StringUtil::ToCLong(ARBCommon::StringUtil::stringW(str));
 			int n = str.Find(',');
 			if (n > 0)
 				str = str.Mid(n + 1);
@@ -376,7 +378,7 @@ void CReportListHeader::OnLoad()
 		str = wxConfig::Get()->Read(CFG_SORTING_VISIBLE(m_baseConfig), L"");
 		for (size_t i = 0; i < m_columnInfo.size() && !str.IsEmpty(); ++i)
 		{
-			m_columnVisible[i] = (StringUtil::ToCLong(StringUtil::stringW(str)) != 0);
+			m_columnVisible[i] = (ARBCommon::StringUtil::ToCLong(ARBCommon::StringUtil::stringW(str)) != 0);
 			int n = str.Find(',');
 			if (n > 0)
 				str = str.Mid(n + 1);
@@ -394,7 +396,7 @@ void CReportListHeader::OnLoad()
 		m_colWidths.clear();
 		for (size_t i = 0; i < m_columnInfo.size() && !str.IsEmpty(); ++i)
 		{
-			m_colWidths.push_back(StringUtil::ToCLong(StringUtil::stringW(str)));
+			m_colWidths.push_back(ARBCommon::StringUtil::ToCLong(ARBCommon::StringUtil::stringW(str)));
 			int n = str.Find(',');
 			if (n > 0)
 				str = str.Mid(n + 1);
@@ -507,7 +509,7 @@ void CReportListHeader::OnColumnRClick(wxListEvent& evt)
 	for (auto col : m_columnOrder)
 	{
 		assert(col >= 0 && col < static_cast<int>(m_columnInfo.size()));
-		menu.AppendCheckItem(m_idFirst + col, StringUtil::GetTranslation(m_columnInfo[col].name.c_str()));
+		menu.AppendCheckItem(m_idFirst + col, ARBCommon::StringUtil::GetTranslation(m_columnInfo[col].name.c_str()));
 	}
 	menu.AppendSeparator();
 	menu.Append(static_cast<int>(m_idFirst + m_columnInfo.size()), _("Restore"));

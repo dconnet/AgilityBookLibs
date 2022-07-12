@@ -33,14 +33,19 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft::ARBCommon;
 
-static std::wstring FormNumber(std::wstring const& d1, wxChar const& dec, std::wstring const& d2)
+
+namespace
+{
+
+std::wstring FormNumber(std::wstring const& d1, wxChar const& dec, std::wstring const& d2)
 {
 	return fmt::format(L"{}{}{}", d1, dec, d2);
 }
 
 
-static void RunDblTests(bool bUseLocale)
+void RunDblTests(bool bUseLocale)
 {
 	wxChar decimalPt = L'.';
 	if (bUseLocale)
@@ -152,6 +157,8 @@ static void RunDblTests(bool bUseLocale)
 	}
 #endif
 }
+
+} // namespace
 
 
 TEST_CASE("Double")

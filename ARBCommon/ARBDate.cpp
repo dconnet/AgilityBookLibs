@@ -64,12 +64,19 @@
 //     August 1963.  (Also published in Collected Algorithms from CACM,
 //     algorithm number 199).
 
-#define SDN_OFFSET         32045
-#define DAYS_PER_5_MONTHS  153
-#define DAYS_PER_4_YEARS   1461
-#define DAYS_PER_400_YEARS 146097
+namespace dconSoft
+{
+namespace ARBCommon
+{
+namespace
+{
 
-static void SdnToGregorian(long int sdn, int* pYear, int* pMonth, int* pDay)
+constexpr long SDN_OFFSET = 32045;
+constexpr long DAYS_PER_5_MONTHS = 153;
+constexpr long DAYS_PER_4_YEARS = 1461;
+constexpr long DAYS_PER_400_YEARS = 146097;
+
+void SdnToGregorian(long int sdn, int* pYear, int* pMonth, int* pDay)
 {
 	if (sdn <= 0)
 	{
@@ -114,7 +121,7 @@ static void SdnToGregorian(long int sdn, int* pYear, int* pMonth, int* pDay)
 }
 
 
-static long int GregorianToSdn(int inputYear, int inputMonth, int inputDay)
+long int GregorianToSdn(int inputYear, int inputMonth, int inputDay)
 {
 	int year = 0;
 	int month = 0;
@@ -154,18 +161,8 @@ static long int GregorianToSdn(int inputYear, int inputMonth, int inputDay)
 		+ (month * DAYS_PER_5_MONTHS + 2) / 5 + inputDay - SDN_OFFSET);
 }
 
-/////////////////////////////////////////////////////////////////////////////
 
-// static
-ARBDate ARBDate::Today()
-{
-	ARBDate today;
-	today.SetToday();
-	return today;
-}
-
-
-static int ParseFields(std::wstring inDate, char sep, unsigned short& val1, unsigned short& val2, unsigned short& val3)
+int ParseFields(std::wstring inDate, char sep, unsigned short& val1, unsigned short& val2, unsigned short& val3)
 {
 	int nVals = 0;
 	std::wstring::size_type pos = inDate.find(sep);
@@ -185,6 +182,17 @@ static int ParseFields(std::wstring inDate, char sep, unsigned short& val1, unsi
 		}
 	}
 	return nVals;
+}
+
+} // namespace
+
+
+// static
+ARBDate ARBDate::Today()
+{
+	ARBDate today;
+	today.SetToday();
+	return today;
 }
 
 
@@ -532,3 +540,6 @@ int ARBDate::GetDayOfYear() const
 	ARBDate d(GetYear(), 1, 1);
 	return *this - d + 1;
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

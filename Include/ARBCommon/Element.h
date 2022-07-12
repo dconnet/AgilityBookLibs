@@ -33,6 +33,13 @@
 #include <istream>
 #include <map>
 #include <vector>
+
+
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 class ARBDate;
 class ARBVersion;
 
@@ -441,3 +448,6 @@ public:
 protected:
 	std::wstring m_Value;
 };
+
+} // namespace ARBCommon
+} // namespace dconSoft

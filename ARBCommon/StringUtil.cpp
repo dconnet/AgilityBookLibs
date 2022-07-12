@@ -59,6 +59,10 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
 namespace StringUtil
 {
 
@@ -591,4 +595,6 @@ std::wstring FormatBytes(double inSize, int inPrec, ByteSizeStyle inSizeStyle)
 	return val;
 }
 
-}; // namespace StringUtil
+} // namespace StringUtil
+} // namespace ARBCommon
+} // namespace dconSoft

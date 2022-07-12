@@ -30,6 +30,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 #if USE_STACKTRACER
 int CStackTracer::m_indent = 0;
 
@@ -168,3 +173,6 @@ bool GetFileTimes(wxFileName const& filename, wxDateTime* dtAccess, wxDateTime* 
 	return filename.GetTimes(dtAccess, dtMod, dtCreate);
 #endif
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

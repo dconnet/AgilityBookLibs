@@ -32,6 +32,12 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 #define BUFFER_SIZE 1024
 
 
@@ -256,3 +262,6 @@ bool CLibArchive::ReplaceFile(wxString const& archiveFile, std::istream& inData)
 #pragma PRAGMA_TODO(ReplaceFile)
 	return rc;
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

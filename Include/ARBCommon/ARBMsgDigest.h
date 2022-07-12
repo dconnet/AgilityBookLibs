@@ -22,8 +22,13 @@
 #include <string>
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
 namespace ARBMsgDigest
 {
+
 enum class ARBDigest
 {
 	Unknown,
@@ -33,4 +38,7 @@ enum class ARBDigest
 };
 
 ARBCOMMON_API std::wstring Compute(std::istream& inFile, ARBDigest type, size_t* outSize = nullptr);
-}; // namespace ARBMsgDigest
+
+} // namespace ARBMsgDigest
+} // namespace ARBCommon
+} // namespace dconSoft

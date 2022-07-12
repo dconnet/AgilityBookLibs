@@ -51,6 +51,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 bool BinaryData::Decode(std::wstring const& inBase64, std::vector<unsigned char>& outBinData)
 {
 	outBinData.clear();
@@ -219,3 +224,6 @@ bool BinaryData::EncodeString(std::wstring const& inData, std::wstring& outBase6
 	std::vector<unsigned char> data(tmp.begin(), tmp.end());
 	return BinaryData::Encode(data, outBase64);
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

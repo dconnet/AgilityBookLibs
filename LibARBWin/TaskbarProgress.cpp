@@ -24,6 +24,9 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
+
+
 #ifdef WIN32
 
 class CTaskbarProgressImpl : public CTaskbarProgress
@@ -35,7 +38,7 @@ public:
 		: m_hWnd(hwnd)
 		, m_pTaskbarList(nullptr)
 	{
-		if (IsWin7OrBetter())
+		if (ARBCommon::IsWin7OrBetter())
 		{
 			static_cast<void>(::CoCreateInstance(
 				CLSID_TaskbarList,

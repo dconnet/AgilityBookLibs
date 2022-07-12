@@ -27,6 +27,11 @@
 #include <string>
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 class ARBCOMMON_API CVersionNum
 {
 public:
@@ -154,3 +159,6 @@ private:
 	bool m_Valid;
 	VERSION_NUMBER m_Version;
 };
+
+} // namespace ARBCommon
+} // namespace dconSoft

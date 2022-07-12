@@ -763,6 +763,12 @@ static std::wstring ConvertDigest(const unsigned int digest[5])
 	return fmt::to_string(str);
 }
 
+
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 // Note, error checking of arguments handled in ARBMsgDigest::Compute
 
 std::wstring ARBMsgDigestComputeSHA1(std::istream& inFile, size_t* outSize)
@@ -788,3 +794,6 @@ std::wstring ARBMsgDigestComputeSHA1(std::istream& inFile, size_t* outSize)
 
 	return ConvertDigest(message_digest);
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

@@ -26,6 +26,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 std::wstring ARBMsgDigest::Compute(std::istream& inFile, ARBDigest type, size_t* outSize)
 {
 	if (outSize)
@@ -52,3 +57,6 @@ std::wstring ARBMsgDigest::Compute(std::istream& inFile, ARBDigest type, size_t*
 	// 'enum class' handles all cases via the switch above
 	return std::wstring();
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

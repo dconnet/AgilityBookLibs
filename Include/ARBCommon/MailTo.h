@@ -23,6 +23,11 @@
 #include <vector>
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 class ARBCOMMON_API CMailTo
 {
 public:
@@ -52,3 +57,6 @@ private:
 	std::wstring m_subject;
 	std::wstring m_body;
 };
+
+} // namespace ARBCommon
+} // namespace dconSoft

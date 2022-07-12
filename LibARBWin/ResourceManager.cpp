@@ -30,6 +30,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
+
 
 CResourceManager* CResourceManager::Get()
 {
@@ -61,10 +63,10 @@ void CResourceManager::Initialize(IResourceManagerCallback* pCallback, wxString 
 	else
 	{
 		wxFileName fileName(wxStandardPaths::Get().GetExecutablePath());
-		datafile = GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".dat";
+		datafile = ARBCommon::GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".dat";
 	}
 	// The archive isn't actually opened until we extract. So we can't verify here.
-	m_archive = new CLibArchive(datafile.wc_str());
+	m_archive = new ARBCommon::CLibArchive(datafile.wc_str());
 }
 
 

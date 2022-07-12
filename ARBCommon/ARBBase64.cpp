@@ -93,10 +93,14 @@ constexpr char base64map[] = {
 };
 } // namespace
 
-/////////////////////////////////////////////////////////////////////////////
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
 namespace ARBBase64
 {
+
 bool Decode(std::wstring const& inBase64, std::vector<unsigned char>& outBinData)
 {
 	outBinData.clear();
@@ -304,4 +308,7 @@ bool Encode(std::vector<unsigned char> const& inBinData, std::wstring& outData)
 	}
 	return bOk;
 }
+
 } // namespace ARBBase64
+} // namespace ARBCommon
+} // namespace dconSoft

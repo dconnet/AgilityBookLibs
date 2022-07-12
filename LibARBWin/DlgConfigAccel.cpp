@@ -28,8 +28,13 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
 
-static wxString GetKeyCode(std::unordered_map<int, KeyCodeMapping> const& keyMap, int code)
+
+namespace
+{
+
+wxString GetKeyCode(std::unordered_map<int, KeyCodeMapping> const& keyMap, int code)
 {
 	wxString text;
 	auto key = keyMap.find(code);
@@ -45,7 +50,7 @@ static wxString GetKeyCode(std::unordered_map<int, KeyCodeMapping> const& keyMap
 
 static std::wstring TrimDots(wxString const& str)
 {
-	std::wstring s = StringUtil::stringW(str);
+	std::wstring s = ARBCommon::StringUtil::stringW(str);
 	if (s.length() > 3)
 	{
 		if (s.substr(s.length() - 3) == L"...")
@@ -53,6 +58,8 @@ static std::wstring TrimDots(wxString const& str)
 	}
 	return s;
 }
+
+} // namespace
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -458,7 +465,7 @@ CDlgConfigAccel::CDlgConfigAccel(
 	}
 
 	if (caption.empty())
-		caption = StringUtil::stringW(_("Configure Keyboard Shortcuts"));
+		caption = ARBCommon::StringUtil::stringW(_("Configure Keyboard Shortcuts"));
 	Create(pParent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
 	// Controls (these are done first to control tab order)

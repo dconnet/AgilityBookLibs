@@ -45,6 +45,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
+
 // General note about data and formulas - in both Excel and Calc writing
 // individual cells auto-formats (formulas work) and writing of arrays
 // acts like raw data - even if you call the put_Formula method.
@@ -668,7 +670,7 @@ bool CWizardExcelImport::GetData(std::vector<std::vector<std::wstring>>& outData
 				args[0] = cell1;
 				args[1] = cell1;
 				range.GetObject(range2, L"Range", 2, args);
-				row.push_back(StringUtil::stringW(range2.GetProperty(L"Value").GetString()));
+				row.push_back(ARBCommon::StringUtil::stringW(range2.GetProperty(L"Value").GetString()));
 			}
 			outData.push_back(row);
 		}
@@ -967,7 +969,7 @@ bool CWizardCalcImport::OpenFile(std::wstring const& inFilename)
 		// 'Calc' doesn't take kindly to wxWidgets FileNameToURL syntax.
 		// Since this is windows only, screw it, just format it the way calc likes.
 		std::wstring fileName;
-		fileName = StringUtil::Replace(inFilename, L"\\", L"/");
+		fileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
 		fileName = L"file:///" + fileName;
 		wxVariant args;
 		args.NullList();
@@ -1037,7 +1039,7 @@ bool CWizardCalcImport::GetData(std::vector<std::vector<std::wstring>>& outData,
 		row.reserve(nCols);
 		for (int iCol = 0; !bAbort && iCol < nCols; ++iCol)
 		{
-			row.push_back(StringUtil::stringW(vRow[iCol].GetString()));
+			row.push_back(ARBCommon::StringUtil::stringW(vRow[iCol].GetString()));
 		}
 		outData.push_back(row);
 	}

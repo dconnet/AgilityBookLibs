@@ -28,8 +28,13 @@
 #include "LibwxARBCommon.h"
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
 namespace ARBBase64
 {
+
 /**
  * Decode a base64 string.
  * @param inBase64 Encoded buffer
@@ -45,4 +50,7 @@ ARBCOMMON_API bool Decode(std::wstring const& inBase64, std::vector<unsigned cha
  * @return Success
  */
 ARBCOMMON_API bool Encode(std::vector<unsigned char> const& inBinData, std::wstring& outData);
+
 } // namespace ARBBase64
+} // namespace ARBCommon
+} // namespace dconSoft

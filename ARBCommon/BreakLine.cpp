@@ -26,6 +26,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 size_t BreakLine(wchar_t inSep, std::wstring const& inStr, std::vector<std::wstring>& outFields, bool inRemoveEmpties)
 {
 	outFields.clear();
@@ -237,3 +242,6 @@ std::wstring WriteCSVField(wchar_t inSep, std::wstring const& inField, bool incl
 	}
 	return fmt::to_string(val);
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

@@ -51,6 +51,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+namespace dconSoft
+{
 
 namespace
 {
@@ -58,7 +60,7 @@ wxString GetDataFile()
 {
 #if defined(__WXWINDOWS__)
 	wxFileName fileName(wxStandardPaths::Get().GetExecutablePath());
-	wxString datafile = GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".dat";
+	wxString datafile = ARBCommon::GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".dat";
 #else
 #pragma PRAGMA_TODO(write LoadXMLData)
 #ifdef WIN32
@@ -94,6 +96,7 @@ public:
 	}
 	virtual ~CCallbackManager()
 	{
+		CResourceManager::Get()->Cleanup();
 	}
 
 	bool SetLang(wxLanguage langId);
@@ -109,7 +112,15 @@ private:
 		return false;
 	}
 };
-static CCallbackManager* g_callbackMgr = nullptr;
+namespace
+{
+CCallbackManager* g_callbackMgr = nullptr;
+} // namespace
+
+
+} // namespace dconSoft
+
+using namespace dconSoft;
 
 
 int main(int argc, char** argv)
@@ -164,7 +175,7 @@ int main(int argc, char** argv)
 #endif
 
 	std::wstring errs;
-	if (!Element::Initialize(errs))
+	if (!ARBCommon::Element::Initialize(errs))
 	{
 		return 1;
 	}
@@ -185,7 +196,7 @@ int main(int argc, char** argv)
 		rc = Catch::Session().run(ac, av);
 	}
 
-	Element::Terminate();
+	ARBCommon::Element::Terminate();
 	delete g_callbackMgr;
 	g_callbackMgr = nullptr;
 

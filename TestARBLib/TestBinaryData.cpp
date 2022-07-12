@@ -24,6 +24,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft::ARBCommon;
+
 
 #if !defined(__WXWINDOWS__)
 #pragma PRAGMA_TODO(need non - wx support in libarb - currently it asserts)

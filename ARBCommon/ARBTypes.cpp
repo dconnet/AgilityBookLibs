@@ -49,7 +49,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
+
+namespace dconSoft
+{
+namespace ARBCommon
+{
 
 // Trailing zeros are trimmed unless inPrec=2.
 // Then they are only trimmed if all zero (and inPrec=2).
@@ -161,3 +165,6 @@ std::wstring ARBVersion::str() const
 {
 	return fmt::format(L"{}.{}", Major(), Minor());
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

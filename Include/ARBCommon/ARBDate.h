@@ -34,6 +34,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 /**
  * Output date format (do not change the values!)
  */
@@ -352,3 +357,6 @@ public:
 private:
 	long m_Julian; ///< Julian day, not Julian date.
 };
+
+} // namespace ARBCommon
+} // namespace dconSoft

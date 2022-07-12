@@ -34,6 +34,7 @@
 #endif
 
 using namespace dconSoft;
+using namespace dconSoft::ARBCommon;
 
 
 TEST_CASE("LibTidy")

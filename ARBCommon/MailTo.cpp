@@ -24,6 +24,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 CMailTo::CMailTo()
 	: m_to()
 	, m_cc()
@@ -188,3 +193,6 @@ std::string CMailTo::Encode(std::wstring const& str, bool clearText) const
 	}
 	return fmt::to_string(buffer);
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

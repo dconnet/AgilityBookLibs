@@ -22,6 +22,11 @@
 #include <vector>
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 /**
  * Separate a line into substrings.
  * Very simple routine that has no escape chars
@@ -82,3 +87,6 @@ ARBCOMMON_API std::wstring WriteCSV(
  * @return A string that can be written to a file. (not newline terminated)
  */
 ARBCOMMON_API std::wstring WriteCSVField(wchar_t inSep, std::wstring const& inField, bool includeQuote = false);
+
+} // namespace ARBCommon
+} // namespace dconSoft

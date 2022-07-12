@@ -39,7 +39,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
+
+namespace dconSoft
+{
+namespace ARBCommon
+{
 
 std::wstring SanitizeStringForHTML(std::wstring const& inRawData, bool bConvertCR)
 {
@@ -251,7 +255,7 @@ static short RomanToShort(std::wstring number)
 
 std::wstring ShortToRoman(short value)
 {
-	static const wchar_t* romanDigits[9][4] = {
+	constexpr wchar_t* romanDigits[9][4] = {
 		// clang-format off
 		{L"M",    L"C",    L"X",    L"I"   },
 		{L"MM",   L"CC",   L"XX",   L"II"  },
@@ -275,3 +279,6 @@ std::wstring ShortToRoman(short value)
 	}
 	return fmt::to_string(result);
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

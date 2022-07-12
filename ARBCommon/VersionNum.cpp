@@ -37,6 +37,11 @@
 #endif
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 bool CVersionNum::Parse(std::wstring const& inVer)
 {
 	clear();
@@ -100,3 +105,6 @@ wxString CVersionNum::GetCompiledOn(std::wstring const& date, std::wstring const
 {
 	return wxString::Format(_("Compiled on %s at %s"), date.c_str(), time.c_str());
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

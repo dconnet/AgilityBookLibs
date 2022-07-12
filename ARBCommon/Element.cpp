@@ -139,18 +139,19 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-////////////////////////////////////////////////////////////////////////////
+
+namespace
+{
 
 #if !defined(_WIN32) && !defined(__WXWINDOWS__)
 #include <iostream>
-static void OutputDebugString(wchar_t const* msg)
+void OutputDebugString(wchar_t const* msg)
 {
 	if (msg)
 		fmt::print(std::wcout, L"{}", msg);
 }
 #endif
 
-////////////////////////////////////////////////////////////////////////////
 
 #if defined(__WXWINDOWS__)
 
@@ -228,6 +229,14 @@ protected:
 };
 
 #endif // __WXWINDOWS__
+} // namespace
+
+
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -539,7 +548,10 @@ static void CreateDoc(wxXmlNode* node, ElementNode const& toWrite)
 
 /////////////////////////////////////////////////////////////////////////////
 
-static std::wstring GetIndentBuffer(int indent)
+namespace
+{
+
+std::wstring GetIndentBuffer(int indent)
 {
 	std::wstring str;
 	if (0 < indent)
@@ -549,7 +561,7 @@ static std::wstring GetIndentBuffer(int indent)
 	return str;
 }
 
-static void LogMessage(fmt::wmemory_buffer const& msg)
+void LogMessage(fmt::wmemory_buffer const& msg)
 {
 #if defined(__WXWINDOWS__)
 	wxLogMessage(L"%s", fmt::to_string(msg).c_str());
@@ -559,10 +571,7 @@ static void LogMessage(fmt::wmemory_buffer const& msg)
 #endif
 }
 
-/////////////////////////////////////////////////////////////////////////////
 
-namespace
-{
 class ElementNode_concrete : public ElementNode
 {
 public:
@@ -1738,3 +1747,6 @@ void ElementText::SetValue(double inValue, int inPrec)
 {
 	m_Value = ARBDouble::ToString(inValue, inPrec, false);
 }
+
+} // namespace ARBCommon
+} // namespace dconSoft

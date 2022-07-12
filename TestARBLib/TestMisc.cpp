@@ -43,8 +43,13 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft::ARBCommon;
+
+
+namespace
+{
 #define NUM_PREC 2
-static const struct
+constexpr struct
 {
 	double val;
 	int prec[NUM_PREC];
@@ -77,6 +82,7 @@ static const struct
 	{1855425871872.0, {1, 2}, {L"1.9 TB", L"1.86 TB"},     {L"1.7 TiB", L"1.69 TiB"},   {L"1.7 TB", L"1.69 TB"}}
 	// clang-format on
 };
+} // namespace
 
 
 TEST_CASE("Misc")

@@ -38,6 +38,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
+
 
 wxWindow* FindWindowInSizer(wxSizer* sizer, int id)
 {
@@ -77,12 +79,12 @@ std::wstring GetListColumnText(CListCtrl const* list, long index, long col)
 		if (-1 == index)
 		{
 			if (list->GetColumn(col, info))
-				val = StringUtil::stringW(info.GetText());
+				val = ARBCommon::StringUtil::stringW(info.GetText());
 		}
 		else
 		{
 			if (list->GetItem(info))
-				val = StringUtil::stringW(info.GetText());
+				val = ARBCommon::StringUtil::stringW(info.GetText());
 		}
 	}
 	return val;
@@ -96,7 +98,7 @@ bool SetListColumnText(CListCtrl* list, long index, long col, std::wstring const
 	wxListItem info;
 	info.SetId(index);
 	info.SetColumn(col);
-	info.SetText(StringUtil::stringWX(text));
+	info.SetText(ARBCommon::StringUtil::stringWX(text));
 	return list->SetItem(info);
 }
 
@@ -110,7 +112,7 @@ void RefreshTreeItem(wxTreeCtrl* tree, wxTreeItemId item, bool bRecurse)
 			CTreeData* pData = dynamic_cast<CTreeData*>(tree->GetItemData(item));
 			if (pData)
 			{
-				tree->SetItemText(item, StringUtil::stringWX(pData->OnNeedText()));
+				tree->SetItemText(item, ARBCommon::StringUtil::stringWX(pData->OnNeedText()));
 			}
 			if (bRecurse)
 			{

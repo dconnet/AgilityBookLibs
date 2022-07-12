@@ -22,6 +22,11 @@
 #include <string>
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 /**
  * Make a string safe for HTML viewing.
  * @param inRawData String to sanitize
@@ -53,3 +58,6 @@ ARBCOMMON_API bool IsWin7OrBetter();
  * Translate a short to a Roman numeral
  */
 ARBCOMMON_API std::wstring ShortToRoman(short value);
+
+} // namespace ARBCommon
+} // namespace dconSoft

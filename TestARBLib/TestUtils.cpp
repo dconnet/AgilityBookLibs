@@ -27,7 +27,11 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft::ARBCommon;
 
+
+namespace
+{
 class SetFiles
 {
 	wxString m_filename;
@@ -133,6 +137,7 @@ public:
 		return bVerified;
 	}
 };
+} // namespace
 
 
 TEST_CASE("Utils")

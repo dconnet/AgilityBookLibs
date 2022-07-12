@@ -46,6 +46,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft;
+
 
 CBaseApp::CBaseApp(wxString const& appName, ARBLanguageCatalog useLangCatalog)
 	: CBaseApp(appName, appName, useLangCatalog)
@@ -132,8 +134,8 @@ void CBaseApp::GenerateReport(wxDebugReport::Context ctx)
 std::wstring CBaseApp::GetUpdateInfoKey() const
 {
 	if (m_BaseRegName.empty())
-		return StringUtil::stringW(m_BaseAppName);
-	return StringUtil::stringW(m_BaseRegName);
+		return ARBCommon::StringUtil::stringW(m_BaseAppName);
+	return ARBCommon::StringUtil::stringW(m_BaseRegName);
 }
 
 
@@ -169,7 +171,7 @@ bool CBaseApp::OnInit()
 	wxImage::SetDefaultLoadFlags(wxImage::GetDefaultLoadFlags() & ~wxImage::Load_Verbose);
 
 	std::wstring errMsg;
-	if (!Element::Initialize(errMsg))
+	if (!ARBCommon::Element::Initialize(errMsg))
 	{
 		wxMessageBox(errMsg.c_str(), wxMessageBoxCaptionStr, wxOK | wxCENTRE | wxICON_ERROR);
 		return false;
@@ -192,15 +194,17 @@ bool CBaseApp::OnInit()
 			{
 				wxFileName fileName(wxStandardPaths::Get().GetExecutablePath());
 				m_BaseInfoName = fileName.GetName() + L".info";
-				useIniFile = GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".local";
+				useIniFile
+					= ARBCommon::GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".local";
 			}
 			else
 			{
 				wxFileName fileName(m_BaseInfoName);
-				useIniFile = GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".local";
+				useIniFile
+					= ARBCommon::GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".local";
 			}
 
-			wxString inifile = GetARBResourceDir() + wxFileName::GetPathSeparator() + m_BaseInfoName;
+			wxString inifile = ARBCommon::GetARBResourceDir() + wxFileName::GetPathSeparator() + m_BaseInfoName;
 
 			// Important: If this is a dialog-based app, you must delete
 			// the config before returning from OnInit for this will leak.
@@ -273,7 +277,7 @@ void CBaseApp::BaseAppCleanup(bool deleteConfig)
 	m_langMgr.reset();
 
 	CResourceManager::Get()->Cleanup();
-	Element::Terminate();
+	ARBCommon::Element::Terminate();
 }
 
 

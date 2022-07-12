@@ -23,6 +23,8 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
+using namespace dconSoft::ARBCommon;
+
 
 TEST_CASE("MsgDigest")
 {

@@ -23,6 +23,11 @@
 #include "LibwxARBCommon.h"
 
 
+namespace dconSoft
+{
+namespace ARBCommon
+{
+
 /**
  * Helper to reset wxConfig path
  */
@@ -118,3 +123,6 @@ private:
 #define STACK_TRACE(name, msg)
 #define STACK_TICKLE(name, msg)
 #endif
+
+} // namespace ARBCommon
+} // namespace dconSoft

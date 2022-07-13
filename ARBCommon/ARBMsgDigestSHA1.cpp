@@ -753,7 +753,9 @@ unsigned SHA1::CircularShift(int bits, unsigned word)
 // clang-format on
 /////////////////////////////////////////////////////////////////////////////
 
-static std::wstring ConvertDigest(const unsigned int digest[5])
+namespace
+{
+std::wstring ConvertDigest(const unsigned int digest[5])
 {
 	fmt::wmemory_buffer str;
 	for (int i = 0; i < 5; ++i)
@@ -762,7 +764,7 @@ static std::wstring ConvertDigest(const unsigned int digest[5])
 	}
 	return fmt::to_string(str);
 }
-
+} // namespace
 
 namespace dconSoft
 {

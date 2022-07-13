@@ -236,6 +236,17 @@ wxString StripMnemonics(wxString const& str, bool isPopup)
 	}
 	return s;
 }
+
+
+size_t FindItem(int id, std::vector<CMenuHelper::ItemData> const& menuItems)
+{
+	for (size_t i = 0; i < menuItems.size(); ++i)
+	{
+		if (menuItems[i].id == id)
+			return i;
+	}
+	return menuItems.size();
+}
 } // namespace
 
 
@@ -422,17 +433,6 @@ bool CMenuHelper::ConfigureAccelerators(wxFrame* pFrame, wxWindow* pParent)
 		}
 	}
 	return rc;
-}
-
-
-static size_t FindItem(int id, std::vector<CMenuHelper::ItemData> const& menuItems)
-{
-	for (size_t i = 0; i < menuItems.size(); ++i)
-	{
-		if (menuItems[i].id == id)
-			return i;
-	}
-	return menuItems.size();
 }
 
 

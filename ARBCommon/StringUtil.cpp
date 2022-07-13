@@ -277,8 +277,10 @@ double ToCDouble(std::wstring const& inStr)
 }
 
 
-static const char* const sc_Whitespace = "\r\n\t ";
-static const wchar_t* const sc_wWhitespace = L"\r\n\t ";
+namespace
+{
+constexpr char* const sc_Whitespace = "\r\n\t ";
+constexpr wchar_t* const sc_wWhitespace = L"\r\n\t ";
 enum class TrimType
 {
 	Left = 0x1,
@@ -312,7 +314,7 @@ template <typename T> T TrimImpl(T const& inStr, T const& toTrim, TrimType type)
 }
 
 
-static bool UseCompareString()
+bool UseCompareString()
 {
 #ifdef WIN32
 #if (WINVER >= _WIN32_WINNT_WIN7)
@@ -333,6 +335,7 @@ static bool UseCompareString()
 	return false;
 #endif
 }
+} // namespace
 
 
 bool CanCompareDigits()
@@ -551,12 +554,13 @@ std::wstring FormatBytes(double inSize, int inPrec, ByteSizeStyle inSizeStyle)
 {
 	// byte, kilo, mega, giga, tera, peta, exa, zetta, yotta
 	// Note: bronto, geop are next. Don't know the binary units, or the abbrev
-	static wchar_t const* const sc_unitsSI[] = {L" B", L" kB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB"};
+	constexpr wchar_t const* const sc_unitsSI[] = {L" B", L" kB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB"};
 	// byte, kibi, mebi, gibi, tebi, pebi, exbi, zebi, yobi
-	static wchar_t const* const sc_unitsBinary[]
+	constexpr wchar_t const* const sc_unitsBinary[]
 		= {L" B", L" KiB", L" MiB", L" GiB", L" TiB", L" PiB", L" EiB", L"ZiB", L"YiB"};
-	static wchar_t const* const sc_unitsTrue[] = {L" B", L" KB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB"};
-	static const struct
+	constexpr wchar_t const* const sc_unitsTrue[]
+		= {L" B", L" KB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB"};
+	constexpr const struct
 	{
 		wchar_t const* const* units;
 		size_t numUnits;

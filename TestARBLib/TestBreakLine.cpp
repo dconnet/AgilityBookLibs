@@ -64,17 +64,17 @@ bool VerifyFields(std::vector<std::wstring> const& fields1, std::vector<std::wst
 TEST_CASE("BreakLine")
 {
 	// String
-	static wchar_t const* record4 = L"fld;fld;;fld";
-	static wchar_t const* record7 = L"fld;fld;;fld;f\"f;f6;f7";
-	static wchar_t const* record5 = L"fld;\"line\n;line\";\"\"\"quote\"\" here\";;";
-	static wchar_t const* recordMore1a = L"fld;\"line";
-	static wchar_t const* recordMore2a = L";line\";\"\"\"quote\"\" here\";;";
-	static wchar_t const* recordMore1b = L"2010-10-30;Name;\"Subname\";\"Line 1";
-	static wchar_t const* recordMore2b = L"Line 2\"";
-	static wchar_t const* recordMore1c = L"field1;\"Line1";
-	static wchar_t const* recordMore2c = L"Line2";
-	static wchar_t const* recordMore2cb = L"";
-	static wchar_t const* recordMore3c = L"Line3\";field3";
+	constexpr wchar_t record4[] = L"fld;fld;;fld";
+	constexpr wchar_t record7[] = L"fld;fld;;fld;f\"f;f6;f7";
+	constexpr wchar_t record5[] = L"fld;\"line\n;line\";\"\"\"quote\"\" here\";;";
+	constexpr wchar_t recordMore1a[] = L"fld;\"line";
+	constexpr wchar_t recordMore2a[] = L";line\";\"\"\"quote\"\" here\";;";
+	constexpr wchar_t recordMore1b[] = L"2010-10-30;Name;\"Subname\";\"Line 1";
+	constexpr wchar_t recordMore2b[] = L"Line 2\"";
+	constexpr wchar_t recordMore1c[] = L"field1;\"Line1";
+	constexpr wchar_t recordMore2c[] = L"Line2";
+	constexpr wchar_t recordMore2cb[] = L"";
+	constexpr wchar_t recordMore3c[] = L"Line3\";field3";
 
 
 	SECTION("BreakLine")

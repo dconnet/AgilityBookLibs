@@ -33,8 +33,8 @@ using namespace ARBCommon;
 TEST_CASE("Archive")
 {
 #ifdef WIN32
-	static char const* FileData1 = "This is test1\r\nOk";
-	static char const* FileData2 = "This is test2\r\nOk\r\n";
+	constexpr char FileData1[] = "This is test1\r\nOk";
+	constexpr char FileData2[] = "This is test2\r\nOk\r\n";
 #endif
 
 	SECTION("ExtractFileFromRes")
@@ -63,7 +63,7 @@ TEST_CASE("Archive")
 	}
 
 #ifndef __WXWINDOWS__
-	static char const* FileData3 = "This is test3\r\nReplaced\r\n";
+	constexpr char FileData3[] = "This is test3\r\nReplaced\r\n";
 
 	static std::wstring CreateZip()
 	{

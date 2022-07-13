@@ -56,6 +56,25 @@ namespace dconSoft
 namespace ARBWin
 {
 
+namespace
+{
+void PushData(fmt::wmemory_buffer& data, CReportListCtrl const* ctrl, int item, bool bBold)
+{
+	fmt::format_to(std::back_inserter(data), L"{}", L"<tr>");
+	std::vector<std::wstring> line;
+	ctrl->GetPrintLine(item, line);
+	for (std::vector<std::wstring>::const_iterator i = line.begin(); i != line.end(); ++i)
+	{
+		if (bBold)
+			fmt::format_to(std::back_inserter(data), L"<td><strong>{}</strong></td>\n", *i);
+		else
+			fmt::format_to(std::back_inserter(data), L"<td>{}</td>\n", *i);
+	}
+	fmt::format_to(std::back_inserter(data), L"{}", L"</tr>\n");
+}
+} // namespace
+
+
 bool CReportListCtrl::m_enableRowColors = true;
 
 // Note to self: If this is immediately after includes, doxygen throws a hissy fit.
@@ -357,22 +376,6 @@ CListDataPtr CReportListCtrl::GetData(long item) const
 		ptr = m_items[item];
 	}
 	return ptr;
-}
-
-
-static void PushData(fmt::wmemory_buffer& data, CReportListCtrl const* ctrl, int item, bool bBold)
-{
-	fmt::format_to(std::back_inserter(data), L"{}", L"<tr>");
-	std::vector<std::wstring> line;
-	ctrl->GetPrintLine(item, line);
-	for (std::vector<std::wstring>::const_iterator i = line.begin(); i != line.end(); ++i)
-	{
-		if (bBold)
-			fmt::format_to(std::back_inserter(data), L"<td><strong>{}</strong></td>\n", *i);
-		else
-			fmt::format_to(std::back_inserter(data), L"<td>{}</td>\n", *i);
-	}
-	fmt::format_to(std::back_inserter(data), L"{}", L"</tr>\n");
 }
 
 

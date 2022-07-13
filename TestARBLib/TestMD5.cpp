@@ -32,7 +32,7 @@ using namespace ARBCommon;
 TEST_CASE("MsgDigest")
 {
 	// String
-	static char const* RawString = "This is a test of a string";
+	constexpr char RawString[] = "This is a test of a string";
 	static std::wstring DigestStringMD5(L"b36b52c4835d88fdb548087b9a829bf1");
 	static std::wstring DigestStringSHA1(L"7d56b53d54b141cb77e465abcfe63436a35ae222");
 	static std::wstring DigestStringSHA256(L"5d2819684143b99d8b9c9a254e1b5584529a3fe947862e8ae15e246eda292c37");

@@ -134,7 +134,7 @@ void RunDblTests(bool bUseLocale)
 	// Things changed from v5 to v6, see comments about fmt in ARBTypes.cpp
 	// (v6: Formatting changed to locale-independent)
 #if (FMT_VERSION >= 60000)
-	static const struct
+	constexpr struct
 	{
 		double val;
 		int prec;

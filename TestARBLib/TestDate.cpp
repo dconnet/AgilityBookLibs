@@ -262,7 +262,7 @@ TEST_CASE("Date")
 
 	SECTION("LeapYear")
 	{
-		static struct
+		constexpr struct
 		{
 			int yr;
 			bool isLeep;

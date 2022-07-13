@@ -37,7 +37,7 @@ using namespace ARBCommon;
 TEST_CASE("BinaryData")
 {
 	// This is an small gif file.
-	static const size_t RawDataSize = 84;
+	constexpr size_t RawDataSize = 84;
 	static const std::vector<unsigned char> RawData = {
 		// clang-format off
 		 71,  73,  70,  56,  57,  97,   5,   0,   5,   0,

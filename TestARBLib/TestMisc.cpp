@@ -203,7 +203,7 @@ TEST_CASE("Misc")
 
 	SECTION("RomanNumerals")
 	{
-		static struct
+		constexpr struct
 		{
 			short val;
 			wchar_t const* roman;

@@ -39,13 +39,9 @@ namespace dconSoft
 namespace ARBWin
 {
 
-wxIMPLEMENT_CLASS(CListCtrl, wxListView)
-wxIMPLEMENT_CLASS(CTreeCtrl, wxTreeCtrl)
-wxIMPLEMENT_CLASS(CTextCtrl, wxTextCtrl)
-wxIMPLEMENT_CLASS(CSpellCheckCtrl, CTextCtrl)
-
-
-static bool ComputeTreeHeight(wxTreeCtrl* tree, wxTreeItemId item, int& height)
+namespace
+{
+bool ComputeTreeHeight(wxTreeCtrl* tree, wxTreeItemId item, int& height)
 {
 	if (!item.IsOk())
 		return false;
@@ -66,6 +62,13 @@ static bool ComputeTreeHeight(wxTreeCtrl* tree, wxTreeItemId item, int& height)
 	}
 	return bChanged;
 }
+} // namespace
+
+
+wxIMPLEMENT_CLASS(CListCtrl, wxListView)
+wxIMPLEMENT_CLASS(CTreeCtrl, wxTreeCtrl)
+wxIMPLEMENT_CLASS(CTextCtrl, wxTextCtrl)
+wxIMPLEMENT_CLASS(CSpellCheckCtrl, CTextCtrl)
 
 
 bool CTreeCtrl::ComputeHeightHint()

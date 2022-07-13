@@ -279,8 +279,8 @@ double ToCDouble(std::wstring const& inStr)
 
 namespace
 {
-constexpr char* const sc_Whitespace = "\r\n\t ";
-constexpr wchar_t* const sc_wWhitespace = L"\r\n\t ";
+constexpr char sc_Whitespace[] = "\r\n\t ";
+constexpr wchar_t sc_wWhitespace[] = L"\r\n\t ";
 enum class TrimType
 {
 	Left = 0x1,
@@ -560,7 +560,7 @@ std::wstring FormatBytes(double inSize, int inPrec, ByteSizeStyle inSizeStyle)
 		= {L" B", L" KiB", L" MiB", L" GiB", L" TiB", L" PiB", L" EiB", L"ZiB", L"YiB"};
 	constexpr wchar_t const* const sc_unitsTrue[]
 		= {L" B", L" KB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB"};
-	constexpr const struct
+	static const struct
 	{
 		wchar_t const* const* units;
 		size_t numUnits;

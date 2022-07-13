@@ -255,7 +255,7 @@ static short RomanToShort(std::wstring number)
 
 std::wstring ShortToRoman(short value)
 {
-	constexpr wchar_t* romanDigits[9][4] = {
+	constexpr wchar_t const* romanDigits[9][4] = {
 		// clang-format off
 		{L"M",    L"C",    L"X",    L"I"   },
 		{L"MM",   L"CC",   L"XX",   L"II"  },

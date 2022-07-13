@@ -38,8 +38,10 @@ namespace dconSoft
 namespace ARBCommon
 {
 
-#define BUFFER_SIZE 1024
-
+namespace
+{
+constexpr size_t BUFFER_SIZE = 1024;
+} // namespace
 
 class CLibArchiveImpl
 {

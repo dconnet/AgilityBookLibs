@@ -51,7 +51,7 @@ using namespace ARBWin;
 
 namespace
 {
-#define NUM_PREC 2
+constexpr size_t NUM_PREC = 2;
 constexpr struct
 {
 	double val;

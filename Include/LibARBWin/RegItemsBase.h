@@ -28,7 +28,7 @@ namespace ARBWin
 {
 
 // Sorting:
-#define CFG_KEY_SORTING L"Sorting"
+constexpr wchar_t CFG_KEY_SORTING[] = L"Sorting";
 //	ST [key]Order (ColumnOrder.cpp)
 inline std::wstring CFG_SORTING_ORDER(std::wstring const& item)
 {
@@ -58,15 +58,15 @@ inline std::wstring CFG_SORT_COLUMN(std::wstring const& item)
 	return fmt::format(L"{}/{}Column", CFG_KEY_SORTING, item);
 }
 
-#define CFG_KEY_ACCELERATORS L"Accelerators"
+constexpr wchar_t CFG_KEY_ACCELERATORS[] = L"Accelerators";
 // ST
-#define CFG_ACCEL_KEYCODE L"KeyCode"
+constexpr wchar_t CFG_ACCEL_KEYCODE[] = L"KeyCode";
 // ST
-#define CFG_ACCEL_ID L"id"
+constexpr wchar_t CFG_ACCEL_ID[] = L"id";
 // DW (bitmask for alt/ctrl/shift modifiers)
-#define CFG_ACCEL_MOD L"mod"
+constexpr wchar_t CFG_ACCEL_MOD[] = L"mod";
 
-#define CFG_KEY_RECENT_FILES L"Recent File List" // Named this way for compatibility with existing MFC app
+constexpr wchar_t CFG_KEY_RECENT_FILES[] = L"Recent File List"; // Named this way for compatibility with existing MFC app
 
 } // namespace ARBWin
 } // namespace dconSoft

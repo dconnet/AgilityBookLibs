@@ -1089,7 +1089,7 @@ long ISpreadSheet::GetMaxCols()
 bool ISpreadSheet::GetRowCol(long inRow, long inCol, std::wstring& outCell)
 {
 	// Lookup tables are nice!
-	constexpr wchar_t* const sc_ColumnNames[256] = {
+	constexpr wchar_t const* sc_ColumnNames[256] = {
 		// clang-format off
 		L"A", L"B", L"C", L"D", L"E", L"F", L"G", L"H",
 		L"I", L"J", L"K", L"L", L"M", L"N", L"O", L"P",

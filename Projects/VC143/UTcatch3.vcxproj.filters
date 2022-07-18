@@ -16,9 +16,6 @@
     <Filter Include="Source Files\generators">
       <UniqueIdentifier>{4f6d7d81-2b1e-41cc-ac28-0dca4b9bb28f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\generators\internal">
-      <UniqueIdentifier>{9dcda864-65c9-4f70-a94c-3a7fd529d8e1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\interfaces">
       <UniqueIdentifier>{9a650828-3c40-4126-8531-32dfb53365d1}</UniqueIdentifier>
     </Filter>
@@ -485,12 +482,6 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\internal\catch_generators_combined_tu.cpp">
-      <Filter>Source Files\generators\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_combined_tu.cpp">
-      <Filter>Source Files\interfaces</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter.cpp">
       <Filter>Source Files\interfaces</Filter>
     </ClCompile>
@@ -498,9 +489,6 @@
       <Filter>Source Files\internal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_clara.cpp">
-      <Filter>Source Files\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_combined_tu.cpp">
       <Filter>Source Files\internal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_commandline.cpp">
@@ -602,13 +590,7 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_templated.cpp">
       <Filter>Source Files\matchers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\internal\catch_matchers_combined_tu.cpp">
-      <Filter>Source Files\matchers\internal</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_automake.cpp">
-      <Filter>Source Files\reporters</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_combined_tu.cpp">
       <Filter>Source Files\reporters</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_compact.cpp">
@@ -672,6 +654,81 @@
       <Filter>Source Files\interfaces</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_registrars.cpp">
+      <Filter>Source Files\reporters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generator_exception.cpp">
+      <Filter>Source Files\generators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators.cpp">
+      <Filter>Source Files\generators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_capture.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_config.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_exception.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_registry_hub.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_factory.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_registry.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_testcase.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_decomposer.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_errno_guard.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_lazy_expr.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_leak_detector.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_message_info.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_polyfills.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_startup_exception_registry.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_uncaught_exceptions.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\internal\catch_matchers_impl.cpp">
+      <Filter>Source Files\matchers\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers.cpp">
+      <Filter>Source Files\matchers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_container_properties.cpp">
+      <Filter>Source Files\matchers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_exception.cpp">
+      <Filter>Source Files\matchers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_predicate.cpp">
+      <Filter>Source Files\matchers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_quantifiers.cpp">
+      <Filter>Source Files\matchers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_event_listener.cpp">
+      <Filter>Source Files\reporters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_helpers.cpp">
       <Filter>Source Files\reporters</Filter>
     </ClCompile>
   </ItemGroup>

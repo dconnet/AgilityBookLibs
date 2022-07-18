@@ -34,37 +34,52 @@ libcatch3_SRCS = \
 	src/catch2/catch_message.cpp \
 	src/catch2/catch_registry_hub.cpp \
 	src/catch2/catch_session.cpp \
+	src/catch2/catch_tag_alias_autoregistrar.cpp \
 	src/catch2/catch_test_case_info.cpp \
 	src/catch2/catch_test_spec.cpp \
 	src/catch2/catch_timer.cpp \
 	src/catch2/catch_tostring.cpp \
 	src/catch2/catch_totals.cpp \
 	src/catch2/catch_version.cpp \
+	src/catch2/benchmark/catch_chronometer.cpp \
+	src/catch2/benchmark/detail/catch_benchmark_function.cpp \
+	src/catch2/benchmark/detail/catch_run_for_at_least.cpp \
 	src/catch2/benchmark/detail/catch_stats.cpp \
-	src/catch2/benchmark/internal/catch_benchmark_combined_tu.cpp \
+	src/catch2/generators/catch_generator_exception.cpp \
+	src/catch2/generators/catch_generators.cpp \
 	src/catch2/generators/catch_generators_random.cpp \
-	src/catch2/generators/internal/catch_generators_combined_tu.cpp \
-	src/catch2/interfaces/catch_interfaces_combined_tu.cpp \
+	src/catch2/interfaces/catch_interfaces_capture.cpp \
+	src/catch2/interfaces/catch_interfaces_config.cpp \
+	src/catch2/interfaces/catch_interfaces_exception.cpp \
 	src/catch2/interfaces/catch_interfaces_generatortracker.cpp \
+	src/catch2/interfaces/catch_interfaces_registry_hub.cpp \
 	src/catch2/interfaces/catch_interfaces_reporter.cpp \
+	src/catch2/interfaces/catch_interfaces_reporter_factory.cpp \
+	src/catch2/interfaces/catch_interfaces_reporter_registry.cpp \
+	src/catch2/interfaces/catch_interfaces_testcase.cpp \
 	src/catch2/internal/catch_assertion_handler.cpp \
 	src/catch2/internal/catch_case_insensitive_comparisons.cpp \
 	src/catch2/internal/catch_clara.cpp \
-	src/catch2/internal/catch_combined_tu.cpp \
 	src/catch2/internal/catch_commandline.cpp \
 	src/catch2/internal/catch_console_colour.cpp \
 	src/catch2/internal/catch_context.cpp \
 	src/catch2/internal/catch_debug_console.cpp \
 	src/catch2/internal/catch_debugger.cpp \
+	src/catch2/internal/catch_decomposer.cpp \
 	src/catch2/internal/catch_enforce.cpp \
 	src/catch2/internal/catch_enum_values_registry.cpp \
+	src/catch2/internal/catch_errno_guard.cpp \
 	src/catch2/internal/catch_exception_translator_registry.cpp \
 	src/catch2/internal/catch_fatal_condition_handler.cpp \
 	src/catch2/internal/catch_floating_point_helpers.cpp \
 	src/catch2/internal/catch_istream.cpp \
+	src/catch2/internal/catch_lazy_expr.cpp \
+	src/catch2/internal/catch_leak_detector.cpp \
 	src/catch2/internal/catch_list.cpp \
 	src/catch2/internal/catch_main.cpp \
+	src/catch2/internal/catch_message_info.cpp \
 	src/catch2/internal/catch_output_redirect.cpp \
+	src/catch2/internal/catch_polyfills.cpp \
 	src/catch2/internal/catch_random_number_generator.cpp \
 	src/catch2/internal/catch_random_seed_generation.cpp \
 	src/catch2/internal/catch_reporter_registry.cpp \
@@ -75,6 +90,7 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_section.cpp \
 	src/catch2/internal/catch_singletons.cpp \
 	src/catch2/internal/catch_source_line_info.cpp \
+	src/catch2/internal/catch_startup_exception_registry.cpp \
 	src/catch2/internal/catch_stdstreams.cpp \
 	src/catch2/internal/catch_string_manip.cpp \
 	src/catch2/internal/catch_stringref.cpp \
@@ -85,18 +101,25 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_test_registry.cpp \
 	src/catch2/internal/catch_test_spec_parser.cpp \
 	src/catch2/internal/catch_textflow.cpp \
+	src/catch2/internal/catch_uncaught_exceptions.cpp \
 	src/catch2/internal/catch_wildcard_pattern.cpp \
 	src/catch2/internal/catch_xmlwriter.cpp \
+	src/catch2/matchers/catch_matchers.cpp \
+	src/catch2/matchers/catch_matchers_container_properties.cpp \
+	src/catch2/matchers/catch_matchers_exception.cpp \
 	src/catch2/matchers/catch_matchers_floating_point.cpp \
+	src/catch2/matchers/catch_matchers_predicate.cpp \
+	src/catch2/matchers/catch_matchers_quantifiers.cpp \
 	src/catch2/matchers/catch_matchers_string.cpp \
 	src/catch2/matchers/catch_matchers_templated.cpp \
-	src/catch2/matchers/internal/catch_matchers_combined_tu.cpp \
+	src/catch2/matchers/internal/catch_matchers_impl.cpp \
 	src/catch2/reporters/catch_reporter_automake.cpp \
-	src/catch2/reporters/catch_reporter_combined_tu.cpp \
 	src/catch2/reporters/catch_reporter_common_base.cpp \
 	src/catch2/reporters/catch_reporter_compact.cpp \
 	src/catch2/reporters/catch_reporter_console.cpp \
 	src/catch2/reporters/catch_reporter_cumulative_base.cpp \
+	src/catch2/reporters/catch_reporter_event_listener.cpp \
+	src/catch2/reporters/catch_reporter_helpers.cpp \
 	src/catch2/reporters/catch_reporter_junit.cpp \
 	src/catch2/reporters/catch_reporter_multi.cpp \
 	src/catch2/reporters/catch_reporter_registrars.cpp \

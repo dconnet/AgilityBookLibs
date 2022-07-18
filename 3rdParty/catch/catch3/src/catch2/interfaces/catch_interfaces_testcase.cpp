@@ -5,11 +5,10 @@
 //        https://www.boost.org/LICENSE_1_0.txt)
 
 // SPDX-License-Identifier: BSL-1.0
-#ifndef CATCH_VERSION_MACROS_HPP_INCLUDED
-#define CATCH_VERSION_MACROS_HPP_INCLUDED
 
-#define CATCH_VERSION_MAJOR 3
-#define CATCH_VERSION_MINOR 1
-#define CATCH_VERSION_PATCH 0
+#include <catch2/interfaces/catch_interfaces_testcase.hpp>
 
-#endif // CATCH_VERSION_MACROS_HPP_INCLUDED
+namespace Catch {
+    ITestInvoker::~ITestInvoker() = default;
+    ITestCaseRegistry::~ITestCaseRegistry() = default;
+}

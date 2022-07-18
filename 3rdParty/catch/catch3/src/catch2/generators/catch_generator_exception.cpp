@@ -5,11 +5,13 @@
 //        https://www.boost.org/LICENSE_1_0.txt)
 
 // SPDX-License-Identifier: BSL-1.0
-#ifndef CATCH_VERSION_MACROS_HPP_INCLUDED
-#define CATCH_VERSION_MACROS_HPP_INCLUDED
 
-#define CATCH_VERSION_MAJOR 3
-#define CATCH_VERSION_MINOR 1
-#define CATCH_VERSION_PATCH 0
+#include <catch2/generators/catch_generator_exception.hpp>
 
-#endif // CATCH_VERSION_MACROS_HPP_INCLUDED
+namespace Catch {
+
+    const char* GeneratorException::what() const noexcept {
+        return m_msg;
+    }
+
+} // end namespace Catch

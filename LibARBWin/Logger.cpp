@@ -147,6 +147,12 @@ CLogger::CLogger()
 }
 
 
+bool CLogger::IsEnabled() const
+{
+	return !!m_logger;
+}
+
+
 void CLogger::EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFilename, size_t keepNlogs)
 {
 	if (!m_logger)

@@ -35,6 +35,8 @@ public:
 
 	CLogger();
 
+	bool IsEnabled() const;
+
 	// keep = 0 means keep all.
 	// Sets base logger to write to a file, adds a wxLogWindow
 	void EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFilename, size_t keepNlogs = 5);

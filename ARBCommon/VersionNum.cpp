@@ -95,15 +95,18 @@ std::wstring CVersionNum::GetVersionUsage(
 }
 
 
-wxString CVersionNum::GetCompiledOn(std::string const& date, std::string const& time)
+wxString CVersionNum::GetCompiledOn(std::string const& date, std::string const& time, bool incCompOnText)
 {
-	return GetCompiledOn(StringUtil::stringW(date), StringUtil::stringW(time));
+	return GetCompiledOn(StringUtil::stringW(date), StringUtil::stringW(time), incCompOnText);
 }
 
 
-wxString CVersionNum::GetCompiledOn(std::wstring const& date, std::wstring const& time)
+wxString CVersionNum::GetCompiledOn(std::wstring const& date, std::wstring const& time, bool incCompOnText)
 {
-	return wxString::Format(_("Compiled on %s at %s"), date.c_str(), time.c_str());
+	if (incCompOnText)
+		return wxString::Format(_("Compiled on %s at %s"), date.c_str(), time.c_str());
+	else
+		return wxString::Format(_("%s at %s"), date.c_str(), time.c_str());
 }
 
 } // namespace ARBCommon

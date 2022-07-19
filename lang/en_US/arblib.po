@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 14:15-0700\n"
-"PO-Revision-Date: 2022-06-09 14:15-0700\n"
+"POT-Creation-Date: 2022-07-19 13:38-0700\n"
+"PO-Revision-Date: 2022-07-19 13:38-0700\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: en_US\n"
@@ -17,13 +17,13 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;arbT\n"
 "X-Poedit-Basepath: ../..\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-SearchPath-0: Include\n"
 "X-Poedit-SearchPath-1: ARBCommon\n"
 "X-Poedit-SearchPath-2: LibARBWin\n"
 "X-Poedit-SearchPath-3: TestARBLib\n"
 
-#: ARBCommon/VersionNum.cpp:86
+#: ARBCommon/VersionNum.cpp:91
 #, c-format
 msgid ""
 "%s version %s\n"
@@ -32,173 +32,178 @@ msgstr ""
 "%s version %s\n"
 "%s"
 
-#: ARBCommon/VersionNum.cpp:101
+#: ARBCommon/VersionNum.cpp:107
 #, c-format
 msgid "Compiled on %s at %s"
 msgstr "Compiled on %s at %s"
 
-#: LibARBWin/ARBDebug.cpp:206
+#: ARBCommon/VersionNum.cpp:109
+#, c-format
+msgid "%s at %s"
+msgstr "%s at %s"
+
+#: LibARBWin/ARBDebug.cpp:210
 msgid "Unable to determine version information"
 msgstr "Unable to determine version information"
 
 # DlgAuthenticate
-#: LibARBWin/DlgAuthenticate.cpp:43
+#: LibARBWin/DlgAuthenticate.cpp:48
 msgid "Authentication"
 msgstr "Authentication"
 
-#: LibARBWin/DlgAuthenticate.cpp:54
+#: LibARBWin/DlgAuthenticate.cpp:59
 msgid "User Name"
 msgstr "User Name"
 
-#: LibARBWin/DlgAuthenticate.cpp:66
+#: LibARBWin/DlgAuthenticate.cpp:71
 msgid "Password"
 msgstr "Password"
 
-#: LibARBWin/DlgConfigAccel.cpp:99
+#: LibARBWin/DlgConfigAccel.cpp:109
 msgid "Assign Key"
 msgstr "Assign Key"
 
-#: LibARBWin/DlgConfigAccel.cpp:102
+#: LibARBWin/DlgConfigAccel.cpp:112
 msgid "Key:"
 msgstr "Key:"
 
-#: LibARBWin/DlgConfigAccel.cpp:113
+#: LibARBWin/DlgConfigAccel.cpp:123
 msgid "Modifiers:"
 msgstr "Modifiers:"
 
-#: LibARBWin/DlgConfigAccel.cpp:118
+#: LibARBWin/DlgConfigAccel.cpp:128
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: LibARBWin/DlgConfigAccel.cpp:127
+#: LibARBWin/DlgConfigAccel.cpp:137
 msgid "Alt"
 msgstr "Alt"
 
-#: LibARBWin/DlgConfigAccel.cpp:136
+#: LibARBWin/DlgConfigAccel.cpp:146
 msgid "Shift"
 msgstr "Shift"
 
-#: LibARBWin/DlgConfigAccel.cpp:142 LibARBWin/DlgConfigAccel.cpp:493
+#: LibARBWin/DlgConfigAccel.cpp:152 LibARBWin/DlgConfigAccel.cpp:503
 msgid "Clear"
 msgstr "Clear"
 
-#: LibARBWin/DlgConfigAccel.cpp:231
+#: LibARBWin/DlgConfigAccel.cpp:241
 msgid "ERROR: This accelerator is already in use."
 msgstr "ERROR: This accelerator is already in use."
 
-#: LibARBWin/DlgConfigAccel.cpp:298 LibARBWin/MenuHelper.cpp:707
+#: LibARBWin/DlgConfigAccel.cpp:308 LibARBWin/MenuHelper.cpp:712
 msgid "Ctrl+"
 msgstr "Ctrl+"
 
-#: LibARBWin/DlgConfigAccel.cpp:300 LibARBWin/MenuHelper.cpp:709
+#: LibARBWin/DlgConfigAccel.cpp:310 LibARBWin/MenuHelper.cpp:714
 msgid "Alt+"
 msgstr "Alt+"
 
-#: LibARBWin/DlgConfigAccel.cpp:302 LibARBWin/MenuHelper.cpp:711
+#: LibARBWin/DlgConfigAccel.cpp:312 LibARBWin/MenuHelper.cpp:716
 msgid "Shift+"
 msgstr "Shift+"
 
-#: LibARBWin/DlgConfigAccel.cpp:461
+#: LibARBWin/DlgConfigAccel.cpp:471
 msgid "Configure Keyboard Shortcuts"
 msgstr "Configure Keyboard Shortcuts"
 
-#: LibARBWin/DlgConfigAccel.cpp:479
+#: LibARBWin/DlgConfigAccel.cpp:489
 msgid "Keyboard Shortcut"
 msgstr "Keyboard Shortcut"
 
-#: LibARBWin/DlgConfigAccel.cpp:480
+#: LibARBWin/DlgConfigAccel.cpp:490
 msgid "Description"
 msgstr "Description"
 
-#: LibARBWin/DlgConfigAccel.cpp:482
+#: LibARBWin/DlgConfigAccel.cpp:492
 msgid "Location"
 msgstr "Location"
 
-#: LibARBWin/DlgConfigAccel.cpp:487
+#: LibARBWin/DlgConfigAccel.cpp:497
 msgid "New..."
 msgstr "New..."
 
-#: LibARBWin/DlgConfigAccel.cpp:490
+#: LibARBWin/DlgConfigAccel.cpp:500
 msgid "Edit..."
 msgstr "Edit..."
 
-#: LibARBWin/DlgConfigAccel.cpp:496
+#: LibARBWin/DlgConfigAccel.cpp:506
 msgid "Set Defaults"
 msgstr "Set Defaults"
 
 # DlgMessage
-#: LibARBWin/DlgMessage.cpp:34
+#: LibARBWin/DlgMessage.cpp:39
 msgid "IDD_MESSAGE"
 msgstr "Message"
 
-#: LibARBWin/DlgMessage.cpp:47
+#: LibARBWin/DlgMessage.cpp:52
 msgid "IDC_MESSAGE_CLOSE"
 msgstr "Close"
 
 # DlgProgress
-#: LibARBWin/DlgProgress.cpp:122
+#: LibARBWin/DlgProgress.cpp:129
 msgid "Progress"
 msgstr "Progress"
 
-#: LibARBWin/LanguageManager.cpp:259 LibARBWin/LanguageManager.cpp:264
+#: LibARBWin/LanguageManager.cpp:263 LibARBWin/LanguageManager.cpp:268
 msgid "No other languages are available."
 msgstr "No other languages are available."
 
-#: LibARBWin/LanguageManager.cpp:269
+#: LibARBWin/LanguageManager.cpp:273
 msgid "Choose a language:"
 msgstr "Choose a language:"
 
 # DlgLanguage
-#: LibARBWin/LanguageManager.cpp:269
+#: LibARBWin/LanguageManager.cpp:273
 msgid "Language Selection"
 msgstr "Language Selection"
 
-#: LibARBWin/LanguageManager.cpp:270
+#: LibARBWin/LanguageManager.cpp:274
 msgid "Select a language to use."
 msgstr "Select a language to use."
 
-#: LibARBWin/Logger.cpp:62
+#: LibARBWin/Logger.cpp:195
 msgid "Logging"
 msgstr "Logging"
 
-#: LibARBWin/ReadHttp.cpp:146
+#: LibARBWin/ReadHttp.cpp:151
 msgid "Please enter credentials for accessing:"
 msgstr "Please enter credentials for accessing:"
 
-#: LibARBWin/ReadHttp.cpp:147
+#: LibARBWin/ReadHttp.cpp:152
 msgid "Credentials"
 msgstr "Credentials"
 
-#: LibARBWin/ReportListHeader.cpp:513
+#: LibARBWin/ReportListHeader.cpp:520
 msgid "Restore"
 msgstr "Restore"
 
-#: LibARBWin/SetupApp.cpp:123
+#: LibARBWin/SetupApp.cpp:129
 #, c-format
 msgid "Report generated in \"%s\"."
 msgstr "Report generated in \"%s\"."
 
-#: LibARBWin/SpreadSheet.cpp:641
+#: LibARBWin/SpreadSheet.cpp:647
 msgid "Reading {0} rows and {1} columns"
 msgstr "Reading {0} rows and {1} columns"
 
-#: LibARBWin/SpreadSheet.cpp:1019
+#: LibARBWin/SpreadSheet.cpp:1025
 msgid "Reading {} rows"
 msgstr "Reading {} rows"
 
-#: LibARBWin/Validators.cpp:429 LibARBWin/Validators.cpp:448
-#: LibARBWin/Validators.cpp:463
+#: LibARBWin/Validators.cpp:436 LibARBWin/Validators.cpp:455
+#: LibARBWin/Validators.cpp:470
 msgid "Please enter a valid number"
 msgstr "Please enter a valid number"
 
-#: LibARBWin/Validators.cpp:477
+#: LibARBWin/Validators.cpp:484
 msgid "Please enter a valid time"
 msgstr "Please enter a valid time"
 
-#: LibARBWin/Validators.cpp:487 LibARBWin/Validators.cpp:585
+#: LibARBWin/Validators.cpp:494 LibARBWin/Validators.cpp:592
 msgid "Please enter a value"
 msgstr "Please enter a value"
 
-#: LibARBWin/Validators.cpp:491 LibARBWin/Validators.cpp:590
+#: LibARBWin/Validators.cpp:498 LibARBWin/Validators.cpp:597
 msgid "Validation conflict"
 msgstr "Validation conflict"

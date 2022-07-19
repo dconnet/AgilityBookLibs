@@ -147,8 +147,8 @@ public:
 		std::string const& time,
 		bool includeNewline = true) const;
 
-	static wxString GetCompiledOn(std::string const& date, std::string const& time);
-	static wxString GetCompiledOn(std::wstring const& date, std::wstring const& time);
+	static wxString GetCompiledOn(std::string const& date, std::string const& time, bool incCompOnText = true);
+	static wxString GetCompiledOn(std::wstring const& date, std::wstring const& time, bool incCompOnText = true);
 
 	void GetVersion(VERSION_NUMBER& outVer) const
 	{

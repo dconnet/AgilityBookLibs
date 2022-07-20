@@ -312,9 +312,9 @@ CWizardExcelExport::CWizardExcelExport(wxAutomationObject& ioApp)
 	, m_Worksheet()
 {
 	// Create a new workbook.
-	wxAutomationObject book = m_App.CallMethod(L"Workbooks.Add", xlWBATWorksheet);
+	wxAutomationObject book(m_App.CallMethod(L"Workbooks.Add", xlWBATWorksheet).GetAny().As<WXIDISPATCH*>());
 	// Get the first sheet.
-	wxAutomationObject sheets = book.GetProperty(L"Sheets");
+	wxAutomationObject sheets(book.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
 	wxVariant args[1];
 	args[0] = wxVariant(static_cast<short>(1));
 	sheets.GetObject(m_Worksheet, L"Item", 1, args);
@@ -615,7 +615,7 @@ bool CWizardExcelImport::OpenFile(std::wstring const& inFilename)
 		return false;
 	m_FileName = inFilename;
 	// Get the first sheet.
-	wxAutomationObject sheets = book.GetProperty(L"Sheets");
+	wxAutomationObject sheets(book.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
 	wxVariant args2[1];
 	args2[0] = wxVariant(static_cast<short>(1));
 	sheets.GetObject(m_Worksheet, L"Item", 1, args2);
@@ -642,7 +642,7 @@ bool CWizardExcelImport::GetData(std::vector<std::vector<std::wstring>>& outData
 		if (ioProgress)
 		{
 			wxFileName filename(m_FileName);
-			std::wstring msg = filename.GetFullPath();
+			std::wstring msg = filename.GetFullPath().wc_str();
 			ioProgress->SetCaption(msg);
 			std::wstring str = fmt::format(_("Reading {0} rows and {1} columns").wx_str(), nRows, nCols);
 			ioProgress->SetMessage(str);
@@ -769,7 +769,7 @@ bool CWizardCalcExport::CreateWorksheet()
 	}
 	if (m_Document.GetDispatchPtr() && !m_Worksheet.GetDispatchPtr())
 	{
-		wxAutomationObject sheets = m_Document.CallMethod(L"getSheets");
+		wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
 		m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", 0));
 	}
 	return !!m_Worksheet.GetDispatchPtr();
@@ -984,7 +984,7 @@ bool CWizardCalcImport::OpenFile(std::wstring const& inFilename)
 	}
 	if (!m_Worksheet.GetDispatchPtr())
 	{
-		wxAutomationObject sheets = m_Document.CallMethod(L"getSheets");
+		wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
 		m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", 0));
 	}
 	if (!m_Worksheet.GetDispatchPtr())
@@ -1000,7 +1000,7 @@ bool CWizardCalcImport::GetData(std::vector<std::vector<std::wstring>>& outData,
 	if (!m_Worksheet.GetDispatchPtr())
 		return false;
 
-	wxAutomationObject cursor = m_Worksheet.CallMethod(L"createCursor");
+	wxAutomationObject cursor(m_Worksheet.CallMethod(L"createCursor").GetAny().As<WXIDISPATCH*>());
 	if (!cursor.GetDispatchPtr())
 		return false;
 
@@ -1020,7 +1020,7 @@ bool CWizardCalcImport::GetData(std::vector<std::vector<std::wstring>>& outData,
 	if (ioProgress)
 	{
 		wxFileName filename(m_FileName);
-		std::wstring msg = filename.GetFullPath();
+		std::wstring msg = filename.GetFullPath().wc_str();
 		ioProgress->SetCaption(msg);
 		std::wstring str = fmt::format(_("Reading {} rows").wx_str(), nRows);
 		ioProgress->SetMessage(str);

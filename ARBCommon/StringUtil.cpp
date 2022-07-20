@@ -508,7 +508,7 @@ std::wstring ToUpper(std::wstring const& inStr)
 
 
 template <typename T, typename S>
-T ReplaceImpl(T const& format, T const& inStr, T const& inReplace, T const& inReplaceWith)
+T ReplaceImpl(T const& inStr, T const& inReplace, T const& inReplaceWith)
 {
 	if (inReplace.empty())
 		return inStr;
@@ -521,31 +521,31 @@ T ReplaceImpl(T const& format, T const& inStr, T const& inReplace, T const& inRe
 		{
 			if (0 < pos)
 			{
-				fmt::format_to(std::back_inserter(str), format, text.substr(0, pos));
+				str << text.substr(0, pos);
 			}
 			if (!inReplaceWith.empty())
-				fmt::format_to(std::back_inserter(str), format, inReplaceWith);
+				str << inReplaceWith;
 			text = text.substr(pos + inReplace.length(), T::npos);
 		}
 		else
 		{
-			fmt::format_to(std::back_inserter(str), format, text);
+			str << text;
 			text.clear();
 		}
 	}
-	return fmt::to_string(str);
+	return str.str();
 }
 
 
 std::string Replace(std::string const& inStr, std::string const& inReplace, std::string const& inReplaceWith)
 {
-	return ReplaceImpl<std::string, fmt::memory_buffer>("{}", inStr, inReplace, inReplaceWith);
+	return ReplaceImpl<std::string, std::stringstream>(inStr, inReplace, inReplaceWith);
 }
 
 
 std::wstring Replace(std::wstring const& inStr, std::wstring const& inReplace, std::wstring const& inReplaceWith)
 {
-	return ReplaceImpl<std::wstring, fmt::wmemory_buffer>(L"{}", inStr, inReplace, inReplaceWith);
+	return ReplaceImpl<std::wstring, std::wstringstream>(inStr, inReplace, inReplaceWith);
 }
 
 

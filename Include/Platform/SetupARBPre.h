@@ -166,13 +166,14 @@
 // Defaults to C++14 201402L
 // /std:c++14        201402L
 // /std:c++17        201703L
-// /std:c++latest    201704L
+// /std:c++20        202002L
+// /std:c++latest    (depends in VS version)
 // Without /Z option (or with it disabled):
 //                   199711L
 
-#if !defined(__cplusplus) || __cplusplus < 201402
+#if !defined(__cplusplus) || __cplusplus < 201703
 #pragma message(FILE_LINE "ERROR: __cplusplus is defined as " STRING(__cplusplus))
-#error Compiler must support C++14
+#error Compiler must support C++17
 #endif
 
 

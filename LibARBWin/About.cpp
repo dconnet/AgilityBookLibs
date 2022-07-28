@@ -45,8 +45,7 @@ namespace ARBWin
 
 namespace
 {
-constexpr int k_aboutImageSize = 128; // pixels
-constexpr int k_offsetLinks = 10;     // Dlg units
+constexpr int k_offsetLinks = 10; // Dlg units
 constexpr int k_panelMain = 0;
 constexpr int k_panelInfo = 1;
 constexpr int k_panelCount = 2;

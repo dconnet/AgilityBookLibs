@@ -311,7 +311,7 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	notebook->AddPage(panelMain, _("About"), true);
 
 	auto panelInfo = new CAboutInfo(notebook, aboutInfo);
-	panels[k_panelMain] = panelInfo;
+	panels[k_panelInfo] = panelInfo;
 	notebook->AddPage(panelInfo, _("Information"), true);
 
 	notebook->ChangeSelection(k_panelMain);

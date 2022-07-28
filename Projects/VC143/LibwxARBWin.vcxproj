@@ -263,6 +263,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\LibARBWin\About.cpp" />
     <ClCompile Include="..\..\LibARBWin\ARBDebug.cpp" />
     <ClCompile Include="..\..\LibARBWin\ARBWinUtilities.cpp" />
     <ClCompile Include="..\..\LibARBWin\CheckLink.cpp" />
@@ -316,6 +317,7 @@
     <ClCompile Include="..\..\LibARBWin\Widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Include\LibARBWin\About.h" />
     <ClInclude Include="..\..\Include\LibARBWin\ARBDebug.h" />
     <ClInclude Include="..\..\Include\LibARBWin\ARBWinUtilities.h" />
     <ClInclude Include="..\..\Include\LibARBWin\CheckLink.h" />

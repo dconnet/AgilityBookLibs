@@ -28,6 +28,7 @@ ARCHIVES = libarbwin
 # Source files for each target
 ##########
 libarbwin_SRCS = \
+	About.cpp \
 	ARBDebug.cpp \
 	ARBWinUtilities.cpp \
 	CheckLink.cpp \

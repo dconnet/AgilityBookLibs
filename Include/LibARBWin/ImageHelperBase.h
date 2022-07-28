@@ -57,6 +57,8 @@ ARBWIN_API wxIcon CreateIconFromBitmap(const wxBitmap& bitmap);
 #define ImageMgrAppBundle wxART_MAKE_ART_ID(ImageMgrAppBundle)
 #define ImageMgrApp       wxART_MAKE_ART_ID(ImageMgrApp)
 
+#define ImageMgrFolderOpened wxART_MAKE_ART_ID(ImageMgrFolderOpened)
+
 #define ImageMgrBlank     wxART_MAKE_ART_ID(ImageMgrBlank)
 #define ImageMgrChecked   wxART_MAKE_ART_ID(ImageMgrChecked)
 #define ImageMgrUnChecked wxART_MAKE_ART_ID(ImageMgrUnChecked)

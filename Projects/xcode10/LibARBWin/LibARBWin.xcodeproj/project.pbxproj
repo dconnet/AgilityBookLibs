@@ -38,6 +38,8 @@
 		E10F39F12526448600E83AB0 /* LanguageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F39D82526448600E83AB0 /* LanguageManager.cpp */; };
 		E10F39F22526448600E83AB0 /* SpreadSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10F39D92526448600E83AB0 /* SpreadSheet.cpp */; };
 		E112AE9321FE3DEA00D6FE27 /* StatusBarHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = E112AE9221FE3DE900D6FE27 /* StatusBarHelper.h */; };
+		E1430BD82893552200A953EA /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1430BD72893552200A953EA /* About.cpp */; };
+		E1430BDA2893553100A953EA /* About.h in Headers */ = {isa = PBXBuildFile; fileRef = E1430BD92893553100A953EA /* About.h */; };
 		E14A806326F7DFF400CBD1D9 /* ConfigPosition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E14A806226F7DFF400CBD1D9 /* ConfigPosition.cpp */; };
 		E198518F2170E5C5003E7B92 /* ReadHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = E198517A2170E5C5003E7B92 /* ReadHttp.h */; };
 		E19851902170E5C5003E7B92 /* RichEditCtrl2.h in Headers */ = {isa = PBXBuildFile; fileRef = E198517B2170E5C5003E7B92 /* RichEditCtrl2.h */; };
@@ -100,6 +102,8 @@
 		E10F39D82526448600E83AB0 /* LanguageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanguageManager.cpp; sourceTree = "<group>"; };
 		E10F39D92526448600E83AB0 /* SpreadSheet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpreadSheet.cpp; sourceTree = "<group>"; };
 		E112AE9221FE3DE900D6FE27 /* StatusBarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarHelper.h; sourceTree = "<group>"; };
+		E1430BD72893552200A953EA /* About.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = About.cpp; sourceTree = "<group>"; };
+		E1430BD92893553100A953EA /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = About.h; sourceTree = "<group>"; };
 		E14A806226F7DFF400CBD1D9 /* ConfigPosition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigPosition.cpp; sourceTree = "<group>"; };
 		E198517A2170E5C5003E7B92 /* ReadHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadHttp.h; sourceTree = "<group>"; };
 		E198517B2170E5C5003E7B92 /* RichEditCtrl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichEditCtrl2.h; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 		E110B4A7177FCFCC004071B5 /* LibARBWin */ = {
 			isa = PBXGroup;
 			children = (
+				E1430BD92893553100A953EA /* About.h */,
 				E10F397A2526428D00E83AB0 /* ARBDebug.h */,
 				E19851832170E5C5003E7B92 /* ARBWinUtilities.h */,
 				E198518B2170E5C5003E7B92 /* CheckLink.h */,
@@ -203,6 +208,7 @@
 		E19B62F3166C090F004DEDA4 /* LibARBWin */ = {
 			isa = PBXGroup;
 			children = (
+				E1430BD72893552200A953EA /* About.cpp */,
 				E10F39BF2526445500E83AB0 /* ARBDebug.cpp */,
 				E10F39C52526448200E83AB0 /* ARBWinUtilities.cpp */,
 				E10F39C62526448300E83AB0 /* CheckLink.cpp */,
@@ -289,6 +295,7 @@
 				E19851962170E5C5003E7B92 /* LanguageManager.h in Headers */,
 				E19851A32170E5C5003E7B92 /* CheckTreeCtrl.h in Headers */,
 				E10F397C2526428D00E83AB0 /* ARBDebug.h in Headers */,
+				E1430BDA2893553100A953EA /* About.h in Headers */,
 				E106C94A28578EEF0071D88B /* Logger.h in Headers */,
 				E198518F2170E5C5003E7B92 /* ReadHttp.h in Headers */,
 				E198519C2170E5C5003E7B92 /* RegItemsBase.h in Headers */,
@@ -362,6 +369,7 @@
 				E10F39EF2526448600E83AB0 /* CheckTreeCtrl.cpp in Sources */,
 				E106C94828578EDA0071D88B /* Logger.cpp in Sources */,
 				E10F39DD2526448600E83AB0 /* ListData.cpp in Sources */,
+				E1430BD82893552200A953EA /* About.cpp in Sources */,
 				E10F39E52526448600E83AB0 /* DlgConfigAccel.cpp in Sources */,
 				E14A806326F7DFF400CBD1D9 /* ConfigPosition.cpp in Sources */,
 				E10D89CB25D5A35900D1D8F8 /* ReportListCtrl.cpp in Sources */,

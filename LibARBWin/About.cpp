@@ -391,10 +391,10 @@ AboutInfo::AboutInfo()
 
 void AboutInfo::SetImage(
 	wxWindow* inParent,
-	ARBWin::CResourceManager const* manager,
 	wxArtID const& artId,
 	int defaultSize)
 {
+	auto manager = CResourceManager::Get();
 	if (manager && inParent)
 	{
 		auto size = inParent->FromDIP(defaultSize);

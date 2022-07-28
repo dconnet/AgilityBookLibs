@@ -22,8 +22,6 @@ namespace dconSoft
 {
 namespace ARBWin
 {
-class CResourceManager;
-
 
 // Links:
 // !desc.empty() && !url.empty(): Inserts space between links
@@ -38,7 +36,6 @@ ARBWIN_API struct AboutInfo
 
 	void SetImage(
 		wxWindow* inParent,
-		ARBWin::CResourceManager const* manager,
 		wxArtID const& artId,
 		int defaultSize = 128);
 

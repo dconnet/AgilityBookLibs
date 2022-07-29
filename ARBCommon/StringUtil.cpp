@@ -507,8 +507,7 @@ std::wstring ToUpper(std::wstring const& inStr)
 }
 
 
-template <typename T, typename S>
-T ReplaceImpl(T const& inStr, T const& inReplace, T const& inReplaceWith)
+template <typename T, typename S> T ReplaceImpl(T const& inStr, T const& inReplace, T const& inReplaceWith)
 {
 	if (inReplace.empty())
 		return inStr;

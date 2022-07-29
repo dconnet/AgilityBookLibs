@@ -389,10 +389,7 @@ AboutInfo::AboutInfo()
 }
 
 
-void AboutInfo::SetImage(
-	wxWindow* inParent,
-	wxArtID const& artId,
-	int defaultSize)
+void AboutInfo::SetImage(wxWindow* inParent, wxArtID const& artId, int defaultSize)
 {
 	auto manager = CResourceManager::Get();
 	if (manager && inParent)

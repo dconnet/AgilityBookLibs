@@ -24,7 +24,7 @@
 
 #include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ARBWinUtilities.h"
-#include "LibARBWin/TaskbarProgress.h"
+#include <wx/appprogress.h>
 #include <wx/thread.h>
 #include <wx/utils.h>
 #include <vector>
@@ -102,7 +102,7 @@ private:
 
 	mutable wxCriticalSection m_crit;
 	wxWindow* m_parentTop;
-	CTaskbarProgressPtr m_pTaskbar;
+	std::unique_ptr<wxAppProgressIndicator> m_pTaskbar;
 	wxStaticText* m_ctrlMessage;
 	std::vector<GaugeData> m_ctrlBars;
 	wxButton* m_ctrlCancel;
@@ -116,7 +116,7 @@ private:
 CDlgProgress::CDlgProgress(short nBars, wxWindow* parent)
 	: wxDialog()
 	, m_parentTop(wxGetTopLevelParent(parent))
-	, m_pTaskbar(nullptr)
+	, m_pTaskbar()
 	, m_ctrlMessage(nullptr)
 	, m_ctrlBars()
 	, m_ctrlCancel(nullptr)
@@ -127,11 +127,6 @@ CDlgProgress::CDlgProgress(short nBars, wxWindow* parent)
 		nBars = 1;
 	SetExtraStyle(GetExtraStyle() | wxWS_EX_TRANSIENT);
 	Create(parent, wxID_ANY, _("Progress"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
-
-	WXWidget handle = m_parentTop ? m_parentTop->GetHandle() : GetHandle();
-	if (wxTheApp && wxTheApp->GetTopWindow())
-		handle = wxTheApp->GetTopWindow()->GetHandle();
-	m_pTaskbar = CTaskbarProgress::Get(handle);
 
 	// Controls (these are done first to control tab order)
 
@@ -197,8 +192,8 @@ bool CDlgProgress::Show(bool show)
 {
 	if (!show)
 		ReenableOtherWindows();
-	else if (m_pTaskbar)
-		m_pTaskbar->SetProgressState(TBPF_NORMAL);
+	else if (!m_pTaskbar)
+		m_pTaskbar = std::make_unique<wxAppProgressIndicator>(m_parentTop);
 	return wxDialog::Show(show);
 }
 
@@ -206,7 +201,7 @@ bool CDlgProgress::Show(bool show)
 void CDlgProgress::ReenableOtherWindows()
 {
 	if (m_pTaskbar)
-		m_pTaskbar->SetProgressState(TBPF_NOPROGRESS);
+		m_pTaskbar.reset();
 	// if (appmodal)
 	{
 		delete m_winDisabler;
@@ -284,8 +279,11 @@ void CDlgProgress::StepIt(short inBar)
 	if (pBar)
 	{
 		m_ctrlBars[inBar - 1].pos += m_ctrlBars[inBar - 1].step;
-		if (m_pTaskbar)
-			m_pTaskbar->SetProgressValue(m_ctrlBars[inBar - 1].pos, m_ctrlBars[inBar - 1].gauge->GetRange());
+		if (m_pTaskbar && m_pTaskbar->IsAvailable())
+		{
+			m_pTaskbar->SetRange(m_ctrlBars[inBar - 1].gauge->GetRange());
+			m_pTaskbar->SetValue(m_ctrlBars[inBar - 1].pos);
+		}
 		pBar->SetValue(m_ctrlBars[inBar - 1].pos);
 		Update();
 		wxYieldIfNeeded(); // See nasty comment above
@@ -300,8 +298,11 @@ void CDlgProgress::OffsetPos(short inBar, int inDelta)
 	if (pBar)
 	{
 		m_ctrlBars[inBar - 1].pos += inDelta;
-		if (m_pTaskbar)
-			m_pTaskbar->SetProgressValue(m_ctrlBars[inBar - 1].pos, m_ctrlBars[inBar - 1].gauge->GetRange());
+		if (m_pTaskbar && m_pTaskbar->IsAvailable())
+		{
+			m_pTaskbar->SetRange(m_ctrlBars[inBar - 1].gauge->GetRange());
+			m_pTaskbar->SetValue(m_ctrlBars[inBar - 1].pos);
+		}
 		pBar->SetValue(m_ctrlBars[inBar - 1].pos);
 		Update();
 		wxYieldIfNeeded(); // See nasty comment above
@@ -316,8 +317,11 @@ void CDlgProgress::SetPos(short inBar, int inPos)
 	if (pBar)
 	{
 		m_ctrlBars[inBar - 1].pos = inPos;
-		if (m_pTaskbar)
-			m_pTaskbar->SetProgressValue(m_ctrlBars[inBar - 1].pos, m_ctrlBars[inBar - 1].gauge->GetRange());
+		if (m_pTaskbar && m_pTaskbar->IsAvailable())
+		{
+			m_pTaskbar->SetRange(m_ctrlBars[inBar - 1].gauge->GetRange());
+			m_pTaskbar->SetValue(m_ctrlBars[inBar - 1].pos);
+		}
 		pBar->SetValue(m_ctrlBars[inBar - 1].pos);
 		Update();
 		wxYieldIfNeeded(); // See nasty comment above

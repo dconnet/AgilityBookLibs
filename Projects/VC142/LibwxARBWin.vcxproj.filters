@@ -57,9 +57,6 @@
     <ClCompile Include="..\..\LibARBWin\SpreadSheet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\LibARBWin\TaskbarProgress.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\LibARBWin\Validators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -162,9 +159,6 @@
       <Filter>Include\LibARBWin</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\LibARBWin\SpreadSheet.h">
-      <Filter>Include\LibARBWin</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\LibARBWin\TaskbarProgress.h">
       <Filter>Include\LibARBWin</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\LibARBWin\Validators.h">

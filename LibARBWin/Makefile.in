@@ -51,7 +51,6 @@ libarbwin_SRCS = \
 	SetupApp.cpp \
 	SpreadSheet.cpp \
 	StatusBarHelper.cpp \
-	TaskbarProgress.cpp \
 	Validators.cpp \
 	Widgets.cpp
 

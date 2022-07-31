@@ -312,7 +312,6 @@
       <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">false</MultiProcessorCompilation>
       <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">false</MultiProcessorCompilation>
     </ClCompile>
-    <ClCompile Include="..\..\LibARBWin\TaskbarProgress.cpp" />
     <ClCompile Include="..\..\LibARBWin\Validators.cpp" />
     <ClCompile Include="..\..\LibARBWin\Widgets.cpp" />
   </ItemGroup>
@@ -341,7 +340,6 @@
     <ClInclude Include="..\..\Include\LibARBWin\SetupApp.h" />
     <ClInclude Include="..\..\Include\LibARBWin\SpreadSheet.h" />
     <ClInclude Include="..\..\Include\LibARBWin\StatusBarHelper.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\TaskbarProgress.h" />
     <ClInclude Include="..\..\Include\LibARBWin\Validators.h" />
     <ClInclude Include="..\..\Include\LibARBWin\Widgets.h" />
     <ClInclude Include="..\..\Include\Platform\arbWarningPop.h" />

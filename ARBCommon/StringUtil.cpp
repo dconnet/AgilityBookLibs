@@ -559,7 +559,7 @@ std::wstring FormatBytes(double inSize, int inPrec, ByteSizeStyle inSizeStyle)
 		= {L" B", L" KiB", L" MiB", L" GiB", L" TiB", L" PiB", L" EiB", L"ZiB", L"YiB"};
 	constexpr wchar_t const* const sc_unitsTrue[]
 		= {L" B", L" KB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB"};
-	static const struct
+	constexpr struct
 	{
 		wchar_t const* const* units;
 		size_t numUnits;

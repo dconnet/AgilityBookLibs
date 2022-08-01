@@ -30,7 +30,7 @@ namespace ARBWin
 // desc.empty() && !url.empty(): Uses URL text as visible text also
 // Note: by default, links will start right next to the previous text.
 
-ARBWIN_API struct AboutInfo
+struct ARBWIN_API AboutInfo
 {
 	AboutInfo();
 

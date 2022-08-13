@@ -8,6 +8,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-08-13 Added 'Copy' button.
  * 2022-01-02 Add wx version to about dlg.
  * 2021-12-10 Change About API: Move CompiledOn to header. Otherwise, time
  *            reflects when the library was compiled.
@@ -45,33 +46,75 @@ namespace ARBWin
 
 namespace
 {
-constexpr int k_offsetLinks = 10; // Dlg units
+constexpr int k_mainTextWrap = 200; // Dlg units
+constexpr int k_offsetLinks = 10;   // Dlg units
 constexpr int k_panelMain = 0;
 constexpr int k_panelInfo = 1;
 constexpr int k_panelCount = 2;
 
+// For common formatting of items (and getting labels)
+// Returns label/text
+enum class AboutText
+{
+	ProdName,
+	Copyright,
+	ProdDesc,
+	Version,
+	CompiledOn,
+	AppDir,
+	UserDir,
+	wxWidgets,
+	Scaling,
+	OS,
+};
+
+
+class CDlgAbout : public wxDialog
+{
+public:
+	CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString const* inCaption);
+
+	std::pair<wxString, wxString> GetAboutText(AboutText text, bool appendVersion = false) const;
+
+private:
+	wxString GetAboutData() const;
+
+	AboutInfo m_aboutInfo;
+};
+
+/////////////////////////////////////////////////////////////////////////////
 
 class CAboutMain : public wxPanel
 {
 public:
-	CAboutMain(wxWindow* parent, AboutInfo const& aboutInfo);
+	CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutInfo);
 };
 
 
-CAboutMain::CAboutMain(wxWindow* parent, AboutInfo const& aboutInfo)
+CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutInfo)
 	: wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL)
 {
 	// Controls (these are done first to control tab order)
 
+	auto info = dlg->GetAboutText(AboutText::ProdName, true);
 	wxStaticText* textName = nullptr;
-	if (!aboutInfo.productName.empty())
-		textName = new wxStaticText(this, wxID_ANY, aboutInfo.productName, wxDefaultPosition, wxDefaultSize);
+	if (!info.second.empty())
+		textName = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 
-	wxStaticText* textDesc = nullptr;
-	if (!aboutInfo.productDesc.empty())
+	info = dlg->GetAboutText(AboutText::Copyright);
+	wxStaticText* textCopyright = nullptr;
+	if (!info.second.empty())
 	{
-		textDesc = new wxStaticText(this, wxID_ANY, aboutInfo.productDesc, wxDefaultPosition, wxDefaultSize);
-		textDesc->Wrap(wxDLG_UNIT_X(this, 200));
+		textCopyright = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
+		textCopyright->Wrap(wxDLG_UNIT_X(this, k_mainTextWrap));
+	}
+
+	info = dlg->GetAboutText(AboutText::ProdDesc);
+	wxStaticText* textDesc = nullptr;
+	if (!info.second.empty())
+	{
+		textDesc = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
+		textDesc->Wrap(wxDLG_UNIT_X(this, k_mainTextWrap));
 	}
 
 	std::vector<std::pair<wxWindow*, bool>> links;
@@ -111,9 +154,9 @@ CAboutMain::CAboutMain(wxWindow* parent, AboutInfo const& aboutInfo)
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	if (textName)
-	{
 		bSizer->Add(textName, 0, wxLEFT | wxRIGHT | wxTOP | wxEXPAND, wxDLG_UNIT_X(this, 3));
-	}
+	if (textCopyright)
+		bSizer->Add(textCopyright, 0, wxLEFT | wxRIGHT | wxTOP | wxEXPAND, wxDLG_UNIT_X(this, 3));
 	if (textDesc)
 		bSizer->Add(textDesc, 0, wxLEFT | wxRIGHT | wxTOP | wxEXPAND, wxDLG_UNIT_X(this, 3));
 	if (!links.empty())
@@ -151,48 +194,41 @@ CAboutMain::CAboutMain(wxWindow* parent, AboutInfo const& aboutInfo)
 class CAboutInfo : public wxPanel
 {
 public:
-	CAboutInfo(wxWindow* parent, AboutInfo const& aboutInfo);
+	CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutInfo);
 };
 
 
-CAboutInfo::CAboutInfo(wxWindow* parent, AboutInfo const& aboutInfo)
+CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutInfo)
 	: wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL)
 {
-	wxFileName exe(wxStandardPaths::Get().GetExecutablePath());
-
-	wxString text;
-
 	// Controls (these are done first to control tab order)
 
-	wxStaticText* textVersion = new wxStaticText(this, wxID_ANY, _("Version"), wxDefaultPosition, wxDefaultSize);
-	text = aboutInfo.version;
-#ifdef ARB_64BIT
-	text << L" " << _("(64-bit)");
-#else
-	text << L" " << _("(32-bit)");
-#endif
-	wxStaticText* ctrlVersion = new wxStaticText(this, wxID_ANY, text, wxDefaultPosition, wxDefaultSize);
+	auto info = dlg->GetAboutText(AboutText::Version);
+	wxStaticText* textVersion = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
+	wxStaticText* ctrlVersion = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 
+	info = dlg->GetAboutText(AboutText::CompiledOn);
 	wxStaticText* textBuildDate = nullptr;
 	wxStaticText* ctrlBuildDate = nullptr;
-	if (!aboutInfo.compiledOn.empty())
+	if (!info.second.empty())
 	{
-		textBuildDate = new wxStaticText(this, wxID_ANY, _("Build date"), wxDefaultPosition, wxDefaultSize);
-		ctrlBuildDate = new wxStaticText(this, wxID_ANY, aboutInfo.compiledOn, wxDefaultPosition, wxDefaultSize);
+		textBuildDate = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
+		ctrlBuildDate = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 	}
 
-	wxStaticText* textAppDir
-		= new wxStaticText(this, wxID_ANY, _("Appplication directory"), wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlAppDir = new wxStaticText(this, wxID_ANY, exe.GetPath(), wxDefaultPosition, wxDefaultSize);
+	info = dlg->GetAboutText(AboutText::AppDir);
+	wxStaticText* textAppDir = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
+	wxStaticText* ctrlAppDir = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 
+	info = dlg->GetAboutText(AboutText::UserDir);
 	wxStaticText* textUserDir = nullptr;
 	wxStaticText* ctrlUserDir = nullptr;
 	wxBitmapButton* ctrlOpen = nullptr;
 	if (!aboutInfo.userDir.empty())
 	{
-		wxString dir = aboutInfo.userDir;
-		textUserDir = new wxStaticText(this, wxID_ANY, _("User data directory"), wxDefaultPosition, wxDefaultSize);
-		ctrlUserDir = new wxStaticText(this, wxID_ANY, aboutInfo.userDir, wxDefaultPosition, wxDefaultSize);
+		wxString dir = info.second;
+		textUserDir = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
+		ctrlUserDir = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 		ctrlOpen = new wxBitmapButton(
 			this,
 			wxID_ANY,
@@ -201,30 +237,17 @@ CAboutInfo::CAboutInfo(wxWindow* parent, AboutInfo const& aboutInfo)
 		ctrlOpen->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [dir](wxCommandEvent& evt) { wxLaunchDefaultApplication(dir); });
 	}
 
-	wxStaticText* textVersionWx = new wxStaticText(this, wxID_ANY, L"wxWidgets", wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlVersionWx = new wxStaticText(
-		this,
-		wxID_ANY,
-		wxString::Format(
-			"%d.%d.%d.%d",
-			wxGetLibraryVersionInfo().GetMajor(),
-			wxGetLibraryVersionInfo().GetMinor(),
-			wxGetLibraryVersionInfo().GetMicro(),
-			wxGetLibraryVersionInfo().GetRevision()),
-		wxDefaultPosition,
-		wxDefaultSize);
+	info = dlg->GetAboutText(AboutText::wxWidgets);
+	wxStaticText* textVersionWx = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
+	wxStaticText* ctrlVersionWx = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 
-	wxStaticText* textDPI = new wxStaticText(this, wxID_ANY, _("DPI scaling"), wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlDPI
-		= new wxStaticText(this, wxID_ANY, fmt::format(L"{}", GetDPIScaleFactor()), wxDefaultPosition, wxDefaultSize);
+	info = dlg->GetAboutText(AboutText::Scaling);
+	wxStaticText* textDPI = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
+	wxStaticText* ctrlDPI = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 
-	wxStaticText* textOS = new wxStaticText(this, wxID_ANY, _("OS"), wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlOS = new wxStaticText(
-		this,
-		wxID_ANY,
-		fmt::format(L"{}, {}, {}", ARBDebug::GetOSName(), ARBDebug::GetArchName(), ARBDebug::GetEndiannessName()),
-		wxDefaultPosition,
-		wxDefaultSize);
+	info = dlg->GetAboutText(AboutText::OS);
+	wxStaticText* textOS = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
+	wxStaticText* ctrlOS = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 
 	// Sizers
 
@@ -272,15 +295,9 @@ CAboutInfo::CAboutInfo(wxWindow* parent, AboutInfo const& aboutInfo)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class CDlgAbout : public wxDialog
-{
-public:
-	CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString const* inCaption);
-};
-
-
 CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString const* inCaption)
 	: wxDialog()
+	, m_aboutInfo(aboutInfo)
 {
 	std::vector<wxPanel*> panels;
 	panels.resize(k_panelCount);
@@ -306,16 +323,35 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 
 	wxNotebook* notebook = new wxNotebook(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0);
 
-	auto panelMain = new CAboutMain(notebook, aboutInfo);
+	auto panelMain = new CAboutMain(this, notebook, aboutInfo);
 	panels[k_panelMain] = panelMain;
 	notebook->AddPage(panelMain, _("About"), true);
 
-	auto panelInfo = new CAboutInfo(notebook, aboutInfo);
+	auto panelInfo = new CAboutInfo(this, notebook, aboutInfo);
 	panels[k_panelInfo] = panelInfo;
 	notebook->AddPage(panelInfo, _("Information"), true);
 
 	notebook->ChangeSelection(k_panelMain);
 	panels[k_panelMain]->SetFocus();
+
+	auto ctrlCopy = new wxButton(this, wxID_ANY, _("Copy"));
+	ctrlCopy->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this](wxCommandEvent& evt) {
+		auto data = GetAboutData();
+		if (!data.empty() && wxTheClipboard && wxTheClipboard->Open())
+		{
+			auto dataObj = new wxTextDataObject(data);
+			dataObj->SetFormat(wxDataFormat(wxDF_UNICODETEXT));
+			if (!wxTheClipboard->SetData(dataObj))
+				delete dataObj;
+			wxTheClipboard->Flush();
+			wxTheClipboard->Close();
+		}
+	});
+	ctrlCopy->Enable(!GetAboutData().empty());
+
+	auto ctrlOk = new wxButton(this, wxID_ANY, _("Close"));
+
+	// Sizers
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -337,12 +373,18 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 		sizerMain->Add(sizerIcons, 0, wxEXPAND, 0);
 	}
 
-	sizerMain->Add(notebook, 1, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
-	bSizer->Add(sizerMain);
+	// Instead of using CreateStdDialogButtonSizer, create buttons directly.
+	wxSizer* sdbSizer = new wxBoxSizer(wxHORIZONTAL);
+	sdbSizer->Add(ctrlCopy);
+	sdbSizer->AddStretchSpacer(1);
+	sdbSizer->Add(ctrlOk);
 
-	wxSizer* sdbSizer = CreateStdDialogButtonSizer(wxOK);
-	bSizer->Add(sdbSizer, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
-	wxWindow* ctrlOk = FindWindowInSizer(sdbSizer, wxID_OK);
+	wxBoxSizer* sizerPanels = new wxBoxSizer(wxVERTICAL);
+	sizerPanels->Add(notebook, 1, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
+	sizerPanels->Add(sdbSizer, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
+	sizerMain->Add(sizerPanels);
+
+	bSizer->Add(sizerMain);
 
 	SetSizer(bSizer);
 	Layout();
@@ -351,6 +393,149 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	CenterOnParent();
 
 	IMPLEMENT_ON_INIT(CDlgAbout, ctrlOk)
+}
+
+
+std::pair<wxString, wxString> CDlgAbout::GetAboutText(AboutText text, bool appendVersion) const
+{
+	wxString label, content;
+	switch (text)
+	{
+	case AboutText::ProdName:
+		if (!m_aboutInfo.productName.empty())
+		{
+			content = m_aboutInfo.productName;
+		}
+		break;
+	case AboutText::Copyright:
+		if (!m_aboutInfo.copyright.empty())
+		{
+			content = m_aboutInfo.copyright;
+		}
+		break;
+	case AboutText::ProdDesc:
+		if (!m_aboutInfo.productDesc.empty())
+		{
+			content = m_aboutInfo.productDesc;
+		}
+		break;
+	case AboutText::Version:
+		if (!m_aboutInfo.version.empty())
+		{
+			label = _("Version");
+			content = m_aboutInfo.version;
+#ifdef ARB_64BIT
+			content << L" " << _("(64-bit)");
+#else
+			content << L" " << _("(32-bit)");
+#endif
+		}
+		break;
+	case AboutText::CompiledOn:
+		if (!m_aboutInfo.compiledOn.empty())
+		{
+			label = _("Build date");
+			content = m_aboutInfo.compiledOn;
+		}
+		break;
+	case AboutText::AppDir:
+		label = _("Appplication directory");
+		{
+			wxFileName exe(wxStandardPaths::Get().GetExecutablePath());
+			content = exe.GetPath();
+		}
+		break;
+	case AboutText::UserDir:
+		if (!m_aboutInfo.userDir.empty())
+		{
+			label = _("User data directory");
+			content = m_aboutInfo.userDir;
+		}
+		break;
+	case AboutText::wxWidgets:
+		label = L"wxWidgets";
+		content = wxString::Format(
+			"%d.%d.%d.%d",
+			wxGetLibraryVersionInfo().GetMajor(),
+			wxGetLibraryVersionInfo().GetMinor(),
+			wxGetLibraryVersionInfo().GetMicro(),
+			wxGetLibraryVersionInfo().GetRevision());
+		break;
+	case AboutText::Scaling:
+		label = _("DPI scaling");
+		content = fmt::format(L"{}", GetDPIScaleFactor());
+		break;
+	case AboutText::OS:
+		label = _("OS");
+		content
+			= fmt::format(L"{}, {}, {}", ARBDebug::GetOSName(), ARBDebug::GetArchName(), ARBDebug::GetEndiannessName());
+		break;
+	}
+	if (appendVersion)
+	{
+		if (!content.empty())
+			content << L" ";
+		content << L"v" << m_aboutInfo.version;
+	}
+	return std::make_pair(label, content);
+}
+
+
+wxString CDlgAbout::GetAboutData() const
+{
+	wxString data;
+
+	auto info = GetAboutText(AboutText::ProdName);
+	if (!info.second.empty())
+		data << info.second << L"\n";
+	info = GetAboutText(AboutText::Copyright);
+	if (!info.second.empty())
+		data << info.second << L"\n";
+	info = GetAboutText(AboutText::ProdDesc);
+	if (!info.second.empty())
+		data << info.second << L"\n";
+
+	if (!m_aboutInfo.links.empty())
+		data << L"\n";
+	for (auto const& link : m_aboutInfo.links)
+	{
+		if (link.desc.empty() && link.url.empty())
+			continue;
+		if (!link.desc.empty())
+			data << link.desc << L"\n";
+		if (!link.url.empty())
+		{
+			if (!link.desc.empty())
+				data << L"   ";
+			data << link.url << L"\n";
+		}
+	}
+	if (!m_aboutInfo.links.empty())
+		data << L"\n";
+
+	info = GetAboutText(AboutText::Version);
+	if (!info.first.empty())
+		data << info.first << L": " << info.second << L"\n";
+	info = GetAboutText(AboutText::CompiledOn);
+	if (!info.first.empty())
+		data << info.first << L": " << info.second << L"\n";
+	info = GetAboutText(AboutText::AppDir);
+	if (!info.first.empty())
+		data << info.first << L": " << info.second << L"\n";
+	info = GetAboutText(AboutText::UserDir);
+	if (!info.first.empty())
+		data << info.first << L": " << info.second << L"\n";
+	info = GetAboutText(AboutText::wxWidgets);
+	if (!info.first.empty())
+		data << info.first << L": " << info.second << L"\n";
+	info = GetAboutText(AboutText::Scaling);
+	if (!info.first.empty())
+		data << info.first << L": " << info.second << L"\n";
+	info = GetAboutText(AboutText::OS);
+	if (!info.first.empty())
+		data << info.first << L": " << info.second << L"\n";
+
+	return data;
 }
 
 } // namespace

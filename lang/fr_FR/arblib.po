@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-19 13:38-0700\n"
-"PO-Revision-Date: 2022-07-19 13:38-0700\n"
+"POT-Creation-Date: 2022-08-13 10:06-0700\n"
+"PO-Revision-Date: 2022-08-13 10:10-0700\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: fr_FR\n"
@@ -45,6 +45,72 @@ msgstr "%s at %s"
 #: LibARBWin/ARBDebug.cpp:210
 msgid "Unable to determine version information"
 msgstr "Impossible de determiner information version"
+
+#: LibARBWin/About.cpp:309
+msgid "About..."
+msgstr "à Propos de..."
+
+#: LibARBWin/About.cpp:321
+#, fuzzy
+msgid "Debug"
+msgstr "Debug"
+
+#: LibARBWin/About.cpp:328
+msgid "About"
+msgstr "à Propos de"
+
+#: LibARBWin/About.cpp:332
+#, fuzzy
+#| msgid "Location"
+msgid "Information"
+msgstr "Endroit"
+
+#: LibARBWin/About.cpp:337
+msgid "Copy"
+msgstr "Copier"
+
+#: LibARBWin/About.cpp:352
+msgid "Close"
+msgstr "Quitter"
+
+#: LibARBWin/About.cpp:425
+msgid "Version"
+msgstr "Version"
+
+#: LibARBWin/About.cpp:428
+#, fuzzy
+msgid "(64-bit)"
+msgstr "(64-bit)"
+
+#: LibARBWin/About.cpp:430
+#, fuzzy
+msgid "(32-bit)"
+msgstr "(32-bit)"
+
+#: LibARBWin/About.cpp:437
+#, fuzzy
+msgid "Build date"
+msgstr "Build date"
+
+#: LibARBWin/About.cpp:442
+#, fuzzy
+msgid "Appplication directory"
+msgstr "Appplication directory"
+
+#: LibARBWin/About.cpp:451
+#, fuzzy
+msgid "User data directory"
+msgstr "User data directory"
+
+#: LibARBWin/About.cpp:465
+#, fuzzy
+msgid "DPI scaling"
+msgstr "DPI scaling"
+
+#: LibARBWin/About.cpp:469
+#, fuzzy
+msgid "OS"
+msgstr "OS"
 
 # DlgAuthenticate
 #: LibARBWin/DlgAuthenticate.cpp:48

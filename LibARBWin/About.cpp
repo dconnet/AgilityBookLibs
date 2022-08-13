@@ -74,7 +74,7 @@ class CDlgAbout : public wxDialog
 public:
 	CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString const* inCaption);
 
-	std::pair<wxString, wxString> GetAboutText(AboutText text, bool appendVersion = false) const;
+	std::pair<wxString, wxString> GetAboutText(AboutText text) const;
 
 private:
 	wxString GetAboutData() const;
@@ -96,7 +96,7 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 {
 	// Controls (these are done first to control tab order)
 
-	auto info = dlg->GetAboutText(AboutText::ProdName, true);
+	auto info = dlg->GetAboutText(AboutText::ProdName);
 	wxStaticText* textName = nullptr;
 	if (!info.second.empty())
 		textName = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
@@ -396,7 +396,7 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 }
 
 
-std::pair<wxString, wxString> CDlgAbout::GetAboutText(AboutText text, bool appendVersion) const
+std::pair<wxString, wxString> CDlgAbout::GetAboutText(AboutText text) const
 {
 	wxString label, content;
 	switch (text)
@@ -470,12 +470,6 @@ std::pair<wxString, wxString> CDlgAbout::GetAboutText(AboutText text, bool appen
 		content
 			= fmt::format(L"{}, {}, {}", ARBDebug::GetOSName(), ARBDebug::GetArchName(), ARBDebug::GetEndiannessName());
 		break;
-	}
-	if (appendVersion)
-	{
-		if (!content.empty())
-			content << L" ";
-		content << L"v" << m_aboutInfo.version;
 	}
 	return std::make_pair(label, content);
 }

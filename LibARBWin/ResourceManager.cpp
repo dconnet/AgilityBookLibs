@@ -100,7 +100,7 @@ size_t CResourceManager::FindDirectories(wxString const& archiveDir, std::vector
 
 bool CResourceManager::LoadFile(wxString const& archiveFile, std::ostream& outData)
 {
-	return m_archive && m_archive->ExtractFile(archiveFile, outData);
+	return m_archive && m_archive->Extract(archiveFile, outData);
 }
 
 
@@ -144,7 +144,7 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 #ifdef _DEBUG
 				bool extracted =
 #endif
-					m_archive->ExtractFile(name, str);
+					m_archive->Extract(name, str);
 #ifdef _DEBUG
 				assert(extracted);
 #endif
@@ -168,7 +168,7 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 					wxString png(name);
 					png += L"@2x.png";
 
-					if (m_archive->ExtractFile(png, str))
+					if (m_archive->Extract(png, str))
 					{
 						auto const& s = str.str();
 						bmp = wxBitmap::NewFromPNGData(s.c_str(), s.size());
@@ -180,7 +180,7 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 				if (!bmp.IsOk())
 				{
 					name += L".png";
-					if (m_archive->ExtractFile(name, str))
+					if (m_archive->Extract(name, str))
 					{
 						auto const& s = str.str();
 						bmp = wxBitmap::NewFromPNGData(s.c_str(), s.size());

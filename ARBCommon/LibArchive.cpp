@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-08-16 Renamed extract/replace funcs to avoid Win32 macros.
  * 2022-01-13 Only support wxWidgets
  * 2014-11-19 Add support to read files from Windows Resources.
  * 2014-02-27 Add support for POCO xml.
@@ -229,7 +230,7 @@ size_t CLibArchive::FindDirectories(wxString const& inArchiveDir, std::vector<wx
 }
 
 
-bool CLibArchive::ExtractFile(wxString const& inArchiveFile, std::ostream& outData)
+bool CLibArchive::Extract(wxString const& inArchiveFile, std::ostream& outData)
 {
 	bool rc = false;
 	if (m_pImpl->m_zipFile.empty())
@@ -256,12 +257,12 @@ bool CLibArchive::ExtractFile(wxString const& inArchiveFile, std::ostream& outDa
 }
 
 
-bool CLibArchive::ReplaceFile(wxString const& archiveFile, std::istream& inData)
+bool CLibArchive::Replace(wxString const& archiveFile, std::istream& inData)
 {
 	bool rc = false;
 	if (m_pImpl->m_zipFile.empty())
 		return rc;
-#pragma PRAGMA_TODO(ReplaceFile)
+#pragma PRAGMA_TODO(Replace)
 	return rc;
 }
 

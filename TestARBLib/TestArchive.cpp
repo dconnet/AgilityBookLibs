@@ -44,7 +44,7 @@ TEST_CASE("Archive")
 		{
 			std::ostringstream data;
 #ifdef WIN32
-			REQUIRE(archive.ExtractFile(L"test1.txt", data));
+			REQUIRE(archive.Extract(L"test1.txt", data));
 			REQUIRE(data.str() == FileData1);
 #else
 			REQUIRE(!archive.ExtractFile(L"test1.txt", data));
@@ -54,7 +54,7 @@ TEST_CASE("Archive")
 		{
 			std::ostringstream data;
 #ifdef WIN32
-			REQUIRE(archive.ExtractFile(L"test2.txt", data));
+			REQUIRE(archive.Extract(L"test2.txt", data));
 			REQUIRE(data.str() == FileData2);
 #else
 			REQUIRE(!archive.ExtractFile(L"test2.txt", data));

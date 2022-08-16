@@ -14,6 +14,7 @@
  * wxConfig must be set up first before using these.
  *
  * Revision History
+ * 2022-08-16 ColumnOrder is gone.
  * 2020-01-07 ColumnOrder and ReportListHeader settings are incompatible - separate.
  * 2018-12-25 Convert to fmt.
  * 2018-10-11 Separated from RegItems.h.
@@ -29,6 +30,9 @@ namespace ARBWin
 
 // Sorting:
 #define CFG_KEY_SORTING L"Sorting"
+#if 0
+// These are gone. Leave in code as reminder not to reuse (or recreate!)
+// these keys in the future.
 //	ST [key]Order (ColumnOrder.cpp)
 inline std::wstring CFG_SORTING_ORDER(std::wstring const& item)
 {
@@ -39,6 +43,7 @@ inline std::wstring CFG_SORTING_SORT(std::wstring const& item)
 {
 	return fmt::format(L"{}/{}Sort", CFG_KEY_SORTING, item);
 }
+#endif
 //	ST [key]Order2 (ReportListHeader.cpp)
 inline std::wstring CFG_SORTING_ORDER2(std::wstring const& item)
 {

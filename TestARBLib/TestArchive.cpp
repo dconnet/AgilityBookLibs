@@ -47,7 +47,7 @@ TEST_CASE("Archive")
 			REQUIRE(archive.Extract(L"test1.txt", data));
 			REQUIRE(data.str() == FileData1);
 #else
-			REQUIRE(!archive.ExtractFile(L"test1.txt", data));
+			REQUIRE(!archive.Extract(L"test1.txt", data));
 #endif
 		}
 
@@ -57,7 +57,7 @@ TEST_CASE("Archive")
 			REQUIRE(archive.Extract(L"test2.txt", data));
 			REQUIRE(data.str() == FileData2);
 #else
-			REQUIRE(!archive.ExtractFile(L"test2.txt", data));
+			REQUIRE(!archive.Extract(L"test2.txt", data));
 #endif
 		}
 	}
@@ -70,7 +70,7 @@ TEST_CASE("Archive")
 		return std::wstring();
 	}
 
-	SECTION("ReplaceFile")
+	SECTION("Replace")
 	{
 		std::wstring file = CreateZip();
 		REQUIRE(!file.empty());
@@ -86,7 +86,7 @@ TEST_CASE("Archive")
 	}
 
 
-	SECTION("ExtractFile")
+	SECTION("Extract")
 	{
 		std::wstring file = CreateZip();
 		REQUIRE(!file.empty());
@@ -97,13 +97,13 @@ TEST_CASE("Archive")
 
 			{
 				std::ostringstream data;
-				REQUIRE(archive.ExtractFile(L"test1.txt", data));
+				REQUIRE(archive.Extract(L"test1.txt", data));
 				REQUIRE(data.str() == FileData1);
 			}
 
 			{
 				std::ostringstream data;
-				REQUIRE(archive.ExtractFile(L"test2.txt", data));
+				REQUIRE(archive.Extract(L"test2.txt", data));
 				REQUIRE(data.str() == FileData2);
 			}
 

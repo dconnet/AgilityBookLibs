@@ -350,6 +350,7 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	ctrlCopy->Enable(!GetAboutData().empty());
 
 	auto ctrlOk = new wxButton(this, wxID_ANY, _("Close"));
+	ctrlOk->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this](wxCommandEvent& evt) { EndDialog(wxID_OK); });
 
 	// Sizers
 

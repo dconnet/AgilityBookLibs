@@ -12,6 +12,7 @@
  * Actual reading and writing of XML is done using wxWidgets
  *
  * Revision History
+ * 2022-08-29 Add UTC wxDateTime support.
  * 2022-01-31 Add wxDateTime support.
  * 2018-12-16 Convert to fmt.
  * 2017-08-03 Added initial expat support (reader, not write)
@@ -808,6 +809,17 @@ ARBAttribLookup ElementNode::GetAttrib(std::wstring const& inName, ARBDate& outV
 
 
 #if defined(__WXWINDOWS__)
+ARBAttribLookup ElementNode::GetAttribUTC(std::wstring const& inName, wxDateTime& outValue) const
+{
+	auto rc = GetAttrib(inName, outValue);
+	if (ARBAttribLookup::Found == rc)
+	{
+		outValue.MakeFromUTC();
+	}
+	return rc;
+}
+
+
 ARBAttribLookup ElementNode::GetAttrib(std::wstring const& inName, wxDateTime& outValue) const
 {
 	std::wstring value;
@@ -962,6 +974,14 @@ bool ElementNode::AddAttrib(std::wstring const& inName, ARBDate const& inValue)
 
 
 #if defined(__WXWINDOWS__)
+bool ElementNode::AddAttribUTC(std::wstring const& inName, wxDateTime const& inValue)
+{
+	wxDateTime utc(inValue);
+	utc.MakeUTC();
+	return AddAttrib(inName, utc);
+}
+
+
 bool ElementNode::AddAttrib(std::wstring const& inName, wxDateTime const& inValue)
 {
 	if (inValue.IsValid())

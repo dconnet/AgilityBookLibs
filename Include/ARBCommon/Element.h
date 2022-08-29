@@ -12,6 +12,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-08-29 Add UTC wxDateTime support.
  * 2022-01-31 Add wxDateTime support.
  * 2018-12-16 Convert to fmt.
  * 2012-11-25 Add libxml support back in.
@@ -202,6 +203,7 @@ public:
 	ARBAttribLookup GetAttrib(std::wstring const& inName, ARBVersion& outValue) const;
 	ARBAttribLookup GetAttrib(std::wstring const& inName, ARBDate& outValue) const;
 #if defined(__WXWINDOWS__)
+	ARBAttribLookup GetAttribUTC(std::wstring const& inName, wxDateTime& outValue) const;
 	ARBAttribLookup GetAttrib(std::wstring const& inName, wxDateTime& outValue) const;
 #endif
 	ARBAttribLookup GetAttrib(std::wstring const& inName, bool& outValue) const;
@@ -223,6 +225,7 @@ public:
 	bool AddAttrib(std::wstring const& inName, ARBVersion const& inValue);
 	bool AddAttrib(std::wstring const& inName, ARBDate const& inValue);
 #if defined(__WXWINDOWS__)
+	bool AddAttribUTC(std::wstring const& inName, wxDateTime const& inValue);
 	bool AddAttrib(std::wstring const& inName, wxDateTime const& inValue);
 #endif
 	bool AddAttrib(std::wstring const& inName, bool inValue);

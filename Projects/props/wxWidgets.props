@@ -7,6 +7,7 @@
     <wxWin3_1_6>$(WXBASE)\wxWidgets-3.1.6</wxWin3_1_6>
     <wxWin3_1_7>$(WXBASE)\wxWidgets-3.1.7</wxWin3_1_7>
     <wxWin3_2_0>$(WXBASE)\wxWidgets-3.2.0</wxWin3_2_0>
+    <wxWin3_2_1>$(WXBASE)\wxWidgets-3.2.1</wxWin3_2_1>
     <wxWinTrunk>$(WXBASE)\trunk</wxWinTrunk>
     <wxWinEnv>$(WXWIN)</wxWinEnv>
     <wxWin>$(wxWinEnv)</wxWin>
@@ -33,6 +34,9 @@
     </BuildMacro>
     <BuildMacro Include="wxWin3_2_0">
       <Value>$(wxWin3_2_0)</Value>
+    </BuildMacro>
+    <BuildMacro Include="wxWin3_2_1">
+      <Value>$(wxWin3_2_1)</Value>
     </BuildMacro>
     <BuildMacro Include="wxWinTrunk">
       <Value>$(wxWinTrunk)</Value>

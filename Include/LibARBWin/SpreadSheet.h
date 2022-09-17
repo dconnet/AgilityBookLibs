@@ -12,6 +12,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-09-17 Added OpenFile/Save/SaveAs to exporter.
  * 2018-10-11 Moved to Win LibARBWin
  * 2012-02-18 Added eSpreadSheetNumberNoZero
  * 2012-02-05 Added alignment and formatting.
@@ -75,6 +76,10 @@ class ARBWIN_API ISpreadSheetExporter
 {
 public:
 	virtual ~ISpreadSheetExporter() = default;
+
+	virtual bool OpenFile(std::wstring const& inFilename) = 0;
+	virtual bool Save() = 0; // Only valid with OpenFile
+	virtual bool SaveAs(std::wstring const& inFilename) = 0;
 
 	virtual wchar_t GetSumIfSeparator() const = 0;
 

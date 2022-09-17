@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-09-17 Added OpenFile/Save/SaveAs to exporter.
  * 2018-12-16 Convert to fmt.
  * 2018-10-11 Moved to Win LibARBWin
  * 2012-05-16 Fixed Calc format strings.
@@ -134,6 +135,11 @@ public:
 	CWizardExcelExport(wxAutomationObject& ioApp);
 	virtual ~CWizardExcelExport();
 
+
+	bool OpenFile(std::wstring const& inFilename) override;
+	bool Save() override;
+	bool SaveAs(std::wstring const& inFilename) override;
+
 	wchar_t GetSumIfSeparator() const override;
 
 	bool AllowAccess(bool bAllow) override;
@@ -153,7 +159,9 @@ public:
 	bool AutoFit(long inColFrom, long inColTo) override;
 
 private:
+	std::wstring m_FileName;
 	wxAutomationObject& m_App;
+	wxAutomationObject m_Workbook;
 	wxAutomationObject m_Worksheet;
 };
 
@@ -201,6 +209,10 @@ public:
 	CWizardCalcExport(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
 	virtual ~CWizardCalcExport();
 
+	bool OpenFile(std::wstring const& inFilename) override;
+	bool Save() override;
+	bool SaveAs(std::wstring const& inFilename) override;
+
 	wchar_t GetSumIfSeparator() const override;
 
 	bool AllowAccess(bool bAllow) override;
@@ -222,6 +234,7 @@ public:
 private:
 	bool CreateWorksheet();
 
+	std::wstring m_FileName;
 	wxAutomationObject& m_Manager;
 	wxAutomationObject& m_Desktop;
 	wxAutomationObject m_Document;
@@ -309,12 +322,13 @@ CWizardExcelExportPtr CWizardExcelExport::Create(wxAutomationObject& ioApp)
 
 CWizardExcelExport::CWizardExcelExport(wxAutomationObject& ioApp)
 	: m_App(ioApp)
+	, m_Workbook()
 	, m_Worksheet()
 {
 	// Create a new workbook.
-	wxAutomationObject book(m_App.CallMethod(L"Workbooks.Add", xlWBATWorksheet).GetAny().As<WXIDISPATCH*>());
+	m_Workbook.SetDispatchPtr(m_App.CallMethod(L"Workbooks.Add", xlWBATWorksheet).GetAny().As<WXIDISPATCH*>());
 	// Get the first sheet.
-	wxAutomationObject sheets(book.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
+	wxAutomationObject sheets(m_Workbook.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
 	wxVariant args[1];
 	args[0] = wxVariant(static_cast<short>(1));
 	sheets.GetObject(m_Worksheet, L"Item", 1, args);
@@ -339,6 +353,45 @@ CWizardExcelExport::~CWizardExcelExport()
 {
 	if (m_Worksheet.GetDispatchPtr() && !m_App.GetProperty(L"Visible").GetBool())
 		m_App.CallMethod(L"Quit");
+}
+
+
+bool CWizardExcelExport::OpenFile(std::wstring const& inFilename)
+{
+	if (m_Worksheet.GetDispatchPtr())
+	{
+		m_Worksheet.SetDispatchPtr(nullptr);
+	}
+
+	m_Workbook.SetDispatchPtr(m_App.CallMethod(L"Workbooks.Open", inFilename.c_str()));
+	if (!m_Workbook.GetDispatchPtr())
+		return false;
+	m_FileName = inFilename;
+	// Get the first sheet.
+	wxAutomationObject sheets(m_Workbook.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
+	wxVariant args2[1];
+	args2[0] = wxVariant(static_cast<short>(1));
+	sheets.GetObject(m_Worksheet, L"Item", 1, args2);
+	return !!m_Worksheet.GetDispatchPtr();
+}
+
+
+bool CWizardExcelExport::Save()
+{
+	if (m_FileName.empty() || !m_Workbook.GetDispatchPtr())
+		return false;
+	m_Workbook.CallMethod(L"Save");
+	return true;
+}
+
+
+bool CWizardExcelExport::SaveAs(std::wstring const& inFilename)
+{
+	if (inFilename.empty() || !m_Workbook.GetDispatchPtr())
+		return false;
+	m_FileName = inFilename;
+	m_Workbook.CallMethod(L"SaveAs", m_FileName.c_str());
+	return true;
 }
 
 
@@ -776,6 +829,65 @@ bool CWizardCalcExport::CreateWorksheet()
 }
 
 
+bool CWizardCalcExport::OpenFile(std::wstring const& inFilename)
+{
+	if (m_Worksheet.GetDispatchPtr())
+		m_Worksheet.SetDispatchPtr(nullptr);
+	if (m_Document.GetDispatchPtr())
+		m_Document.SetDispatchPtr(nullptr);
+
+	if (!m_Document.GetDispatchPtr())
+	{
+		// 'Calc' doesn't take kindly to wxWidgets FileNameToURL syntax.
+		// Since this is windows only, screw it, just format it the way calc likes.
+		m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
+		m_FileName = L"file:///" + m_FileName;
+		wxVariant args;
+		args.NullList();
+		wxVariant file = m_Desktop.CallMethod(L"loadComponentFromURL", m_FileName .c_str(), L"_blank", 0, args);
+		if (file.IsNull())
+		{
+			m_FileName.clear();
+			return false;
+		}
+		m_Document.SetDispatchPtr(file);
+	}
+	if (!m_Worksheet.GetDispatchPtr())
+	{
+		wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
+		m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", 0));
+	}
+	if (!m_Worksheet.GetDispatchPtr())
+	{
+		m_FileName.clear();
+		return false;
+	}
+	return true;
+}
+
+
+bool CWizardCalcExport::Save()
+{
+	if (m_FileName.empty() || !m_Document.GetDispatchPtr())
+		return false;
+	m_Document.CallMethod(L"store");
+	return true;
+}
+
+
+bool CWizardCalcExport::SaveAs(std::wstring const& inFilename)
+{
+	if (inFilename.empty() || !m_Document.GetDispatchPtr())
+		return false;
+	m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
+	m_FileName = L"file:///" + m_FileName;
+	wxVariant dummy;
+	dummy.NullList();
+	m_Document.CallMethod(L"storeAsURL", m_FileName.c_str(), dummy);
+	return true;
+}
+
+
 wchar_t CWizardCalcExport::GetSumIfSeparator() const
 {
 	return L';';
@@ -972,14 +1084,16 @@ bool CWizardCalcImport::OpenFile(std::wstring const& inFilename)
 	{
 		// 'Calc' doesn't take kindly to wxWidgets FileNameToURL syntax.
 		// Since this is windows only, screw it, just format it the way calc likes.
-		std::wstring fileName;
-		fileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
-		fileName = L"file:///" + fileName;
-		wxVariant args;
-		args.NullList();
-		wxVariant file = m_Desktop.CallMethod(L"loadComponentFromURL", fileName.c_str(), L"_blank", 0, args);
+		m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
+		m_FileName = L"file:///" + m_FileName ;
+		wxVariant dummy;
+		dummy.NullList();
+		wxVariant file = m_Desktop.CallMethod(L"loadComponentFromURL", m_FileName .c_str(), L"_blank", 0, dummy);
 		if (file.IsNull())
+		{
+			m_FileName.clear();
 			return false;
+		}
 		m_Document.SetDispatchPtr(file);
 	}
 	if (!m_Worksheet.GetDispatchPtr())
@@ -988,8 +1102,10 @@ bool CWizardCalcImport::OpenFile(std::wstring const& inFilename)
 		m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", 0));
 	}
 	if (!m_Worksheet.GetDispatchPtr())
+	{
+		m_FileName.clear();
 		return false;
-	m_FileName = inFilename;
+	}
 	return true;
 }
 

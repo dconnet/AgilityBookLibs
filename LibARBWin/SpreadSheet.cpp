@@ -60,17 +60,6 @@ namespace ARBWin
 
 #if HAS_AUTOMATION
 
-class CWizardBaseImport : public ISpreadSheetImporter
-{
-public:
-	CWizardBaseImport()
-	{
-	}
-
-protected:
-	std::wstring m_FileName;
-};
-
 /////////////////////////////////////////////////////////////////////////////
 
 ARB_TYPEDEF(CWizardExcel)
@@ -86,7 +75,7 @@ class CWizardExcel : public ISpreadSheet
 public:
 	static CWizardExcelPtr Create();
 	CWizardExcel();
-	virtual ~CWizardExcel();
+	~CWizardExcel() override;
 
 	ISpreadSheetExporterPtr GetExporter() const override;
 	ISpreadSheetImporterPtr GetImporter() const override;
@@ -96,7 +85,29 @@ private:
 };
 
 
-class CWizardExcelExport : public ISpreadSheetExporter
+class CWizardExcelCommon
+{
+protected:
+	CWizardExcelCommon(wxAutomationObject& ioApp);
+	virtual ~CWizardExcelCommon();
+
+	bool ImplOpenFile(std::wstring const& inFilename);
+	bool ImplSelectSheet(short index);
+	bool ImplSelectSheet(std::wstring const& sheetName);
+	bool ImplSave();
+	bool ImplSaveAs(std::wstring const& inFilename);
+	bool ImplAllowAccess(bool bAllow);
+
+	std::wstring m_FileName;
+	wxAutomationObject& m_App;
+	wxAutomationObject m_Workbook;
+	wxAutomationObject m_Worksheet;
+};
+
+
+class CWizardExcelExport
+	: public CWizardExcelCommon
+	, public ISpreadSheetExporter
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CWizardExcelExport)
 protected:
@@ -133,10 +144,10 @@ protected:
 public:
 	static CWizardExcelExportPtr Create(wxAutomationObject& ioApp);
 	CWizardExcelExport(wxAutomationObject& ioApp);
-	virtual ~CWizardExcelExport();
-
 
 	bool OpenFile(std::wstring const& inFilename) override;
+	bool SelectSheet(short index) override;
+	bool SelectSheet(std::wstring const& sheetName) override;
 	bool Save() override;
 	bool SaveAs(std::wstring const& inFilename) override;
 
@@ -157,29 +168,22 @@ public:
 	bool InsertData(long inRow, long inCol, std::wstring const& inData, bool bFormula = false) override;
 
 	bool AutoFit(long inColFrom, long inColTo) override;
-
-private:
-	std::wstring m_FileName;
-	wxAutomationObject& m_App;
-	wxAutomationObject m_Workbook;
-	wxAutomationObject m_Worksheet;
 };
 
 
-class CWizardExcelImport : public CWizardBaseImport
+class CWizardExcelImport
+	: public CWizardExcelCommon
+	, public ISpreadSheetImporter
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CWizardExcelImport)
 public:
 	static CWizardExcelImportPtr Create(wxAutomationObject& ioApp);
 	CWizardExcelImport(wxAutomationObject& ioApp);
-	virtual ~CWizardExcelImport();
 
 	bool OpenFile(std::wstring const& inFilename) override;
+	bool SelectSheet(short index) override;
+	bool SelectSheet(std::wstring const& sheetName) override;
 	bool GetData(std::vector<std::vector<std::wstring>>& outData, IDlgProgress* ioProgress) override;
-
-private:
-	wxAutomationObject& m_App;
-	wxAutomationObject m_Worksheet;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -190,7 +194,7 @@ class CWizardCalc : public ISpreadSheet
 public:
 	static CWizardCalcPtr Create();
 	CWizardCalc();
-	virtual ~CWizardCalc();
+	~CWizardCalc() override;
 
 	ISpreadSheetExporterPtr GetExporter() const override;
 	ISpreadSheetImporterPtr GetImporter() const override;
@@ -201,15 +205,40 @@ private:
 };
 
 
-class CWizardCalcExport : public ISpreadSheetExporter
+class CWizardCalcCommon
+{
+protected:
+	CWizardCalcCommon(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
+	virtual ~CWizardCalcCommon();
+
+	bool ImplOpenFile(std::wstring const& inFilename);
+	bool ImplSelectSheet(short index);
+	bool ImplSelectSheet(std::wstring const& sheetName);
+	bool ImplSave();
+	bool ImplSaveAs(std::wstring const& inFilename);
+
+	bool ImplAllowAccess(bool bAllow);
+
+	std::wstring m_FileName;
+	wxAutomationObject& m_Manager;
+	wxAutomationObject& m_Desktop;
+	wxAutomationObject m_Document;
+	wxAutomationObject m_Worksheet;
+};
+
+
+class CWizardCalcExport
+	: public CWizardCalcCommon
+	, public ISpreadSheetExporter
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CWizardCalcExport)
 public:
 	static CWizardCalcExportPtr Create(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
 	CWizardCalcExport(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
-	virtual ~CWizardCalcExport();
 
 	bool OpenFile(std::wstring const& inFilename) override;
+	bool SelectSheet(short index) override;
+	bool SelectSheet(std::wstring const& sheetName) override;
 	bool Save() override;
 	bool SaveAs(std::wstring const& inFilename) override;
 
@@ -233,30 +262,22 @@ public:
 
 private:
 	bool CreateWorksheet();
-
-	std::wstring m_FileName;
-	wxAutomationObject& m_Manager;
-	wxAutomationObject& m_Desktop;
-	wxAutomationObject m_Document;
-	wxAutomationObject m_Worksheet;
 };
 
 
-class CWizardCalcImport : public CWizardBaseImport
+class CWizardCalcImport
+	: public CWizardCalcCommon
+	, public ISpreadSheetImporter
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CWizardCalcImport)
 public:
-	static CWizardCalcImportPtr Create(wxAutomationObject& ioDesktop);
-	CWizardCalcImport(wxAutomationObject& ioDesktop);
-	virtual ~CWizardCalcImport();
+	static CWizardCalcImportPtr Create(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
+	CWizardCalcImport(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
 
 	bool OpenFile(std::wstring const& inFilename) override;
+	bool SelectSheet(short index) override;
+	bool SelectSheet(std::wstring const& sheetName) override;
 	bool GetData(std::vector<std::vector<std::wstring>>& outData, IDlgProgress* ioProgress) override;
-
-private:
-	wxAutomationObject& m_Desktop;
-	wxAutomationObject m_Document;
-	wxAutomationObject m_Worksheet;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -311,6 +332,125 @@ ISpreadSheetImporterPtr CWizardExcel::GetImporter() const
 
 /////////////////////////////////////////////////////////////////////////////
 
+CWizardExcelCommon::CWizardExcelCommon(wxAutomationObject& ioApp)
+	: m_FileName()
+	, m_App(ioApp)
+	, m_Workbook()
+	, m_Worksheet()
+{
+}
+
+
+CWizardExcelCommon::~CWizardExcelCommon()
+{
+	if (m_Worksheet.GetDispatchPtr() && !m_App.GetProperty(L"Visible").GetBool())
+	{
+		// Force wookbook closed even if there are changes
+		if (m_Workbook.GetDispatchPtr())
+			m_Workbook.PutProperty(L"Saved", true);
+		m_App.CallMethod(L"Quit");
+	}
+}
+
+
+bool CWizardExcelCommon::ImplOpenFile(std::wstring const& inFilename)
+{
+	if (m_Worksheet.GetDispatchPtr())
+		m_Worksheet.SetDispatchPtr(nullptr);
+	if (m_Workbook.GetDispatchPtr())
+	{
+		// Force wookbook closed even if there are changes
+		m_Workbook.PutProperty(L"Saved", true);
+		m_Workbook.SetDispatchPtr(nullptr);
+	}
+
+	m_Workbook.SetDispatchPtr(m_App.CallMethod(L"Workbooks.Open", inFilename.c_str()));
+	if (!m_Workbook.GetDispatchPtr())
+		return false;
+	m_FileName = inFilename;
+	// Get the first sheet.
+	return ImplSelectSheet(1);
+}
+
+
+bool CWizardExcelCommon::ImplSelectSheet(short index)
+{
+	if (!m_Workbook.GetDispatchPtr())
+		return false;
+	if (m_Worksheet.GetDispatchPtr())
+		m_Worksheet.SetDispatchPtr(nullptr);
+
+	wxAutomationObject sheets(m_Workbook.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
+	if (!sheets.GetDispatchPtr())
+		return false;
+	wxVariant args2[1];
+	args2[0] = wxVariant(index);
+	sheets.GetObject(m_Worksheet, L"Item", 1, args2);
+
+	return !!m_Worksheet.GetDispatchPtr();
+}
+
+
+bool CWizardExcelCommon::ImplSelectSheet(std::wstring const& sheetName)
+{
+	if (!m_Workbook.GetDispatchPtr())
+		return false;
+	if (m_Worksheet.GetDispatchPtr())
+		m_Worksheet.SetDispatchPtr(nullptr);
+
+	wxAutomationObject sheets(m_Workbook.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
+	if (!sheets.GetDispatchPtr())
+		return false;
+	auto count = sheets.GetProperty(L"Count").GetLong();
+	for (long i = 0; i < count; ++i)
+	{
+		wxVariant args2[1];
+		args2[0] = wxVariant(static_cast<short>(i + 1));
+		sheets.GetObject(m_Worksheet, L"Item", 1, args2);
+		if (m_Worksheet.GetDispatchPtr())
+		{
+			if (m_Worksheet.GetProperty(L"Name").GetString() == sheetName)
+				break;
+			m_Worksheet.SetDispatchPtr(nullptr);
+		}
+	}
+	return !!m_Worksheet.GetDispatchPtr();
+}
+
+
+bool CWizardExcelCommon::ImplSave()
+{
+	if (m_FileName.empty() || !m_Workbook.GetDispatchPtr())
+		return false;
+	m_Workbook.CallMethod(L"Save");
+	return true;
+}
+
+
+bool CWizardExcelCommon::ImplSaveAs(std::wstring const& inFilename)
+{
+	if (inFilename.empty() || !m_Workbook.GetDispatchPtr())
+		return false;
+	m_FileName = inFilename;
+	m_Workbook.CallMethod(L"SaveAs", m_FileName.c_str());
+	return true;
+}
+
+
+bool CWizardExcelCommon::ImplAllowAccess(bool bAllow)
+{
+	if (bAllow)
+	{
+		m_App.PutProperty(L"UserControl", true);
+		m_App.PutProperty(L"Visible", true);
+	}
+	else
+		m_App.PutProperty(L"UserControl", false);
+	return true;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
 CWizardExcelExportPtr CWizardExcelExport::Create(wxAutomationObject& ioApp)
 {
 	CWizardExcelExportPtr ptr;
@@ -321,17 +461,18 @@ CWizardExcelExportPtr CWizardExcelExport::Create(wxAutomationObject& ioApp)
 
 
 CWizardExcelExport::CWizardExcelExport(wxAutomationObject& ioApp)
-	: m_App(ioApp)
-	, m_Workbook()
-	, m_Worksheet()
+	: CWizardExcelCommon(ioApp)
 {
 	// Create a new workbook.
 	m_Workbook.SetDispatchPtr(m_App.CallMethod(L"Workbooks.Add", xlWBATWorksheet).GetAny().As<WXIDISPATCH*>());
 	// Get the first sheet.
 	wxAutomationObject sheets(m_Workbook.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
-	wxVariant args[1];
-	args[0] = wxVariant(static_cast<short>(1));
-	sheets.GetObject(m_Worksheet, L"Item", 1, args);
+	if (sheets.GetDispatchPtr())
+	{
+		wxVariant args[1];
+		args[0] = wxVariant(static_cast<short>(1));
+		sheets.GetObject(m_Worksheet, L"Item", 1, args);
+	}
 
 	// wx doesn't support IDispatch as a variant
 	// sheets.CallMethod(L"Add", wxNullVariant, m_Worksheet, wxNullVariant, xlWorksheet);
@@ -349,49 +490,33 @@ CWizardExcelExport::CWizardExcelExport(wxAutomationObject& ioApp)
 }
 
 
-CWizardExcelExport::~CWizardExcelExport()
+bool CWizardExcelExport::OpenFile(std::wstring const& inFilename)
 {
-	if (m_Worksheet.GetDispatchPtr() && !m_App.GetProperty(L"Visible").GetBool())
-		m_App.CallMethod(L"Quit");
+return ImplOpenFile(inFilename);
 }
 
 
-bool CWizardExcelExport::OpenFile(std::wstring const& inFilename)
+bool CWizardExcelExport::SelectSheet(short index)
 {
-	if (m_Worksheet.GetDispatchPtr())
-	{
-		m_Worksheet.SetDispatchPtr(nullptr);
-	}
+	return ImplSelectSheet(index);
+}
 
-	m_Workbook.SetDispatchPtr(m_App.CallMethod(L"Workbooks.Open", inFilename.c_str()));
-	if (!m_Workbook.GetDispatchPtr())
-		return false;
-	m_FileName = inFilename;
-	// Get the first sheet.
-	wxAutomationObject sheets(m_Workbook.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
-	wxVariant args2[1];
-	args2[0] = wxVariant(static_cast<short>(1));
-	sheets.GetObject(m_Worksheet, L"Item", 1, args2);
-	return !!m_Worksheet.GetDispatchPtr();
+
+bool CWizardExcelExport::SelectSheet(std::wstring const& sheetName)
+{
+	return ImplSelectSheet(sheetName);
 }
 
 
 bool CWizardExcelExport::Save()
 {
-	if (m_FileName.empty() || !m_Workbook.GetDispatchPtr())
-		return false;
-	m_Workbook.CallMethod(L"Save");
-	return true;
+	return ImplSave();
 }
 
 
 bool CWizardExcelExport::SaveAs(std::wstring const& inFilename)
 {
-	if (inFilename.empty() || !m_Workbook.GetDispatchPtr())
-		return false;
-	m_FileName = inFilename;
-	m_Workbook.CallMethod(L"SaveAs", m_FileName.c_str());
-	return true;
+	return ImplSaveAs(inFilename);
 }
 
 
@@ -403,14 +528,7 @@ wchar_t CWizardExcelExport::GetSumIfSeparator() const
 
 bool CWizardExcelExport::AllowAccess(bool bAllow)
 {
-	if (bAllow)
-	{
-		m_App.PutProperty(L"UserControl", true);
-		m_App.PutProperty(L"Visible", true);
-	}
-	else
-		m_App.PutProperty(L"UserControl", false);
-	return true;
+	return ImplAllowAccess(bAllow);
 }
 
 
@@ -648,31 +766,26 @@ CWizardExcelImportPtr CWizardExcelImport::Create(wxAutomationObject& ioApp)
 }
 
 CWizardExcelImport::CWizardExcelImport(wxAutomationObject& ioApp)
-	: m_App(ioApp)
+	: CWizardExcelCommon(ioApp)
 {
-}
-
-
-CWizardExcelImport::~CWizardExcelImport()
-{
-	if (m_Worksheet.GetDispatchPtr())
-		m_App.CallMethod(L"Quit");
 }
 
 
 bool CWizardExcelImport::OpenFile(std::wstring const& inFilename)
 {
-	wxVariant bk = m_App.CallMethod(L"Workbooks.Open", inFilename.c_str());
-	wxAutomationObject book(bk.GetVoidPtr());
-	if (!book.GetDispatchPtr())
-		return false;
-	m_FileName = inFilename;
-	// Get the first sheet.
-	wxAutomationObject sheets(book.GetProperty(L"Sheets").GetAny().As<WXIDISPATCH*>());
-	wxVariant args2[1];
-	args2[0] = wxVariant(static_cast<short>(1));
-	sheets.GetObject(m_Worksheet, L"Item", 1, args2);
-	return !!m_Worksheet.GetDispatchPtr();
+	return ImplOpenFile(inFilename);
+}
+
+
+bool CWizardExcelImport::SelectSheet(short index)
+{
+	return ImplSelectSheet(index);
+}
+
+
+bool CWizardExcelImport::SelectSheet(std::wstring const& sheetName)
+{
+	return ImplSelectSheet(sheetName);
 }
 
 
@@ -783,7 +896,112 @@ ISpreadSheetExporterPtr CWizardCalc::GetExporter() const
 
 ISpreadSheetImporterPtr CWizardCalc::GetImporter() const
 {
-	return ISpreadSheetImporterPtr(CWizardCalcImport::Create(m_Desktop));
+	return ISpreadSheetImporterPtr(CWizardCalcImport::Create(m_Manager, m_Desktop));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+CWizardCalcCommon::CWizardCalcCommon(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop)
+	: m_Manager(ioManager)
+	, m_Desktop(ioDesktop)
+	, m_Document()
+	, m_Worksheet()
+{
+}
+
+
+CWizardCalcCommon::~CWizardCalcCommon()
+{
+}
+
+
+bool CWizardCalcCommon::ImplOpenFile(std::wstring const& inFilename)
+{
+	if (m_Worksheet.GetDispatchPtr())
+		m_Worksheet.SetDispatchPtr(nullptr);
+	if (m_Document.GetDispatchPtr())
+		m_Document.SetDispatchPtr(nullptr);
+
+	if (!m_Document.GetDispatchPtr())
+	{
+		// 'Calc' doesn't take kindly to wxWidgets FileNameToURL syntax.
+		// Since this is windows only, screw it, just format it the way calc likes.
+		m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
+		m_FileName = L"file:///" + m_FileName;
+		wxVariant args;
+		args.NullList();
+		wxVariant file = m_Desktop.CallMethod(L"loadComponentFromURL", m_FileName.c_str(), L"_blank", 0, args);
+		if (file.IsNull())
+		{
+			m_FileName.clear();
+			return false;
+		}
+		m_Document.SetDispatchPtr(file);
+	}
+	bool rc = ImplSelectSheet(0);
+	if (!rc)
+		m_FileName.clear();
+	return rc;
+}
+
+
+bool CWizardCalcCommon::ImplSelectSheet(short index)
+{
+	if (!m_Document.GetDispatchPtr())
+		return false;
+	if (m_Worksheet.GetDispatchPtr())
+		m_Worksheet.SetDispatchPtr(nullptr);
+
+	wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
+	if (!sheets.GetDispatchPtr())
+		return false;
+	m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", index));
+
+	return !!m_Worksheet.GetDispatchPtr();
+}
+
+
+bool CWizardCalcCommon::ImplSelectSheet(std::wstring const& sheetName)
+{
+	if (!m_Document.GetDispatchPtr())
+		return false;
+	if (m_Worksheet.GetDispatchPtr())
+		m_Worksheet.SetDispatchPtr(nullptr);
+
+	wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
+	if (!sheets.GetDispatchPtr())
+		return false;
+	m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByName", sheetName.c_str()));
+	return !!m_Worksheet.GetDispatchPtr();
+}
+
+
+bool CWizardCalcCommon::ImplSave()
+{
+	if (m_FileName.empty() || !m_Document.GetDispatchPtr())
+		return false;
+	m_Document.CallMethod(L"store");
+	return true;
+}
+
+
+bool CWizardCalcCommon::ImplSaveAs(std::wstring const& inFilename)
+{
+	if (inFilename.empty() || !m_Document.GetDispatchPtr())
+		return false;
+	m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
+	m_FileName = L"file:///" + m_FileName;
+	wxVariant dummy;
+	dummy.NullList();
+	m_Document.CallMethod(L"storeAsURL", m_FileName.c_str(), dummy);
+	return true;
+}
+
+
+bool CWizardCalcCommon::ImplAllowAccess(bool bAllow)
+{
+	// Calc doesn't seem to support controlling user access like Excel does
+	return false;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -795,15 +1013,7 @@ CWizardCalcExportPtr CWizardCalcExport::Create(wxAutomationObject& ioManager, wx
 
 
 CWizardCalcExport::CWizardCalcExport(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop)
-	: m_Manager(ioManager)
-	, m_Desktop(ioDesktop)
-	, m_Document()
-	, m_Worksheet()
-{
-}
-
-
-CWizardCalcExport::~CWizardCalcExport()
+	: CWizardCalcCommon(ioManager, ioDesktop)
 {
 }
 
@@ -823,7 +1033,8 @@ bool CWizardCalcExport::CreateWorksheet()
 	if (m_Document.GetDispatchPtr() && !m_Worksheet.GetDispatchPtr())
 	{
 		wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
-		m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", 0));
+		if (sheets.GetDispatchPtr())
+			m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", 0));
 	}
 	return !!m_Worksheet.GetDispatchPtr();
 }
@@ -831,60 +1042,31 @@ bool CWizardCalcExport::CreateWorksheet()
 
 bool CWizardCalcExport::OpenFile(std::wstring const& inFilename)
 {
-	if (m_Worksheet.GetDispatchPtr())
-		m_Worksheet.SetDispatchPtr(nullptr);
-	if (m_Document.GetDispatchPtr())
-		m_Document.SetDispatchPtr(nullptr);
+	return ImplOpenFile(inFilename);
+}
 
-	if (!m_Document.GetDispatchPtr())
-	{
-		// 'Calc' doesn't take kindly to wxWidgets FileNameToURL syntax.
-		// Since this is windows only, screw it, just format it the way calc likes.
-		m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
-		m_FileName = L"file:///" + m_FileName;
-		wxVariant args;
-		args.NullList();
-		wxVariant file = m_Desktop.CallMethod(L"loadComponentFromURL", m_FileName .c_str(), L"_blank", 0, args);
-		if (file.IsNull())
-		{
-			m_FileName.clear();
-			return false;
-		}
-		m_Document.SetDispatchPtr(file);
-	}
-	if (!m_Worksheet.GetDispatchPtr())
-	{
-		wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
-		m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", 0));
-	}
-	if (!m_Worksheet.GetDispatchPtr())
-	{
-		m_FileName.clear();
-		return false;
-	}
-	return true;
+
+bool CWizardCalcExport::SelectSheet(short index)
+{
+	return ImplSelectSheet(index);
+}
+
+
+bool CWizardCalcExport::SelectSheet(std::wstring const& sheetName)
+{
+	return ImplSelectSheet(sheetName);
 }
 
 
 bool CWizardCalcExport::Save()
 {
-	if (m_FileName.empty() || !m_Document.GetDispatchPtr())
-		return false;
-	m_Document.CallMethod(L"store");
-	return true;
+	return ImplSave();
 }
 
 
 bool CWizardCalcExport::SaveAs(std::wstring const& inFilename)
 {
-	if (inFilename.empty() || !m_Document.GetDispatchPtr())
-		return false;
-	m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
-	m_FileName = L"file:///" + m_FileName;
-	wxVariant dummy;
-	dummy.NullList();
-	m_Document.CallMethod(L"storeAsURL", m_FileName.c_str(), dummy);
-	return true;
+	return ImplSaveAs(inFilename);
 }
 
 
@@ -896,8 +1078,7 @@ wchar_t CWizardCalcExport::GetSumIfSeparator() const
 
 bool CWizardCalcExport::AllowAccess(bool bAllow)
 {
-	// Calc doesn't seem to support controlling user access like Excel does
-	return false;
+	return ImplAllowAccess(bAllow);
 }
 
 
@@ -1061,52 +1242,33 @@ bool CWizardCalcExport::AutoFit(long inColFrom, long inColTo)
 
 /////////////////////////////////////////////////////////////////////////////
 
-CWizardCalcImportPtr CWizardCalcImport::Create(wxAutomationObject& ioDesktop)
+CWizardCalcImportPtr CWizardCalcImport::Create(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop)
 {
-	return std::make_shared<CWizardCalcImport>(ioDesktop);
+	return std::make_shared<CWizardCalcImport>(ioManager, ioDesktop);
 }
 
 
-CWizardCalcImport::CWizardCalcImport(wxAutomationObject& ioDesktop)
-	: m_Desktop(ioDesktop)
-{
-}
-
-
-CWizardCalcImport::~CWizardCalcImport()
+CWizardCalcImport::CWizardCalcImport(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop)
+	: CWizardCalcCommon(ioManager, ioDesktop)
 {
 }
 
 
 bool CWizardCalcImport::OpenFile(std::wstring const& inFilename)
 {
-	if (!m_Document.GetDispatchPtr())
-	{
-		// 'Calc' doesn't take kindly to wxWidgets FileNameToURL syntax.
-		// Since this is windows only, screw it, just format it the way calc likes.
-		m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
-		m_FileName = L"file:///" + m_FileName ;
-		wxVariant dummy;
-		dummy.NullList();
-		wxVariant file = m_Desktop.CallMethod(L"loadComponentFromURL", m_FileName .c_str(), L"_blank", 0, dummy);
-		if (file.IsNull())
-		{
-			m_FileName.clear();
-			return false;
-		}
-		m_Document.SetDispatchPtr(file);
-	}
-	if (!m_Worksheet.GetDispatchPtr())
-	{
-		wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
-		m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByIndex", 0));
-	}
-	if (!m_Worksheet.GetDispatchPtr())
-	{
-		m_FileName.clear();
-		return false;
-	}
-	return true;
+	return ImplOpenFile(inFilename);
+}
+
+
+bool CWizardCalcImport::SelectSheet(short index)
+{
+	return ImplSelectSheet(index);
+}
+
+
+bool CWizardCalcImport::SelectSheet(std::wstring const& sheetName)
+{
+	return ImplSelectSheet(sheetName);
 }
 
 

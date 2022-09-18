@@ -78,7 +78,9 @@ public:
 	virtual ~ISpreadSheetExporter() = default;
 
 	virtual bool OpenFile(std::wstring const& inFilename) = 0;
-	virtual bool Save() = 0; // Only valid with OpenFile
+	virtual bool SelectSheet(short index) = 0;
+	virtual bool SelectSheet(std::wstring const& sheetName) = 0;
+	virtual bool Save() = 0; // Only valid after OpenFile or SaveAs
 	virtual bool SaveAs(std::wstring const& inFilename) = 0;
 
 	virtual wchar_t GetSumIfSeparator() const = 0;
@@ -109,6 +111,8 @@ class ARBWIN_API ISpreadSheetImporter
 public:
 	virtual ~ISpreadSheetImporter() = default;
 	virtual bool OpenFile(std::wstring const& inFilename) = 0;
+	virtual bool SelectSheet(short index) = 0;
+	virtual bool SelectSheet(std::wstring const& sheetName) = 0;
 	virtual bool GetData(std::vector<std::vector<std::wstring>>& outData, IDlgProgress* ioProgress = nullptr) = 0;
 };
 

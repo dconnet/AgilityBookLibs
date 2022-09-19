@@ -492,7 +492,7 @@ CWizardExcelExport::CWizardExcelExport(wxAutomationObject& ioApp)
 
 bool CWizardExcelExport::OpenFile(std::wstring const& inFilename)
 {
-return ImplOpenFile(inFilename);
+	return ImplOpenFile(inFilename);
 }
 
 

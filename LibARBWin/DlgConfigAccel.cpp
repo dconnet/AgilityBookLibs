@@ -154,14 +154,12 @@ CDlgEditAccel::CDlgEditAccel(
 
 	// Sizers
 
-	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
-
-	wxBoxSizer* sizerAll = new wxBoxSizer(wxHORIZONTAL);
+	wxBoxSizer* bSizer = new wxBoxSizer(wxHORIZONTAL);
 
 	wxBoxSizer* sizerModifiers = new wxBoxSizer(wxHORIZONTAL);
 	sizerModifiers->Add(ctrlCtrl, 0, wxRIGHT, wxDLG_UNIT_X(this, 3));
 	sizerModifiers->Add(ctrlAlt, 0, wxRIGHT, wxDLG_UNIT_X(this, 3));
-	sizerModifiers->Add(ctrlShift, 0, 0, 0);
+	sizerModifiers->Add(ctrlShift);
 
 	wxFlexGridSizer* sizerCtrls = new wxFlexGridSizer(2, 2, wxDLG_UNIT_X(this, 3), wxDLG_UNIT_X(this, 3));
 	sizerCtrls->AddGrowableCol(1);
@@ -172,13 +170,11 @@ CDlgEditAccel::CDlgEditAccel(
 	sizerCtrls->Add(textMod, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL, 0);
 	sizerCtrls->Add(sizerModifiers, 0, wxALIGN_CENTER_VERTICAL, 0);
 
-	sizerAll->Add(sizerCtrls, 0, wxALL, wxDLG_UNIT_X(this, 3));
-	sizerAll->Add(ctrlClear, 0, wxALL, wxDLG_UNIT_X(this, 3));
-
-	bSizer->Add(sizerAll, 0, wxLEFT | wxTOP | wxRIGHT, wxDLG_UNIT_X(this, 3));
+	bSizer->Add(sizerCtrls, 0, wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(ctrlClear, 0, wxALL, wxDLG_UNIT_X(this, 5));
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
+	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 3));
 
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgEditAccel::OnOk, this, wxID_OK);
 

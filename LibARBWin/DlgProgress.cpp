@@ -151,14 +151,13 @@ CDlgProgress::CDlgProgress(short nBars, wxWindow* parent)
 
 	// Sizers
 
-	wxBoxSizer* bSizer;
-	bSizer = new wxBoxSizer(wxVERTICAL);
-	bSizer->Add(m_ctrlMessage, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
+	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
+	bSizer->Add(m_ctrlMessage, 0, wxEXPAND | wxALL, wxDLG_UNIT_X(this, 5));
 	for (size_t i = 0; i < m_ctrlBars.size(); ++i)
-		bSizer->Add(m_ctrlBars[i].gauge, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
+		bSizer->Add(m_ctrlBars[i].gauge, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 5));
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxALL, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 3));
 	m_ctrlCancel = wxDynamicCast(FindWindowInSizer(sdbSizer, wxID_CANCEL), wxButton);
 	m_ctrlCancel->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgProgress::OnCancel, this);
 

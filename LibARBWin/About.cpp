@@ -154,15 +154,15 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	if (textName)
-		bSizer->Add(textName, 0, wxLEFT | wxRIGHT | wxTOP | wxEXPAND, wxDLG_UNIT_X(this, 3));
+		bSizer->Add(textName, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
 	if (textCopyright)
-		bSizer->Add(textCopyright, 0, wxLEFT | wxRIGHT | wxTOP | wxEXPAND, wxDLG_UNIT_X(this, 3));
+		bSizer->Add(textCopyright, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
 	if (textDesc)
-		bSizer->Add(textDesc, 0, wxLEFT | wxRIGHT | wxTOP | wxEXPAND, wxDLG_UNIT_X(this, 3));
+		bSizer->Add(textDesc, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
 	if (!links.empty())
 	{
 		bool bReset = false;
-		int flags = wxLEFT | wxRIGHT | wxEXPAND;
+		int flags = wxEXPAND | wxLEFT | wxRIGHT;
 		for (auto link : links)
 		{
 			if (!link.first)
@@ -178,7 +178,7 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 				sizerLinks->Add(wxDLG_UNIT_X(this, k_offsetLinks), 0, 0, wxEXPAND, 0);
 				bSizer->Add(sizerLinks);
 			}
-			sizerLinks->Add(link.first, 0, flags, wxDLG_UNIT_X(this, 3));
+			sizerLinks->Add(link.first, 0, flags, wxDLG_UNIT_X(this, 5));
 			if (bReset)
 				flags &= ~wxTOP;
 		}
@@ -286,7 +286,7 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	sizerGrid->Add(textOS, 0, wxALIGN_CENTER_VERTICAL);
 	sizerGrid->Add(ctrlOS, 0, wxALIGN_CENTER_VERTICAL);
 
-	bSizer->Add(sizerGrid, 0, wxALL, wxDLG_UNIT_X(this, 3));
+	bSizer->Add(sizerGrid, 0, wxALL, wxDLG_UNIT_X(this, 5));
 
 	SetSizer(bSizer);
 	Layout();
@@ -381,8 +381,8 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	sdbSizer->Add(ctrlOk);
 
 	wxBoxSizer* sizerPanels = new wxBoxSizer(wxVERTICAL);
-	sizerPanels->Add(notebook, 1, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
-	sizerPanels->Add(sdbSizer, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
+	sizerPanels->Add(notebook, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
+	sizerPanels->Add(sdbSizer, 0, wxEXPAND | wxALL, wxDLG_UNIT_X(this, 5));
 	sizerMain->Add(sizerPanels);
 
 	bSizer->Add(sizerMain);

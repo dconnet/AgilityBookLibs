@@ -154,7 +154,7 @@ CDlgEditAccel::CDlgEditAccel(
 
 	// Sizers
 
-	wxBoxSizer* bSizer = new wxBoxSizer(wxHORIZONTAL);
+	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	wxBoxSizer* sizerModifiers = new wxBoxSizer(wxHORIZONTAL);
 	sizerModifiers->Add(ctrlCtrl, 0, wxRIGHT, wxDLG_UNIT_X(this, 3));
@@ -171,7 +171,7 @@ CDlgEditAccel::CDlgEditAccel(
 	sizerCtrls->Add(sizerModifiers, 0, wxALIGN_CENTER_VERTICAL, 0);
 
 	bSizer->Add(sizerCtrls, 0, wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
-	bSizer->Add(ctrlClear, 0, wxALL, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(ctrlClear, 0, wxALIGN_RIGHT | wxALL, wxDLG_UNIT_X(this, 5));
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
 	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 3));
@@ -507,20 +507,20 @@ CDlgConfigAccel::CDlgConfigAccel(
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	wxBoxSizer* sizerItems = new wxBoxSizer(wxHORIZONTAL);
-	sizerItems->Add(m_ctrlItems, 1, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
+	sizerItems->Add(m_ctrlItems, 1, wxEXPAND | wxRIGHT, wxDLG_UNIT_X(this, 5));
 
 	wxBoxSizer* sizerBtns = new wxBoxSizer(wxVERTICAL);
-	sizerBtns->Add(m_ctrlNew, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
-	sizerBtns->Add(m_ctrlEdit, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
-	sizerBtns->Add(m_ctrlClear, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
-	sizerBtns->Add(ctrlDefaults, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
+	sizerBtns->Add(m_ctrlNew, 0, wxEXPAND | wxBOTTOM, wxDLG_UNIT_X(this, 3));
+	sizerBtns->Add(m_ctrlEdit, 0, wxEXPAND | wxBOTTOM, wxDLG_UNIT_X(this, 3));
+	sizerBtns->Add(m_ctrlClear, 0, wxEXPAND | wxBOTTOM, wxDLG_UNIT_X(this, 3));
+	sizerBtns->Add(ctrlDefaults, 0, wxEXPAND);
 
-	sizerItems->Add(sizerBtns, 0, wxEXPAND, 0);
+	sizerItems->Add(sizerBtns, 0, wxEXPAND);
 
-	bSizer->Add(sizerItems, 1, wxEXPAND, 0);
+	bSizer->Add(sizerItems, 1, wxEXPAND | wxALL, wxDLG_UNIT_X(this, 5));
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxALL | wxEXPAND, wxDLG_UNIT_X(this, 3));
+	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 3));
 
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgConfigAccel::OnOk, this, wxID_OK);
 

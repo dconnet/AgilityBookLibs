@@ -58,6 +58,46 @@ using namespace ARBCommon;
 namespace ARBWin
 {
 
+namespace
+{
+constexpr wchar_t const* k_ColumnNames[256] = {
+	// clang-format off
+	L"A", L"B", L"C", L"D", L"E", L"F", L"G", L"H",
+	L"I", L"J", L"K", L"L", L"M", L"N", L"O", L"P",
+	L"Q", L"R", L"S", L"T", L"U", L"V", L"W", L"X",
+	L"Y", L"Z", L"AA",L"AB",L"AC",L"AD",L"AE",L"AF",
+	L"AG",L"AH",L"AI",L"AJ",L"AK",L"AL",L"AM",L"AN",
+	L"AO",L"AP",L"AQ",L"AR",L"AS",L"AT",L"AU",L"AV",
+	L"AW",L"AX",L"AY",L"AZ",L"BA",L"BB",L"BC",L"BD",
+	L"BE",L"BF",L"BG",L"BH",L"BI",L"BJ",L"BK",L"BL",
+	L"BM",L"BN",L"BO",L"BP",L"BQ",L"BR",L"BS",L"BT",
+	L"BU",L"BV",L"BW",L"BX",L"BY",L"BZ",L"CA",L"CB",
+	L"CC",L"CD",L"CE",L"CF",L"CG",L"CH",L"CI",L"CJ",
+	L"CK",L"CL",L"CM",L"CN",L"CO",L"CP",L"CQ",L"CR",
+	L"CS",L"CT",L"CU",L"CV",L"CW",L"CX",L"CY",L"CZ",
+	L"DA",L"DB",L"DC",L"DD",L"DE",L"DF",L"DG",L"DH",
+	L"DI",L"DJ",L"DK",L"DL",L"DM",L"DN",L"DO",L"DP",
+	L"DQ",L"DR",L"DS",L"DT",L"DU",L"DV",L"DW",L"DX",
+	L"DY",L"DZ",L"EA",L"EB",L"EC",L"ED",L"EE",L"EF",
+	L"EG",L"EH",L"EI",L"EJ",L"EK",L"EL",L"EM",L"EN",
+	L"EO",L"EP",L"EQ",L"ER",L"ES",L"ET",L"EU",L"EV",
+	L"EW",L"EX",L"EY",L"EZ",L"FA",L"FB",L"FC",L"FD",
+	L"FE",L"FF",L"FG",L"FH",L"FI",L"FJ",L"FK",L"FL",
+	L"FM",L"FN",L"FO",L"FP",L"FQ",L"FR",L"FS",L"FT",
+	L"FU",L"FV",L"FW",L"FX",L"FY",L"FZ",L"GA",L"GB",
+	L"GC",L"GD",L"GE",L"GF",L"GG",L"GH",L"GI",L"GJ",
+	L"GK",L"GL",L"GM",L"GN",L"GO",L"GP",L"GQ",L"GR",
+	L"GS",L"GT",L"GU",L"GV",L"GW",L"GX",L"GY",L"GZ",
+	L"HA",L"HB",L"HC",L"HD",L"HE",L"HF",L"HG",L"HH",
+	L"HI",L"HJ",L"HK",L"HL",L"HM",L"HN",L"HO",L"HP",
+	L"HQ",L"HR",L"HS",L"HT",L"HU",L"HV",L"HW",L"HX",
+	L"HY",L"HZ",L"IA",L"IB",L"IC",L"ID",L"IE",L"IF",
+	L"IG",L"IH",L"II",L"IJ",L"IK",L"IL",L"IM",L"IN",
+	L"IO",L"IP",L"IQ",L"IR",L"IS",L"IT",L"IU",L"IV",
+	// clang-format on
+};
+}
+
 #if HAS_AUTOMATION
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1353,8 +1393,8 @@ ISpreadSheetPtr ISpreadSheet::Create(ARBSpreadSheetType inType)
 // static helper functions
 long ISpreadSheet::GetMaxRows()
 {
-	return 65536; // Excel limits (I believe later versions of excel/calc may expand this, but we support older versions
-				  // too)
+	// Excel limits (I believe later versions of excel/calc may expand this, but we support older versions too)
+	return 65536;
 }
 
 
@@ -1364,54 +1404,72 @@ long ISpreadSheet::GetMaxCols()
 }
 
 
+bool ISpreadSheet::GetCol(std::wstring const& inCol, long& outCol)
+{
+	bool bOk = false;
+	outCol = -1;
+	long idx = 0;
+	for (auto const& col : k_ColumnNames)
+	{
+		if (inCol == col)
+		{
+			bOk = true;
+			outCol = idx;
+			break;
+		}
+		++idx;
+	}
+	return bOk;
+}
+
+
+bool ISpreadSheet::GetCol(long inCol, std::wstring& outCol)
+{
+	bool bOk = false;
+	outCol.clear();
+	if (0 <= inCol && inCol < GetMaxCols())
+	{
+		outCol = k_ColumnNames[inCol];
+		bOk = true;
+	}
+	return bOk;
+}
+
+
 bool ISpreadSheet::GetRowCol(long inRow, long inCol, std::wstring& outCell)
 {
-	// Lookup tables are nice!
-	constexpr wchar_t const* sc_ColumnNames[256] = {
-		// clang-format off
-		L"A", L"B", L"C", L"D", L"E", L"F", L"G", L"H",
-		L"I", L"J", L"K", L"L", L"M", L"N", L"O", L"P",
-		L"Q", L"R", L"S", L"T", L"U", L"V", L"W", L"X",
-		L"Y", L"Z", L"AA",L"AB",L"AC",L"AD",L"AE",L"AF",
-		L"AG",L"AH",L"AI",L"AJ",L"AK",L"AL",L"AM",L"AN",
-		L"AO",L"AP",L"AQ",L"AR",L"AS",L"AT",L"AU",L"AV",
-		L"AW",L"AX",L"AY",L"AZ",L"BA",L"BB",L"BC",L"BD",
-		L"BE",L"BF",L"BG",L"BH",L"BI",L"BJ",L"BK",L"BL",
-		L"BM",L"BN",L"BO",L"BP",L"BQ",L"BR",L"BS",L"BT",
-		L"BU",L"BV",L"BW",L"BX",L"BY",L"BZ",L"CA",L"CB",
-		L"CC",L"CD",L"CE",L"CF",L"CG",L"CH",L"CI",L"CJ",
-		L"CK",L"CL",L"CM",L"CN",L"CO",L"CP",L"CQ",L"CR",
-		L"CS",L"CT",L"CU",L"CV",L"CW",L"CX",L"CY",L"CZ",
-		L"DA",L"DB",L"DC",L"DD",L"DE",L"DF",L"DG",L"DH",
-		L"DI",L"DJ",L"DK",L"DL",L"DM",L"DN",L"DO",L"DP",
-		L"DQ",L"DR",L"DS",L"DT",L"DU",L"DV",L"DW",L"DX",
-		L"DY",L"DZ",L"EA",L"EB",L"EC",L"ED",L"EE",L"EF",
-		L"EG",L"EH",L"EI",L"EJ",L"EK",L"EL",L"EM",L"EN",
-		L"EO",L"EP",L"EQ",L"ER",L"ES",L"ET",L"EU",L"EV",
-		L"EW",L"EX",L"EY",L"EZ",L"FA",L"FB",L"FC",L"FD",
-		L"FE",L"FF",L"FG",L"FH",L"FI",L"FJ",L"FK",L"FL",
-		L"FM",L"FN",L"FO",L"FP",L"FQ",L"FR",L"FS",L"FT",
-		L"FU",L"FV",L"FW",L"FX",L"FY",L"FZ",L"GA",L"GB",
-		L"GC",L"GD",L"GE",L"GF",L"GG",L"GH",L"GI",L"GJ",
-		L"GK",L"GL",L"GM",L"GN",L"GO",L"GP",L"GQ",L"GR",
-		L"GS",L"GT",L"GU",L"GV",L"GW",L"GX",L"GY",L"GZ",
-		L"HA",L"HB",L"HC",L"HD",L"HE",L"HF",L"HG",L"HH",
-		L"HI",L"HJ",L"HK",L"HL",L"HM",L"HN",L"HO",L"HP",
-		L"HQ",L"HR",L"HS",L"HT",L"HU",L"HV",L"HW",L"HX",
-		L"HY",L"HZ",L"IA",L"IB",L"IC",L"ID",L"IE",L"IF",
-		L"IG",L"IH",L"II",L"IJ",L"IK",L"IL",L"IM",L"IN",
-		L"IO",L"IP",L"IQ",L"IR",L"IS",L"IT",L"IU",L"IV",
-		// clang-format on
-	};
 	bool bOk = false;
 	fmt::wmemory_buffer output;
 	outCell.clear();
-	if (inRow < GetMaxRows() && inCol < GetMaxCols())
+	if (0 <= inRow && inRow < GetMaxRows() && 0 <= inCol && inCol < GetMaxCols())
 	{
-		fmt::format_to(std::back_inserter(output), L"{}{}", sc_ColumnNames[inCol], inRow + 1);
+		// Lookup tables are nice!
+		fmt::format_to(std::back_inserter(output), L"{}{}", k_ColumnNames[inCol], inRow + 1);
 		bOk = true;
 	}
 	outCell = fmt::to_string(output);
+	return bOk;
+}
+
+
+bool ISpreadSheet::GetRowCol(std::wstring const& inCell, long& outRow, long& outCol)
+{
+	bool bOk = false;
+	outRow = -1;
+	outCol = -1;
+	if (!inCell.empty())
+	{
+		auto i = inCell.find_first_of(L"0123456789");
+		if (std::wstring::npos != i)
+		{
+			if (GetCol(inCell.substr(0, i), outCol))
+			{
+				outRow = StringUtil::ToLong(inCell.substr(i));
+				--outRow;
+				bOk = true;
+			}
+		}
+	}
 	return bOk;
 }
 

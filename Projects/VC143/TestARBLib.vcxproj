@@ -517,6 +517,7 @@
     <ClCompile Include="..\..\TestARBLib\TestMailto.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestMD5.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestMisc.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestSpreadSheet.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestString.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestTidy.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestUtils.cpp" />

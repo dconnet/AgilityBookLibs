@@ -39,6 +39,7 @@ PROGRAMS = @PACKAGE_TESTLIB_SHORTNAME@
 	TestMailto.cpp \
 	TestMD5.cpp \
 	TestMisc.cpp \
+	TestSpreadSheet.cpp \
 	TestString.cpp \
 	TestTidy.cpp \
 	TestUtils.cpp \

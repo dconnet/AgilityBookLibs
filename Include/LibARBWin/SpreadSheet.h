@@ -132,8 +132,14 @@ public:
 	static long GetMaxRows();
 	/// Get the maximum number of columns Excel can handle.
 	static long GetMaxCols();
+	/// Get the column index
+	static bool GetCol(std::wstring const& inCol, long& outCol);
+	/// Get the column letter
+	static bool GetCol(long inCol, std::wstring& outCol);
 	/// Translate a given row/col into Excel notation: (0,0) -> "A1"
 	static bool GetRowCol(long inRow, long inCol, std::wstring& outCell);
+	/// Translate Excel notation into row/col
+	static bool GetRowCol(std::wstring const& inCell, long& outRow, long& outCol);
 
 	virtual ISpreadSheetExporterPtr GetExporter() const = 0;
 	virtual ISpreadSheetImporterPtr GetImporter() const = 0;

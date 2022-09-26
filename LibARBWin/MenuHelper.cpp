@@ -757,9 +757,8 @@ void CMenuHelper::CreateAccelTable(wxFrame* pFrame)
 	{
 		for (auto const& data : m_accelData)
 		{
-			// Only push valid entries. Keycode=0 used to "work", not exactly sure when
-			// things broke. Code compiled on 2022-9-20 w/ wx3.2.1 is working. But when
-			// I try from that known commit, it no longer is.
+			// Only push valid entries. Keycode=0 used to "work", not exactly
+			// sure when things broke, possibly when I switched to wx3.2.1.
 			if (0 == data.keyCode || 0 == data.id)
 				continue;
 			int flags = wxACCEL_NORMAL;

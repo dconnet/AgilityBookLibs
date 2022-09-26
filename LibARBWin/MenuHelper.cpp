@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2022-09-26 Fixed problem in setting accel table with unset keycodes.
  * 2021-01-02 Added VerifyMenuShortcuts
  * 2018-10-11 Moved to Win LibARBWin
  * 2016-02-17 Create a disabled image for toolbar. wx3.1 images are too dark.
@@ -751,26 +752,32 @@ int CMenuHelper::TranslateId(int id, std::vector<ItemAccel> const& defAccelItems
 
 void CMenuHelper::CreateAccelTable(wxFrame* pFrame)
 {
+	std::vector<wxAcceleratorEntry> entries;
 	if (m_accelData.size() > 0)
 	{
-		auto entries = std::vector<wxAcceleratorEntry>(m_accelData.size());
-		for (size_t n = 0; n < m_accelData.size(); ++n)
+		for (auto const& data : m_accelData)
 		{
+			// Only push valid entries. Keycode=0 used to "work", not exactly sure when
+			// things broke. Code compiled on 2022-9-20 w/ wx3.2.1 is working. But when
+			// I try from that known commit, it no longer is.
+			if (0 == data.keyCode || 0 == data.id)
+				continue;
 			int flags = wxACCEL_NORMAL;
-			if (m_accelData[n].bAlt)
+			if (data.bAlt)
 				flags |= wxACCEL_ALT;
-			if (m_accelData[n].bCtrl)
+			if (data.bCtrl)
 				flags |= wxACCEL_CTRL;
-			if (m_accelData[n].bShift)
+			if (data.bShift)
 				flags |= wxACCEL_SHIFT;
-			entries[n].Set(flags, m_accelData[n].keyCode, m_accelData[n].id);
+			entries.push_back(wxAcceleratorEntry(flags, data.keyCode, data.id));
 		}
-		wxAcceleratorTable accel(static_cast<int>(m_accelData.size()), entries.data());
-		pFrame->SetAcceleratorTable(accel);
 	}
+	if (entries.empty())
+		pFrame->SetAcceleratorTable(wxNullAcceleratorTable);
 	else
 	{
-		pFrame->SetAcceleratorTable(wxNullAcceleratorTable);
+		wxAcceleratorTable accel(static_cast<int>(entries.size()), entries.data());
+		pFrame->SetAcceleratorTable(accel);
 	}
 }
 

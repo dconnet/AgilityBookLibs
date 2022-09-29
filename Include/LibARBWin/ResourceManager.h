@@ -40,8 +40,8 @@ public:
 	virtual wxWindow* GetResourceWindow() = 0;
 	// Get the name of the archived file.
 	// outName is the basename, without ".svg", ".png", or "@2x.png"
-	virtual bool GetResImageName(wxArtID const& id, wxArtClient const& client, wxString& outName, bool& outSvg)
-		const = 0;
+	virtual bool GetResImageName(wxArtID const& id, wxArtClient const& client, wxString& outName, bool& outSvg) const
+		= 0;
 };
 
 

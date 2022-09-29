@@ -92,8 +92,8 @@ bool CTextCtrl::EnableSpellChecking(bool bForceRtfAsPlainText)
 {
 	bool bChanged = false;
 #ifdef WIN32
-	//#define wxTE_SPELLCHECK     (0x0004 | wxTE_RICH2)
-	// 4 & 8 look like they're available
+	// #define wxTE_SPELLCHECK     (0x0004 | wxTE_RICH2)
+	//  4 & 8 look like they're available
 	if (!HasFlag(wxTE_READONLY) && IsRich())
 	{
 		bChanged = true;

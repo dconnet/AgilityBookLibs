@@ -106,7 +106,7 @@
 #endif
 
 #elif __USE_EXPAT
-//#define XML_STATIC -> defined in .props file
+// #define XML_STATIC -> defined in .props file
 #include "expat.h"
 #pragma comment(lib, "libexpatMT.lib")
 #pragma message("Compiling Element with expat " STRING(XML_MAJOR_VERSION) "." STRING(XML_MINOR_VERSION) "." STRING( \

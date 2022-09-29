@@ -153,7 +153,7 @@
 // These are needed in order to generate a decent pragma message
 #define STRING2(x) #x
 #define STRING(x)  STRING2(x)
-//#pragma message ( __FILE__ "(" STRING(__LINE__) ") : message" )
+// #pragma message ( __FILE__ "(" STRING(__LINE__) ") : message" )
 #define FILE_LINE         __FILE__ "(" STRING(__LINE__) ") : "
 #define PRAGMA_MESSAGE(x) message(FILE_LINE #x)
 #define PRAGMA_TODO(x)    message(FILE_LINE "TODO: " #x)

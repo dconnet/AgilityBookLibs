@@ -557,8 +557,7 @@ std::wstring FormatBytes(double inSize, int inPrec, ByteSizeStyle inSizeStyle)
 	// byte, kibi, mebi, gibi, tebi, pebi, exbi, zebi, yobi
 	static wchar_t const* const sc_unitsBinary[]
 		= {L" B", L" KiB", L" MiB", L" GiB", L" TiB", L" PiB", L" EiB", L"ZiB", L"YiB"};
-	static wchar_t const* const sc_unitsTrue[]
-		= {L" B", L" KB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB"};
+	static wchar_t const* const sc_unitsTrue[] = {L" B", L" KB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB"};
 	static const struct
 	{
 		wchar_t const* const* units;

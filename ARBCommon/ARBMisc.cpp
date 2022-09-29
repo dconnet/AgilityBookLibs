@@ -25,9 +25,9 @@
 #include <math.h>
 
 // For testing in ARB
-//#if defined(__WXWINDOWS__)
-//#undef __WXWINDOWS__
-//#endif
+// #if defined(__WXWINDOWS__)
+// #undef __WXWINDOWS__
+// #endif
 
 #if defined(__WXWINDOWS__)
 #include <wx/string.h>

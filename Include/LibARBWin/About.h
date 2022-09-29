@@ -55,8 +55,6 @@ struct ARBWIN_API AboutInfo
 
 /**
  * Display an about box.
- * @param manager Resource manager to request image
- * @param artId Name of image to request
  * @param aboutInfo Information to populate into dialog
  * @param inParent Parent window
  * @param inCaption Caption

@@ -147,6 +147,42 @@ CLogger::CLogger()
 }
 
 
+bool CLogger::Initialize(wchar_t const* baseFilename)
+{
+	// Once logging has started, no changes!
+	if (m_logger)
+	{
+		CLogger::Log(L"IGNORED: Cannot reinitialize logging once enabled");
+		return true;
+	}
+	if (baseFilename)
+	{
+		m_baseFilename = baseFilename;
+
+		auto dir = wxStandardPaths::Get().GetUserLocalDataDir();
+		wxFileName name(dir, L"");
+		if (!name.DirExists())
+		{
+			if (!name.Mkdir(wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+			{
+				wxLogError(L"Failed to create '%s'", name.GetFullPath());
+				m_baseFilename.clear();
+				return false;
+			}
+		}
+		m_currentLogName.SetPath(dir);
+		m_currentLogName.SetName(wxString::Format(L"%s%s", baseFilename, GetTimeStamp()));
+		m_currentLogName.SetExt(k_logExtension);
+	}
+	else
+	{
+		m_currentLogName.Clear();
+		return false;
+	}
+	return true;
+}
+
+
 bool CLogger::IsEnabled() const
 {
 	return !!m_logger;
@@ -158,29 +194,20 @@ void CLogger::EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFi
 	if (!m_logger)
 	{
 		wxString rotateResults;
+
 		if (baseFilename)
 		{
-			m_baseFilename = baseFilename;
+			if (!Initialize(baseFilename))
+				return;
 
-			auto dir = wxStandardPaths::Get().GetUserLocalDataDir();
-			wxFileName name(dir, L"");
-			if (!name.DirExists())
-			{
-				if (!name.Mkdir(wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
-				{
-					wxLogError(L"Failed to create '%s'", name.GetFullPath());
-					m_baseFilename.clear();
-					return;
-				}
-			}
-			m_currentLogName.SetPath(dir);
+			// Update filename.
 			m_currentLogName.SetName(wxString::Format(L"%s%s", baseFilename, GetTimeStamp()));
-			m_currentLogName.SetExt(k_logExtension);
 			rotateResults = RotateLogs(keepNlogs);
 
 			auto logger = new CLogFile(m_currentLogName.GetFullPath());
 			if (logger && !logger->IsOpen())
 			{
+				wxLogWarning(L"Warning: Unable to open logging with '%s'", m_currentLogName.GetFullPath());
 				delete logger;
 				m_baseFilename.clear();
 				return;

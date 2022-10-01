@@ -35,6 +35,10 @@ public:
 
 	CLogger();
 
+	// Initialize log directory without starting logging.
+	// EnableWindow will call this automatically.
+	bool Initialize(wchar_t const* baseFilename);
+
 	bool IsEnabled() const;
 
 	// keep = 0 means keep all.

@@ -60,6 +60,9 @@
     <ClCompile Include="..\..\TestARBLib\TestVersion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\TestARBLib\TestSpreadSheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\TestARBLib\stdafx.h">

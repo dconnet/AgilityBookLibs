@@ -44,6 +44,9 @@ public:
 	virtual ~CUniqueIdImpl()
 	{
 	}
+	virtual void clear()
+	{
+	}
 	virtual bool Create()
 	{
 		return false;
@@ -115,12 +118,17 @@ public:
 	CUniqueIdImplMS()
 		: m_uuid{0}
 	{
-		UuidCreateNil(&m_uuid);
+		clear();
 	}
 
 	CUniqueIdImplMS(CUniqueIdImplMS const& rhs)
 		: m_uuid{rhs.m_uuid}
 	{
+	}
+
+	void clear() override
+	{
+		UuidCreateNil(&m_uuid);
 	}
 
 	bool Create() override
@@ -186,7 +194,10 @@ public:
 	{
 		// This only recognizes format "hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh"
 		std::wstring s = NormalizeString(str);
-		return RPC_S_OK == UuidFromStringW((RPC_WSTR)s.c_str(), &m_uuid);
+		bool rc = (RPC_S_OK == UuidFromStringW((RPC_WSTR)s.c_str(), &m_uuid));
+		if (!rc)
+			clear();
+		return rc;
 	}
 
 private:
@@ -224,6 +235,12 @@ CUniqueId::CUniqueId(CUniqueId const& rhs)
 CUniqueId::~CUniqueId()
 {
 	delete m_impl;
+}
+
+
+void CUniqueId::clear()
+{
+	m_impl->clear();
 }
 
 

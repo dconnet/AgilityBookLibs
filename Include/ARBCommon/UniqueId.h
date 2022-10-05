@@ -39,6 +39,7 @@ public:
 	CUniqueId(CUniqueId const& rhs);
 	~CUniqueId();
 
+	void clear();
 	bool Create();
 	bool IsNull() const;
 

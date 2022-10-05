@@ -945,7 +945,8 @@ ARBAttribLookup ElementNode::GetAttrib(std::wstring const& inName, CUniqueId& ou
 	ARBAttribLookup rc = GetAttrib(inName, value);
 	if (ARBAttribLookup::Found == rc)
 	{
-		outValue = CUniqueId(value);
+		if (!outValue.ParseString(value) || outValue.IsNull())
+			rc = ARBAttribLookup::Invalid;
 	}
 	return rc;
 }

@@ -46,6 +46,17 @@ TEST_CASE("UniqueId")
 	}
 
 
+	SECTION("clear")
+	{
+		CUniqueId id(true);
+#ifdef __WXMSW__
+		REQUIRE(!id.IsNull());
+		id.clear();
+		REQUIRE(id.IsNull());
+#endif
+	}
+
+
 	SECTION("Create")
 	{
 		CUniqueId id;
@@ -106,6 +117,23 @@ TEST_CASE("UniqueId")
 		REQUIRE(id2.ToString() == uuid);
 #endif
 	}
+
+
+	SECTION("Parse")
+	{
+#ifdef __WXMSW__
+		std::wstring uuid(L"fbec55d8-6243-4142-b534-0e96c9f12270");
+		CUniqueId id;
+		REQUIRE(id.IsNull());
+		REQUIRE(id.ParseString(uuid));
+		REQUIRE(!id.IsNull());
+
+		std::wstring uuidBad(L"fbec55d8-6243-4142-b534-0e96c");
+		REQUIRE(!id.ParseString(uuidBad));
+		REQUIRE(id.IsNull());
+#endif
+	}
+
 }
 
 } // namespace ARBCommon

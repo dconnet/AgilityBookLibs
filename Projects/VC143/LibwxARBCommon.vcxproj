@@ -278,6 +278,7 @@
     <ClCompile Include="..\..\ARBCommon\LibArchive.cpp" />
     <ClCompile Include="..\..\ARBCommon\MailTo.cpp" />
     <ClCompile Include="..\..\ARBCommon\StringUtil.cpp" />
+    <ClCompile Include="..\..\ARBCommon\UniqueId.cpp" />
     <ClCompile Include="..\..\ARBCommon\VersionNum.cpp" />
     <ClCompile Include="..\..\ARBCommon\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
@@ -320,6 +321,7 @@
     <ClInclude Include="..\..\Include\ARBCommon\LibwxARBCommon.h" />
     <ClInclude Include="..\..\Include\ARBCommon\MailTo.h" />
     <ClInclude Include="..\..\Include\ARBCommon\StringUtil.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\UniqueId.h" />
     <ClInclude Include="..\..\Include\ARBCommon\VersionNum.h" />
     <ClInclude Include="..\..\Include\Platform\arbWarningPop.h" />
     <ClInclude Include="..\..\Include\Platform\arbWarningPush.h" />

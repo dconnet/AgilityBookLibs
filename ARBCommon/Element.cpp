@@ -55,6 +55,7 @@
 #include "ARBCommon/ARBDate.h"
 #include "ARBCommon/ARBTypes.h"
 #include "ARBCommon/StringUtil.h"
+#include "ARBCommon/UniqueId.h"
 #include "fmt/xchar.h"
 #include <fstream>
 #include <list>
@@ -938,6 +939,18 @@ ARBAttribLookup ElementNode::GetAttrib(std::wstring const& inName, double& outVa
 }
 
 
+ARBAttribLookup ElementNode::GetAttrib(std::wstring const& inName, CUniqueId& outValue) const
+{
+	std::wstring value;
+	ARBAttribLookup rc = GetAttrib(inName, value);
+	if (ARBAttribLookup::Found == rc)
+	{
+		outValue = CUniqueId(value);
+	}
+	return rc;
+}
+
+
 bool ElementNode::AddAttrib(std::wstring const& inName, std::wstring const& inValue)
 {
 	if (inName.empty())
@@ -1045,6 +1058,12 @@ bool ElementNode::AddAttrib(std::wstring const& inName, double inValue, int inPr
 		return false;
 	m_Attribs[inName] = ARBDouble::ToString(inValue, inPrec, false);
 	return true;
+}
+
+
+bool ElementNode::AddAttrib(std::wstring const& inName, CUniqueId const& inValue)
+{
+	return AddAttrib(inName, inValue.ToString());
 }
 
 

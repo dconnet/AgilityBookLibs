@@ -514,6 +514,7 @@
     <ClCompile Include="..\..\TestARBLib\TestDate.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestDouble.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestElement.cpp" />
+    <ClCompile Include="..\..\TestARBLib\TestId.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestMailto.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestMD5.cpp" />
     <ClCompile Include="..\..\TestARBLib\TestMisc.cpp" />

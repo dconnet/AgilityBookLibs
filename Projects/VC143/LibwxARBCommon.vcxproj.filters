@@ -75,6 +75,9 @@
     <ClCompile Include="..\..\ARBCommon\LibArchive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ARBCommon\UniqueId.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ARBCommon\stdafx.h">
@@ -147,6 +150,9 @@
       <Filter>Include\ARBCommon</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\ARBCommon\LibArchive.h">
+      <Filter>Include\ARBCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\ARBCommon\UniqueId.h">
       <Filter>Include\ARBCommon</Filter>
     </ClInclude>
   </ItemGroup>

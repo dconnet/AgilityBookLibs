@@ -43,6 +43,7 @@ libarbcommon_SRCS = \
 	LibArchive.cpp \
 	MailTo.cpp \
 	StringUtil.cpp \
+	UniqueId.cpp \
 	VersionNum.cpp
 
 ##########

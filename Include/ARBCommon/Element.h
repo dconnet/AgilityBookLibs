@@ -43,6 +43,7 @@ namespace ARBCommon
 
 class ARBDate;
 class ARBVersion;
+class CUniqueId;
 
 
 enum class ARBElementType
@@ -212,6 +213,7 @@ public:
 	ARBAttribLookup GetAttrib(std::wstring const& inName, long& outValue) const;
 	ARBAttribLookup GetAttrib(std::wstring const& inName, unsigned long& outValue) const;
 	ARBAttribLookup GetAttrib(std::wstring const& inName, double& outValue) const;
+	ARBAttribLookup GetAttrib(std::wstring const& inName, CUniqueId& outValue) const;
 
 	/**
 	 * Add an attribute.
@@ -233,6 +235,7 @@ public:
 	bool AddAttrib(std::wstring const& inName, unsigned short inValue);
 	bool AddAttrib(std::wstring const& inName, long inValue);
 	bool AddAttrib(std::wstring const& inName, unsigned long inValue);
+	bool AddAttrib(std::wstring const& inName, CUniqueId const& inValue);
 
 	/**
 	 * Add an attribute.

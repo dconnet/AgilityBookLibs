@@ -36,6 +36,7 @@ PROGRAMS = @PACKAGE_TESTLIB_SHORTNAME@
 	TestDate.cpp \
 	TestDouble.cpp \
 	TestElement.cpp \
+	TestId.cpp \
 	TestMailto.cpp \
 	TestMD5.cpp \
 	TestMisc.cpp \

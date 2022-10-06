@@ -21,10 +21,12 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-#ifdef __WXMSW__
-#include <rpcdce.h>
-#pragma comment(lib, "rpcrt4.lib")
+#pragma warning(disable : 5246)
+#if defined(WIN32) || defined(__APPLE__)
+// We could define this for all platforms. Just becomes an linking issue.
+#define UUID_SYSTEM_GENERATOR
 #endif
+#include "stduuid/uuid.h"
 
 
 namespace dconSoft
@@ -36,51 +38,85 @@ class CUniqueIdImpl
 {
 public:
 	CUniqueIdImpl()
+		: m_uuid()
 	{
 	}
+
 	CUniqueIdImpl(CUniqueIdImpl const& rhs)
+		: m_uuid{rhs.m_uuid}
 	{
 	}
-	virtual ~CUniqueIdImpl()
+
+	void clear()
 	{
+		m_uuid = uuids::uuid();
 	}
-	virtual void clear()
+
+	bool Create()
 	{
+#ifdef UUID_SYSTEM_GENERATOR
+		m_uuid = uuids::uuid_system_generator{}();
+#else
+		std::random_device rd;
+		auto seed_data = std::array<int, std::mt19937::state_size>{};
+		std::generate(std::begin(seed_data), std::end(seed_data), std::ref(rd));
+		std::seed_seq seq(std::begin(seed_data), std::end(seed_data));
+		std::mt19937 generator(seq);
+		uuids::uuid_random_generator gen{generator};
+
+		m_uuid = gen();
+#endif
+		return !m_uuid.is_nil();
 	}
-	virtual bool Create()
-	{
-		return false;
-	}
-	virtual CUniqueIdImpl* Clone() const
+
+	CUniqueIdImpl* Clone() const
 	{
 		return new CUniqueIdImpl();
 	}
-	virtual bool IsNull() const
+
+	bool IsNull() const
 	{
-		return true;
-	}
-	virtual void Assign(CUniqueIdImpl const* rhs)
-	{
-	}
-	virtual bool IsEqual(CUniqueIdImpl const* rhs) const
-	{
-		return true;
-	}
-	virtual bool IsLessThan(CUniqueIdImpl const* rhs) const
-	{
-		return false;
-	}
-	virtual std::wstring ToString() const
-	{
-		// Make sure any new platform always returns lower-case for consistency.
-		return L"00000000-0000-0000-0000-000000000000";
-	}
-	virtual bool ParseString(std::wstring const& str)
-	{
-		return false;
+		return m_uuid.is_nil();
 	}
 
-protected:
+	void Assign(CUniqueIdImpl const* rhs)
+	{
+		m_uuid = rhs->m_uuid;
+	}
+
+	bool IsEqual(CUniqueIdImpl const* rhs) const
+	{
+		return m_uuid == rhs->m_uuid;
+	}
+
+	bool IsLessThan(CUniqueIdImpl const* rhs) const
+	{
+		return m_uuid < rhs->m_uuid;
+	}
+
+	std::wstring ToString() const
+	{
+		return uuids::to_string<wchar_t>(m_uuid);
+	}
+
+	bool ParseString(std::wstring const& str)
+	{
+		auto uuid = uuids::uuid::from_string(str);
+		if (uuid)
+			m_uuid = *uuid;
+		else
+			clear();
+		return !m_uuid.is_nil();
+	}
+
+private:
+#if 0
+	// This was originally written directly to the Win32 api.
+	// That can only parse strings in a normalized form.
+	// At first CUniqueIdImpl was virtual (with this func) and I had
+	// CUniqueIdImplMS and CUniqueIdImplStd impls. Decided just to use
+	// stduuid (with it using the system generators).
+
 	// Normalize format to "hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh"
 	std::wstring NormalizeString(std::wstring const& str)
 	{
@@ -95,124 +131,21 @@ protected:
 		if (32 == s.length())
 		{
 			std::wstringstream ss;
-			ss << s.substr(0, 8)
-				<< '-'
-				<< s.substr(8, 4)
-				<< '-'
-				<< s.substr(12, 4)
-				<< '-'
-				<< s.substr(16, 4)
-				<< '-'
-				<< s.substr(20);
+			ss << s.substr(0, 8) << '-' << s.substr(8, 4) << '-' << s.substr(12, 4) << '-' << s.substr(16, 4) << '-'
+			   << s.substr(20);
 			s = ss.str();
 		}
 		return s;
 	}
-};
-
-
-#ifdef __WXMSW__
-class CUniqueIdImplMS : public CUniqueIdImpl
-{
-public:
-	CUniqueIdImplMS()
-		: m_uuid{0}
-	{
-		clear();
-	}
-
-	CUniqueIdImplMS(CUniqueIdImplMS const& rhs)
-		: m_uuid{rhs.m_uuid}
-	{
-	}
-
-	void clear() override
-	{
-		UuidCreateNil(&m_uuid);
-	}
-
-	bool Create() override
-	{
-		return RPC_S_OK == UuidCreate(&m_uuid);
-	}
-
-	CUniqueIdImpl* Clone() const override
-	{
-		return new CUniqueIdImplMS(*this);
-	}
-
-	bool IsNull() const override
-	{
-		UUID id1 = m_uuid;
-		RPC_STATUS status;
-		int rc = UuidIsNil(&id1, &status);
-		if (RPC_S_OK == status)
-			return rc == TRUE; // MS's TRUE
-		return false;
-	}
-
-	void Assign(CUniqueIdImpl const* rhs) override
-	{
-		m_uuid = static_cast<CUniqueIdImplMS const*>(rhs)->m_uuid;
-	}
-
-	bool IsEqual(CUniqueIdImpl const* rhs) const override
-	{
-		UUID id1 = m_uuid; // Because Uuid* takes non-const ptr.
-		UUID id2 = static_cast<CUniqueIdImplMS const*>(rhs)->m_uuid;
-		RPC_STATUS status;
-		int rc = UuidEqual(&id1, &id2, &status);
-		if (RPC_S_OK == status)
-			return rc == TRUE; // MS's TRUE
-		return false;
-	}
-
-	bool IsLessThan(CUniqueIdImpl const* rhs) const override
-	{
-		UUID id1 = m_uuid;
-		UUID id2 = static_cast<CUniqueIdImplMS const*>(rhs)->m_uuid;
-		RPC_STATUS status;
-		int rc = UuidCompare(&id1, &id2, &status);
-		if (RPC_S_OK == status)
-			return rc < 0;
-		return false;
-	}
-
-	std::wstring ToString() const override
-	{
-		std::wstring str(L"00000000-0000-0000-0000-000000000000");
-		RPC_WSTR rpcstr = nullptr;
-		if (RPC_S_OK == UuidToStringW(&m_uuid, &rpcstr))
-		{
-			str = (wchar_t*)rpcstr;
-			RpcStringFreeW(&rpcstr);
-		}
-		return str;
-	}
-
-	bool ParseString(std::wstring const& str) override
-	{
-		// This only recognizes format "hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh"
-		std::wstring s = NormalizeString(str);
-		bool rc = (RPC_S_OK == UuidFromStringW((RPC_WSTR)s.c_str(), &m_uuid));
-		if (!rc)
-			clear();
-		return rc;
-	}
-
-private:
-	UUID m_uuid;
-};
 #endif
+
+	uuids::uuid m_uuid;
+};
 
 /////////////////////////////////////////////////////////////////////////////
 
 CUniqueId::CUniqueId(bool autoCreate)
-#ifdef __WXMSW__
-	: m_impl(new CUniqueIdImplMS())
-#else
 	: m_impl(new CUniqueIdImpl())
-#endif
 {
 	if (autoCreate)
 		m_impl->Create();

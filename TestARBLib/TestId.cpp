@@ -40,51 +40,39 @@ TEST_CASE("UniqueId")
 	SECTION("AutoCreate")
 	{
 		CUniqueId id(true);
-#ifdef __WXMSW__
 		REQUIRE(!id.IsNull());
-#endif
 	}
 
 
 	SECTION("clear")
 	{
 		CUniqueId id(true);
-#ifdef __WXMSW__
 		REQUIRE(!id.IsNull());
 		id.clear();
 		REQUIRE(id.IsNull());
-#endif
 	}
 
 
 	SECTION("Create")
 	{
 		CUniqueId id;
-#ifdef __WXMSW__
 		REQUIRE(id.Create());
 		REQUIRE(!id.IsNull());
-#else
-		// Only implemented on Windows for now.
-		REQUIRE(!id.Create());
-#endif
 	}
 
 
 	SECTION("Equal")
 	{
-#ifdef __WXMSW__
 		CUniqueId id1, id2;
 		REQUIRE(id1.Create());
 		REQUIRE(id2.Create());
 		REQUIRE(id1 != id2);
-#endif
 	}
 
 
 	SECTION("Formats")
 	{
-#ifdef __WXMSW__
-		constexpr wchar_t* k_uuids[] = {
+		static const wchar_t* k_uuids[] = {
 			L"fbec55d8-6243-4142-b534-0e96c9f12270",
 			L"{fbec55d8-6243-4142-b534-0e96c9f12270}",
 			L"fbec55d862434142b5340e96c9f12270",
@@ -95,13 +83,11 @@ TEST_CASE("UniqueId")
 			CUniqueId id(uuid);
 			REQUIRE(!id.IsNull());
 		}
-#endif
 	}
 
 
 	SECTION("Strings")
 	{
-#ifdef __WXMSW__
 		std::wstring uuid(L"fbec55d8-6243-4142-b534-0e96c9f12270");
 		CUniqueId id(uuid);
 		REQUIRE(!id.IsNull());
@@ -115,13 +101,11 @@ TEST_CASE("UniqueId")
 		// It always creates lower case uuids.
 		REQUIRE(id2.ToString() != uuid2);
 		REQUIRE(id2.ToString() == uuid);
-#endif
 	}
 
 
 	SECTION("Parse")
 	{
-#ifdef __WXMSW__
 		std::wstring uuid(L"fbec55d8-6243-4142-b534-0e96c9f12270");
 		CUniqueId id;
 		REQUIRE(id.IsNull());
@@ -131,7 +115,6 @@ TEST_CASE("UniqueId")
 		std::wstring uuidBad(L"fbec55d8-6243-4142-b534-0e96c");
 		REQUIRE(!id.ParseString(uuidBad));
 		REQUIRE(id.IsNull());
-#endif
 	}
 
 }

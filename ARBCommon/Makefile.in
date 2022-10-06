@@ -17,7 +17,7 @@ TOPBUILDDIR = ./@top_builddir@
 ##########
 # Compile flags, list include directories
 ##########
-INCLUDES += -I$(SRCDIR)/../Include -I$(SRCDIR)/../3rdParty/LibFmt/include
+INCLUDES += -I$(SRCDIR)/../Include -I$(SRCDIR)/../3rdParty/LibFmt/include -I$(SRCDIR)/../3rdParty/gsl/include -I$(SRCDIR)/../3rdParty/stduuid/include
 
 ##########
 # List of programs and archives to link

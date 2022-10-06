@@ -83,3 +83,15 @@ DevNote: When updating, update .../res/LibTidyHtml.rc2 with version number and c
 - https://github.com/htacg/tidy-html5/releases
 - Only 'README', 'include', and 'src' directories are included.
 -- #include "LibTidyHtml/LibTidyHtml.h"
+
+stduuid: post-v1.2.2 (2022-6-16 master branch)
+.../stduuid/
+- https://github.com/mariusbancila/stduuid
+- Only copied 'uuid.h' from github, plus LICENSE, README.md
+- Note: I created an extra directory in the include that's not in the source.
+-- #include "stduuid/uuid.h"
+
+gsl: v4.0.0 (needed for stduuid for pre-C++20)
+.../gsl/
+- https://github.com/microsoft/GSL
+- Only copied 'include' from github, plus LICENSE, README.md

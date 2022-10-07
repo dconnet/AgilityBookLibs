@@ -44,6 +44,14 @@ TEST_CASE("UniqueId")
 	}
 
 
+	SECTION("Create")
+	{
+		CUniqueId id;
+		REQUIRE(id.Create());
+		REQUIRE(!id.IsNull());
+	}
+
+
 	SECTION("clear")
 	{
 		CUniqueId id(true);
@@ -53,11 +61,13 @@ TEST_CASE("UniqueId")
 	}
 
 
-	SECTION("Create")
+	SECTION("Clone")
 	{
 		CUniqueId id;
 		REQUIRE(id.Create());
 		REQUIRE(!id.IsNull());
+		CUniqueId id2(id);
+		REQUIRE(!id2.IsNull());
 	}
 
 
@@ -67,6 +77,8 @@ TEST_CASE("UniqueId")
 		REQUIRE(id1.Create());
 		REQUIRE(id2.Create());
 		REQUIRE(id1 != id2);
+		id1 = id2;
+		REQUIRE(id1 == id2);
 	}
 
 

@@ -71,7 +71,7 @@ public:
 
 	CUniqueIdImpl* Clone() const
 	{
-		return new CUniqueIdImpl();
+		return new CUniqueIdImpl(*this);
 	}
 
 	bool IsNull() const

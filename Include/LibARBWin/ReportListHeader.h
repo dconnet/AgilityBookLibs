@@ -38,8 +38,8 @@ class ARBWIN_API CReportListHeader
 public:
 	struct ColumnInfo
 	{
-		long index; // For debugging to ensure integrity
-		int fmt;
+		long index{-1}; // For debugging to ensure integrity
+		int fmt{0};
 		std::wstring name;
 	};
 

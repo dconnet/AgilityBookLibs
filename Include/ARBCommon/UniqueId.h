@@ -34,7 +34,7 @@ class CUniqueIdImpl;
 class ARBCOMMON_API CUniqueId
 {
 public:
-	explicit CUniqueId(bool autoCreate = false);
+	CUniqueId();
 	explicit CUniqueId(std::wstring const& str);
 	CUniqueId(CUniqueId const& rhs);
 	~CUniqueId();

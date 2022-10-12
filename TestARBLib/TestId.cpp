@@ -37,13 +37,6 @@ TEST_CASE("UniqueId")
 	}
 
 
-	SECTION("AutoCreate")
-	{
-		CUniqueId id(true);
-		REQUIRE(!id.IsNull());
-	}
-
-
 	SECTION("Create")
 	{
 		CUniqueId id;
@@ -54,7 +47,8 @@ TEST_CASE("UniqueId")
 
 	SECTION("clear")
 	{
-		CUniqueId id(true);
+		CUniqueId id;
+		id.Create();
 		REQUIRE(!id.IsNull());
 		id.clear();
 		REQUIRE(id.IsNull());
@@ -94,6 +88,12 @@ TEST_CASE("UniqueId")
 		{
 			CUniqueId id(uuid);
 			REQUIRE(!id.IsNull());
+
+			CUniqueId id2;
+			REQUIRE(id2.ParseString(uuid));
+
+			REQUIRE(id == id2);
+			REQUIRE(id.ToString() == id2.ToString());
 		}
 	}
 
@@ -127,6 +127,23 @@ TEST_CASE("UniqueId")
 		std::wstring uuidBad(L"fbec55d8-6243-4142-b534-0e96c");
 		REQUIRE(!id.ParseString(uuidBad));
 		REQUIRE(id.IsNull());
+	}
+
+
+	SECTION("ParseEquality")
+	{
+		const wchar_t* uuid = L"fbec55d8-6243-4142-b534-0e96c9f12270";
+
+		CUniqueId id(uuid);
+		REQUIRE(!id.IsNull());
+
+		CUniqueId id2;
+		REQUIRE(id2.IsNull());
+		REQUIRE(id2.ParseString(uuid));
+		REQUIRE(!id2.IsNull());
+
+		REQUIRE(id.ToString() == id2.ToString());
+		REQUIRE(id == id2);
 	}
 
 }

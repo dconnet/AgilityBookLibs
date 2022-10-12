@@ -144,11 +144,9 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 
-CUniqueId::CUniqueId(bool autoCreate)
+CUniqueId::CUniqueId()
 	: m_impl(new CUniqueIdImpl())
 {
-	if (autoCreate)
-		m_impl->Create();
 }
 
 

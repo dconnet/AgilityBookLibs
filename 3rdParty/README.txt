@@ -1,18 +1,18 @@
 3rd Party code.
 
-Catch: v2.13.8
+Catch: v2.13.9
 .../catch/catch2/
 - https://github.com/philsquared/Catch/releases
 -- #include "catch2/catch.hpp"
 
-Catch: v3.0.1
+Catch: v3.1.1
 .../catch/catch3/
 - https://github.com/philsquared/Catch/releases
 - Only copied 'src' from github, plus LICENSE.txt, README.md
 -- #include "catch2/catch_all.hpp"
 
 
-LibFmt: fmtlib v9.0.0
+LibFmt: fmtlib v9.1.0
 .../LibFmt/
 DevNote: When updating, update .../res/LibFmt.rc2 with version number and copyright
 - https://github.com/fmtlib/fmt/releases

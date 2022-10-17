@@ -444,6 +444,9 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_case_info_hasher.hpp">
       <Filter>Source Files\internal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\catch_get_random_seed.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_approx.cpp">
@@ -730,6 +733,9 @@
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_helpers.cpp">
       <Filter>Source Files\reporters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_get_random_seed.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

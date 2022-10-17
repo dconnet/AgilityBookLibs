@@ -31,6 +31,7 @@ libcatch3_SRCS = \
 	src/catch2/catch_approx.cpp \
 	src/catch2/catch_assertion_result.cpp \
 	src/catch2/catch_config.cpp \
+	src/catch2/catch_get_random_seed.cpp \
 	src/catch2/catch_message.cpp \
 	src/catch2/catch_registry_hub.cpp \
 	src/catch2/catch_session.cpp \

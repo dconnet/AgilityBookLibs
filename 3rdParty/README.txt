@@ -1,6 +1,6 @@
 3rd Party code.
 
-Catch: v2.13.9
+Catch: v2.13.10
 .../catch/catch2/
 - https://github.com/philsquared/Catch/releases
 -- #include "catch2/catch.hpp"
@@ -84,7 +84,7 @@ DevNote: When updating, update .../res/LibTidyHtml.rc2 with version number and c
 - Only 'README', 'include', and 'src' directories are included.
 -- #include "LibTidyHtml/LibTidyHtml.h"
 
-stduuid: post-v1.2.2 (2022-6-16 master branch)
+stduuid: post-v1.2.2 (2022-6-16 master branch, commit 3afe7193)
 .../stduuid/
 - https://github.com/mariusbancila/stduuid
 - Only copied 'uuid.h' from github, plus LICENSE, README.md

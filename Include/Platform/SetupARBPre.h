@@ -129,6 +129,11 @@
 #pragma warning(disable : 5045) // Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 #pragma warning(disable : 5204) // class has virtual functions, but its trivial destructor is not virtual; instances of objects derived from this class may not be destructed correctly
 
+// Introduced in VS2022 17.4 (compiler 19.34). MS headers are triggering it.
+// (some are also triggered by WX headers)
+#pragma warning(disable : 5262) // implicit fall-through occurs here; are you missing a break statement? Use [[fallthrough]] when a break statement is intentionally omitted between cases
+#pragma warning(disable : 5264) // 'variable-name': 'const' variable is not used
+
 // x86 release builds trip on Catch
 // Just defining this before the Catch headers isn't good enough
 #if defined(_M_IX86) && defined(NDEBUG)

@@ -65,11 +65,11 @@ INSTALL_BIN = @PACKAGE_TESTLIB_SHORTNAME@
 
 @PACKAGE_TESTLIB_SHORTNAME@.dat: res/CompileDatList.txt
 	echo "LANGDIR $(CURDIR)"
-	python3 $(SRCDIR)/../Projects/CompileLang.py -w $(WXWIN) -s $(SRCDIR)/../lang arb.po $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@
-	python3 $(SRCDIR)/../Projects/CompileDatafile.py -x -l $(CURDIR)/lang "$(SRCDIR)/res/CompileDatList.txt" $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@
+	$(PYTHON3) $(SRCDIR)/../Projects/CompileLang.py -w $(WXWIN) -s $(SRCDIR)/../lang arb.po $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@
+	$(PYTHON3) $(SRCDIR)/../Projects/CompileDatafile.py -x -l $(CURDIR)/lang "$(SRCDIR)/res/CompileDatList.txt" $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@
 
 all: @PACKAGE_TESTLIB_SHORTNAME@.dat @PACKAGE_TESTLIB_SHORTNAME@
-	python3 $(SRCDIR)/../Projects/RunARBTests.py $(SRCDIR) $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@ Mac
+	$(PYTHON3) $(SRCDIR)/../Projects/RunARBTests.py $(SRCDIR) $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@ Mac
 
 dist:: all $(PHONY)
 

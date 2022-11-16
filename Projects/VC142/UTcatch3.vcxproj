@@ -279,6 +279,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_case_sensitive.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_clara.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_commandline.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compare_traits.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compiler_capabilities.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_android_logwrite.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_counter.hpp" />
@@ -297,6 +298,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_exception_translator_registry.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_fatal_condition_handler.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_floating_point_helpers.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_getenv.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_lazy_expr.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_leak_detector.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_list.hpp" />
@@ -306,6 +308,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_noncopyable.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_optional.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_output_redirect.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_parse_numbers.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_platform.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_polyfills.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor.hpp" />
@@ -415,12 +418,14 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_exception_translator_registry.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_fatal_condition_handler.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_floating_point_helpers.cpp" />
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_getenv.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_lazy_expr.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_leak_detector.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_list.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_main.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_message_info.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_output_redirect.cpp" />
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_parse_numbers.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_polyfills.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_number_generator.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_seed_generation.cpp" />
@@ -441,6 +446,7 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_tag_alias_registry.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_case_registry_impl.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_case_tracker.cpp" />
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_failure_exception.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_registry.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_spec_parser.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_textflow.cpp" />

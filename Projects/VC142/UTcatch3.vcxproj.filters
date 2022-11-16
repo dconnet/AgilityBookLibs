@@ -447,6 +447,15 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\catch_get_random_seed.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compare_traits.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_getenv.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_parse_numbers.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_approx.cpp">
@@ -736,6 +745,15 @@
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_get_random_seed.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_getenv.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_parse_numbers.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_failure_exception.cpp">
+      <Filter>Source Files\internal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -73,6 +73,7 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_exception_translator_registry.cpp \
 	src/catch2/internal/catch_fatal_condition_handler.cpp \
 	src/catch2/internal/catch_floating_point_helpers.cpp \
+	src/catch2/internal/catch_getenv.cpp \
 	src/catch2/internal/catch_istream.cpp \
 	src/catch2/internal/catch_lazy_expr.cpp \
 	src/catch2/internal/catch_leak_detector.cpp \
@@ -80,6 +81,7 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_main.cpp \
 	src/catch2/internal/catch_message_info.cpp \
 	src/catch2/internal/catch_output_redirect.cpp \
+	src/catch2/internal/catch_parse_numbers.cpp \
 	src/catch2/internal/catch_polyfills.cpp \
 	src/catch2/internal/catch_random_number_generator.cpp \
 	src/catch2/internal/catch_random_seed_generation.cpp \
@@ -99,6 +101,7 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_test_case_info_hasher.cpp \
 	src/catch2/internal/catch_test_case_registry_impl.cpp \
 	src/catch2/internal/catch_test_case_tracker.cpp \
+	src/catch2/internal/catch_test_failure_exception.cpp \
 	src/catch2/internal/catch_test_registry.cpp \
 	src/catch2/internal/catch_test_spec_parser.cpp \
 	src/catch2/internal/catch_textflow.cpp \

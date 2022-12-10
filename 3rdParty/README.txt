@@ -5,7 +5,7 @@ Catch: v2.13.10
 - https://github.com/philsquared/Catch/releases
 -- #include "catch2/catch.hpp"
 
-Catch: v3.2.0
+Catch: v3.2.1
 .../catch/catch3/
 - https://github.com/philsquared/Catch/releases
 - Only copied 'src' from github, plus LICENSE.txt, README.md

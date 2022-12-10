@@ -456,6 +456,9 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_parse_numbers.hpp">
       <Filter>Source Files\internal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_logical_traits.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_approx.cpp">

@@ -339,8 +339,7 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 		auto data = GetAboutData();
 		if (!data.empty() && wxTheClipboard && wxTheClipboard->Open())
 		{
-			auto dataObj = new wxTextDataObject(data);
-			dataObj->SetFormat(wxDataFormat(wxDF_UNICODETEXT));
+			auto* dataObj = new wxTextDataObject(data);
 			if (!wxTheClipboard->SetData(dataObj))
 				delete dataObj;
 			wxTheClipboard->Flush();

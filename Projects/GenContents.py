@@ -2,6 +2,7 @@
 # Generate Mac App packaging files: Info.plist, version.plist, PkgInfo
 #
 # Revision History
+# 2022-12-20 Added Exception Domain for App Transport Security
 # 2022-07-27 Created
 """GenContents.py [-i icns] [-l lang] [-e ext] [-d desc] -n name -v version -c copyright contents
 -i icns:      File name
@@ -103,7 +104,23 @@ def GenInfo(contents, name, shortVer, ver, copyright, icnsFile, loc, ext, extDes
 	print('\t<string>Fonts</string>', file=output)
 	print('\t<key>NSPrincipalClass</key>', file=output)
 	print('\t<string>wxNSApplication</string>', file=output)
+	print('\t<key>NSAppTransportSecurity</key>', file=output)
+	print('\t<dict>', file=output)
+	print('\t\t<key>NSAllowsArbitraryLoads</key>', file=output)
+	print('\t\t<false/>', file=output)
+	print('\t\t<key>NSExceptionDomains</key>', file=output)
+	print('\t\t<dict>', file=output)
+	print('\t\t\t<key>agilityrecordbook.com</key>', file=output)
+	print('\t\t\t<dict>', file=output)
+	print('\t\t\t\t<key>NSIncludesSubdomains</key>', file=output)
+	print('\t\t\t\t<true/>', file=output)
+	print('\t\t\t\t<key>NSExceptionAllowsInsecureHTTPLoads</key>', file=output)
+	print('\t\t\t\t<true/>', file=output)
+	print('\t\t\t</dict>', file=output)
+	print('\t\t</dict>', file=output)
+	print('\t</dict>', file=output)
 	print('</dict>', file=output)
+
 	print('</plist>', file=output)
 	return True
 

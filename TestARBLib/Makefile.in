@@ -72,7 +72,3 @@ all: @PACKAGE_TESTLIB_SHORTNAME@.dat @PACKAGE_TESTLIB_SHORTNAME@
 	$(PYTHON3) $(SRCDIR)/../Projects/RunARBTests.py $(SRCDIR) $(CURDIR) @PACKAGE_TESTLIB_SHORTNAME@ Mac
 
 dist:: all $(PHONY)
-
-################################################################################
-# End of File: Makefile                                                        #
-################################################################################

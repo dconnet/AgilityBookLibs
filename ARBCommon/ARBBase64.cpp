@@ -101,7 +101,7 @@ namespace ARBCommon
 namespace ARBBase64
 {
 
-bool Decode(std::wstring const& inBase64, std::vector<unsigned char>& outBinData)
+bool Decode(std::string const& inBase64, std::vector<unsigned char>& outBinData)
 {
 	outBinData.clear();
 	size_t outBytes = 0;
@@ -186,7 +186,7 @@ bool Decode(std::wstring const& inBase64, std::vector<unsigned char>& outBinData
 }
 
 
-bool Encode(std::vector<unsigned char> const& inBinData, std::wstring& outData)
+bool Encode(std::vector<unsigned char> const& inBinData, std::string& outData)
 {
 	outData.clear();
 	if (inBinData.empty())
@@ -303,8 +303,7 @@ bool Encode(std::vector<unsigned char> const& inBinData, std::wstring& outData)
 	if (0 < nData)
 	{
 		bOk = true;
-		std::string str(encoded.begin(), encoded.begin() + nData);
-		outData = StringUtil::stringW(str);
+		outData = std::string(encoded.begin(), encoded.begin() + nData);
 	}
 	return bOk;
 }

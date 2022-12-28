@@ -672,12 +672,30 @@ std::wstring ElementNode::GetValue() const
 }
 
 
+void ElementNode::SetValue(std::string const& inValue)
+{
+	std::wstring str;
+	if (!inValue.empty())
+		str = StringUtil::stringW(inValue);
+	SetValue(str);
+}
+
+
 void ElementNode::SetValue(std::wstring const& inValue)
 {
 	RemoveAllTextNodes();
 	ElementTextPtr pText = ElementText::New();
 	pText->SetValue(inValue);
 	m_Elements.push_back(pText);
+}
+
+
+void ElementNode::SetValue(char const* const inValue)
+{
+	std::wstring str;
+	if (inValue)
+		str = StringUtil::stringW(inValue, strlen(inValue));
+	SetValue(str);
 }
 
 
@@ -1744,9 +1762,24 @@ std::wstring ElementText::GetValue() const
 }
 
 
+void ElementText::SetValue(std::string const& inValue)
+{
+	m_Value = StringUtil::stringW(inValue);
+}
+
+
 void ElementText::SetValue(std::wstring const& inValue)
 {
 	m_Value = inValue;
+}
+
+
+void ElementText::SetValue(char const* const inValue)
+{
+	if (inValue)
+		m_Value = StringUtil::stringW(inValue, strlen(inValue));
+	else
+		m_Value.clear();
 }
 
 

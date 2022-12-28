@@ -56,7 +56,7 @@ namespace dconSoft
 namespace ARBCommon
 {
 
-bool BinaryData::Decode(std::wstring const& inBase64, std::vector<unsigned char>& outBinData)
+bool BinaryData::Decode(std::string const& inBase64, std::vector<unsigned char>& outBinData)
 {
 	outBinData.clear();
 	if (inBase64.empty())
@@ -96,7 +96,7 @@ bool BinaryData::Decode(std::wstring const& inBase64, std::vector<unsigned char>
 }
 
 
-bool BinaryData::Encode(std::vector<unsigned char> const& inBinData, std::wstring& outBase64)
+bool BinaryData::Encode(std::vector<unsigned char> const& inBinData, std::string& outBase64)
 {
 	outBase64.clear();
 	if (inBinData.empty())
@@ -131,7 +131,7 @@ bool BinaryData::Encode(std::vector<unsigned char> const& inBinData, std::wstrin
 
 	if (!pData.empty())
 	{
-		std::wstring tmp;
+		std::string tmp;
 		bOk = ARBBase64::Encode(pData, tmp);
 		outBase64 = tmp;
 	}
@@ -140,7 +140,7 @@ bool BinaryData::Encode(std::vector<unsigned char> const& inBinData, std::wstrin
 }
 
 
-bool BinaryData::EncodeFile(std::wstring const& inFileName, std::wstring& outBase64)
+bool BinaryData::EncodeFile(std::wstring const& inFileName, std::string& outBase64)
 {
 	outBase64.clear();
 
@@ -185,7 +185,7 @@ bool BinaryData::EncodeFile(std::wstring const& inFileName, std::wstring& outBas
 
 	if (!pData.empty())
 	{
-		std::wstring tmp;
+		std::string tmp;
 		bOk = ARBBase64::Encode(pData, tmp);
 		outBase64 = tmp;
 	}
@@ -194,7 +194,7 @@ bool BinaryData::EncodeFile(std::wstring const& inFileName, std::wstring& outBas
 }
 
 
-bool BinaryData::DecodeString(std::wstring const& inBase64, std::wstring& outData)
+bool BinaryData::DecodeString(std::string const& inBase64, std::string& outData)
 {
 	if (inBase64.empty())
 	{
@@ -204,14 +204,12 @@ bool BinaryData::DecodeString(std::wstring const& inBase64, std::wstring& outDat
 	std::vector<unsigned char> data;
 	if (!BinaryData::Decode(inBase64, data))
 		return false;
-	// TODO: Better conversion
-	std::string tmp(data.begin(), data.end());
-	outData = StringUtil::stringW(tmp);
+	outData = std::string(data.begin(), data.end());
 	return true;
 }
 
 
-bool BinaryData::EncodeString(std::wstring const& inData, std::wstring& outBase64)
+bool BinaryData::EncodeString(std::string const& inData, std::string& outBase64)
 {
 	outBase64.clear();
 	if (inData.empty())
@@ -220,8 +218,7 @@ bool BinaryData::EncodeString(std::wstring const& inData, std::wstring& outBase6
 	// the output string - which when streamed, then includes the null. Which
 	// in an ostringstream, terminates the string on output of the stream.
 	// TODO: Better conversion
-	std::string tmp(StringUtil::stringA(inData));
-	std::vector<unsigned char> data(tmp.begin(), tmp.end());
+	std::vector<unsigned char> data(inData.begin(), inData.end());
 	return BinaryData::Encode(data, outBase64);
 }
 

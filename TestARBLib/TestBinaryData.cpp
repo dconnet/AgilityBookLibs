@@ -52,12 +52,12 @@ TEST_CASE("BinaryData")
 		// clang-format on
 	};
 	// compressed, encoded gif file (Note, '\n' is just formatting - but needed to check for equality)
-	static const std::wstring EncodedData(
-		L"eJxz93SzsExkZWBl2MwAAg1g3ACmGsCsAwcONDQ0/AcK/Gf4D6b+g1lAoAPSAdLLwMIpcOK7ygKx\n87uUGawBGnIbbQ==");
+	static const std::string EncodedData(
+		"eJxz93SzsExkZWBl2MwAAg1g3ACmGsCsAwcONDQ0/AcK/Gf4D6b+g1lAoAPSAdLLwMIpcOK7ygKx\n87uUGawBGnIbbQ==");
 	// String
-	static const std::wstring RawString(L"This is a test of a string");
+	static const std::string RawString("This is a test of a string");
 	// compressed, encoded string
-	static const std::wstring EncodedString(L"eJwLycgsVgCiRIWS1OIShfw0IKu4pCgzLx0AeIAJIw==");
+	static const std::string EncodedString("eJwLycgsVgCiRIWS1OIShfw0IKu4pCgzLx0AeIAJIw==");
 
 
 	SECTION("RawDecode")
@@ -73,7 +73,7 @@ TEST_CASE("BinaryData")
 
 	SECTION("RawEncode")
 	{
-		std::wstring str;
+		std::string str;
 		REQUIRE(BinaryData::Encode(RawData, str));
 		REQUIRE(EncodedData == str);
 	}
@@ -84,7 +84,7 @@ TEST_CASE("BinaryData")
 
 	SECTION("StringDecode")
 	{
-		std::wstring str;
+		std::string str;
 		REQUIRE(BinaryData::DecodeString(EncodedString, str));
 		REQUIRE(RawString == str);
 	}
@@ -92,17 +92,17 @@ TEST_CASE("BinaryData")
 
 	SECTION("StringEncode")
 	{
-		std::wstring str;
+		std::string str;
 		REQUIRE(BinaryData::EncodeString(RawString, str));
 		REQUIRE(EncodedString == str);
 	}
 
 	SECTION("RoundTrip")
 	{
-		std::wstring str;
+		std::string str;
 		REQUIRE(BinaryData::EncodeString(RawString, str));
 		REQUIRE(EncodedString == str);
-		std::wstring str2;
+		std::string str2;
 		REQUIRE(BinaryData::DecodeString(str, str2));
 		REQUIRE(RawString == str2);
 	}

@@ -41,7 +41,7 @@ namespace ARBBase64
  * @param outBinData Decoded buffer
  * @return Success
  */
-ARBCOMMON_API bool Decode(std::wstring const& inBase64, std::vector<unsigned char>& outBinData);
+ARBCOMMON_API bool Decode(std::string const& inBase64, std::vector<unsigned char>& outBinData);
 
 /**
  * Encode data
@@ -49,7 +49,7 @@ ARBCOMMON_API bool Decode(std::wstring const& inBase64, std::vector<unsigned cha
  * @param outData Encoded data
  * @return Success
  */
-ARBCOMMON_API bool Encode(std::vector<unsigned char> const& inBinData, std::wstring& outData);
+ARBCOMMON_API bool Encode(std::vector<unsigned char> const& inBinData, std::string& outData);
 
 } // namespace ARBBase64
 } // namespace ARBCommon

@@ -131,7 +131,9 @@ public:
 	 * @pre GetElementCount() must be 0.
 	 * @param inValue New value for this element.
 	 */
+	virtual void SetValue(std::string const& inValue) = 0;
 	virtual void SetValue(std::wstring const& inValue) = 0;
+	virtual void SetValue(char const* const inValue) = 0;
 	virtual void SetValue(wchar_t const* const inValue) = 0;
 	virtual void SetValue(short inValue) = 0;
 	virtual void SetValue(unsigned short inValue) = 0;
@@ -164,7 +166,9 @@ public:
 	std::wstring const& GetName() const override;
 	void SetName(std::wstring const& inName) override;
 	std::wstring GetValue() const override;
+	void SetValue(std::string const& inValue) override;
 	void SetValue(std::wstring const& inValue) override;
+	void SetValue(char const* const inValue) override;
 	void SetValue(wchar_t const* const inValue) override;
 	void SetValue(short inValue) override;
 	void SetValue(unsigned short inValue) override;
@@ -443,7 +447,9 @@ public:
 	std::wstring const& GetName() const override;
 	void SetName(std::wstring const& inName) override;
 	std::wstring GetValue() const override;
+	void SetValue(std::string const& inValue) override;
 	void SetValue(std::wstring const& inValue) override;
+	void SetValue(char const* const inValue) override;
 	void SetValue(wchar_t const* const inValue) override;
 	void SetValue(short inValue) override;
 	void SetValue(unsigned short inValue) override;

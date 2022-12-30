@@ -3,11 +3,18 @@
   <asmv3:application xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
     <asmv3:windowsSettings
          xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">
-      <dpiAware>True</dpiAware>
+	  <!-- These 2 settings can be at different levels -->
+      <dpiAware>true</dpiAware>
+	  <dpiAwareness>system</dpiAwareness>
 	  <!--
-      <dpiAware>True</dpiAware> System dpi-aware
-      <dpiAware>Per-monitor</dpiAware> Win8.1, pre Win8.1: not aware
-      <dpiAware>True/PM</dpiAware> Win8.1, pre Win8.1: aware
+      <dpiAware>false</dpiAware> unaware
+      <dpiAware>true</dpiAware> System aware
+      <dpiAware>true/pm</dpiAware> Per monitor aware
+	  Windows 10, v1607+
+	  <dpiAwareness>unaware</dpiAwareness>
+	  <dpiAwareness>system</dpiAwareness>
+	  <dpiAwareness>PerMonitor</dpiAwareness>
+	  <dpiAwareness>PerMonitorV2</dpiAwareness>
 	  -->
     </asmv3:windowsSettings>
   </asmv3:application>

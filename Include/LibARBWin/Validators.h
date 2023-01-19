@@ -52,29 +52,33 @@ public:
 		unsigned short* val,
 		unsigned short defVal = 0,
 		bool bUseDefOnEmpty = true,
-		wxChar const* errMsg = nullptr);
+		wxString const& errMsg = wxString());
 	explicit CGenericValidator(
 		short* val,
 		short defVal = 0,
 		bool bUseDefOnEmpty = true,
-		wxChar const* errMsg = nullptr);
-	explicit CGenericValidator(long* val, long defVal = 0, bool bUseDefOnEmpty = true, wxChar const* errMsg = nullptr);
+		wxString const& errMsg = wxString());
+	explicit CGenericValidator(
+		long* val,
+		long defVal = 0,
+		bool bUseDefOnEmpty = true,
+		wxString const& errMsg = wxString());
 	explicit CGenericValidator(
 		double* val,
 		int inPrec = 2,
 		double defVal = 0.0,
 		bool bUseDefOnEmpty = true,
-		wxChar const* errMsg = nullptr);
+		wxString const& errMsg = wxString());
 	CGenericValidator(
 		double* val,
 		ARBCommon::ARBDouble::ZeroStrip strip,
 		int inPrec = 2,
 		double defVal = 0.0,
 		bool bUseDefOnEmpty = true,
-		wxChar const* errMsg = nullptr);
-	explicit CGenericValidator(ARBCommon::ARBDate* val, wxChar const* errMsg = nullptr);
-	explicit CGenericValidator(wxDateTime* val, wxChar const* errMsg = nullptr);
-	explicit CGenericValidator(wxDateTime* val, bool showSeconds, wxChar const* errMsg = nullptr);
+		wxString const& errMsg = wxString());
+	explicit CGenericValidator(ARBCommon::ARBDate* val, wxString const& errMsg = wxString());
+	explicit CGenericValidator(wxDateTime* val, wxString const& errMsg = wxString());
+	explicit CGenericValidator(wxDateTime* val, bool showSeconds, wxString const& errMsg = wxString());
 	CGenericValidator(CGenericValidator const& rhs);
 	~CGenericValidator()
 	{
@@ -130,7 +134,7 @@ public:
 	explicit CTrimValidator(
 		wxString* valPtr = nullptr,
 		long trimStyle = TRIMVALIDATOR_DEFAULT,
-		wxChar const* errMsg = nullptr); // Message to use when validation fails
+		wxString const& errMsg = wxString()); // Message to use when validation fails
 	CTrimValidator(CTrimValidator const& rhs);
 	~CTrimValidator()
 	{

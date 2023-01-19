@@ -74,13 +74,13 @@ std::wstring GetTranslation(wchar_t const* const inId)
 
 wxString stringWX(wchar_t const* const inStr, size_t inLen)
 {
-	return wxString(inStr, wxConvUTF8, inLen);
+	return wxString(inStr, inLen);
 }
 
 
 wxString stringWX(std::wstring const& inStr)
 {
-	return wxString(inStr.c_str(), wxConvUTF8, inStr.length());
+	return wxString(inStr.c_str(), inStr.length());
 }
 
 

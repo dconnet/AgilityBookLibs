@@ -357,6 +357,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_floating_point.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_predicate.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_quantifiers.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_range_equals.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_string.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_templated.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_vector.hpp" />

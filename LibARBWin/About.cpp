@@ -8,6 +8,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2023-02-13 Use wx version macros directly instead of via wxGetLibraryVersionInfo
  * 2022-08-13 Added 'Copy' button.
  * 2022-01-02 Add wx version to about dlg.
  * 2021-12-10 Change About API: Move CompiledOn to header. Otherwise, time
@@ -454,12 +455,8 @@ std::pair<wxString, wxString> CDlgAbout::GetAboutText(AboutText text) const
 		break;
 	case AboutText::wxWidgets:
 		label = L"wxWidgets";
-		content = wxString::Format(
-			"%d.%d.%d.%d",
-			wxGetLibraryVersionInfo().GetMajor(),
-			wxGetLibraryVersionInfo().GetMinor(),
-			wxGetLibraryVersionInfo().GetMicro(),
-			wxGetLibraryVersionInfo().GetRevision());
+		content
+			= wxString::Format("%d.%d.%d.%d", wxMAJOR_VERSION, wxMINOR_VERSION, wxRELEASE_NUMBER, wxSUBRELEASE_NUMBER);
 		break;
 	case AboutText::Scaling:
 		label = _("DPI scaling");

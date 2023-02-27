@@ -281,6 +281,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_commandline.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compare_traits.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compiler_capabilities.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_is_permutation.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_android_logwrite.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_counter.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_uncaught_exceptions.hpp" />

@@ -102,6 +102,9 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compiler_capabilities.hpp">
       <Filter>Source Files\internal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_is_permutation.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_uncaught_exceptions.hpp">
       <Filter>Source Files\internal</Filter>
     </ClInclude>

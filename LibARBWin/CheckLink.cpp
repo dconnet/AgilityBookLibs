@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2023-03-10 wxURL doesn't know https.
  * 2018-10-11 Moved to Win LibARBWin
  * 2009-09-13 Add support for wxWidgets 2.9, deprecate tstring.
  * 2009-02-20 Ported to wxWidgets.
@@ -45,6 +46,9 @@ bool CheckLink(std::wstring const& inLink, wxWindow* parent)
 			// Ok, check URL
 			wxURL url(inLink);
 			bOk = url.IsOk();
+			// Just assume if the scheme is https, this is a valid url.
+			if (!bOk && 0 == url.GetScheme().CmpNoCase(L"https"))
+				bOk = true;
 		}
 	}
 	return bOk;

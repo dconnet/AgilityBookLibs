@@ -107,6 +107,7 @@ TEST_CASE("Misc")
 	{
 		// Note: This test no longer hits the internet. It validates a local file existence, or a valid URL.
 		REQUIRE(CheckLink(L"http://www.agilityrecordbook.com/version2.xml"));
+		REQUIRE(CheckLink(L"https://www.agilityrecordbook.com/version2.xml"));
 		REQUIRE(!CheckLink(L"httpx://www.agilityrecordbook.com/versionXX.xml"));
 	}
 

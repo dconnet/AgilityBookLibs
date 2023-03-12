@@ -36,8 +36,15 @@ ARBCOMMON_API std::wstring SanitizeStringForHTML(std::wstring const& inRawData, 
 
 /**
  * These are the strings we recognize as platforms.
+ * On Windows, we use the compiled arch. Other OSs use native.
+ * The reason being we don't want to deal with a 32->64 bit MSI switch.
  */
 ARBCOMMON_API std::wstring GetARBArch();
+
+/**
+ * Get the native arch.
+ */
+ARBCOMMON_API std::wstring GetNativeARBArch();
 
 
 /**

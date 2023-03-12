@@ -196,14 +196,9 @@ std::wstring GetSystemInfo(wxWindow const* pWindow, CVersionNum const& ver)
 	{
 		fmt::format_to(
 			std::back_inserter(str),
-			L"{}{}",
+			L"{} ({}): ",
 			wxStandardPaths::Get().GetExecutablePath().wx_str(),
-#ifdef ARB_64BIT
-			L" (64-bit): "
-#else
-			L" (32-bit): "
-#endif
-		);
+			wxGetCpuArchitectureName().wx_str());
 		if (ver.Valid())
 			fmt::format_to(std::back_inserter(str), L"{}\n", ver.GetVersionString());
 		else

@@ -425,11 +425,7 @@ std::pair<wxString, wxString> CDlgAbout::GetAboutText(AboutText text) const
 		{
 			label = _("Version");
 			content = m_aboutInfo.version;
-#ifdef ARB_64BIT
-			content << L" " << _("(64-bit)");
-#else
-			content << L" " << _("(32-bit)");
-#endif
+			content << L" (" << wxGetCpuArchitectureName() << L")";
 		}
 		break;
 	case AboutText::CompiledOn:

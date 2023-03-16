@@ -42,6 +42,8 @@ class ARBWIN_API CMenuHelper
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CMenuHelper)
 public:
+	static bool GetMenuPosition(wxPoint& outPos, wxWindow const* ctrl, wxContextMenuEvent const& evt);
+
 	struct ItemData
 	{
 		// When reading the array of ItemData, it is assumed that all items of

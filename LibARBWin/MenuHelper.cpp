@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2023-03-16 Add GetMenuPosition helper.
  * 2022-09-26 Fixed problem in setting accel table with unset keycodes.
  * 2021-01-02 Added VerifyMenuShortcuts
  * 2018-10-11 Moved to Win LibARBWin
@@ -249,6 +250,34 @@ size_t FindItem(int id, std::vector<CMenuHelper::ItemData> const& menuItems)
 	return menuItems.size();
 }
 } // namespace
+
+
+// static
+bool CMenuHelper::GetMenuPosition(wxPoint& outPos, wxWindow const* ctrl, wxContextMenuEvent const& evt)
+{
+	outPos = evt.GetPosition(); // in screen
+	if (!ctrl)
+		return false;
+	bool bOk = true;
+	if (wxDefaultPosition == outPos)
+	{
+		wxRect rect = ctrl->GetScreenRect();
+		outPos = ::wxGetMousePosition();
+		if (!rect.Contains(outPos))
+		{
+			outPos.x = rect.GetLeft() + rect.GetWidth() / 3;
+			outPos.y = rect.GetTop() + rect.GetHeight() / 2;
+		}
+		outPos = ctrl->ScreenToClient(outPos);
+	}
+	else
+	{
+		outPos = ctrl->ScreenToClient(outPos);
+		wxRect rect = ctrl->GetClientRect();
+		bOk = rect.Contains(outPos);
+	}
+	return bOk;
+}
 
 
 CMenuHelper::CMenuHelper(

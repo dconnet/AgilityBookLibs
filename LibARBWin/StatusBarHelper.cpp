@@ -19,6 +19,8 @@
 #include "stdafx.h"
 #include "LibARBWin/StatusBarHelper.h"
 
+#include "LibARBWin/MenuHelper.h"
+
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
 #endif
@@ -121,15 +123,8 @@ int CStatusBarHelper::GetContextMenuFieldId(wxContextMenuEvent const& evt, wxSta
 	if (!statusbar)
 		return -1;
 	wxRect rect;
-	point = evt.GetPosition();
-	if (wxDefaultPosition == point)
-	{
-		rect = statusbar->GetScreenRect();
-		point = ::wxGetMousePosition();
-		if (!rect.Contains(point))
-			return -1;
-	}
-	point = statusbar->ScreenToClient(point);
+	if (!CMenuHelper::GetMenuPosition(point, statusbar, evt))
+		return -1;
 	for (int id = 1; id < static_cast<int>(m_Widths.size()); ++id)
 	{
 		if (statusbar->GetFieldRect(id, rect) && rect.Contains(point))

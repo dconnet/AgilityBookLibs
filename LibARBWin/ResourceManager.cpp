@@ -106,6 +106,9 @@ bool CResourceManager::LoadFile(wxString const& archiveFile, std::ostream& outDa
 
 wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& client, wxSize const& size)
 {
+	if (!m_callback)
+		return wxBitmap();
+
 	auto pWindow = m_callback->GetResourceWindow();
 	wxBitmap bmp;
 

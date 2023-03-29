@@ -2,6 +2,7 @@
 # Generate the message libraries and data files
 #
 # Revision History
+# 2023-03-29 Added option for a different updater name.
 # 2022-01-10 Ignore blank lines and '#' in filelist.
 # 2021-12-29 Fixed zip compression (py default was uncompressed archive)
 # 2021-12-20 Added -q option, removed unused -d option.
@@ -20,8 +21,9 @@
 # 2009-03-05 Fixed some parameter passing issues (spaces/hyphens in names)
 # 2009-03-01 Support multiple po files (by using msgcat)
 # 2009-01-02 Updated to support creation of data files
-"""CompileDatafile.py [-x] [-q] [-l langdir] [-f extrafilelist] filelist intermediateDir targetname
+"""CompileDatafile.py [-x] [-X exeName] [-q] [-l langdir] [-f extrafilelist] filelist intermediateDir targetname
 -x: Exclude ARBUpdater (not needed in test program)
+-X exeName: Update program name
 -q: Quiet mode
 -f extrafilelist: Additional files to include
 -l langdir: 'lang' directory containing MO files in lang ids dirs
@@ -41,6 +43,7 @@ import zipfile
 
 
 fileExtension = 'dat'
+updaterName = 'ARBUpdater.exe'
 
 
 class LockFile:
@@ -165,10 +168,10 @@ def GenFile(inputfiles, langdir, intermediateDir, targetname, verbose, bIncUpdat
 			zip.write(mofile, 'lang/' + langid + '/' + os.path.basename(mofile))
 
 	if bIncUpdater:
-		arbUpdater = intermediateDir + r'\..\ARBUpdater.exe'
+		arbUpdater = intermediateDir + '\\..\\' + updaterName
 		if os.access(arbUpdater, os.F_OK):
 			fileCount = fileCount + 1
-			zip.write(arbUpdater, 'ARBUpdater.exe')
+			zip.write(arbUpdater, updaterName)
 			sizefile = os.path.getsize(arbUpdater)
 			#if verbose:
 			#	print(sizefile, arbUpdater)
@@ -188,12 +191,14 @@ def GenFile(inputfiles, langdir, intermediateDir, targetname, verbose, bIncUpdat
 
 
 def main():
+	global updaterName
+
 	langdir = ''
 	inputfiles = set()
 	verbose = True
 	bIncUpdater = True
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], 'ql:f:x')
+		opts, args = getopt.getopt(sys.argv[1:], 'ql:f:xX:')
 	except getopt.error as msg:
 		print(msg)
 		print('Usage:', __doc__)
@@ -207,6 +212,8 @@ def main():
 			inputfiles.add(a)
 		elif '-x' == o:
 			bIncUpdater = False
+		elif '-X' == o:
+			updaterName = a
 	if not len(args) == 3:
 		print('Usage:', __doc__)
 		return 1

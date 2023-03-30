@@ -145,7 +145,6 @@ TEST_CASE("UniqueId")
 		REQUIRE(id.ToString() == id2.ToString());
 		REQUIRE(id == id2);
 	}
-
 }
 
 } // namespace ARBCommon

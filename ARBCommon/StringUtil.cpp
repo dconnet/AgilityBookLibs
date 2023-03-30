@@ -552,11 +552,13 @@ std::wstring Replace(std::wstring const& inStr, std::wstring const& inReplace, s
 std::wstring FormatBytes(double inSize, int inPrec, ByteSizeStyle inSizeStyle)
 {
 	// byte, kilo, mega, giga, tera, peta, exa, zetta, yotta, ronna, quetta
-	static wchar_t const* const sc_unitsSI[] = {L" B", L" kB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB", L"RB", L"QB"};
+	static wchar_t const* const sc_unitsSI[]
+		= {L" B", L" kB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB", L"RB", L"QB"};
 	// byte, kibi, mebi, gibi, tebi, pebi, exbi, zebi, yobi, ??, ??
 	static wchar_t const* const sc_unitsBinary[]
 		= {L" B", L" KiB", L" MiB", L" GiB", L" TiB", L" PiB", L" EiB", L"ZiB", L"YiB", L"RiB", L"QiB"};
-	static wchar_t const* const sc_unitsTrue[] = {L" B", L" KB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB", L"RB", L"QB"};
+	static wchar_t const* const sc_unitsTrue[]
+		= {L" B", L" KB", L" MB", L" GB", L" TB", L" PB", L" EB", L"ZB", L"YB", L"RB", L"QB"};
 	static const struct
 	{
 		wchar_t const* const* units;

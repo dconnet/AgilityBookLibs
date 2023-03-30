@@ -45,9 +45,9 @@ struct ARBWIN_API AboutInfo
 	wxString userDir; // User data directory (logging)
 	struct LinkInfo
 	{
-		wxString desc; // Visible text
-		wxString url;  // URL
-		bool offset;   // Inset control
+		wxString desc;           // Visible text
+		wxString url;            // URL
+		bool offset;             // Inset control
 	};
 	std::vector<LinkInfo> links; // Email, website, etc
 };

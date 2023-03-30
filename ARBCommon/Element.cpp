@@ -111,7 +111,7 @@
 #include "expat.h"
 #pragma comment(lib, "libexpatMT.lib")
 #pragma message("Compiling Element with expat " STRING(XML_MAJOR_VERSION) "." STRING(XML_MINOR_VERSION) "." STRING( \
-	XML_MICRO_VERSION))
+		XML_MICRO_VERSION))
 
 #elif __USE_POCO
 #include "Poco/DOM/AutoPtr.h"

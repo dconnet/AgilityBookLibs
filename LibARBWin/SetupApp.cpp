@@ -177,7 +177,7 @@ bool CBaseApp::OnInit()
 	std::wstring errMsg;
 	if (!ARBCommon::Element::Initialize(errMsg))
 	{
-		wxMessageBox(errMsg.c_str(), wxMessageBoxCaptionStr, wxOK | wxCENTRE | wxICON_ERROR);
+		wxMessageBox(errMsg.c_str(), GetAppName(), wxOK | wxCENTRE | wxICON_ERROR);
 		return false;
 	}
 
@@ -346,7 +346,7 @@ void CBaseApp::OnSetLanguage(wxLanguage langId)
 
 void CBaseApp::OnErrorMessage(wxString const& msg) const
 {
-	wxMessageBox(msg, wxMessageBoxCaptionStr, wxICON_ERROR | wxOK);
+	wxMessageBox(msg, GetAppName(), wxICON_ERROR | wxOK);
 }
 
 

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-13 14:47-0700\n"
-"PO-Revision-Date: 2023-03-13 14:47-0700\n"
+"POT-Creation-Date: 2023-03-29 17:06-0700\n"
+"PO-Revision-Date: 2023-03-29 17:07-0700\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: fr_FR\n"
@@ -115,7 +115,7 @@ msgstr "Nom d'utilisateur"
 msgid "Password"
 msgstr "Mot de passe"
 
-#: LibARBWin/DlgConfigAccel.cpp:109
+#: LibARBWin/DlgConfigAccel.cpp:109 LibARBWin/DlgConfigAccel.cpp:238
 #, fuzzy
 msgid "Assign Key"
 msgstr "Assign Key"
@@ -152,15 +152,15 @@ msgstr "Clear"
 msgid "ERROR: This accelerator is already in use."
 msgstr "ERROR: This accelerator is already in use."
 
-#: LibARBWin/DlgConfigAccel.cpp:304 LibARBWin/MenuHelper.cpp:713
+#: LibARBWin/DlgConfigAccel.cpp:304 LibARBWin/MenuHelper.cpp:742
 msgid "Ctrl+"
 msgstr "Ctrl+"
 
-#: LibARBWin/DlgConfigAccel.cpp:306 LibARBWin/MenuHelper.cpp:715
+#: LibARBWin/DlgConfigAccel.cpp:306 LibARBWin/MenuHelper.cpp:744
 msgid "Alt+"
 msgstr "Alt+"
 
-#: LibARBWin/DlgConfigAccel.cpp:308 LibARBWin/MenuHelper.cpp:717
+#: LibARBWin/DlgConfigAccel.cpp:308 LibARBWin/MenuHelper.cpp:746
 msgid "Shift+"
 msgstr "Majuscule+"
 

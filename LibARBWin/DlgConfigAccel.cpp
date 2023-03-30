@@ -235,7 +235,7 @@ void CDlgEditAccel::OnOk(wxCommandEvent& evt)
 				{
 					wxMessageBox(
 						_("ERROR: This accelerator is already in use."),
-						wxMessageBoxCaptionStr,
+						_("Assign Key"),
 						wxOK | wxCENTRE | wxICON_STOP);
 					return;
 				}

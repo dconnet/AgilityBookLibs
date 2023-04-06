@@ -189,6 +189,8 @@ public:
 
 	void UpdateMenu(bool bLoadAccelerators = true);
 
+	bool HasMenuId(int menuId) const;
+
 protected:
 	// Verify menu shortcuts (&-prefixed letters) are unique within a menu.
 	// Returns true if dups are found.

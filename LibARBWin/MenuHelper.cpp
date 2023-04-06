@@ -646,6 +646,17 @@ void CMenuHelper::UpdateMenu(bool bLoadAccelerators)
 }
 
 
+bool CMenuHelper::HasMenuId(int menuId) const
+{
+	for (auto data : m_menuItems)
+	{
+		if (data.id == menuId)
+			return true;
+	}
+	return false;
+}
+
+
 bool CMenuHelper::VerifyMenuShortcuts(wxMenu* menu, int level)
 {
 	bool hasDups = false;

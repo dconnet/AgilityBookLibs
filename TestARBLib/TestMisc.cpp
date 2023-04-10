@@ -122,7 +122,7 @@ TEST_CASE("Misc")
 
 	SECTION("FormatBytes")
 	{
-		wxLocale locale(wxLANGUAGE_ENGLISH);
+		wxLocale locale(wxLANGUAGE_ENGLISH_US);
 		for (size_t i = 0; i < _countof(sc_FormatUnits); ++i)
 		{
 			for (size_t iPrec = 0; iPrec < NUM_PREC; ++iPrec)

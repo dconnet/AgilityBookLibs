@@ -86,7 +86,7 @@ public:
 	CLogFile(wxString const& path)
 		: wxMessageOutputWithConv(wxMBConvUTF8())
 	{
-		auto formatter = SetFormatter(new CLogFormatter);
+		auto* formatter = SetFormatter(new CLogFormatter);
 		delete formatter;
 
 		// ate: seek to end after open
@@ -204,7 +204,7 @@ void CLogger::EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFi
 			m_currentLogName.SetName(wxString::Format(L"%s%s", baseFilename, GetTimeStamp()));
 			rotateResults = RotateLogs(keepNlogs);
 
-			auto logger = new CLogFile(m_currentLogName.GetFullPath());
+			auto* logger = new CLogFile(m_currentLogName.GetFullPath());
 			if (logger && !logger->IsOpen())
 			{
 				wxLogWarning(L"Warning: Unable to open logging with '%s'", m_currentLogName.GetFullPath());
@@ -213,7 +213,7 @@ void CLogger::EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFi
 				return;
 			}
 
-			auto old = wxLog::SetActiveTarget(logger);
+			auto* old = wxLog::SetActiveTarget(logger);
 			delete old;
 		}
 

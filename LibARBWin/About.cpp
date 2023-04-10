@@ -119,7 +119,7 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	}
 
 	std::vector<std::pair<wxWindow*, bool>> links;
-	for (auto link : aboutInfo.links)
+	for (auto const& link : aboutInfo.links)
 	{
 		if (link.desc.empty() && link.url.empty())
 		{
@@ -128,7 +128,7 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 		}
 		if (!link.desc.empty() && link.url.empty())
 		{
-			auto ctrl = new wxStaticText(this, wxID_ANY, link.desc, wxDefaultPosition, wxDefaultSize);
+			auto* ctrl = new wxStaticText(this, wxID_ANY, link.desc, wxDefaultPosition, wxDefaultSize);
 			links.push_back(std::make_pair(ctrl, link.offset));
 		}
 		else
@@ -142,7 +142,7 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 				setTip = false;
 				desc = url;
 			}
-			auto ctrlLink
+			auto* ctrlLink
 				= new wxHyperlinkCtrl(this, wxID_ANY, desc, url, wxDefaultPosition, wxDefaultSize, wxHL_DEFAULT_STYLE);
 			if (setTip)
 				ctrlLink->SetToolTip(url);
@@ -164,7 +164,7 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	{
 		bool bReset = false;
 		int flags = wxEXPAND | wxLEFT | wxRIGHT;
-		for (auto link : links)
+		for (auto const& link : links)
 		{
 			if (!link.first)
 			{
@@ -254,7 +254,7 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
-	auto sizerGrid = new wxFlexGridSizer(7, 2, wxDLG_UNIT_X(this, 3), wxDLG_UNIT_X(this, 3)); // rows/cols/vgap/hgap
+	auto* sizerGrid = new wxFlexGridSizer(7, 2, wxDLG_UNIT_X(this, 3), wxDLG_UNIT_X(this, 3)); // rows/cols/vgap/hgap
 	sizerGrid->SetFlexibleDirection(wxBOTH);
 	sizerGrid->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
 	sizerGrid->Add(textVersion, 0, wxALIGN_CENTER_VERTICAL);
@@ -324,18 +324,18 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 
 	wxNotebook* notebook = new wxNotebook(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0);
 
-	auto panelMain = new CAboutMain(this, notebook, aboutInfo);
+	auto* panelMain = new CAboutMain(this, notebook, aboutInfo);
 	panels[k_panelMain] = panelMain;
 	notebook->AddPage(panelMain, _("About"), true);
 
-	auto panelInfo = new CAboutInfo(this, notebook, aboutInfo);
+	auto* panelInfo = new CAboutInfo(this, notebook, aboutInfo);
 	panels[k_panelInfo] = panelInfo;
 	notebook->AddPage(panelInfo, _("Information"), true);
 
 	notebook->ChangeSelection(k_panelMain);
 	panels[k_panelMain]->SetFocus();
 
-	auto ctrlCopy = new wxButton(this, wxID_ANY, _("Copy"));
+	auto* ctrlCopy = new wxButton(this, wxID_ANY, _("Copy"));
 	ctrlCopy->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this](wxCommandEvent& evt) {
 		if (wxTheClipboard && wxTheClipboard->Open())
 		{
@@ -349,7 +349,7 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	});
 	ctrlCopy->Enable(!GetAboutData().empty());
 
-	auto ctrlOk = new wxButton(this, wxID_ANY, _("Close"));
+	auto* ctrlOk = new wxButton(this, wxID_ANY, _("Close"));
 	ctrlOk->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this](wxCommandEvent& evt) { EndDialog(wxID_OK); });
 
 	// Sizers
@@ -563,7 +563,7 @@ AboutInfo::AboutInfo()
 
 void AboutInfo::SetImage(wxWindow* inParent, wxArtID const& artId, int defaultSize)
 {
-	auto manager = CResourceManager::Get();
+	auto* manager = CResourceManager::Get();
 	if (manager && inParent)
 	{
 		auto size = inParent->FromDIP(defaultSize);

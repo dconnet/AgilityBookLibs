@@ -243,7 +243,7 @@ bool CReportListCtrl::SortItems(CListCtrlCompare fnSortCallBack, SortInfo const*
 
 	// Translate selection indices to data pointers.
 	std::vector<CListDataPtr> realItems;
-	for (auto item : items)
+	for (auto const& item : items)
 		realItems.push_back(GetData(item));
 	CListDataPtr pFocusItem = itemFocus >= 0 ? GetData(itemFocus) : nullptr;
 
@@ -261,7 +261,7 @@ bool CReportListCtrl::SortItems(CListCtrlCompare fnSortCallBack, SortInfo const*
 		CListDataPtr data = GetData(index);
 		if (pFocusItem && pFocusItem == data)
 			Focus(index);
-		for (auto item : realItems)
+		for (auto const& item : realItems)
 		{
 			if (item == data)
 			{

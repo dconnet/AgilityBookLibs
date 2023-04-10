@@ -59,7 +59,7 @@ public:
 
 	bool Clear()
 	{
-		for (auto name : m_filenames)
+		for (auto const& name : m_filenames)
 		{
 			if (wxFile::Exists(name))
 			{
@@ -149,7 +149,7 @@ TEST_CASE("Utils")
 	SECTION("ConfigPath")
 	{
 		wxFileConfig config;
-		auto old = wxConfig::Set(&config);
+		auto* old = wxConfig::Set(&config);
 
 		config.SetPath(L"Test");
 		REQUIRE(config.GetPath() == L"/Test");

@@ -648,7 +648,7 @@ void CMenuHelper::UpdateMenu(bool bLoadAccelerators)
 
 bool CMenuHelper::HasMenuId(int menuId) const
 {
-	for (auto data : m_menuItems)
+	for (auto const& data : m_menuItems)
 	{
 		if (data.id == menuId)
 			return true;

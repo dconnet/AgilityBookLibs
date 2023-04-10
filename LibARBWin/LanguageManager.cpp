@@ -69,7 +69,7 @@ wxMsgCatalog* wxDatTranslationsLoader::LoadCatalog(const wxString& domain, const
 {
 	wxMsgCatalog* catalog = nullptr;
 
-	auto resMgr = CResourceManager::Get();
+	auto* resMgr = CResourceManager::Get();
 	if (!resMgr)
 		return catalog;
 
@@ -90,13 +90,13 @@ wxArrayString wxDatTranslationsLoader::GetAvailableTranslations(const wxString& 
 {
 	wxArrayString langs;
 
-	auto resMgr = CResourceManager::Get();
+	auto* resMgr = CResourceManager::Get();
 	if (resMgr)
 	{
 		std::vector<wxString> directories;
 		if (0 < resMgr->FindDirectories(L"lang", directories))
 		{
-			for (auto dir : directories)
+			for (auto const& dir : directories)
 			{
 				std::wstring name = fmt::format(L"lang/{}/{}.mo", dir.wc_str(), domain.wc_str());
 				if (resMgr->Exists(name))
@@ -111,7 +111,7 @@ wxArrayString wxDatTranslationsLoader::GetAvailableTranslations(const wxString& 
 
 void SetNewTranslation()
 {
-	auto translations = new wxTranslations;
+	auto* translations = new wxTranslations;
 	translations->SetLoader(new wxDatTranslationsLoader);
 	wxTranslations::Set(translations);
 }

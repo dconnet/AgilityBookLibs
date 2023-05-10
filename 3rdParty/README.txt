@@ -12,13 +12,13 @@ Catch: v3.3.2
 -- #include "catch2/catch_all.hpp"
 
 
-LibFmt: fmtlib v9.1.0
+LibFmt: fmtlib v10.0.0
 .../LibFmt/
 DevNote: When updating, update .../res/LibFmt.rc2 with version number and copyright
 - https://github.com/fmtlib/fmt/releases
 - http://fmtlib.net/dev/index.html
 - Only README.rst, LICENSE.rst, include, src
-(note: diffs are agains 8.1.0)
+(note: diffs are against 8.1.0, same thing needs to be done for all)
 -- Changes (diff -c e:original.h mine.h)
 *** e:core.h	Mon Jan 03 06:30:43 2022
 --- core.h	Mon Jan 03 09:35:08 2022

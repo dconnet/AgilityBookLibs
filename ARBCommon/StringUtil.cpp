@@ -108,11 +108,7 @@ std::wstring stringW(wxString const& inStr)
 
 std::string stringA(wxString const& inStr)
 {
-#if defined(wxUSE_STD_STRING) && wxUSE_STD_STRING
-	return std::string(inStr.ToStdString());
-#else
-	return std::string(inStr.ToUTF8());
-#endif
+	return inStr.utf8_string();
 }
 
 
@@ -133,13 +129,13 @@ std::string stringA(wxMemoryOutputStream const& inStr)
 
 std::string stringA(wchar_t const* const inStr, size_t inLen)
 {
-	return std::string(stringWX(inStr, inLen).ToUTF8());
+	return stringWX(inStr, inLen).utf8_string();
 }
 
 
 std::string stringA(std::wstring const& inStr)
 {
-	return std::string(stringWX(inStr).ToUTF8());
+	return stringWX(inStr).utf8_string();
 }
 
 

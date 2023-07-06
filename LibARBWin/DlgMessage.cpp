@@ -19,6 +19,7 @@
 #include "LibARBWin/DlgMessage.h"
 
 #include "ARBCommon/StringUtil.h"
+#include "LibARBWin/DlgPadding.h"
 #include "LibARBWin/Widgets.h"
 
 #ifdef __WXMSW__
@@ -53,10 +54,11 @@ CDlgMessage::CDlgMessage(wxString const& msg, wxString caption, wxWindow* pParen
 	btnClose->SetDefault();
 
 	// Sizers
+	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
-	bSizer->Add(m_textCtrl, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
-	bSizer->Add(btnClose, 0, wxALIGN_RIGHT | wxALL, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(m_textCtrl, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
+	bSizer->Add(btnClose, 0, wxALIGN_RIGHT | wxALL, padding.Controls());
 
 	SetSizer(bSizer);
 	Layout();

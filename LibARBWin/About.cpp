@@ -27,6 +27,7 @@
 #include "ARBCommon/VersionNum.h"
 #include "LibARBWin/ARBDebug.h"
 #include "LibARBWin/ARBWinUtilities.h"
+#include "LibARBWin/DlgPadding.h"
 #include "LibARBWin/ImageHelperBase.h"
 #include "LibARBWin/Logger.h"
 #include "LibARBWin/ResourceManager.h"
@@ -48,7 +49,6 @@ namespace ARBWin
 namespace
 {
 constexpr int k_mainTextWrap = 200; // Dlg units
-constexpr int k_offsetLinks = 10;   // Dlg units
 constexpr int k_panelMain = 0;
 constexpr int k_panelInfo = 1;
 constexpr int k_panelCount = 2;
@@ -151,15 +151,16 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	}
 
 	// Sizers
+	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	if (textName)
-		bSizer->Add(textName, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
+		bSizer->Add(textName, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
 	if (textCopyright)
-		bSizer->Add(textCopyright, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
+		bSizer->Add(textCopyright, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
 	if (textDesc)
-		bSizer->Add(textDesc, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
+		bSizer->Add(textDesc, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
 	if (!links.empty())
 	{
 		bool bReset = false;
@@ -176,10 +177,10 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 			if (link.second)
 			{
 				sizerLinks = new wxBoxSizer(wxHORIZONTAL);
-				sizerLinks->Add(wxDLG_UNIT_X(this, k_offsetLinks), 0, 0, wxEXPAND, 0);
+				sizerLinks->Add(padding.CheckboxOffset(), 0, 0, wxEXPAND, 0);
 				bSizer->Add(sizerLinks);
 			}
-			sizerLinks->Add(link.first, 0, flags, wxDLG_UNIT_X(this, 5));
+			sizerLinks->Add(link.first, 0, flags, padding.Controls());
 			if (bReset)
 				flags &= ~wxTOP;
 		}
@@ -251,10 +252,11 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	wxStaticText* ctrlOS = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
 
 	// Sizers
+	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
-	auto* sizerGrid = new wxFlexGridSizer(7, 2, wxDLG_UNIT_X(this, 3), wxDLG_UNIT_X(this, 3)); // rows/cols/vgap/hgap
+	auto* sizerGrid = new wxFlexGridSizer(7, 2, padding.Inner(), padding.Inner()); // rows/cols/vgap/hgap
 	sizerGrid->SetFlexibleDirection(wxBOTH);
 	sizerGrid->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
 	sizerGrid->Add(textVersion, 0, wxALIGN_CENTER_VERTICAL);
@@ -274,7 +276,7 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 		wxBoxSizer* sizerDir = new wxBoxSizer(wxHORIZONTAL);
 		sizerGrid->Add(textUserDir, 0, wxALIGN_CENTER_VERTICAL);
 		sizerDir->Add(ctrlUserDir, 1, wxALIGN_CENTER_VERTICAL);
-		sizerDir->Add(ctrlOpen, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, wxDLG_UNIT_X(this, 3));
+		sizerDir->Add(ctrlOpen, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, padding.Inner());
 		sizerGrid->Add(sizerDir);
 	}
 
@@ -287,7 +289,7 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	sizerGrid->Add(textOS, 0, wxALIGN_CENTER_VERTICAL);
 	sizerGrid->Add(ctrlOS, 0, wxALIGN_CENTER_VERTICAL);
 
-	bSizer->Add(sizerGrid, 0, wxALL, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(sizerGrid, 0, wxALL, padding.Controls());
 
 	SetSizer(bSizer);
 	Layout();
@@ -353,6 +355,7 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	ctrlOk->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this](wxCommandEvent& evt) { EndDialog(wxID_OK); });
 
 	// Sizers
+	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -364,12 +367,12 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 		if (icon)
 		{
 			sizerIcons->Add(0, 0, 1, wxEXPAND, 0);
-			sizerIcons->Add(icon, 0, wxALL, wxDLG_UNIT_X(this, 3));
+			sizerIcons->Add(icon, 0, wxALL, padding.Inner());
 			sizerIcons->Add(0, 0, 1, wxEXPAND, 0);
 		}
 		if (debug)
 		{
-			sizerIcons->Add(debug, 0, wxALL, wxDLG_UNIT_X(this, 3));
+			sizerIcons->Add(debug, 0, wxALL, padding.Inner());
 		}
 		sizerMain->Add(sizerIcons, 0, wxEXPAND, 0);
 	}
@@ -381,8 +384,8 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	sdbSizer->Add(ctrlOk);
 
 	wxBoxSizer* sizerPanels = new wxBoxSizer(wxVERTICAL);
-	sizerPanels->Add(notebook, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
-	sizerPanels->Add(sdbSizer, 0, wxEXPAND | wxALL, wxDLG_UNIT_X(this, 5));
+	sizerPanels->Add(notebook, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
+	sizerPanels->Add(sdbSizer, 0, wxEXPAND | wxALL, padding.Controls());
 	sizerMain->Add(sizerPanels);
 
 	bSizer->Add(sizerMain);

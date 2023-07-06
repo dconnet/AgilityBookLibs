@@ -17,6 +17,7 @@
 #include "DlgConfigAccel.h"
 
 #include "ARBCommon/StringUtil.h"
+#include "LibARBWin/DlgPadding.h"
 #include "LibARBWin/ListData.h"
 #include "LibARBWin/MenuHelper.h"
 #include "LibARBWin/ReportListCtrl.h"
@@ -153,15 +154,16 @@ CDlgEditAccel::CDlgEditAccel(
 	ctrlClear->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgEditAccel::OnClear, this);
 
 	// Sizers
+	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	wxBoxSizer* sizerModifiers = new wxBoxSizer(wxHORIZONTAL);
-	sizerModifiers->Add(ctrlCtrl, 0, wxRIGHT, wxDLG_UNIT_X(this, 3));
-	sizerModifiers->Add(ctrlAlt, 0, wxRIGHT, wxDLG_UNIT_X(this, 3));
+	sizerModifiers->Add(ctrlCtrl, 0, wxRIGHT, padding.Inner());
+	sizerModifiers->Add(ctrlAlt, 0, wxRIGHT, padding.Inner());
 	sizerModifiers->Add(ctrlShift);
 
-	wxFlexGridSizer* sizerCtrls = new wxFlexGridSizer(2, 2, wxDLG_UNIT_X(this, 3), wxDLG_UNIT_X(this, 3));
+	wxFlexGridSizer* sizerCtrls = new wxFlexGridSizer(2, 2, padding.Inner(), padding.Inner());
 	sizerCtrls->AddGrowableCol(1);
 	sizerCtrls->SetFlexibleDirection(wxBOTH);
 	sizerCtrls->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
@@ -170,11 +172,11 @@ CDlgEditAccel::CDlgEditAccel(
 	sizerCtrls->Add(textMod, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL, 0);
 	sizerCtrls->Add(sizerModifiers, 0, wxALIGN_CENTER_VERTICAL, 0);
 
-	bSizer->Add(sizerCtrls, 0, wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
-	bSizer->Add(ctrlClear, 0, wxALIGN_RIGHT | wxALL, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(sizerCtrls, 0, wxLEFT | wxRIGHT | wxTOP, padding.Controls());
+	bSizer->Add(ctrlClear, 0, wxALIGN_RIGHT | wxALL, padding.Controls());
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 3));
+	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer());
 
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgEditAccel::OnOk, this, wxID_OK);
 
@@ -503,24 +505,25 @@ CDlgConfigAccel::CDlgConfigAccel(
 	ctrlDefaults->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgConfigAccel::OnSetDefaults, this);
 
 	// Sizers
+	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	wxBoxSizer* sizerItems = new wxBoxSizer(wxHORIZONTAL);
-	sizerItems->Add(m_ctrlItems, 1, wxEXPAND | wxRIGHT, wxDLG_UNIT_X(this, 5));
+	sizerItems->Add(m_ctrlItems, 1, wxEXPAND | wxRIGHT, padding.Controls());
 
 	wxBoxSizer* sizerBtns = new wxBoxSizer(wxVERTICAL);
-	sizerBtns->Add(m_ctrlNew, 0, wxEXPAND | wxBOTTOM, wxDLG_UNIT_X(this, 3));
-	sizerBtns->Add(m_ctrlEdit, 0, wxEXPAND | wxBOTTOM, wxDLG_UNIT_X(this, 3));
-	sizerBtns->Add(m_ctrlClear, 0, wxEXPAND | wxBOTTOM, wxDLG_UNIT_X(this, 3));
+	sizerBtns->Add(m_ctrlNew, 0, wxEXPAND | wxBOTTOM, padding.Inner());
+	sizerBtns->Add(m_ctrlEdit, 0, wxEXPAND | wxBOTTOM, padding.Inner());
+	sizerBtns->Add(m_ctrlClear, 0, wxEXPAND | wxBOTTOM, padding.Inner());
 	sizerBtns->Add(ctrlDefaults, 0, wxEXPAND);
 
 	sizerItems->Add(sizerBtns, 0, wxEXPAND);
 
-	bSizer->Add(sizerItems, 1, wxEXPAND | wxALL, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(sizerItems, 1, wxEXPAND | wxALL, padding.Controls());
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 3));
+	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer());
 
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgConfigAccel::OnOk, this, wxID_OK);
 

@@ -21,6 +21,7 @@
 #include "LibARBWin/DlgAuthenticate.h"
 
 #include "ARBCommon/StringUtil.h"
+#include "LibARBWin/DlgPadding.h"
 #include "LibARBWin/Widgets.h"
 #include <wx/sizer.h>
 #include <wx/statbox.h>
@@ -81,13 +82,14 @@ CDlgAuthenticate::CDlgAuthenticate(
 		wxGenericValidator(&m_Password));
 
 	// Sizers
+	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	if (textMsg)
-		bSizer->Add(textMsg, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, wxDLG_UNIT_X(this, 5));
+		bSizer->Add(textMsg, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
 
-	wxFlexGridSizer* sizerItems = new wxFlexGridSizer(2, 2, wxDLG_UNIT_X(this, 3), wxDLG_UNIT_X(this, 3));
+	wxFlexGridSizer* sizerItems = new wxFlexGridSizer(2, 2, padding.Inner(), padding.Inner());
 	sizerItems->SetFlexibleDirection(wxBOTH);
 	sizerItems->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
 
@@ -96,10 +98,10 @@ CDlgAuthenticate::CDlgAuthenticate(
 	sizerItems->Add(textPassword, 0, wxALIGN_CENTER_VERTICAL);
 	sizerItems->Add(ctrlPassword, 1, wxALIGN_CENTER_VERTICAL);
 
-	bSizer->Add(sizerItems, 1, wxEXPAND | wxALL, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(sizerItems, 1, wxEXPAND | wxALL, padding.Controls());
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer());
 
 	SetSizer(bSizer);
 	Layout();

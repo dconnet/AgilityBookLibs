@@ -24,6 +24,7 @@
 
 #include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ARBWinUtilities.h"
+#include "LibARBWin/DlgPadding.h"
 #include <wx/appprogress.h>
 #include <wx/thread.h>
 #include <wx/utils.h>
@@ -150,14 +151,15 @@ CDlgProgress::CDlgProgress(short nBars, wxWindow* parent)
 			wxGA_HORIZONTAL | wxGA_SMOOTH)));
 
 	// Sizers
+	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
-	bSizer->Add(m_ctrlMessage, 0, wxEXPAND | wxALL, wxDLG_UNIT_X(this, 5));
+	bSizer->Add(m_ctrlMessage, 0, wxEXPAND | wxALL, padding.Controls());
 	for (size_t i = 0; i < m_ctrlBars.size(); ++i)
-		bSizer->Add(m_ctrlBars[i].gauge, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 5));
+		bSizer->Add(m_ctrlBars[i].gauge, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.Controls());
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, wxDLG_UNIT_X(this, 3));
+	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer());
 	m_ctrlCancel = wxDynamicCast(FindWindowInSizer(sdbSizer, wxID_CANCEL), wxButton);
 	m_ctrlCancel->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgProgress::OnCancel, this);
 

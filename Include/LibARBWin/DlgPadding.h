@@ -28,6 +28,9 @@ public:
 		: m_paddingCtrl(wxDLG_UNIT_X(parent, 5))
 		, m_paddingInner(wxDLG_UNIT_X(parent, 3))
 		, m_paddingButtonSizer(wxDLG_UNIT_X(parent, 3))
+		, m_paddingControls(wxDLG_UNIT_X(parent, 2))
+		, m_paddingTight(wxDLG_UNIT_X(parent, 1))
+		, m_paddingOffset(wxDLG_UNIT_X(parent, 10))
 	{
 	}
 
@@ -50,10 +53,31 @@ public:
 		return m_paddingButtonSizer;
 	}
 
+	// Tight grouping of controls
+	int TightControls() const
+	{
+		return m_paddingControls;
+	}
+
+	// Tight alignment for a companion control
+	int Tight() const
+	{
+		return m_paddingTight;
+	}
+
+	// Offset when lining up something under a checkbox
+	int CheckboxOffset() const
+	{
+		return m_paddingOffset;
+	}
+
 private:
 	int m_paddingCtrl;
 	int m_paddingInner;
 	int m_paddingButtonSizer;
+	int m_paddingControls;
+	int m_paddingTight;
+	int m_paddingOffset;
 };
 
 } // namespace ARBWin

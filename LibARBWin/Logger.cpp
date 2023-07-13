@@ -312,5 +312,39 @@ wxString CLogger::RotateLogs(size_t keepNlogs)
 	return results;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+
+#if USE_STACKTRACER
+int CStackLogger::m_indent = 0;
+
+
+CStackLogger::CStackLogger(wxString const& msg)
+	: m_msg(msg)
+	, m_stopwatch()
+	, m_tickle(0)
+{
+	++m_indent;
+	CLogger::Log(wxString::Format("%*s%s: Enter", m_indent, " ", m_msg));
+	m_stopwatch.Start();
+}
+
+
+CStackLogger::~CStackLogger()
+{
+	m_stopwatch.Pause();
+	CLogger::Log(wxString::Format("%*s%s: Leave [%ld]", m_indent, " ", m_msg, m_stopwatch.Time()));
+	--m_indent;
+}
+
+
+void CStackLogger::Tickle(wxString const& msg)
+{
+	long t = m_stopwatch.Time();
+	CLogger::Log(wxString::Format("%*s%s: Tickle [%ld]", m_indent, " ", msg, t - m_tickle));
+	m_tickle = t;
+}
+#endif
+
+
 } // namespace ARBWin
 } // namespace dconSoft

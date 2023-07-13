@@ -14,6 +14,8 @@
  */
 
 #include "LibwxARBWin.h"
+
+#include "ARBCommon/ARBUtils.h"
 #include <wx/filename.h>
 #include <wx/log.h>
 
@@ -60,6 +62,39 @@ private:
 	wxString m_baseFilename;
 	wxFileName m_currentLogName;
 };
+
+
+// This is the same thing as ARBCommon::CStackTracer, but uses CLogger
+class ARBWIN_API CStackLogger
+{
+#if USE_STACKTRACER
+public:
+	explicit CStackLogger(wxString const& msg);
+	~CStackLogger();
+	void Tickle(wxString const& msg);
+
+private:
+	wxString m_msg;
+	wxStopWatch m_stopwatch;
+	long m_tickle;
+	static int m_indent;
+
+	CStackLogger() = delete;
+	CStackLogger(CStackLogger const&) = delete;
+	CStackLogger(CStackLogger&&) = delete;
+	CStackLogger& operator=(CStackLogger const&) = delete;
+	CStackLogger& operator=(CStackLogger&&) = delete;
+#endif
+};
+
+#if USE_STACKTRACER
+#define STACK_LOGGER(name, msg)     CStackLogger name(msg)
+#define STACK_LOG_TICKLE(name, msg) name.Tickle(msg)
+
+#else
+#define STACK_LOGGER(name, msg)
+#define STACK_LOG_TICKLE(name, msg)
+#endif
 
 } // namespace ARBWin
 } // namespace dconSoft

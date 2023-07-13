@@ -271,9 +271,9 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_registry_hub.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_factory.hpp" />
-    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_registry.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_tag_alias_registry.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_testcase.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_test_invoker.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_assertion_handler.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_case_insensitive_comparisons.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_case_sensitive.hpp" />
@@ -281,6 +281,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_commandline.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compare_traits.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compiler_capabilities.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_static_analysis_support.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_is_permutation.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_android_logwrite.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_counter.hpp" />
@@ -314,6 +315,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_platform.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_polyfills.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor_internal_stringify.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor_remove_parens.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_number_generator.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_seed_generation.hpp" />
@@ -340,6 +342,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_failure_exception.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_macro_impl.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_registry.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_run_info.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_spec_parser.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_textflow.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_to_string.hpp" />
@@ -393,6 +396,7 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_timer.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_tostring.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_totals.cpp" />
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_translate_exception.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_version.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_random.cpp" />
@@ -404,7 +408,6 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_registry_hub.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_factory.cpp" />
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_registry.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_testcase.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_assertion_handler.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_case_insensitive_comparisons.cpp" />

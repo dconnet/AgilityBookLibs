@@ -78,9 +78,6 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_factory.hpp">
       <Filter>Source Files\interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_registry.hpp">
-      <Filter>Source Files\interfaces</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_tag_alias_registry.hpp">
       <Filter>Source Files\interfaces</Filter>
     </ClInclude>
@@ -465,6 +462,18 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\matchers\catch_matchers_range_equals.hpp">
       <Filter>Source Files\matchers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_test_invoker.hpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_static_analysis_support.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor_internal_stringify.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_run_info.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_approx.cpp">
@@ -698,9 +707,6 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_factory.cpp">
       <Filter>Source Files\interfaces</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_reporter_registry.cpp">
-      <Filter>Source Files\interfaces</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_testcase.cpp">
       <Filter>Source Files\interfaces</Filter>
     </ClCompile>
@@ -763,6 +769,9 @@
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_failure_exception.cpp">
       <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_translate_exception.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

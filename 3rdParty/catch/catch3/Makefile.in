@@ -41,6 +41,7 @@ libcatch3_SRCS = \
 	src/catch2/catch_timer.cpp \
 	src/catch2/catch_tostring.cpp \
 	src/catch2/catch_totals.cpp \
+	src/catch2/catch_translate_exception.cpp \
 	src/catch2/catch_version.cpp \
 	src/catch2/benchmark/catch_chronometer.cpp \
 	src/catch2/benchmark/detail/catch_benchmark_function.cpp \
@@ -56,7 +57,6 @@ libcatch3_SRCS = \
 	src/catch2/interfaces/catch_interfaces_registry_hub.cpp \
 	src/catch2/interfaces/catch_interfaces_reporter.cpp \
 	src/catch2/interfaces/catch_interfaces_reporter_factory.cpp \
-	src/catch2/interfaces/catch_interfaces_reporter_registry.cpp \
 	src/catch2/interfaces/catch_interfaces_testcase.cpp \
 	src/catch2/internal/catch_assertion_handler.cpp \
 	src/catch2/internal/catch_case_insensitive_comparisons.cpp \

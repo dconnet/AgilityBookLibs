@@ -67,8 +67,8 @@ private:
 // This is the same thing as ARBCommon::CStackTracer, but uses CLogger
 class ARBWIN_API CStackLogger
 {
-#if USE_STACKTRACER
 public:
+#if USE_STACKTRACER
 	explicit CStackLogger(wxString const& msg);
 	~CStackLogger();
 	void Tickle(wxString const& msg);
@@ -84,18 +84,19 @@ private:
 	CStackLogger(CStackLogger&&) = delete;
 	CStackLogger& operator=(CStackLogger const&) = delete;
 	CStackLogger& operator=(CStackLogger&&) = delete;
+
+#else
+	explicit CStackLogger(wxString const&)
+	{
+	}
 #endif
 };
 
 #if USE_STACKTRACER
-#define LOGGER_DECL(name)        std::unique_ptr<ARBWin::CStackLogger> name;
-#define LOGGER_IMPL(name, msg)   , name(std::make_unique<ARBWin::CStackLogger>(msg))
 #define LOGGER_STACK(name, msg)  CStackLogger name(msg)
 #define LOGGER_TICKLE(name, msg) name.Tickle(msg)
 
 #else
-#define LOGGER_DECL(name)
-#define LOGGER_IMPL(name, msg)
 #define LOGGER_STACK(name, msg)
 #define LOGGER_TICKLE(name, msg)
 #endif

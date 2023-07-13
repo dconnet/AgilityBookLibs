@@ -88,12 +88,16 @@ private:
 };
 
 #if USE_STACKTRACER
-#define STACK_LOGGER(name, msg)     CStackLogger name(msg)
-#define STACK_LOG_TICKLE(name, msg) name.Tickle(msg)
+#define LOGGER_DECL(name)        std::unique_ptr<ARBWin::CStackLogger> name;
+#define LOGGER_IMPL(name, msg)   , name(std::make_unique<ARBWin::CStackLogger>(msg))
+#define LOGGER_STACK(name, msg)  CStackLogger name(msg)
+#define LOGGER_TICKLE(name, msg) name.Tickle(msg)
 
 #else
-#define STACK_LOGGER(name, msg)
-#define STACK_LOG_TICKLE(name, msg)
+#define LOGGER_DECL(name)
+#define LOGGER_IMPL(name, msg)
+#define LOGGER_STACK(name, msg)
+#define LOGGER_TICKLE(name, msg)
 #endif
 
 } // namespace ARBWin

@@ -15,7 +15,6 @@
 
 #include "LibwxARBWin.h"
 
-#include "ARBCommon/ARBUtils.h"
 #include <wx/filename.h>
 #include <wx/log.h>
 
@@ -24,6 +23,13 @@ namespace dconSoft
 {
 namespace ARBWin
 {
+
+// Note about these loggers.
+// CLogger uses level wxLOG_User
+// CStackLogger uses level wxLOG_User+1
+// In release, we specifically set the level to wxLOG_User.
+// In debug, we set wxLOG_User+1.
+// In user code, calling wxLog::SetLogLevel will affect these.
 
 class ARBWIN_API CLogger
 {
@@ -39,13 +45,18 @@ public:
 
 	// Initialize log directory without starting logging.
 	// EnableWindow will call this automatically.
-	bool Initialize(wchar_t const* baseFilename);
+	bool Initialize(wchar_t const* baseFilename, bool enableStackLogger);
 
 	bool IsEnabled() const;
 
 	// keep = 0 means keep all.
 	// Sets base logger to write to a file, adds a wxLogWindow
-	void EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFilename, size_t keepNlogs = 5);
+	void EnableLogWindow(
+		wxWindow* parent,
+		bool show,
+		wchar_t const* baseFilename,
+		bool enableStackLogger,
+		size_t keepNlogs = 5);
 
 	// These functions are only valid if logging has been enabled
 	wxString GetCurrentLogDir() const;
@@ -64,11 +75,12 @@ private:
 };
 
 
-// This is the same thing as ARBCommon::CStackTracer, but uses CLogger
+// This is the same thing as ARBCommon::CStackTracer, but uses CLogger. Also,
+// this is enabled in release builds, however it is suppressed by default.
+// Use 'enableStackLogger' in CLogger to enable.
 class ARBWIN_API CStackLogger
 {
 public:
-#if USE_STACKTRACER
 	explicit CStackLogger(wxString const& msg);
 	~CStackLogger();
 	void Tickle(wxString const& msg);
@@ -84,22 +96,7 @@ private:
 	CStackLogger(CStackLogger&&) = delete;
 	CStackLogger& operator=(CStackLogger const&) = delete;
 	CStackLogger& operator=(CStackLogger&&) = delete;
-
-#else
-	explicit CStackLogger(wxString const&)
-	{
-	}
-#endif
 };
-
-#if USE_STACKTRACER
-#define LOGGER_STACK(name, msg)  CStackLogger name(msg)
-#define LOGGER_TICKLE(name, msg) name.Tickle(msg)
-
-#else
-#define LOGGER_STACK(name, msg)
-#define LOGGER_TICKLE(name, msg)
-#endif
 
 } // namespace ARBWin
 } // namespace dconSoft

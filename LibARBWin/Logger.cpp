@@ -30,6 +30,7 @@ namespace
 {
 constexpr wchar_t k_logTimestamp[] = L"%Y-%m-%d %H:%M:%S.%l";
 constexpr wxLogLevelValues k_defLogLevel = wxLOG_User;
+constexpr wxLogLevelValues k_defStackLevel = static_cast<wxLogLevelValues>(wxLOG_User + 1);
 constexpr wchar_t k_logExtension[] = L"log";
 constexpr wchar_t k_logFormat[] = L"%Y%m%d";
 
@@ -147,7 +148,7 @@ CLogger::CLogger()
 }
 
 
-bool CLogger::Initialize(wchar_t const* baseFilename)
+bool CLogger::Initialize(wchar_t const* baseFilename, bool enableStackLogger)
 {
 	// Once logging has started, no changes!
 	if (m_logger)
@@ -155,6 +156,12 @@ bool CLogger::Initialize(wchar_t const* baseFilename)
 		CLogger::Log(L"IGNORED: Cannot reinitialize logging once enabled");
 		return true;
 	}
+
+	if (enableStackLogger)
+		wxLog::SetLogLevel(k_defStackLevel);
+	else
+		wxLog::SetLogLevel(k_defLogLevel);
+
 	if (baseFilename)
 	{
 		m_baseFilename = baseFilename;
@@ -189,7 +196,12 @@ bool CLogger::IsEnabled() const
 }
 
 
-void CLogger::EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFilename, size_t keepNlogs)
+void CLogger::EnableLogWindow(
+	wxWindow* parent,
+	bool show,
+	wchar_t const* baseFilename,
+	bool enableStackLogger,
+	size_t keepNlogs)
 {
 	if (!m_logger)
 	{
@@ -197,7 +209,7 @@ void CLogger::EnableLogWindow(wxWindow* parent, bool show, wchar_t const* baseFi
 
 		if (baseFilename)
 		{
-			if (!Initialize(baseFilename))
+			if (!Initialize(baseFilename, enableStackLogger))
 				return;
 
 			// Update filename.
@@ -314,7 +326,6 @@ wxString CLogger::RotateLogs(size_t keepNlogs)
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if USE_STACKTRACER
 int CStackLogger::m_indent = 0;
 
 
@@ -324,7 +335,7 @@ CStackLogger::CStackLogger(wxString const& msg)
 	, m_tickle(0)
 {
 	++m_indent;
-	CLogger::Log(wxString::Format("%*s%s: Enter", m_indent, " ", m_msg));
+	wxLogGeneric(k_defStackLevel, "%*s%s: Enter", m_indent, " ", m_msg);
 	m_stopwatch.Start();
 }
 
@@ -332,7 +343,7 @@ CStackLogger::CStackLogger(wxString const& msg)
 CStackLogger::~CStackLogger()
 {
 	m_stopwatch.Pause();
-	CLogger::Log(wxString::Format("%*s%s: Leave [%ld]", m_indent, " ", m_msg, m_stopwatch.Time()));
+	wxLogGeneric(k_defStackLevel, "%*s%s: Leave [%ld]", m_indent, " ", m_msg, m_stopwatch.Time());
 	--m_indent;
 }
 
@@ -340,11 +351,9 @@ CStackLogger::~CStackLogger()
 void CStackLogger::Tickle(wxString const& msg)
 {
 	long t = m_stopwatch.Time();
-	CLogger::Log(wxString::Format("%*s%s: Tickle [%ld]", m_indent, " ", msg, t - m_tickle));
+	wxLogGeneric(k_defStackLevel, "%*s%s: Tickle [%ld]", m_indent, " ", msg, t - m_tickle);
 	m_tickle = t;
 }
-#endif
-
 
 } // namespace ARBWin
 } // namespace dconSoft

@@ -127,6 +127,12 @@ namespace dconSoft
 namespace ARBWin
 {
 
+bool CLogger::IsLoggerEnabled()
+{
+	return wxLog::GetLogLevel() >= k_defLogLevel;
+}
+
+
 wxLogLevelValues CLogger::GetLogLevel()
 {
 	return k_defLogLevel;
@@ -327,6 +333,18 @@ wxString CLogger::RotateLogs(size_t keepNlogs)
 /////////////////////////////////////////////////////////////////////////////
 
 int CStackLogger::m_indent = 0;
+
+
+bool CStackLogger::IsLoggerEnabled()
+{
+	return wxLog::GetLogLevel() >= k_defStackLevel;
+}
+
+
+wxLogLevelValues CStackLogger::GetLogLevel()
+{
+	return k_defStackLevel;
+}
 
 
 CStackLogger::CStackLogger(wxString const& msg)

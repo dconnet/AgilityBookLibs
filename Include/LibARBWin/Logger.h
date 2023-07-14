@@ -35,6 +35,8 @@ class ARBWIN_API CLogger
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CLogger)
 public:
+	// Will messages appear based on wxLogLevel
+	static bool IsLoggerEnabled();
 	// Default logging level (currently set to wxLOG_User)
 	static wxLogLevelValues GetLogLevel();
 
@@ -81,6 +83,11 @@ private:
 class ARBWIN_API CStackLogger
 {
 public:
+	// Will messages appear based on wxLogLevel
+	static bool IsLoggerEnabled();
+	// Default logging level (currently set to wxLOG_User+1)
+	static wxLogLevelValues GetLogLevel();
+
 	explicit CStackLogger(wxString const& msg);
 	~CStackLogger();
 	void Tickle(wxString const& msg);

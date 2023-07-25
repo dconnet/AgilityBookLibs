@@ -99,12 +99,13 @@ ARBCOMMON_API bool GetFileTimes(
 class ARBCOMMON_API CStackTracer
 {
 public:
-	explicit CStackTracer(wxString const& msg);
+	explicit CStackTracer(wxString const& msg, bool disableStopWatch = false);
 	~CStackTracer();
 	void Tickle(wxString const& msg);
 
 private:
 	wxString m_msg;
+	bool m_disableStopWatch;
 	wxStopWatch m_stopwatch;
 	long m_tickle;
 	static int m_indent;

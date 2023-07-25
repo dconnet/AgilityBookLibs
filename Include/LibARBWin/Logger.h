@@ -88,12 +88,13 @@ public:
 	// Default logging level (currently set to wxLOG_User+1)
 	static wxLogLevelValues GetLogLevel();
 
-	explicit CStackLogger(wxString const& msg);
+	explicit CStackLogger(wxString const& msg, bool disableStopWatch = false);
 	~CStackLogger();
 	void Tickle(wxString const& msg);
 
 private:
 	wxString m_msg;
+	bool m_disableStopWatch;
 	wxStopWatch m_stopwatch;
 	long m_tickle;
 	static int m_indent;

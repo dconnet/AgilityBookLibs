@@ -347,30 +347,42 @@ wxLogLevelValues CStackLogger::GetLogLevel()
 }
 
 
-CStackLogger::CStackLogger(wxString const& msg)
+CStackLogger::CStackLogger(wxString const& msg, bool disableStopWatch)
 	: m_msg(msg)
+	, m_disableStopWatch(disableStopWatch)
 	, m_stopwatch()
 	, m_tickle(0)
 {
 	++m_indent;
-	wxLogGeneric(k_defStackLevel, "%*s%s: Enter", m_indent, " ", m_msg);
-	m_stopwatch.Start();
+	wxLogGeneric(k_defStackLevel, "%*sEnter: %s", m_indent, " ", m_msg);
+	if (!m_disableStopWatch)
+		m_stopwatch.Start();
 }
 
 
 CStackLogger::~CStackLogger()
 {
-	m_stopwatch.Pause();
-	wxLogGeneric(k_defStackLevel, "%*s%s: Leave [%ld]", m_indent, " ", m_msg, m_stopwatch.Time());
+	if (m_disableStopWatch)
+		wxLogGeneric(k_defStackLevel, "%*sLeave: %s", m_indent, " ", m_msg);
+	else
+	{
+		m_stopwatch.Pause();
+		wxLogGeneric(k_defStackLevel, "%*sLeave[%ld]: %s", m_indent, " ", m_stopwatch.Time(), m_msg);
+	}
 	--m_indent;
 }
 
 
 void CStackLogger::Tickle(wxString const& msg)
 {
-	long t = m_stopwatch.Time();
-	wxLogGeneric(k_defStackLevel, "%*s%s: Tickle [%ld]", m_indent, " ", msg, t - m_tickle);
-	m_tickle = t;
+	if (m_disableStopWatch)
+		wxLogGeneric(k_defStackLevel, "%*sTickle: %s", m_indent, " ", msg);
+	else
+	{
+		long t = m_stopwatch.Time();
+		wxLogGeneric(k_defStackLevel, "%*sTickle[%ld]: %s", m_indent, " ", t - m_tickle, msg);
+		m_tickle = t;
+	}
 }
 
 } // namespace ARBWin

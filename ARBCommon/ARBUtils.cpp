@@ -39,30 +39,42 @@ namespace ARBCommon
 int CStackTracer::m_indent = 0;
 
 
-CStackTracer::CStackTracer(wxString const& msg)
+CStackTracer::CStackTracer(wxString const& msg, bool disableStopWatch)
 	: m_msg(msg)
+	, m_disableStopWatch(disableStopWatch)
 	, m_stopwatch()
 	, m_tickle(0)
 {
 	++m_indent;
-	wxLogDebug("%*s%s: Enter", m_indent, " ", m_msg);
-	m_stopwatch.Start();
+	wxLogDebug("%*sEnter: %s", m_indent, " ", m_msg);
+	if (!m_disableStopWatch)
+		m_stopwatch.Start();
 }
 
 
 CStackTracer::~CStackTracer()
 {
-	m_stopwatch.Pause();
-	wxLogDebug("%*s%s: Leave [%ld]", m_indent, " ", m_msg, m_stopwatch.Time());
+	if (m_disableStopWatch)
+		wxLogDebug("%*sLeave: %s", m_indent, " ", m_msg);
+	else
+	{
+		m_stopwatch.Pause();
+		wxLogDebug("%*sLeave[%ld]: %s", m_indent, " ", m_stopwatch.Time(), m_msg);
+	}
 	--m_indent;
 }
 
 
 void CStackTracer::Tickle(wxString const& msg)
 {
-	long t = m_stopwatch.Time();
-	wxLogDebug("%*s%s: Tickle [%ld]", m_indent, " ", msg, t - m_tickle);
-	m_tickle = t;
+	if (m_disableStopWatch)
+		wxLogDebug("%*sTickle: %s", m_indent, " ", msg);
+	else
+	{
+		long t = m_stopwatch.Time();
+		wxLogDebug("%*sTickle[%ld]: %s", m_indent, " ", t - m_tickle, msg);
+		m_tickle = t;
+	}
 }
 #endif
 

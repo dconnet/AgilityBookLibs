@@ -127,7 +127,7 @@ class ARBWIN_API CTextCtrl : public wxTextCtrl
 public:
 	CTextCtrl()
 		: wxTextCtrl()
-		, m_bAllowMultilineTabstop(false)
+		, m_allowReadonlyTabstop(false)
 	{
 	}
 	CTextCtrl(
@@ -140,28 +140,29 @@ public:
 		const wxValidator& validator = wxDefaultValidator,
 		const wxString& name = wxTextCtrlNameStr)
 		: wxTextCtrl(parent, id, value, pos, size, style, validator, name)
-		, m_bAllowMultilineTabstop(false)
+		, m_allowReadonlyTabstop(false)
 	{
 	}
 
-	bool AllowMultilineTabstop() const
+	bool AllowReadonlyTabstop() const
 	{
-		return m_bAllowMultilineTabstop;
+		return m_allowReadonlyTabstop;
 	}
-	void AllowMultilineTabstop(bool bAllow)
+	void SetAllowReadonlyTabstop(bool allow = true)
 	{
-		m_bAllowMultilineTabstop = bAllow;
+		m_allowReadonlyTabstop = allow;
 	}
 
 	bool AcceptsFocusFromKeyboard() const override
 	{
-		return (IsEditable() || (IsMultiLine() && m_bAllowMultilineTabstop)) && wxControl::AcceptsFocus();
+		return (m_allowReadonlyTabstop || IsEditable()) && wxControl::AcceptsFocus();
 	}
 
 	bool EnableSpellChecking(bool bForceRtfAsPlainText = true);
 
 private:
 	bool m_bAllowMultilineTabstop;
+	bool m_allowReadonlyTabstop;
 };
 
 

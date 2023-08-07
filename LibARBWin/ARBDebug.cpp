@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2023-08-07 Return x.y.z for OS version, use shorter name for OS name.
  * 2022-04-15 Use wx DPI support.
  * 2021-07-11 Added compiled-at info, use wxGetLibraryVersionInfo for wx version
  * 2019-01-31 Moved from ARB.
@@ -60,24 +61,25 @@ std::wstring GetOSName()
 
 	int majVer;
 	int minVer;
-	if (!GetOSInfo(majVer, minVer))
+	int verMicro;
+	if (!GetOSInfo(majVer, minVer, verMicro))
 		return std::wstring();
 
 #if defined(__WXWINDOWS__)
 	wxPlatformInfo info;
-	str = fmt::format(L"{} {}.{}", info.GetOperatingSystemIdName().wx_str(), majVer, minVer);
+	str = fmt::format(L"{} {}.{}.{}", info.GetOperatingSystemFamilyName().wx_str(), majVer, minVer, verMicro);
 
 #elif defined(_WIN32)
 	switch (majVer)
 	{
 	default:
-		str = fmt::format(L"Windows {}.{}", majVer, minVer);
+		str = fmt::format(L"Windows {}.{}.{}", majVer, minVer, verMicro);
 		break;
 	case 6:
 		switch (minVer)
 		{
 		default:
-			str = fmt::format(L"Windows {}.{}", majVer, minVer);
+			str = fmt::format(L"Windows {}.{}.{}", majVer, minVer, verMicro);
 			break;
 		case 0:
 			str = L"Windows Vista";
@@ -97,7 +99,7 @@ std::wstring GetOSName()
 		switch (minVer)
 		{
 		default:
-			str = fmt::format(L"Windows {}.{}", majVer, minVer);
+			str = fmt::format(L"Windows {}.{}.{}", majVer, minVer, verMicro);
 			break;
 		case 2:
 			str = L"Windows XP"; // Not really, 64bitXP, or Server

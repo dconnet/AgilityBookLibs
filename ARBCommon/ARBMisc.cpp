@@ -141,7 +141,7 @@ std::wstring GetNativeARBArch()
 
 /////////////////////////////////////////////////////////////////////////////
 
-bool GetOSInfo(int& verMajor, int& verMinor)
+bool GetOSInfo(int& verMajor, int& verMinor, int& verMicro)
 {
 	verMajor = verMinor = 0;
 
@@ -149,6 +149,7 @@ bool GetOSInfo(int& verMajor, int& verMinor)
 	wxPlatformInfo info;
 	verMajor = info.GetOSMajorVersion();
 	verMinor = info.GetOSMinorVersion();
+	verMicro = info.GetOSMicroVersion();
 	return true;
 
 #elif defined(_WIN32)
@@ -174,7 +175,7 @@ bool GetOSInfo(int& verMajor, int& verMinor)
 	{
 		verMajor = HIWORD(pFileInfo->dwFileVersionMS);
 		verMinor = LOWORD(pFileInfo->dwFileVersionMS);
-		//*BuildNumber = HIWORD(pFileInfo->dwFileVersionLS);
+		verMicro = HIWORD(pFileInfo->dwFileVersionLS); // Build
 		//*RevisionNumber = LOWORD(pFileInfo->dwFileVersionLS);
 		free(lpData);
 		return true;

@@ -134,6 +134,10 @@
 #pragma warning(disable : 5262) // implicit fall-through occurs here; are you missing a break statement? Use [[fallthrough]] when a break statement is intentionally omitted between cases
 #pragma warning(disable : 5264) // 'variable-name': 'const' variable is not used
 
+// Introduced in VS2022 17.7 (compiler 19.37). MS headers are triggering it.
+// (some are also triggered by WX headers)
+#pragma warning(disable : 5267) // definition of implicit copy constructor for '<name>' is deprecated because it has a user-provided destructor
+
 // x86 release builds trip on Catch
 // Just defining this before the Catch headers isn't good enough
 #if defined(_M_IX86) && defined(NDEBUG)

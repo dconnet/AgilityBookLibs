@@ -10,6 +10,7 @@
  * @file
  *
  * Revision History
+ * 2023-08-18 Allow turning on/off CStackLogger (useful for tests)
  * 2022-06-09 Created
  */
 
@@ -87,6 +88,9 @@ public:
 	static bool IsLoggerEnabled();
 	// Default logging level (currently set to wxLOG_User+1)
 	static wxLogLevelValues GetLogLevel();
+	// Turn all logging on/off
+	static bool IsLoggingedEnabled();
+	static void EnableLogging(bool enable);
 
 	explicit CStackLogger(wxString const& msg, bool disableStopWatch = false);
 	~CStackLogger();
@@ -98,6 +102,7 @@ private:
 	wxStopWatch m_stopwatch;
 	long m_tickle;
 	static int m_indent;
+	static int m_enabled;
 
 	CStackLogger() = delete;
 	CStackLogger(CStackLogger const&) = delete;

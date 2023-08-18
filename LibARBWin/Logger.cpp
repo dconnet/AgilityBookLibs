@@ -8,6 +8,7 @@
  * @file
  *
  * Revision History
+ * 2023-08-18 Allow turning on/off CStackLogger (useful for tests)
  * 2022-06-09 Created
  */
 
@@ -333,6 +334,7 @@ wxString CLogger::RotateLogs(size_t keepNlogs)
 /////////////////////////////////////////////////////////////////////////////
 
 int CStackLogger::m_indent = 0;
+int CStackLogger::m_enabled = true;
 
 
 bool CStackLogger::IsLoggerEnabled()
@@ -347,6 +349,18 @@ wxLogLevelValues CStackLogger::GetLogLevel()
 }
 
 
+bool CStackLogger::IsLoggingedEnabled()
+{
+	return m_enabled;
+}
+
+
+void CStackLogger::EnableLogging(bool enable)
+{
+	m_enabled = enable;
+}
+
+
 CStackLogger::CStackLogger(wxString const& msg, bool disableStopWatch)
 	: m_msg(msg)
 	, m_disableStopWatch(disableStopWatch)
@@ -354,7 +368,8 @@ CStackLogger::CStackLogger(wxString const& msg, bool disableStopWatch)
 	, m_tickle(0)
 {
 	++m_indent;
-	wxLogGeneric(k_defStackLevel, "%*sEnter: %s", m_indent, " ", m_msg);
+	if (m_enabled)
+		wxLogGeneric(k_defStackLevel, "%*sEnter: %s", m_indent, " ", m_msg);
 	if (!m_disableStopWatch)
 		m_stopwatch.Start();
 }
@@ -363,11 +378,15 @@ CStackLogger::CStackLogger(wxString const& msg, bool disableStopWatch)
 CStackLogger::~CStackLogger()
 {
 	if (m_disableStopWatch)
-		wxLogGeneric(k_defStackLevel, "%*sLeave: %s", m_indent, " ", m_msg);
+	{
+		if (m_enabled)
+			wxLogGeneric(k_defStackLevel, "%*sLeave: %s", m_indent, " ", m_msg);
+	}
 	else
 	{
 		m_stopwatch.Pause();
-		wxLogGeneric(k_defStackLevel, "%*sLeave[%ld]: %s", m_indent, " ", m_stopwatch.Time(), m_msg);
+		if (m_enabled)
+			wxLogGeneric(k_defStackLevel, "%*sLeave[%ld]: %s", m_indent, " ", m_stopwatch.Time(), m_msg);
 	}
 	--m_indent;
 }
@@ -376,11 +395,15 @@ CStackLogger::~CStackLogger()
 void CStackLogger::Tickle(wxString const& msg)
 {
 	if (m_disableStopWatch)
-		wxLogGeneric(k_defStackLevel, "%*sTickle: %s", m_indent, " ", msg);
+	{
+		if (m_enabled)
+			wxLogGeneric(k_defStackLevel, "%*sTickle: %s", m_indent, " ", msg);
+	}
 	else
 	{
 		long t = m_stopwatch.Time();
-		wxLogGeneric(k_defStackLevel, "%*sTickle[%ld]: %s", m_indent, " ", t - m_tickle, msg);
+		if (m_enabled)
+			wxLogGeneric(k_defStackLevel, "%*sTickle[%ld]: %s", m_indent, " ", t - m_tickle, msg);
 		m_tickle = t;
 	}
 }

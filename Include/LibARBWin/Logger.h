@@ -40,6 +40,9 @@ public:
 	static bool IsLoggerEnabled();
 	// Default logging level (currently set to wxLOG_User)
 	static wxLogLevelValues GetLogLevel();
+	// Turn all logging on/off
+	static bool IsLoggingedEnabled();
+	static void EnableLogging(bool enable);
 
 	// Wrapper for wxLogGeneric(GetLogLevel(), L"%s", msg);
 	static void Log(wxString const& msg);
@@ -75,6 +78,7 @@ private:
 	wxLogWindow* m_logger;
 	wxString m_baseFilename;
 	wxFileName m_currentLogName;
+	static bool m_enabled;
 };
 
 
@@ -88,9 +92,6 @@ public:
 	static bool IsLoggerEnabled();
 	// Default logging level (currently set to wxLOG_User+1)
 	static wxLogLevelValues GetLogLevel();
-	// Turn all logging on/off
-	static bool IsLoggingedEnabled();
-	static void EnableLogging(bool enable);
 
 	explicit CStackLogger(wxString const& msg, bool disableStopWatch = false);
 	~CStackLogger();
@@ -102,7 +103,6 @@ private:
 	wxStopWatch m_stopwatch;
 	long m_tickle;
 	static int m_indent;
-	static bool m_enabled;
 
 	CStackLogger() = delete;
 	CStackLogger(CStackLogger const&) = delete;

@@ -334,7 +334,7 @@ wxString CLogger::RotateLogs(size_t keepNlogs)
 /////////////////////////////////////////////////////////////////////////////
 
 int CStackLogger::m_indent = 0;
-int CStackLogger::m_enabled = true;
+bool CStackLogger::m_enabled = true;
 
 
 bool CStackLogger::IsLoggerEnabled()

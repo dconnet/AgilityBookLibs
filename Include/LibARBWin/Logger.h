@@ -102,7 +102,7 @@ private:
 	wxStopWatch m_stopwatch;
 	long m_tickle;
 	static int m_indent;
-	static int m_enabled;
+	static bool m_enabled;
 
 	CStackLogger() = delete;
 	CStackLogger(CStackLogger const&) = delete;

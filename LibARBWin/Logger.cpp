@@ -364,6 +364,13 @@ wxLogLevelValues CStackLogger::GetLogLevel()
 }
 
 
+void CStackLogger::Log(wxString const& msg)
+{
+	if (CLogger::IsLoggingedEnabled())
+		wxLogGeneric(k_defStackLevel, L"%s", msg);
+}
+
+
 CStackLogger::CStackLogger(wxString const& msg, bool disableStopWatch)
 	: m_msg(msg)
 	, m_disableStopWatch(disableStopWatch)

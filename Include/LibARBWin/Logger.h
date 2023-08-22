@@ -85,6 +85,7 @@ private:
 // This is the same thing as ARBCommon::CStackTracer, but uses CLogger. Also,
 // this is enabled in release builds, however it is suppressed by default.
 // Use 'enableStackLogger' in CLogger to enable.
+// The logging level of this is 1 higher than CLogger.
 class ARBWIN_API CStackLogger
 {
 public:
@@ -92,6 +93,9 @@ public:
 	static bool IsLoggerEnabled();
 	// Default logging level (currently set to wxLOG_User+1)
 	static wxLogLevelValues GetLogLevel();
+
+	// Wrapper for wxLogGeneric(GetLogLevel(), L"%s", msg);
+	static void Log(wxString const& msg);
 
 	explicit CStackLogger(wxString const& msg, bool disableStopWatch = false);
 	~CStackLogger();

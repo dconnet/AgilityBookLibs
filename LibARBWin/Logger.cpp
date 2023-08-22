@@ -371,15 +371,22 @@ void CStackLogger::Log(wxString const& msg)
 }
 
 
-CStackLogger::CStackLogger(wxString const& msg, bool disableStopWatch)
-	: m_msg(msg)
+CStackLogger::CStackLogger(wxString const& msg)
+	: CStackLogger(wxString(), msg, false)
+{
+}
+
+
+CStackLogger::CStackLogger(wxString const& prefix, wxString const& msg, bool disableStopWatch)
+	: m_prefix(prefix)
+	, m_msg(msg)
 	, m_disableStopWatch(disableStopWatch)
 	, m_stopwatch()
 	, m_tickle(0)
 {
 	++m_indent;
 	if (CLogger::IsLoggingedEnabled())
-		wxLogGeneric(k_defStackLevel, "%*sEnter: %s", m_indent, " ", m_msg);
+		wxLogGeneric(k_defStackLevel, "%*s%s: Enter: %s", m_indent, " ", m_prefix, m_msg);
 	if (!m_disableStopWatch)
 		m_stopwatch.Start();
 }
@@ -390,13 +397,13 @@ CStackLogger::~CStackLogger()
 	if (m_disableStopWatch)
 	{
 		if (CLogger::IsLoggingedEnabled())
-			wxLogGeneric(k_defStackLevel, "%*sLeave: %s", m_indent, " ", m_msg);
+			wxLogGeneric(k_defStackLevel, "%*s%s: Leave: %s", m_indent, " ", m_prefix, m_msg);
 	}
 	else
 	{
 		m_stopwatch.Pause();
 		if (CLogger::IsLoggingedEnabled())
-			wxLogGeneric(k_defStackLevel, "%*sLeave[%ld]: %s", m_indent, " ", m_stopwatch.Time(), m_msg);
+			wxLogGeneric(k_defStackLevel, "%*s%s: Leave[%ld]: %s", m_indent, " ", m_prefix, m_stopwatch.Time(), m_msg);
 	}
 	--m_indent;
 }
@@ -407,13 +414,19 @@ void CStackLogger::Tickle(wxString const& msg)
 	if (m_disableStopWatch)
 	{
 		if (CLogger::IsLoggingedEnabled())
-			wxLogGeneric(k_defStackLevel, "%*sTickle: %s", m_indent, " ", msg);
+		{
+			wxString tag = m_prefix.empty() ? "Tickle" : m_prefix;
+			wxLogGeneric(k_defStackLevel, "%*s%s: %s", m_indent, " ", tag, msg);
+		}
 	}
 	else
 	{
 		long t = m_stopwatch.Time();
 		if (CLogger::IsLoggingedEnabled())
-			wxLogGeneric(k_defStackLevel, "%*sTickle[%ld]: %s", m_indent, " ", t - m_tickle, msg);
+		{
+			wxString tag = m_prefix.empty() ? "Tickle" : m_prefix;
+			wxLogGeneric(k_defStackLevel, "%*s%s[%ld]: %s", m_indent, " ", tag, t - m_tickle, msg);
+		}
 		m_tickle = t;
 	}
 }

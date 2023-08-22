@@ -97,11 +97,13 @@ public:
 	// Wrapper for wxLogGeneric(GetLogLevel(), L"%s", msg);
 	static void Log(wxString const& msg);
 
-	explicit CStackLogger(wxString const& msg, bool disableStopWatch = false);
+	explicit CStackLogger(wxString const& msg);
+	CStackLogger(wxString const& prefix, wxString const& msg, bool disableStopWatch = false);
 	~CStackLogger();
 	void Tickle(wxString const& msg);
 
 private:
+	wxString m_prefix;
 	wxString m_msg;
 	bool m_disableStopWatch;
 	wxStopWatch m_stopwatch;

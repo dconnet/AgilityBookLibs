@@ -339,14 +339,14 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 
 	auto* ctrlCopy = new wxButton(this, wxID_ANY, _("Copy"));
 	ctrlCopy->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this](wxCommandEvent& evt) {
-		if (wxTheClipboard && wxTheClipboard->Open())
+		if (wxClipboard::Get() && wxClipboard::Get()->Open())
 		{
 			auto data = GetAboutData();
 			auto* dataObj = new wxTextDataObject(data);
-			if (!wxTheClipboard->SetData(dataObj))
+			if (!wxClipboard::Get()->SetData(dataObj))
 				delete dataObj;
-			wxTheClipboard->Flush();
-			wxTheClipboard->Close();
+			wxClipboard::Get()->Flush();
+			wxClipboard::Get()->Close();
 		}
 	});
 	ctrlCopy->Enable(!GetAboutData().empty());

@@ -122,6 +122,7 @@
 #pragma warning (disable : 26481) // Don't use pointer arithmetic. Use span instead (bounds.1).
 #pragma warning (disable : 26482) // Only index into arrays using constant expressions (bounds.2).
 #pragma warning (disable : 26485) // Expression '<var>': No array to pointer decay (bounds.3).
+#pragma warning (disable : 26490) // Don't use reinterpret_cast (type.1).
 #pragma warning (disable : 26496) // The variable '<var>' is assigned only once, mark it as const (con.4).
 // clang-format on
 

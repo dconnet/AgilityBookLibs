@@ -84,6 +84,11 @@ class CLogFile
 	, private wxMessageOutputWithConv
 
 {
+	CLogFile(CLogFile const&) = delete;
+	CLogFile(CLogFile&&) = delete;
+	CLogFile& operator=(CLogFile const&) = delete;
+	CLogFile& operator=(CLogFile&&) = delete;
+
 public:
 	CLogFile(wxString const& path)
 		: wxMessageOutputWithConv(wxMBConvUTF8())

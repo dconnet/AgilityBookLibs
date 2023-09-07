@@ -36,6 +36,11 @@ namespace
 {
 class SetFiles
 {
+	SetFiles(SetFiles const&) = delete;
+	SetFiles(SetFiles&&) = delete;
+	SetFiles& operator=(SetFiles const&) = delete;
+	SetFiles& operator=(SetFiles&&) = delete;
+
 	wxString m_filename;
 	std::vector<wxString> m_filenames;
 

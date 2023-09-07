@@ -408,7 +408,7 @@ bool CGenericValidator::Validate(wxWindow* parent)
 	if (m_validatorWindow->IsKindOf(CLASSINFO(wxTextCtrl)))
 	{
 		pTextControl = dynamic_cast<wxTextCtrl*>(m_validatorWindow);
-		if (pTextControl->IsEditable())
+		if (pTextControl && pTextControl->IsEditable())
 		{
 			wxString textVal = pTextControl->GetValue();
 			if (m_pUShort)

@@ -37,6 +37,7 @@ public:
 	CUniqueId();
 	explicit CUniqueId(std::wstring const& str);
 	CUniqueId(CUniqueId const& rhs);
+	CUniqueId(CUniqueId&& rhs);
 	~CUniqueId();
 
 	void clear();
@@ -44,6 +45,7 @@ public:
 	bool IsNull() const;
 
 	CUniqueId& operator=(CUniqueId const& rhs);
+	CUniqueId& operator=(CUniqueId&& rhs);
 
 	bool operator==(CUniqueId const& rhs) const;
 	bool operator!=(CUniqueId const& rhs) const

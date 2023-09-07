@@ -36,11 +36,16 @@ namespace ARBCommon
 
 class CUniqueIdImpl
 {
+	CUniqueIdImpl(CUniqueIdImpl&& rhs) = delete;
+	CUniqueIdImpl& operator=(CUniqueIdImpl const&) = delete;
+	CUniqueIdImpl& operator=(CUniqueIdImpl&&) = delete;
+
 public:
 	CUniqueIdImpl()
 		: m_uuid()
 	{
 	}
+	~CUniqueIdImpl() = default;
 
 	CUniqueIdImpl(CUniqueIdImpl const& rhs)
 		: m_uuid{rhs.m_uuid}
@@ -163,6 +168,12 @@ CUniqueId::CUniqueId(CUniqueId const& rhs)
 }
 
 
+CUniqueId::CUniqueId(CUniqueId&& rhs)
+	: m_impl(std::move(rhs.m_impl))
+{
+}
+
+
 CUniqueId::~CUniqueId()
 {
 	delete m_impl;
@@ -191,6 +202,14 @@ CUniqueId& CUniqueId::operator=(CUniqueId const& rhs)
 {
 	if (this != &rhs)
 		m_impl->Assign(rhs.m_impl);
+	return *this;
+}
+
+
+CUniqueId& CUniqueId::operator=(CUniqueId&& rhs)
+{
+	if (this != &rhs)
+		m_impl = std::move(rhs.m_impl);
 	return *this;
 }
 

@@ -161,7 +161,6 @@ public:
 	bool EnableSpellChecking(bool bForceRtfAsPlainText = true);
 
 private:
-	bool m_bAllowMultilineTabstop;
 	bool m_allowReadonlyTabstop;
 };
 

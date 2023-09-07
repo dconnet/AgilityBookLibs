@@ -34,7 +34,7 @@ struct ARBWIN_API AboutInfo
 {
 	AboutInfo();
 
-	void SetImage(wxWindow* inParent, wxArtID const& artId, int defaultSize = 128);
+	void SetImage(wxWindow const* inParent, wxArtID const& artId, int defaultSize = 128);
 
 	wxBitmapBundle image;
 	wxString productName;                                                                  // Product name

@@ -127,10 +127,18 @@ private:
 
 class CWizardExcelCommon
 {
+	CWizardExcelCommon(CWizardExcelCommon const&) = delete;
+	CWizardExcelCommon(CWizardExcelCommon&&) = delete;
+	CWizardExcelCommon& operator=(CWizardExcelCommon const&) = delete;
+	CWizardExcelCommon& operator=(CWizardExcelCommon&&) = delete;
+
 protected:
 	CWizardExcelCommon(wxAutomationObject& ioApp);
+
+public:
 	virtual ~CWizardExcelCommon();
 
+protected:
 	bool ImplOpenFile(std::wstring const& inFilename);
 	bool ImplSelectSheet(short index);
 	bool ImplSelectSheet(std::wstring const& sheetName);
@@ -247,10 +255,18 @@ private:
 
 class CWizardCalcCommon
 {
+	CWizardCalcCommon(CWizardCalcCommon const&) = delete;
+	CWizardCalcCommon(CWizardCalcCommon&&) = delete;
+	CWizardCalcCommon& operator=(CWizardCalcCommon const&) = delete;
+	CWizardCalcCommon& operator=(CWizardCalcCommon&&) = delete;
+
 protected:
 	CWizardCalcCommon(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
+
+public:
 	virtual ~CWizardCalcCommon();
 
+protected:
 	bool ImplOpenFile(std::wstring const& inFilename);
 	bool ImplSelectSheet(short index);
 	bool ImplSelectSheet(std::wstring const& sheetName);

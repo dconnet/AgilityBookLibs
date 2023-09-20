@@ -8,9 +8,9 @@
  * @file
  * @brief File hashing algorithms
  *
- * SHA1 source is from http://www.aarongifford.com/computers/sha.html
+ * SHA2 source is from http://www.aarongifford.com/computers/sha.html
 
- * This file combines (part of README), sha1.h, sha1.cpp
+ * This file combines (part of README), sha2.h, sha2.cpp
  * Added SHA2_USE_MYTYPES_H since SHA2_USE_INTTYPES_H doesn't work.
  *
  * Revision History

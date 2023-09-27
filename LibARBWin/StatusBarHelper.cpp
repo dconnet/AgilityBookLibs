@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2023-09-27 Fix sizing on linux/mac.
  * 2022-04-15 Use wx DPI support.
  * 2021-05-25 Changed initialization
  * 2021-01-20 Removed sizing kludge on linux/mac
@@ -174,19 +175,24 @@ void CStatusBarHelper::SetStatusBarWidths(wxStatusBar* statusbar, int nColumn)
 	}
 
 	wxSize borders = statusbar->GetBorders();
-	std::vector<int> widths = m_Widths;
-	for (int i = 0; i < static_cast<int>(widths.size()); ++i)
+	if (0 < borders.x)
 	{
-		if ((0 > nColumn || i == nColumn) && 0 < widths[i])
+		// A column is only updated if we've just computed the extent.
+		// So cache the fixed value. (Or when we update a different column,
+		// the previous one loses it's border adjustment.)
+		for (int i = 0; i < static_cast<int>(m_Widths.size()); ++i)
 		{
-			// On Mac/Linux, I need (4 * borders.x) - not 2 as expected.
-			// Sizing it exactly causes "..." in the text (or cut off on mac)
-			// Note: On windows, the border is actually 0. Mac/Linux is 2.
-			widths[i] += borders.x * 4;
+			if ((0 > nColumn || i == nColumn) && 0 < m_Widths[i])
+			{
+				// On Mac/Linux, I need (4 * borders.x) - not 2 as expected.
+				// Sizing it exactly causes "..." in the text (or cut off on mac)
+				// Note: On windows, borders.x is 0. Mac/Linux it is 2.
+				m_Widths[i] += borders.x * 4;
+			}
 		}
 	}
 
-	statusbar->SetStatusWidths(static_cast<int>(widths.size()), widths.data());
+	statusbar->SetStatusWidths(static_cast<int>(m_Widths.size()), m_Widths.data());
 }
 
 } // namespace ARBWin

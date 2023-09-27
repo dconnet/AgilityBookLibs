@@ -513,6 +513,8 @@
 				OTHER_CFLAGS = (
 					"-I$SRCROOT/../../../Include",
 					"-I$SRCROOT/../../../3rdParty/LibFmt/include",
+					"-I$SRCROOT/../../../3rdParty/gsl/include",
+					"-I$SRCROOT/../../../3rdParty/stduuid/include",
 					"-I$WXWIN/build-debug-fat/lib/wx/include/osx_cocoa-unicode-static-3.2",
 					"-I$WXWIN/include",
 					"-D_FILE_OFFSET_BITS=64",
@@ -533,6 +535,8 @@
 				EXECUTABLE_PREFIX = lib;
 				OTHER_CFLAGS = (
 					"-I$SRCROOT/../../../Include",
+					"-I$SRCROOT/../../../3rdParty/gsl/include",
+					"-I$SRCROOT/../../../3rdParty/stduuid/include",
 					"-I$SRCROOT/../../../3rdParty/LibFmt/include",
 					"-I$WXWIN/build-release-fat/lib/wx/include/osx_cocoa-unicode-static-3.2",
 					"-I$WXWIN/include",

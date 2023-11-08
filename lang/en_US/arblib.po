@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-29 17:06-0700\n"
-"PO-Revision-Date: 2023-03-29 17:06-0700\n"
+"POT-Creation-Date: 2023-11-08 10:18-0800\n"
+"PO-Revision-Date: 2023-11-08 10:18-0800\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: en_US\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;arbT\n"
 "X-Poedit-Basepath: ../..\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-SearchPath-0: Include\n"
 "X-Poedit-SearchPath-1: ARBCommon\n"
 "X-Poedit-SearchPath-2: LibARBWin\n"
@@ -42,154 +42,154 @@ msgstr "Compiled on %s at %s"
 msgid "%s at %s"
 msgstr "%s at %s"
 
-#: LibARBWin/ARBDebug.cpp:205
+#: LibARBWin/ARBDebug.cpp:207
 msgid "Unable to determine version information"
 msgstr "Unable to determine version information"
 
-#: LibARBWin/About.cpp:310
+#: LibARBWin/About.cpp:312
 msgid "About..."
 msgstr "About..."
 
-#: LibARBWin/About.cpp:322
+#: LibARBWin/About.cpp:324
 msgid "Debug"
 msgstr "Debug"
 
-#: LibARBWin/About.cpp:329
+#: LibARBWin/About.cpp:331
 msgid "About"
 msgstr "About"
 
-#: LibARBWin/About.cpp:333
+#: LibARBWin/About.cpp:335
 msgid "Information"
 msgstr "Information"
 
-#: LibARBWin/About.cpp:338
+#: LibARBWin/About.cpp:340
 msgid "Copy"
 msgstr "Copy"
 
-#: LibARBWin/About.cpp:352
+#: LibARBWin/About.cpp:354
 msgid "Close"
 msgstr "Close"
 
-#: LibARBWin/About.cpp:426
+#: LibARBWin/About.cpp:429
 msgid "Version"
 msgstr "Version"
 
-#: LibARBWin/About.cpp:434
+#: LibARBWin/About.cpp:437
 msgid "Build date"
 msgstr "Build date"
 
-#: LibARBWin/About.cpp:439
+#: LibARBWin/About.cpp:442
 msgid "Appplication directory"
 msgstr "Appplication directory"
 
-#: LibARBWin/About.cpp:448
+#: LibARBWin/About.cpp:451
 msgid "User data directory"
 msgstr "User data directory"
 
-#: LibARBWin/About.cpp:458
+#: LibARBWin/About.cpp:461
 msgid "DPI scaling"
 msgstr "DPI scaling"
 
-#: LibARBWin/About.cpp:462
+#: LibARBWin/About.cpp:465
 msgid "OS"
 msgstr "OS"
 
 # DlgAuthenticate
-#: LibARBWin/DlgAuthenticate.cpp:48
+#: LibARBWin/DlgAuthenticate.cpp:49
 msgid "Authentication"
 msgstr "Authentication"
 
-#: LibARBWin/DlgAuthenticate.cpp:59
+#: LibARBWin/DlgAuthenticate.cpp:60
 msgid "User Name"
 msgstr "User Name"
 
-#: LibARBWin/DlgAuthenticate.cpp:71
+#: LibARBWin/DlgAuthenticate.cpp:72
 msgid "Password"
 msgstr "Password"
 
-#: LibARBWin/DlgConfigAccel.cpp:109 LibARBWin/DlgConfigAccel.cpp:238
+#: LibARBWin/DlgConfigAccel.cpp:110 LibARBWin/DlgConfigAccel.cpp:240
 msgid "Assign Key"
 msgstr "Assign Key"
 
-#: LibARBWin/DlgConfigAccel.cpp:112
+#: LibARBWin/DlgConfigAccel.cpp:113
 msgid "Key:"
 msgstr "Key:"
 
-#: LibARBWin/DlgConfigAccel.cpp:123
+#: LibARBWin/DlgConfigAccel.cpp:124
 msgid "Modifiers:"
 msgstr "Modifiers:"
 
-#: LibARBWin/DlgConfigAccel.cpp:128
+#: LibARBWin/DlgConfigAccel.cpp:129
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: LibARBWin/DlgConfigAccel.cpp:137
+#: LibARBWin/DlgConfigAccel.cpp:138
 msgid "Alt"
 msgstr "Alt"
 
-#: LibARBWin/DlgConfigAccel.cpp:146
+#: LibARBWin/DlgConfigAccel.cpp:147
 msgid "Shift"
 msgstr "Shift"
 
-#: LibARBWin/DlgConfigAccel.cpp:152 LibARBWin/DlgConfigAccel.cpp:499
+#: LibARBWin/DlgConfigAccel.cpp:153 LibARBWin/DlgConfigAccel.cpp:501
 msgid "Clear"
 msgstr "Clear"
 
-#: LibARBWin/DlgConfigAccel.cpp:237
+#: LibARBWin/DlgConfigAccel.cpp:239
 msgid "ERROR: This accelerator is already in use."
 msgstr "ERROR: This accelerator is already in use."
 
-#: LibARBWin/DlgConfigAccel.cpp:304 LibARBWin/MenuHelper.cpp:742
+#: LibARBWin/DlgConfigAccel.cpp:306 LibARBWin/MenuHelper.cpp:753
 msgid "Ctrl+"
 msgstr "Ctrl+"
 
-#: LibARBWin/DlgConfigAccel.cpp:306 LibARBWin/MenuHelper.cpp:744
+#: LibARBWin/DlgConfigAccel.cpp:308 LibARBWin/MenuHelper.cpp:755
 msgid "Alt+"
 msgstr "Alt+"
 
-#: LibARBWin/DlgConfigAccel.cpp:308 LibARBWin/MenuHelper.cpp:746
+#: LibARBWin/DlgConfigAccel.cpp:310 LibARBWin/MenuHelper.cpp:757
 msgid "Shift+"
 msgstr "Shift+"
 
-#: LibARBWin/DlgConfigAccel.cpp:467
+#: LibARBWin/DlgConfigAccel.cpp:469
 msgid "Configure Keyboard Shortcuts"
 msgstr "Configure Keyboard Shortcuts"
 
-#: LibARBWin/DlgConfigAccel.cpp:485
+#: LibARBWin/DlgConfigAccel.cpp:487
 msgid "Keyboard Shortcut"
 msgstr "Keyboard Shortcut"
 
-#: LibARBWin/DlgConfigAccel.cpp:486
+#: LibARBWin/DlgConfigAccel.cpp:488
 msgid "Description"
 msgstr "Description"
 
-#: LibARBWin/DlgConfigAccel.cpp:488
+#: LibARBWin/DlgConfigAccel.cpp:490
 msgid "Location"
 msgstr "Location"
 
-#: LibARBWin/DlgConfigAccel.cpp:493
+#: LibARBWin/DlgConfigAccel.cpp:495
 msgid "New..."
 msgstr "New..."
 
-#: LibARBWin/DlgConfigAccel.cpp:496
+#: LibARBWin/DlgConfigAccel.cpp:498
 msgid "Edit..."
 msgstr "Edit..."
 
-#: LibARBWin/DlgConfigAccel.cpp:502
+#: LibARBWin/DlgConfigAccel.cpp:504
 msgid "Set Defaults"
 msgstr "Set Defaults"
 
 # DlgMessage
-#: LibARBWin/DlgMessage.cpp:39
+#: LibARBWin/DlgMessage.cpp:40
 msgid "IDD_MESSAGE"
 msgstr "Message"
 
-#: LibARBWin/DlgMessage.cpp:52
+#: LibARBWin/DlgMessage.cpp:53
 msgid "IDC_MESSAGE_CLOSE"
 msgstr "Close"
 
 # DlgProgress
-#: LibARBWin/DlgProgress.cpp:129
+#: LibARBWin/DlgProgress.cpp:130
 msgid "Progress"
 msgstr "Progress"
 
@@ -210,7 +210,7 @@ msgstr "Language Selection"
 msgid "Select a language to use."
 msgstr "Select a language to use."
 
-#: LibARBWin/Logger.cpp:222
+#: LibARBWin/Logger.cpp:262
 msgid "Logging"
 msgstr "Logging"
 
@@ -231,11 +231,13 @@ msgstr "Restore"
 msgid "Report generated in \"%s\"."
 msgstr "Report generated in \"%s\"."
 
-#: LibARBWin/SpreadSheet.cpp:853
+#: LibARBWin/SpreadSheet.cpp:869
+#, c++-format
 msgid "Reading {0} rows and {1} columns"
 msgstr "Reading {0} rows and {1} columns"
 
-#: LibARBWin/SpreadSheet.cpp:1343
+#: LibARBWin/SpreadSheet.cpp:1359
+#, c++-format
 msgid "Reading {} rows"
 msgstr "Reading {} rows"
 

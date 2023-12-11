@@ -43,8 +43,8 @@ libcatch3_SRCS = \
 	src/catch2/catch_totals.cpp \
 	src/catch2/catch_translate_exception.cpp \
 	src/catch2/catch_version.cpp \
-	src/catch2/benchmark/catch_analyse.cpp \
 	src/catch2/benchmark/catch_chronometer.cpp \
+	src/catch2/benchmark/detail/catch_analyse.cpp \
 	src/catch2/benchmark/detail/catch_benchmark_function.cpp \
 	src/catch2/benchmark/detail/catch_run_for_at_least.cpp \
 	src/catch2/benchmark/detail/catch_stats.cpp \

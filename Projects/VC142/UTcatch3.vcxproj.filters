@@ -474,6 +474,27 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_run_info.hpp">
       <Filter>Source Files\internal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_prefix_messages.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_jsonwriter.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_floating_point_helpers.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_integer_helpers.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_uniform_floating_point_distribution.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_uniform_integer_distribution.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_json.hpp">
+      <Filter>Source Files\reporters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_approx.cpp">
@@ -772,6 +793,12 @@
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\catch_translate_exception.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_jsonwriter.cpp">
+      <Filter>Source Files\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_json.cpp">
+      <Filter>Source Files\reporters</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

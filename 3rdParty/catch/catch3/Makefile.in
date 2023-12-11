@@ -43,6 +43,7 @@ libcatch3_SRCS = \
 	src/catch2/catch_totals.cpp \
 	src/catch2/catch_translate_exception.cpp \
 	src/catch2/catch_version.cpp \
+	src/catch2/benchmark/catch_analyse.cpp \
 	src/catch2/benchmark/catch_chronometer.cpp \
 	src/catch2/benchmark/detail/catch_benchmark_function.cpp \
 	src/catch2/benchmark/detail/catch_run_for_at_least.cpp \
@@ -64,6 +65,7 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_commandline.cpp \
 	src/catch2/internal/catch_console_colour.cpp \
 	src/catch2/internal/catch_context.cpp \
+	src/catch2/internal/catch_context.cpp \
 	src/catch2/internal/catch_debug_console.cpp \
 	src/catch2/internal/catch_debugger.cpp \
 	src/catch2/internal/catch_decomposer.cpp \
@@ -75,6 +77,7 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_floating_point_helpers.cpp \
 	src/catch2/internal/catch_getenv.cpp \
 	src/catch2/internal/catch_istream.cpp \
+	src/catch2/internal/catch_jsonwriter.cpp \
 	src/catch2/internal/catch_lazy_expr.cpp \
 	src/catch2/internal/catch_leak_detector.cpp \
 	src/catch2/internal/catch_list.cpp \
@@ -124,6 +127,7 @@ libcatch3_SRCS = \
 	src/catch2/reporters/catch_reporter_cumulative_base.cpp \
 	src/catch2/reporters/catch_reporter_event_listener.cpp \
 	src/catch2/reporters/catch_reporter_helpers.cpp \
+	src/catch2/reporters/catch_reporter_json.cpp \
 	src/catch2/reporters/catch_reporter_junit.cpp \
 	src/catch2/reporters/catch_reporter_multi.cpp \
 	src/catch2/reporters/catch_reporter_registrars.cpp \

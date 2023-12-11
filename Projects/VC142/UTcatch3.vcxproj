@@ -281,6 +281,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_commandline.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compare_traits.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_compiler_capabilities.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_prefix_messages.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_static_analysis_support.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_is_permutation.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_config_android_logwrite.hpp" />
@@ -301,6 +302,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_fatal_condition_handler.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_floating_point_helpers.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_getenv.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_jsonwriter.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_lazy_expr.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_leak_detector.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_list.hpp" />
@@ -317,6 +319,8 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor_internal_stringify.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor_remove_parens.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_floating_point_helpers.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_integer_helpers.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_number_generator.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_seed_generation.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_reporter_registry.hpp" />
@@ -347,6 +351,8 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_textflow.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_to_string.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_uncaught_exceptions.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_uniform_floating_point_distribution.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_uniform_integer_distribution.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_unique_name.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_unique_ptr.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_void_type.hpp" />
@@ -374,6 +380,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_cumulative_base.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_event_listener.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_helpers.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_json.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_junit.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_multi.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_registrars.hpp" />
@@ -425,6 +432,7 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_fatal_condition_handler.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_floating_point_helpers.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_getenv.cpp" />
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_jsonwriter.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_lazy_expr.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_leak_detector.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_list.cpp" />
@@ -475,6 +483,7 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_cumulative_base.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_event_listener.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_helpers.cpp" />
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_json.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_junit.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_multi.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\reporters\catch_reporter_registrars.cpp" />

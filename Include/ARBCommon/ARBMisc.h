@@ -51,7 +51,7 @@ ARBCOMMON_API std::wstring GetNativeARBArch();
  * Get OS version.
  * @param verMajor OS major version number.
  * @param verMinor OS minor version number.
- * @param verMinor OS micro version number.
+ * @param verMicro OS micro version number.
  */
 ARBCOMMON_API bool GetOSInfo(int& verMajor, int& verMinor, int& verMicro);
 

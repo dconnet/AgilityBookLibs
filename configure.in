@@ -8,6 +8,8 @@
 ################################################################################
 AC_INIT(Agility Record Book, 3.8.6.124, [help@agilityrecordbook.com])
 
+AC_ARG_ENABLE(official, [--enable-official official build], USE_OFFICIAL_BUILD=$enableval, USE_OFFICIAL_BUILD=no)
+
 # Allows linking when AgilityBookLibs is a submodule or built directly
 AC_SUBST(ARBLIBS_DIR, "")
 
@@ -57,6 +59,9 @@ AC_SUBST(CXXFLAGS, "`wx-config --cxxflags`")
 AC_SUBST(LDFLAGS, "`wx-config --libs`")
 
 AC_SUBST(CXXFLAGS,"$CXXFLAGS -DUSE_WXWIDGETS")
+if test $USE_OFFICIAL_BUILD = "yes" ; then
+	AC_SUBST(CXXFLAGS,"$CXXFLAGS -DOFFICIAL_BUILD -DVER_PARTS=3")
+fi
 
 # Ubuntu18 has 3.6, we need 3.8. If it doesn't exist, then building will just fail.
 # There might be a better way, but this works...
@@ -67,6 +72,8 @@ Darwin*)
 	AC_SUBST(ARFLAGS, 'cru')
 	AC_SUBST(SHAREDLIBEXT, 'dylib')
 
+	# Leaving this in for a couple compilers for an example.
+	# Current min deployment is 10.13 (as set via wx-config, via BuildUnix.sh)
 	if test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk
 	then
 		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64")
@@ -74,68 +81,18 @@ Darwin*)
 		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
 		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -stdlib=libc++"])
 
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk
-	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64")
-		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -stdlib=libc++"])
+	# Note 12.0 added arm64 support
+	# That's where this originally changed to setting options as below.
 
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk
+	# Assume the current SDK is at least 12.0
+	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64")
+		# WX_ARCH is a kludge to pass the arch type of the wx library.
+		# This is set in the setwxpath.sh script (see notes there).
+		AC_SUBST(CFLAGS, "$CFLAGS $WX_ARCH")
 		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -stdlib=libc++"])
-
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk
-	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64")
-		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -stdlib=libc++"])
-
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk
-	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64")
-		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -stdlib=libc++"])
-
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk
-	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64 -arch arm64")
-		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -arch arm64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -arch arm64 -stdlib=libc++"])
-
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk
-	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64 -arch arm64")
-		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -arch arm64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -arch arm64 -stdlib=libc++"])
-
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.2.sdk
-	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64 -arch arm64")
-		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -arch arm64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -arch arm64 -stdlib=libc++"])
-
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
-	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64 -arch arm64")
-		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -arch arm64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -arch arm64 -stdlib=libc++"])
-
-	elif test -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
-	then
-		AC_SUBST(CFLAGS, "$CFLAGS -arch x86_64 -arch arm64")
-		AC_SUBST(OBJCXXFLAGS, "$OBJCXXFLAGS -std=c++17 -stdlib=libc++")
-		AC_SUBST(CXXFLAGS, "$CXXFLAGS -arch x86_64 -arch arm64 -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
-		AC_SUBST(LDFLAGS, ["$LDFLAGS -arch x86_64 -arch arm64 -stdlib=libc++"])
+		AC_SUBST(CXXFLAGS, "$CXXFLAGS $WX_ARCH -D_GLIBCXX_EXTERN_TEMPLATE=0 -std=c++17 -stdlib=libc++")
+		AC_SUBST(LDFLAGS, ["$LDFLAGS $WX_ARCH -stdlib=libc++"])
 
 	else
 		AC_MSG_ERROR(Cannot determine SDK)

@@ -12,69 +12,75 @@ Catch: v3.5.1
 -- #include "catch2/catch_all.hpp"
 
 
-LibFmt: fmtlib v10.1.1
+LibFmt: fmtlib v10.2.0
 .../LibFmt/
 DevNote: When updating, update .../res/LibFmt.rc2 with version number and copyright
 - https://github.com/fmtlib/fmt/releases
 - http://fmtlib.net/dev/index.html
-- Only README.rst, LICENSE.rst, include, src
-(note: diffs are against 8.1.0, same thing needs to be done for all)
--- Changes (diff -c e:original.h mine.h)
-*** e:core.h	Mon Jan 03 06:30:43 2022
---- core.h	Mon Jan 03 09:35:08 2022
-***************
-*** 2769,2775 ****
-    case presentation_type::hexfloat_lower:
-      result.format = float_format::hex;
-      break;
-!   default:
-      eh.on_error("invalid type specifier");
-      break;
-    }
---- 2769,2783 ----
-    case presentation_type::hexfloat_lower:
-      result.format = float_format::hex;
-      break;
-!   case presentation_type::dec:
-!   case presentation_type::oct:
-!   case presentation_type::hex_lower:
-!   case presentation_type::hex_upper:
-!   case presentation_type::bin_lower:
-!   case presentation_type::bin_upper:
-!   case presentation_type::chr:
-!   case presentation_type::string:
-!   case presentation_type::pointer:
-      eh.on_error("invalid type specifier");
-      break;
-    }
-*** e:format.h	Thu Dec 30 06:58:47 2021
---- format.h	Mon Jan 03 09:34:42 2022
-***************
-*** 1621,1627 ****
-    }
-    case presentation_type::chr:
-      return write_char(out, static_cast<Char>(abs_value), specs);
-!   default:
-      throw_format_error("invalid type specifier");
-    }
-    return out;
---- 1621,1636 ----
-    }
-    case presentation_type::chr:
-      return write_char(out, static_cast<Char>(abs_value), specs);
-!   case presentation_type::hexfloat_lower:
-!   case presentation_type::hexfloat_upper:
-!   case presentation_type::exp_lower:
-!   case presentation_type::exp_upper:
-!   case presentation_type::fixed_lower:
-!   case presentation_type::fixed_upper:
-!   case presentation_type::general_lower:
-!   case presentation_type::general_upper:
-!   case presentation_type::string:
-!   case presentation_type::pointer:
-      throw_format_error("invalid type specifier");
-    }
-    return out;
+- Only README.md, LICENSE, include, src
+(note: diff is against 10.2.0, same thing needs to be done for all)
+-- Changes [git diff COMMIT~] COMMIT is commit number, run in bash - not cmd.
+
+diff --git a/include/fmt/format.h b/include/fmt/format.h
+index 4972a02b..beb2ae4a 100644
+--- a/include/fmt/format.h
++++ b/include/fmt/format.h
+@@ -2128,7 +2128,17 @@ auto write_int(OutputIt out, UInt value, unsigned prefix,
+   }
+   case presentation_type::chr:
+     return write_char(out, static_cast<Char>(value), specs);
+-  default:
++  case presentation_type::hexfloat_lower:
++  case presentation_type::hexfloat_upper:
++  case presentation_type::exp_lower:
++  case presentation_type::exp_upper:
++  case presentation_type::fixed_lower:
++  case presentation_type::fixed_upper:
++  case presentation_type::general_lower:
++  case presentation_type::general_upper:
++  case presentation_type::string:
++  case presentation_type::pointer:
++  case presentation_type::debug:
+     throw_format_error("invalid format specifier");
+   }
+ 
+@@ -2244,7 +2254,17 @@ FMT_CONSTEXPR FMT_INLINE auto write_int(OutputIt out, write_int_arg<T> arg,
+   }
+   case presentation_type::chr:
+     return write_char(out, static_cast<Char>(abs_value), specs);
+-  default:
++  case presentation_type::hexfloat_lower:
++  case presentation_type::hexfloat_upper:
++  case presentation_type::exp_lower:
++  case presentation_type::exp_upper:
++  case presentation_type::fixed_lower:
++  case presentation_type::fixed_upper:
++  case presentation_type::general_lower:
++  case presentation_type::general_upper:
++  case presentation_type::string:
++  case presentation_type::pointer:
++  case presentation_type::debug:
+     throw_format_error("invalid format specifier");
+   }
+   return out;
+@@ -2475,7 +2495,16 @@ FMT_CONSTEXPR auto parse_float_type_spec(const format_specs<Char>& specs)
+   case presentation_type::hexfloat_lower:
+     result.format = float_format::hex;
+     break;
+-  default:
++  case presentation_type::dec:
++  case presentation_type::oct:
++  case presentation_type::hex_lower:
++  case presentation_type::hex_upper:
++  case presentation_type::bin_lower:
++  case presentation_type::bin_upper:
++  case presentation_type::chr:
++  case presentation_type::string:
++  case presentation_type::pointer:
++  case presentation_type::debug:
+     throw_format_error("invalid format specifier");
+     break;
+   }
 
 
 LibTidyHtml: tidy v5.8.0: My wrapper to hide tidy

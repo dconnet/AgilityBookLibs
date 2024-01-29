@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2024-01-29 Remove 'default' in wxConfig switch so compiler errors on new one
  * 2023-08-07 Return x.y.z for OS version, use shorter name for OS name.
  * 2022-04-15 Use wx DPI support.
  * 2021-07-11 Added compiled-at info, use wxGetLibraryVersionInfo for wx version
@@ -283,7 +284,6 @@ size_t DumpRegistryGroup(wxString const& inGroup, fmt::wmemory_buffer* outData, 
 			switch (wxConfig::Get()->GetEntryType(str))
 			{
 			case wxConfigBase::Type_Unknown:
-			default:
 				if (outData)
 				{
 					++added;

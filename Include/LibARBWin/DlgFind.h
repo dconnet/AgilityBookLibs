@@ -23,13 +23,16 @@
 #include "LibARBWin/Logger.h"
 #include <list>
 
+class wxGrid;
+
 
 namespace dconSoft
 {
 namespace ARBWin
 {
-class CTextCtrl;
 class CDlgFind;
+class CReportListCtrl;
+class CTextCtrl;
 
 
 class ARBWIN_API CFindCallback
@@ -165,6 +168,53 @@ protected:
 	bool m_down{true};
 };
 
+/////////////////////////////////////////////////////////////////////////////
+
+class ARBWIN_API CFindDataBase : public ARBWin::CFindCallback
+{
+public:
+	CFindDataBase();
+
+protected:
+	virtual int GetCount() const = 0;
+	virtual int GetSelection() const = 0;
+	int GetCurrent() const;
+	int GetNext(int sel) const;
+	void NotFound() const;
+};
+
+/////////////////////////////////////////////////////////////////////////////
+
+class ARBWIN_API CFindDataList : public CFindDataBase
+{
+public:
+	CFindDataList() = default;
+
+protected:
+	int GetCount() const override;
+	int GetSelection() const override;
+
+	// Set in Search()
+	CReportListCtrl* m_list{nullptr};
+};
+
+/////////////////////////////////////////////////////////////////////////////
+
+class ARBWIN_API CFindDataGrid : public CFindDataBase
+{
+public:
+	CFindDataGrid() = default;
+
+protected:
+	int GetCount() const override;
+	int GetSelection() const override;
+
+	// Set in Search()
+	wxGrid* m_grid{nullptr};
+	int m_count{0};
+};
+
+/////////////////////////////////////////////////////////////////////////////
 
 class ARBWIN_API CDlgFind : public wxDialog
 {

@@ -23,7 +23,10 @@
 
 #include "ARBCommon/StringUtil.h"
 #include "LibARBWin/DlgPadding.h"
+#include "LibARBWin/ReportListCtrl.h"
 #include "LibARBWin/Widgets.h"
+#include "fmt/xchar.h"
+#include <wx/grid.h>
 
 #ifdef __WXMSW__
 #include <wx/msw/msvcrt.h>
@@ -55,6 +58,88 @@ bool CFindCallback::Compare(wxString const& value) const
 #pragma PRAGMA_TODO(Implement whole word search and regex)
 
 	return wxNOT_FOUND != name.Find(search);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+CFindDataBase::CFindDataBase()
+{
+	// m_enableSearchAll = CFindCallback::Feature::Hidden;
+}
+
+
+int CFindDataBase::GetCurrent() const
+{
+	auto count = GetCount();
+	if (0 == count)
+		return wxNOT_FOUND;
+	auto sel = GetSelection();
+	if (wxNOT_FOUND == sel)
+	{
+		if (SearchDown())
+			sel = 0;
+		else
+			sel = count - 1;
+	}
+	return sel;
+}
+
+
+int CFindDataBase::GetNext(int sel) const
+{
+	auto count = GetCount();
+	if (0 == count)
+		return wxNOT_FOUND;
+	if (SearchDown())
+		++sel;
+	else
+		--sel;
+	if (0 > sel || sel >= count)
+	{
+		if (Wrap())
+		{
+#pragma PRAGMA_TODO(handle wrapping)
+		}
+		sel = wxNOT_FOUND;
+	}
+	return sel;
+}
+
+
+void CFindDataBase::NotFound() const
+{
+	auto msg = fmt::format(_("Cannot find '{}'").wc_str(), m_search.wc_str());
+	wxMessageBox(msg, _("Find"), wxOK | wxCENTRE | wxICON_INFORMATION);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+int CFindDataList::GetCount() const
+{
+	return m_list ? m_list->GetItemCount() : 0;
+}
+
+
+int CFindDataList::GetSelection() const
+{
+	return m_list ? m_list->GetSelection(true) : wxNOT_FOUND;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+int CFindDataGrid::GetCount() const
+{
+	return m_count;
+}
+
+
+int CFindDataGrid::GetSelection() const
+{
+	if (!m_grid || 0 >= m_count)
+		return wxNOT_FOUND;
+	auto cell = m_grid->GetGridCursorCoords();
+	auto sel = cell.GetRow();
+	return 0 > sel ? wxNOT_FOUND : sel;
 }
 
 /////////////////////////////////////////////////////////////////////////////

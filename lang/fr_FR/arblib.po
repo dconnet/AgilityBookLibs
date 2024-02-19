@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-19 11:25-0800\n"
-"PO-Revision-Date: 2024-02-19 11:25-0800\n"
+"POT-Creation-Date: 2024-02-19 15:30-0800\n"
+"PO-Revision-Date: 2024-02-19 15:31-0800\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: fr_FR\n"
@@ -194,63 +194,68 @@ msgstr "Édition..."
 msgid "Set Defaults"
 msgstr "Set Defaults"
 
+#: LibARBWin/DlgFind.cpp:111
+#, c++-format
+msgid "Cannot find '{}'"
+msgstr "Ne peut pas trouver '{}'"
+
 # DlgFind
-#: LibARBWin/DlgFind.cpp:69
+#: LibARBWin/DlgFind.cpp:112 LibARBWin/DlgFind.cpp:154
 msgid "Find"
 msgstr "Rechercher"
 
-#: LibARBWin/DlgFind.cpp:76
+#: LibARBWin/DlgFind.cpp:161
 msgid "Find &what:"
 msgstr "Chercher:"
 
-#: LibARBWin/DlgFind.cpp:85
+#: LibARBWin/DlgFind.cpp:170
 msgid "Match &case"
 msgstr "Respecter la &casse"
 
-#: LibARBWin/DlgFind.cpp:90
+#: LibARBWin/DlgFind.cpp:175
 #, fuzzy
 msgid "&Match whole word"
 msgstr "&Match whole word"
 
-#: LibARBWin/DlgFind.cpp:97
+#: LibARBWin/DlgFind.cpp:182
 #, fuzzy
 msgid "Use regular &expressions"
 msgstr "Use regular &expressions"
 
-#: LibARBWin/DlgFind.cpp:103
+#: LibARBWin/DlgFind.cpp:188
 #, fuzzy
 msgid "&Wrap around"
 msgstr "&Wrap around"
 
-#: LibARBWin/DlgFind.cpp:109
+#: LibARBWin/DlgFind.cpp:194
 msgid "&All"
 msgstr "&Tous"
 
-#: LibARBWin/DlgFind.cpp:109
+#: LibARBWin/DlgFind.cpp:194
 msgid "&Visible"
 msgstr "&Visible"
 
-#: LibARBWin/DlgFind.cpp:114
+#: LibARBWin/DlgFind.cpp:199
 msgid "Fields to search"
 msgstr "Champs à rechercher"
 
-#: LibARBWin/DlgFind.cpp:128
+#: LibARBWin/DlgFind.cpp:213
 msgid "&Up"
 msgstr "&Monter"
 
-#: LibARBWin/DlgFind.cpp:128
+#: LibARBWin/DlgFind.cpp:213
 msgid "&Down"
 msgstr "&Descendre"
 
-#: LibARBWin/DlgFind.cpp:133
+#: LibARBWin/DlgFind.cpp:218
 msgid "Direction"
 msgstr "Direction"
 
-#: LibARBWin/DlgFind.cpp:145
+#: LibARBWin/DlgFind.cpp:230
 msgid "&Find"
 msgstr "Che&rcher"
 
-#: LibARBWin/DlgFind.cpp:163
+#: LibARBWin/DlgFind.cpp:248
 msgid "&Find Next"
 msgstr "Che&rcher suivant"
 

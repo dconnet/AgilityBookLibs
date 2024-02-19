@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 10:19-0800\n"
-"PO-Revision-Date: 2023-11-08 10:19-0800\n"
+"POT-Creation-Date: 2024-02-19 11:25-0800\n"
+"PO-Revision-Date: 2024-02-19 11:25-0800\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: fr_FR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;arbT\n"
 "X-Poedit-Basepath: ../..\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-SearchPath-0: Include\n"
 "X-Poedit-SearchPath-1: ARBCommon\n"
 "X-Poedit-SearchPath-2: LibARBWin\n"
@@ -42,7 +42,7 @@ msgstr "Compiled on %s at %s"
 msgid "%s at %s"
 msgstr "%s at %s"
 
-#: LibARBWin/ARBDebug.cpp:207
+#: LibARBWin/ARBDebug.cpp:208
 msgid "Unable to determine version information"
 msgstr "Impossible de determiner information version"
 
@@ -61,7 +61,6 @@ msgstr "à Propos de"
 
 #: LibARBWin/About.cpp:335
 #, fuzzy
-#| msgid "Location"
 msgid "Information"
 msgstr "Endroit"
 
@@ -195,6 +194,66 @@ msgstr "Édition..."
 msgid "Set Defaults"
 msgstr "Set Defaults"
 
+# DlgFind
+#: LibARBWin/DlgFind.cpp:69
+msgid "Find"
+msgstr "Rechercher"
+
+#: LibARBWin/DlgFind.cpp:76
+msgid "Find &what:"
+msgstr "Chercher:"
+
+#: LibARBWin/DlgFind.cpp:85
+msgid "Match &case"
+msgstr "Respecter la &casse"
+
+#: LibARBWin/DlgFind.cpp:90
+#, fuzzy
+msgid "&Match whole word"
+msgstr "&Match whole word"
+
+#: LibARBWin/DlgFind.cpp:97
+#, fuzzy
+msgid "Use regular &expressions"
+msgstr "Use regular &expressions"
+
+#: LibARBWin/DlgFind.cpp:103
+#, fuzzy
+msgid "&Wrap around"
+msgstr "&Wrap around"
+
+#: LibARBWin/DlgFind.cpp:109
+msgid "&All"
+msgstr "&Tous"
+
+#: LibARBWin/DlgFind.cpp:109
+msgid "&Visible"
+msgstr "&Visible"
+
+#: LibARBWin/DlgFind.cpp:114
+msgid "Fields to search"
+msgstr "Champs à rechercher"
+
+#: LibARBWin/DlgFind.cpp:128
+msgid "&Up"
+msgstr "&Monter"
+
+#: LibARBWin/DlgFind.cpp:128
+msgid "&Down"
+msgstr "&Descendre"
+
+#: LibARBWin/DlgFind.cpp:133
+msgid "Direction"
+msgstr "Direction"
+
+#: LibARBWin/DlgFind.cpp:145
+msgid "&Find"
+msgstr "Che&rcher"
+
+#: LibARBWin/DlgFind.cpp:163
+msgid "&Find Next"
+msgstr "Che&rcher suivant"
+
 # DlgMessage
 #: LibARBWin/DlgMessage.cpp:40
 msgid "IDD_MESSAGE"
@@ -268,7 +327,6 @@ msgstr "Merci d'enter un nombre valide."
 
 #: LibARBWin/Validators.cpp:475
 #, fuzzy
-#| msgid "Please enter a valid number"
 msgid "Please enter a valid time"
 msgstr "Please enter a valid time"
 

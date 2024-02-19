@@ -283,6 +283,7 @@
     <ClCompile Include="..\..\LibARBWin\ConfigPosition.cpp" />
     <ClCompile Include="..\..\LibARBWin\DlgAuthenticate.cpp" />
     <ClCompile Include="..\..\LibARBWin\DlgConfigAccel.cpp" />
+    <ClCompile Include="..\..\LibARBWin\DlgFind.cpp" />
     <ClCompile Include="..\..\LibARBWin\DlgMessage.cpp" />
     <ClCompile Include="..\..\LibARBWin\DlgProgress.cpp" />
     <ClCompile Include="..\..\LibARBWin\ImageHelperBase.cpp" />
@@ -335,6 +336,7 @@
     <ClInclude Include="..\..\Include\LibARBWin\CheckTreeCtrl.h" />
     <ClInclude Include="..\..\Include\LibARBWin\ConfigPosition.h" />
     <ClInclude Include="..\..\Include\LibARBWin\DlgAuthenticate.h" />
+    <ClInclude Include="..\..\Include\LibARBWin\DlgFind.h" />
     <ClInclude Include="..\..\Include\LibARBWin\DlgMessage.h" />
     <ClInclude Include="..\..\Include\LibARBWin\DlgProgress.h" />
     <ClInclude Include="..\..\Include\LibARBWin\ImageHelperBase.h" />

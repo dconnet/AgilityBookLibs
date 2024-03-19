@@ -39,6 +39,9 @@
 		E112AE9321FE3DEA00D6FE27 /* StatusBarHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = E112AE9221FE3DE900D6FE27 /* StatusBarHelper.h */; };
 		E1430BD82893552200A953EA /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1430BD72893552200A953EA /* About.cpp */; };
 		E1430BDA2893553100A953EA /* About.h in Headers */ = {isa = PBXBuildFile; fileRef = E1430BD92893553100A953EA /* About.h */; };
+		E14669EE2BAA2AC8002CF983 /* DlgFind.h in Headers */ = {isa = PBXBuildFile; fileRef = E14669EC2BAA2AC8002CF983 /* DlgFind.h */; };
+		E14669EF2BAA2AC8002CF983 /* DlgPadding.h in Headers */ = {isa = PBXBuildFile; fileRef = E14669ED2BAA2AC8002CF983 /* DlgPadding.h */; };
+		E14669F12BAA2ADF002CF983 /* DlgFind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E14669F02BAA2ADF002CF983 /* DlgFind.cpp */; };
 		E14A806326F7DFF400CBD1D9 /* ConfigPosition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E14A806226F7DFF400CBD1D9 /* ConfigPosition.cpp */; };
 		E198518F2170E5C5003E7B92 /* ReadHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = E198517A2170E5C5003E7B92 /* ReadHttp.h */; };
 		E19851902170E5C5003E7B92 /* RichEditCtrl2.h in Headers */ = {isa = PBXBuildFile; fileRef = E198517B2170E5C5003E7B92 /* RichEditCtrl2.h */; };
@@ -101,6 +104,9 @@
 		E112AE9221FE3DE900D6FE27 /* StatusBarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarHelper.h; sourceTree = "<group>"; };
 		E1430BD72893552200A953EA /* About.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = About.cpp; sourceTree = "<group>"; };
 		E1430BD92893553100A953EA /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = About.h; sourceTree = "<group>"; };
+		E14669EC2BAA2AC8002CF983 /* DlgFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DlgFind.h; sourceTree = "<group>"; };
+		E14669ED2BAA2AC8002CF983 /* DlgPadding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DlgPadding.h; sourceTree = "<group>"; };
+		E14669F02BAA2ADF002CF983 /* DlgFind.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DlgFind.cpp; sourceTree = "<group>"; };
 		E14A806226F7DFF400CBD1D9 /* ConfigPosition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigPosition.cpp; sourceTree = "<group>"; };
 		E198517A2170E5C5003E7B92 /* ReadHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadHttp.h; sourceTree = "<group>"; };
 		E198517B2170E5C5003E7B92 /* RichEditCtrl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichEditCtrl2.h; sourceTree = "<group>"; };
@@ -145,6 +151,8 @@
 		E110B4A7177FCFCC004071B5 /* LibARBWin */ = {
 			isa = PBXGroup;
 			children = (
+				E14669EC2BAA2AC8002CF983 /* DlgFind.h */,
+				E14669ED2BAA2AC8002CF983 /* DlgPadding.h */,
 				E1430BD92893553100A953EA /* About.h */,
 				E10F397A2526428D00E83AB0 /* ARBDebug.h */,
 				E19851832170E5C5003E7B92 /* ARBWinUtilities.h */,
@@ -203,6 +211,7 @@
 		E19B62F3166C090F004DEDA4 /* LibARBWin */ = {
 			isa = PBXGroup;
 			children = (
+				E14669F02BAA2ADF002CF983 /* DlgFind.cpp */,
 				E1430BD72893552200A953EA /* About.cpp */,
 				E10F39BF2526445500E83AB0 /* ARBDebug.cpp */,
 				E10F39C52526448200E83AB0 /* ARBWinUtilities.cpp */,
@@ -294,9 +303,11 @@
 				E198519C2170E5C5003E7B92 /* RegItemsBase.h in Headers */,
 				E19851952170E5C5003E7B92 /* ListData.h in Headers */,
 				E19851942170E5C5003E7B92 /* DlgAuthenticate.h in Headers */,
+				E14669EE2BAA2AC8002CF983 /* DlgFind.h in Headers */,
 				E1AF196427F610BA004764B5 /* DlgMessage.h in Headers */,
 				E1CAE56B16B5BF4900B33FE5 /* SetupARBPre.h in Headers */,
 				E198519F2170E5C5003E7B92 /* ImageHelperBase.h in Headers */,
+				E14669EF2BAA2AC8002CF983 /* DlgPadding.h in Headers */,
 				E1CAE56D16B5BF4900B33FE5 /* SetupWX.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +375,7 @@
 				E10F39DD2526448600E83AB0 /* ListData.cpp in Sources */,
 				E1430BD82893552200A953EA /* About.cpp in Sources */,
 				E10F39E52526448600E83AB0 /* DlgConfigAccel.cpp in Sources */,
+				E14669F12BAA2ADF002CF983 /* DlgFind.cpp in Sources */,
 				E14A806326F7DFF400CBD1D9 /* ConfigPosition.cpp in Sources */,
 				E10D89CB25D5A35900D1D8F8 /* ReportListCtrl.cpp in Sources */,
 				E10F39F02526448600E83AB0 /* Validators.cpp in Sources */,

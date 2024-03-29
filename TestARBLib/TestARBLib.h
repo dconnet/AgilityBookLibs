@@ -15,7 +15,7 @@
  * 2022-03-29 Separated from TestARB
  */
 
-#pragma warning(disable : 4868) // compiler may not enforce left-to-right evaluation order in braced initializer list
+#pragma warning(disable:4868) // compiler may not enforce left-to-right evaluation order in braced initializer list
 
 #include "ARBCommon/ARBTypes.h"
 #if defined(USING_CATCH3)

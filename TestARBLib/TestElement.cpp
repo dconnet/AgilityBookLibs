@@ -247,11 +247,13 @@ TEST_CASE("Element")
 	SECTION("LoadXML")
 	{
 		std::stringstream data;
+		// clang-format off
 		data << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 			 << "<Test attrib='a'>\n"
 			 << "<ele>Content</ele>\n"
 			 << "<ele ele='2'>More content</ele>"
 			 << "</Test>";
+		// clang-format on
 
 		fmt::wmemory_buffer errMsg;
 		ElementNodePtr tree(ElementNode::New());
@@ -275,11 +277,13 @@ TEST_CASE("Element")
 	SECTION("Save")
 	{
 		std::stringstream data;
+		// clang-format off
 		data << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 			 << "<Test attrib='a'>\n"
 			 << "<ele>Content</ele>\n"
 			 << "<ele ele='2'>More content</ele>"
 			 << "</Test>";
+		// clang-format on
 
 		fmt::wmemory_buffer errMsg;
 		ElementNodePtr tree(ElementNode::New());

@@ -21,7 +21,7 @@
 #include <wx/msw/msvcrt.h>
 #endif
 
-#pragma warning(disable : 5246)
+#pragma warning(disable:5246)
 #if defined(WIN32) || defined(__APPLE__)
 // We could define this for all platforms. Just becomes an linking issue.
 #define UUID_SYSTEM_GENERATOR

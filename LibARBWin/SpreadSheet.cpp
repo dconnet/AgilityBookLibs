@@ -39,7 +39,7 @@
 #include <wx/variant.h>
 
 // illegal copy-initialization; more than one user-defined conversion has been implicitly applied
-#pragma warning(disable : 4928)
+#pragma warning(disable:4928)
 #endif // HAS_AUTOMATION
 
 #if defined(__WXMSW__)

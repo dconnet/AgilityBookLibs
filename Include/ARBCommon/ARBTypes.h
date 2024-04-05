@@ -184,7 +184,7 @@ public:
 	{
 		m_Version = {{0, 0}};
 	}
-	bool IsSet()
+	bool IsSet() const
 	{
 		return m_Version > VERSION_ARB({{0, 0}});
 	}

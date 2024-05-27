@@ -14,6 +14,7 @@
  * Added SHA2_USE_MYTYPES_H since SHA2_USE_INTTYPES_H doesn't work.
  *
  * Revision History
+ * 2024-05-27 Commented out some headers doxygen keeps tripping over.
  * 2013-10-29 Created
  */
 
@@ -119,7 +120,7 @@ extern "C" {
  * may need to change this, or define these things yourself in this
  * file.
  */
-#include <sys/types.h>
+//#include <sys/types.h>
 
 #ifdef SHA2_USE_INTTYPES_H
 
@@ -307,8 +308,8 @@ extern "C" {
  *
  */
 
-#include <string.h>	/* memcpy()/memset() or bcopy()/bzero() */
-#include <assert.h>	/* assert() */
+//#include <string.h>	/* memcpy()/memset() or bcopy()/bzero() */
+//#include <assert.h>	/* assert() */
 //#include "sha2.h"
 
 /*

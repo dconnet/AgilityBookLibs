@@ -894,7 +894,7 @@ static ctmbstr ExpandTilde( TidyDocImpl* doc, ctmbstr filename )
             char * hd = getenv("HOMEDRIVE");
             char * hp = getenv("HOMEPATH");
             if (hd && hp) {
-                ctmbstr s = TidyDocAlloc(doc, _MAX_PATH);
+                tmbstr s = TidyDocAlloc(doc, _MAX_PATH);
                 strcpy(s, hd);
                 strcat(s, hp);
                 strcat(s, "\\");

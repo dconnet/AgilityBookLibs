@@ -26,6 +26,9 @@
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\args.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\3rdParty\LibFmt\include\fmt\chrono.h">
       <Filter>Header Files</Filter>
     </ClInclude>

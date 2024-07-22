@@ -13,7 +13,7 @@ Catch: v3.6.0
 -- #include "catch2/catch_all.hpp"
 
 
-LibFmt: fmtlib v11.0.1
+LibFmt: fmtlib v11.0.2
 .../LibFmt/
 DevNote: When updating, update .../res/LibFmt.rc2 with version number and copyright
 - https://github.com/fmtlib/fmt/releases

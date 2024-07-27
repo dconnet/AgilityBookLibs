@@ -600,7 +600,7 @@ bool CWizardExcelExport::SetTextColor(long inRow, long inCol, wxColour inColor)
 	m_Worksheet.GetObject(range, L"Range", 2, args);
 	wxAutomationObject font;
 	range.GetObject(font, L"Font");
-	font.PutProperty(L"Color", (long)inColor.GetPixel());
+	font.PutProperty(L"Color", static_cast<long>(inColor.GetPixel()));
 	return true;
 }
 
@@ -617,7 +617,7 @@ bool CWizardExcelExport::SetBackColor(long inRow, long inCol, wxColour inColor)
 	m_Worksheet.GetObject(range, L"Range", 2, args);
 	wxAutomationObject interior;
 	range.GetObject(interior, L"Interior");
-	interior.PutProperty(L"Color", (long)inColor.GetPixel());
+	interior.PutProperty(L"Color", static_cast<long>(inColor.GetPixel()));
 	return true;
 }
 

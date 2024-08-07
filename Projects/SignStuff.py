@@ -12,6 +12,7 @@
 # This script, by default, will only sign when on the build machine.
 #
 # Revision History
+# 2024-08-07 Updated to work work Certum certificate.
 # 2021-05-29 Changed comodoca to sectigo (name change)
 # 2018-10-06 Dropping XP support, remove dual signing.
 # 2017-10-29 Added -2,-t,-e options.
@@ -24,6 +25,7 @@
 	-n CertName: Name of installed cert
 	-f pfx_file: Path to PFX file (Default: use named cert)
 	-p password: Password for PFX file
+	-o:          Override build machine check
     -e: Just show the environment, don't do it
 	target: exe to sign
 Note: The -n/-f options will override the build machine name check
@@ -38,11 +40,11 @@ import time
 
 # Name of build machine
 BuildMachine = 'dcon-build'
-CertName = 'David Connet'
+CertName = ''
 
 SignTool = 'signtool.exe'
-SignSHA1cmd = '/t http://timestamp.sectigo.com /v'
-SignSHA256cmd = '/fd sha256 /tr http://timestamp.sectigo.com/?td=sha256 /td sha256 /v'
+SignSHA1cmd = '/sha1 "661bd3b2d07e54d1317b3c53d792f2f0bd29b05e" /t http://time.certum.pl /fd sha1 /v'
+SignSHA256cmd = '/sha1 "661bd3b2d07e54d1317b3c53d792f2f0bd29b05e" /tr http://time.certum.pl /td sha256 /fd sha256 /v'
 
 validExt = ['.dll', '.exe', '.msi']
 
@@ -79,7 +81,7 @@ def main():
 	password = ''
 	testOnly = False
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], 's:n:f:p:e')
+		opts, args = getopt.getopt(sys.argv[1:], 's:n:f:p:oe')
 	except getopt.error as msg:
 		print(msg)
 		print('Usage:', __doc__)
@@ -95,6 +97,8 @@ def main():
 			pfxFile = a
 		elif '-p' == o:
 			password = a
+		elif '-o' == o:
+			override = True
 		elif '-e' == o:
 			testOnly = True
 
@@ -115,9 +119,9 @@ def main():
 
 	# Put together the command line
 	command = SignTool + ' sign'
-	if not override or len(pfxFile) == 0:
+	if len(CertName) > 0:
 		command = command + ' /n "' +  CertName + '"'
-	else:
+	elif len(pfxFile) > 0:
 		command = command + ' /f "' + pfxFile + '"'
 		if len(password) > 0:
 			command = command + ' /p "' + password + '"'

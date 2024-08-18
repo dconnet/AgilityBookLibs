@@ -20,7 +20,7 @@
 
 #define ARB_VER_MAJOR 3
 #define ARB_VER_MINOR 8
-#define ARB_VER_DOT   9
+#define ARB_VER_DOT   10
 #define ARB_VER_BUILD 127
 
 // Number of parts in the caption version string

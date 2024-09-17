@@ -587,9 +587,6 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_reporter_registry.cpp">
       <Filter>Source Files\internal</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_result_type.cpp">
-      <Filter>Source Files\internal</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_run_context.cpp">
       <Filter>Source Files\internal</Filter>
     </ClCompile>

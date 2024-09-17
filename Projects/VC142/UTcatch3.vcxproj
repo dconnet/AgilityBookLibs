@@ -444,7 +444,6 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_number_generator.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_random_seed_generation.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_reporter_registry.cpp" />
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_result_type.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_run_context.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_section.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_singletons.cpp" />

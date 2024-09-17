@@ -90,7 +90,6 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_random_seed_generation.cpp \
 	src/catch2/internal/catch_reporter_registry.cpp \
 	src/catch2/internal/catch_reporter_spec_parser.cpp \
-	src/catch2/internal/catch_result_type.cpp \
 	src/catch2/internal/catch_reusable_string_stream.cpp \
 	src/catch2/internal/catch_run_context.cpp \
 	src/catch2/internal/catch_section.cpp \

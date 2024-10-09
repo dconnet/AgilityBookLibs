@@ -184,6 +184,38 @@ TEST_CASE("String")
 	}
 
 
+	SECTION("ToLowerA")
+	{
+		std::string s("This is a TEST");
+		std::string s2 = StringUtil::ToLower(s);
+		REQUIRE("this is a test" == s2);
+	}
+
+
+	SECTION("ToLowerW")
+	{
+		std::wstring s(L"This is a TEST");
+		std::wstring s2 = StringUtil::ToLower(s);
+		REQUIRE(L"this is a test" == s2);
+	}
+
+
+	SECTION("ToUpperA")
+	{
+		std::string s("This is a TEST");
+		std::string s2 = StringUtil::ToUpper(s);
+		REQUIRE("THIS IS A TEST" == s2);
+	}
+
+
+	SECTION("ToUpperW")
+	{
+		std::wstring s(L"This is a TEST");
+		std::wstring s2 = StringUtil::ToUpper(s);
+		REQUIRE(L"THIS IS A TEST" == s2);
+	}
+
+
 	SECTION("Formatting")
 	{
 		REQUIRE(L"two one" == fmt::sprintf(L"%2$s %1$s", L"one", L"two"));

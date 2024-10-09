@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2024-10-09 Tweak tolower/upper to use transform. Add some todo notes.
  * 2018-12-16 Convert to fmt.
  * 2018-04-19 Fixed string/double parsing for locales.
  * 2015-11-13 Added zetta and yotta bytes.
@@ -38,6 +39,7 @@
 #include <wx/strconv.h>
 #include <wx/uilocale.h>
 #include <algorithm>
+#include <cwctype>
 #include <sstream>
 
 #if defined(WIN32) && (_WIN32_IE >= _WIN32_IE_IE55)
@@ -471,10 +473,23 @@ std::wstring TrimRight(std::wstring const& inStr, wchar_t toTrim)
 }
 
 
+#pragma PRAGMA_TODO(fix tolower and toupper for unicode sequences)
+// A popular but wrong way to convert a string to uppercase or lowercase
+// https://devblogs.microsoft.com/oldnewthing/20241007-00/?p=110345
+// ...
+// If you need to perform a case mapping on a string, you can use LCMap­String­Ex
+// with LCMAP_LOWERCASE or LCMAP_UPPERCASE, possibly with other flags like
+// LCMAP_LINGUISTIC_CASING. If you use the International Components for Unicode
+// (ICU) library, you can use u_strToUpper and u_strToLower.
+// ===
+// Note: The wx library also does a char-by-char translation.
+// For now, I'm not going to address this...
 std::string ToLower(std::string const& inStr)
 {
 	std::string out(inStr);
-	std::for_each(out.begin(), out.end(), [](char& ch) { ch = std::tolower(ch, std::locale::classic()); });
+	std::transform(out.begin(), out.end(), out.begin(), [](unsigned char ch) {
+		return std::tolower(ch, std::locale::classic());
+	});
 	return out;
 }
 
@@ -482,7 +497,7 @@ std::string ToLower(std::string const& inStr)
 std::wstring ToLower(std::wstring const& inStr)
 {
 	std::wstring out(inStr);
-	std::for_each(out.begin(), out.end(), [](wchar_t& ch) { ch = std::tolower(ch, std::locale::classic()); });
+	std::transform(out.begin(), out.end(), out.begin(), [](std::wint_t ch) { return std::towlower(ch); });
 	return out;
 }
 
@@ -490,7 +505,9 @@ std::wstring ToLower(std::wstring const& inStr)
 std::string ToUpper(std::string const& inStr)
 {
 	std::string out(inStr);
-	std::for_each(out.begin(), out.end(), [](char& ch) { ch = std::toupper(ch, std::locale::classic()); });
+	std::transform(out.begin(), out.end(), out.begin(), [](unsigned char ch) {
+		return std::toupper(ch, std::locale::classic());
+	});
 	return out;
 }
 
@@ -498,7 +515,7 @@ std::string ToUpper(std::string const& inStr)
 std::wstring ToUpper(std::wstring const& inStr)
 {
 	std::wstring out(inStr);
-	std::for_each(out.begin(), out.end(), [](wchar_t& ch) { ch = std::toupper(ch, std::locale::classic()); });
+	std::transform(out.begin(), out.end(), out.begin(), [](std::wint_t ch) { return std::towupper(ch); });
 	return out;
 }
 

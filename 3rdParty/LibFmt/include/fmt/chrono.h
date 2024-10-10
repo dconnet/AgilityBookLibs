@@ -22,6 +22,11 @@
 
 #include "format.h"
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4583) // 'fmt::v11::detail::get_locale::locale_': destructor is not implicitly called
+#endif
+
 FMT_BEGIN_NAMESPACE
 
 // Check if std::chrono::local_t is available.
@@ -2428,5 +2433,9 @@ template <typename Char> struct formatter<std::tm, Char> {
 
 FMT_END_EXPORT
 FMT_END_NAMESPACE
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 #endif  // FMT_CHRONO_H_

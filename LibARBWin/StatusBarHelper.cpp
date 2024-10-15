@@ -48,7 +48,11 @@ wxStatusBar* CStatusBarHelper::Initialize()
 	if (!statusbar)
 		return nullptr;
 
+#if wxCHECK_VERSION(3, 3, 0)
+	wxInfoDC dc(statusbar);
+#else
 	wxClientDC dc(statusbar);
+#endif
 	dc.SetFont(statusbar->GetFont());
 
 	std::vector<int> style(m_Widths.size(), 0);
@@ -80,7 +84,11 @@ bool CStatusBarHelper::Update(int nCol, wxString const& text)
 
 	m_frame->SetStatusText(text, nCol);
 
+#if wxCHECK_VERSION(3, 3, 0)
+	wxInfoDC dc(statusbar);
+#else
 	wxClientDC dc(statusbar);
+#endif
 	dc.SetFont(statusbar->GetFont());
 	m_Widths[nCol] = dc.GetTextExtent(text).x;
 
@@ -104,7 +112,11 @@ bool CStatusBarHelper::Update(std::vector<wxString> const& text)
 	for (int i = 0; i < static_cast<int>(text.size()); ++i)
 		m_frame->SetStatusText(text[i], i + 1);
 
+#if wxCHECK_VERSION(3, 3, 0)
+	wxInfoDC dc(statusbar);
+#else
 	wxClientDC dc(statusbar);
+#endif
 	dc.SetFont(statusbar->GetFont());
 	for (size_t i = 0; i < text.size(); ++i)
 	{

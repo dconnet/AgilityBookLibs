@@ -48,7 +48,7 @@ stduuid: v1.2.3
 -- #include "stduuid/uuid.h"
 
 
-gsl: v4.0.0 (needed for stduuid for pre-C++20)
+gsl: v4.1.0 (needed for stduuid for pre-C++20)
 .../gsl/
 - https://github.com/microsoft/GSL
 - Only copied 'include' from github, plus LICENSE, README.md

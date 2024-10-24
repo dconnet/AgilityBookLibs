@@ -60,10 +60,10 @@ struct ARBWIN_API AboutInfo
 };
 
 // The following macros need the specified header included where used.
-// Usage "ADD_THING(aboutinfo);" - yes, use a trailing ';' so it "looks" right.
+// Usage "ADD_THING(aboutinfo.frameworks);" - yes, use a trailing ';' so it "looks" right.
 // #include "wx/wxsqlite3_version.h"
-#define ADD_ABOUT_WXSQLITE3(info) \
-	info.frameworks.push_back(std::make_pair( \
+#define ADD_ABOUT_WXSQLITE3(frameworks) \
+	frameworks.push_back(std::make_pair( \
 		L"wxSqlite3", \
 		wxString::Format( \
 			"%d.%d.%d.%d", \
@@ -81,9 +81,9 @@ struct ARBWIN_API AboutInfo
 			NLOHMANN_JSON_VERSION_MINOR, \
 			NLOHMANN_JSON_VERSION_PATCH)))
 // I also use 'gsl', 'tidy', 'stduuid' - but they don't have versions in their headers.
-#define ADD_ABOUT_GSL(info)     info.frameworks.push_back(std::make_pair(L"gsl", L"4.1.0"))
-#define ADD_ABOUT_TIDY(info)    info.frameworks.push_back(std::make_pair(L"tidy", L"5.8.0"))
-#define ADD_ABOUT_STDUUID(info) info.frameworks.push_back(std::make_pair(L"stduuid", L"1.2.3"))
+#define ADD_ABOUT_GSL(frameworks)     frameworks.push_back(std::make_pair(L"gsl", L"4.1.0"))
+#define ADD_ABOUT_TIDY(frameworks)    frameworks.push_back(std::make_pair(L"tidy", L"5.8.0"))
+#define ADD_ABOUT_STDUUID(frameworks) frameworks.push_back(std::make_pair(L"stduuid", L"1.2.3"))
 
 
 /**

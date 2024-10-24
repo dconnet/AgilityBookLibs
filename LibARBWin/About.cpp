@@ -577,6 +577,9 @@ AboutInfo::AboutInfo()
 	frameworks.push_back(std::make_pair(
 		L"libFmt",
 		wxString::Format("%d.%d.%d", FMT_VERSION / 10000, (FMT_VERSION % 10000) / 100, FMT_VERSION % 100)));
+	// These are used via ARBCommon
+	ADD_ABOUT_GSL(frameworks);
+	ADD_ABOUT_STDUUID(frameworks);
 }
 
 

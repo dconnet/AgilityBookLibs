@@ -1,4 +1,6 @@
 3rd Party code.
+Note: When bumping 'gsl', 'tidy', 'stduuid', update AgilityBookLibs\Include\LibARBWin\About.h
+Those libs don't have a version number in their headers.
 
 Catch: v2.13.10
 .../catch/catch2/

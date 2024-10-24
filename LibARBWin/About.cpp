@@ -34,6 +34,7 @@
 #include "fmt/xchar.h"
 
 #include <wx/stdpaths.h>
+#include <tuple>
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -57,14 +58,17 @@ constexpr int k_panelCount = 2;
 // Returns label/text
 enum class AboutText
 {
+	// Main page
 	ProdName,
 	Copyright,
 	ProdDesc,
+
+	// Info page
 	Version,
 	CompiledOn,
 	AppDir,
 	UserDir,
-	wxWidgets,
+	Frameworks,
 	Scaling,
 	OS,
 };
@@ -205,89 +209,94 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 {
 	// Controls (these are done first to control tab order)
 
+	std::vector<std::tuple<wxStaticText*, wxStaticText*, wxBitmapButton*>> controls;
+
 	auto info = dlg->GetAboutText(AboutText::Version);
-	wxStaticText* textVersion = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlVersion = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
+	controls.push_back(std::make_tuple(
+		new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+		new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+		nullptr));
 
 	info = dlg->GetAboutText(AboutText::CompiledOn);
-	wxStaticText* textBuildDate = nullptr;
-	wxStaticText* ctrlBuildDate = nullptr;
 	if (!info.second.empty())
 	{
-		textBuildDate = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
-		ctrlBuildDate = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
+		controls.push_back(std::make_tuple(
+			new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+			new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+			nullptr));
 	}
 
 	info = dlg->GetAboutText(AboutText::AppDir);
-	wxStaticText* textAppDir = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlAppDir = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
+	controls.push_back(std::make_tuple(
+		new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+		new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+		nullptr));
 
 	info = dlg->GetAboutText(AboutText::UserDir);
-	wxStaticText* textUserDir = nullptr;
-	wxStaticText* ctrlUserDir = nullptr;
-	wxBitmapButton* ctrlOpen = nullptr;
 	if (!aboutInfo.userDir.empty())
 	{
 		wxString dir = info.second;
-		textUserDir = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
-		ctrlUserDir = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
-		ctrlOpen = new wxBitmapButton(
+		auto* ctrlOpen = new wxBitmapButton(
 			this,
 			wxID_ANY,
 			CResourceManager::Get()
 				->GetBitmap(ImageMgrFolderOpened, wxART_TOOLBAR, wxSize(parent->FromDIP(16), parent->FromDIP(16))));
+		controls.push_back(std::make_tuple(
+			new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+			new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+			ctrlOpen));
 		ctrlOpen->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [dir](wxCommandEvent& evt) { wxLaunchDefaultApplication(dir); });
 	}
 
-	info = dlg->GetAboutText(AboutText::wxWidgets);
-	wxStaticText* textVersionWx = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlVersionWx = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
+	for (auto frame : aboutInfo.frameworks)
+	{
+		controls.push_back(std::make_tuple(
+			new wxStaticText(this, wxID_ANY, frame.first, wxDefaultPosition, wxDefaultSize),
+			new wxStaticText(this, wxID_ANY, frame.second, wxDefaultPosition, wxDefaultSize),
+			nullptr));
+	}
 
 	info = dlg->GetAboutText(AboutText::Scaling);
-	wxStaticText* textDPI = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlDPI = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
+	controls.push_back(std::make_tuple(
+		new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+		new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+		nullptr));
 
 	info = dlg->GetAboutText(AboutText::OS);
-	wxStaticText* textOS = new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize);
-	wxStaticText* ctrlOS = new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize);
+	controls.push_back(std::make_tuple(
+		new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+		new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+		nullptr));
 
 	// Sizers
 	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
-	auto* sizerGrid = new wxFlexGridSizer(7, 2, padding.Inner(), padding.Inner()); // rows/cols/vgap/hgap
+	auto* sizerGrid = new wxFlexGridSizer(
+		static_cast<int>(controls.size()),
+		2,
+		padding.Inner(),
+		padding.Inner()); // rows/cols/vgap/hgap
 	sizerGrid->SetFlexibleDirection(wxBOTH);
 	sizerGrid->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
-	sizerGrid->Add(textVersion, 0, wxALIGN_CENTER_VERTICAL);
-	sizerGrid->Add(ctrlVersion, 0, wxALIGN_CENTER_VERTICAL);
 
-	if (!aboutInfo.compiledOn.empty())
+	for (auto const& ctrls : controls)
 	{
-		sizerGrid->Add(textBuildDate, 0, wxALIGN_CENTER_VERTICAL);
-		sizerGrid->Add(ctrlBuildDate, 0, wxALIGN_CENTER_VERTICAL);
+		if (std::get<2>(ctrls))
+		{
+			wxBoxSizer* sizerDir = new wxBoxSizer(wxHORIZONTAL);
+			sizerGrid->Add(std::get<0>(ctrls), 0, wxALIGN_CENTER_VERTICAL);
+			sizerDir->Add(std::get<1>(ctrls), 1, wxALIGN_CENTER_VERTICAL);
+			sizerDir->Add(std::get<2>(ctrls), 0, wxLEFT | wxALIGN_CENTER_VERTICAL, padding.Inner());
+			sizerGrid->Add(sizerDir);
+		}
+		else
+		{
+			sizerGrid->Add(std::get<0>(ctrls), 0, wxALIGN_CENTER_VERTICAL);
+			sizerGrid->Add(std::get<1>(ctrls), 0, wxALIGN_CENTER_VERTICAL);
+		}
 	}
-
-	sizerGrid->Add(textAppDir, 0, wxALIGN_CENTER_VERTICAL);
-	sizerGrid->Add(ctrlAppDir, 0, wxALIGN_CENTER_VERTICAL);
-
-	if (!aboutInfo.userDir.empty())
-	{
-		wxBoxSizer* sizerDir = new wxBoxSizer(wxHORIZONTAL);
-		sizerGrid->Add(textUserDir, 0, wxALIGN_CENTER_VERTICAL);
-		sizerDir->Add(ctrlUserDir, 1, wxALIGN_CENTER_VERTICAL);
-		sizerDir->Add(ctrlOpen, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, padding.Inner());
-		sizerGrid->Add(sizerDir);
-	}
-
-	sizerGrid->Add(textVersionWx, 0, wxALIGN_CENTER_VERTICAL);
-	sizerGrid->Add(ctrlVersionWx, 0, wxALIGN_CENTER_VERTICAL);
-
-	sizerGrid->Add(textDPI, 0, wxALIGN_CENTER_VERTICAL);
-	sizerGrid->Add(ctrlDPI, 0, wxALIGN_CENTER_VERTICAL);
-
-	sizerGrid->Add(textOS, 0, wxALIGN_CENTER_VERTICAL);
-	sizerGrid->Add(ctrlOS, 0, wxALIGN_CENTER_VERTICAL);
 
 	bSizer->Add(sizerGrid, 0, wxALL, padding.Controls());
 
@@ -452,10 +461,8 @@ std::pair<wxString, wxString> CDlgAbout::GetAboutText(AboutText text) const
 			content = m_aboutInfo.userDir;
 		}
 		break;
-	case AboutText::wxWidgets:
-		label = L"wxWidgets";
-		content
-			= wxString::Format("%d.%d.%d.%d", wxMAJOR_VERSION, wxMINOR_VERSION, wxRELEASE_NUMBER, wxSUBRELEASE_NUMBER);
+	case AboutText::Frameworks:
+		assert(0);
 		break;
 	case AboutText::Scaling:
 		label = _("DPI scaling");
@@ -515,9 +522,10 @@ wxString CDlgAbout::GetAboutData() const
 	info = GetAboutText(AboutText::UserDir);
 	if (!info.first.empty())
 		data << info.first << L": " << info.second << L"\n";
-	info = GetAboutText(AboutText::wxWidgets);
-	if (!info.first.empty())
+	for (auto frame : m_aboutInfo.frameworks)
+	{
 		data << info.first << L": " << info.second << L"\n";
+	}
 	info = GetAboutText(AboutText::Scaling);
 	if (!info.first.empty())
 		data << info.first << L": " << info.second << L"\n";
@@ -559,8 +567,16 @@ void About(HMODULE inInst, wxIcon inIcon, wxWindow* inParent, wxString const& in
 }
 #endif
 
+
 AboutInfo::AboutInfo()
 {
+	frameworks.push_back(std::make_pair(
+		L"wxWidgets",
+		wxString::Format("%d.%d.%d.%d", wxMAJOR_VERSION, wxMINOR_VERSION, wxRELEASE_NUMBER, wxSUBRELEASE_NUMBER)));
+	// The fmt library version in the form major * 10000 + minor * 100 + patch.
+	frameworks.push_back(std::make_pair(
+		L"libFmt",
+		wxString::Format("%d.%d.%d", FMT_VERSION / 10000, (FMT_VERSION % 10000) / 100, FMT_VERSION % 100)));
 }
 
 

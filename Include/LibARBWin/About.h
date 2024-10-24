@@ -37,12 +37,11 @@ struct ARBWIN_API AboutInfo
 	void SetImage(wxWindow const* inParent, wxArtID const& artId, int defaultSize = 128);
 
 	wxBitmapBundle image;
-	wxString productName;                                                                  // Product name
-	wxString productDesc;                                                                  // Description
-	wxString version;                                                                      // Version number
-	wxString copyright;                                                                    // Copyright message
-	wxString compiledOn{ARBCommon::CVersionNum::GetCompiledOn(__DATE__, __TIME__, false)}; // Compiled-on information
-	wxString userDir; // User data directory (logging)
+
+	// Main page
+	wxString productName; // Product name
+	wxString copyright;   // Copyright message
+	wxString productDesc; // Description
 	struct LinkInfo
 	{
 		wxString desc; // Visible text
@@ -50,7 +49,41 @@ struct ARBWIN_API AboutInfo
 		bool offset;   // Inset control
 	};
 	std::vector<LinkInfo> links; // Email, website, etc
+
+	// Info page
+	wxString version;                                                                      // Version number
+	wxString compiledOn{ARBCommon::CVersionNum::GetCompiledOn(__DATE__, __TIME__, false)}; // Compiled-on information
+	wxString userDir; // User data directory (logging)
+	// 3rd party frameworks
+	//  wxWidgets and libfmt are automatically added.
+	std::vector<std::pair<wxString, wxString>> frameworks;
 };
+
+// The following macros need the specified header included where used.
+// Usage "ADD_THING(aboutinfo);" - yes, use a trailing ';' so it "looks" right.
+// #include "wx/wxsqlite3_version.h"
+#define ADD_ABOUT_WXSQLITE3(info) \
+	info.frameworks.push_back(std::make_pair( \
+		L"wxSqlite3", \
+		wxString::Format( \
+			"%d.%d.%d.%d", \
+			WXSQLITE3_MAJOR_VERSION, \
+			WXSQLITE3_MINOR_VERSION, \
+			WXSQLITE3_RELEASE_NUMBER, \
+			WXSQLITE3_SUBRELEASE_NUMBER)))
+// #include "nlohmann/json_fwd.hpp"
+#define ADD_ABOUT_JSON(info) \
+	info.frameworks.push_back(std::make_pair( \
+		L"nlohmann/json", \
+		wxString::Format( \
+			"%d.%d.%d", \
+			NLOHMANN_JSON_VERSION_MAJOR, \
+			NLOHMANN_JSON_VERSION_MINOR, \
+			NLOHMANN_JSON_VERSION_PATCH)))
+// I also use 'gsl', 'tidy', 'stduuid' - but they don't have versions in their headers.
+#define ADD_ABOUT_GSL(info)     info.frameworks.push_back(std::make_pair(L"gsl", L"4.1.0"))
+#define ADD_ABOUT_TIDY(info)    info.frameworks.push_back(std::make_pair(L"tidy", L"5.8.0"))
+#define ADD_ABOUT_STDUUID(info) info.frameworks.push_back(std::make_pair(L"stduuid", L"1.2.3"))
 
 
 /**

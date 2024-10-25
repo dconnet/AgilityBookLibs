@@ -487,7 +487,7 @@ std::wstring TrimRight(std::wstring const& inStr, wchar_t toTrim)
 std::string ToLower(std::string const& inStr)
 {
 	std::string out(inStr);
-	std::transform(out.begin(), out.end(), out.begin(), [](unsigned char ch) {
+	std::transform(out.begin(), out.end(), out.begin(), [](char ch) {
 		return std::tolower(ch, std::locale::classic());
 	});
 	return out;
@@ -505,7 +505,7 @@ std::wstring ToLower(std::wstring const& inStr)
 std::string ToUpper(std::string const& inStr)
 {
 	std::string out(inStr);
-	std::transform(out.begin(), out.end(), out.begin(), [](unsigned char ch) {
+	std::transform(out.begin(), out.end(), out.begin(), [](char ch) {
 		return std::toupper(ch, std::locale::classic());
 	});
 	return out;

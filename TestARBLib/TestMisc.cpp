@@ -246,7 +246,7 @@ TEST_CASE("Misc")
 			{ 500, L"D" },
 			{ 999, L"CMXCIX" },
 			{ 2999, L"MMCMXCIX" },
-			{ 3999, L"MMMCMXCIX" }
+			{ 3999, L"MMMCMXCIX" },
 			// clang-format on
 		};
 		for (size_t i = 0; i < _countof(testValues); ++i)

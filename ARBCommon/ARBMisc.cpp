@@ -288,7 +288,7 @@ std::wstring ShortToRoman(short value)
 		{nullptr, L"DC",   L"LX",   L"VI"  },
 		{nullptr, L"DCC",  L"LXX",  L"VII" },
 		{nullptr, L"DCCC", L"LXXX", L"VIII"},
-		{nullptr, L"CM",   L"XC",   L"IX"  }
+		{nullptr, L"CM",   L"XC",   L"IX"  },
 		// clang-format on
 	};
 	fmt::wmemory_buffer result;

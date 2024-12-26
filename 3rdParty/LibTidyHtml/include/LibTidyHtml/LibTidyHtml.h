@@ -28,7 +28,6 @@
 #define LIBTIDYHTML_API
 #endif
 
-#include "fmt/xchar.h"
 #include <string>
 
 
@@ -39,7 +38,7 @@ namespace TidyHtml
 
 LIBTIDYHTML_API std::string TidyHtmlData(
 	std::string const& data,
-	fmt::memory_buffer& err,
+	std::string& err,
 	std::string const* pRawFileBaseName = nullptr);
 
 } // namespace TidyHtml

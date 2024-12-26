@@ -22,7 +22,7 @@ DevNote: When updating, update .../res/LibFmt.rc2 with version number and copyri
 - http://fmtlib.net/dev/index.html
 - Only README.md, LICENSE, include, src
 -- Changes
-  - In format.h, add (and ending ifdef/pop block)
+  - In chrono.h and format.h, add (and ending ifdef/pop block)
 #ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable : 4061) // enumerator '<value>' in switch of enum '<enum>' is not explicitly handled by a case label

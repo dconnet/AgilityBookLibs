@@ -23,6 +23,7 @@
 #include "tidy.h"
 #include "tidybuffio.h"
 #include <fstream>
+#include <sstream>
 
 #ifdef __WXMSW__
 #include <wx/msw/msvcrt.h>
@@ -36,7 +37,7 @@ namespace dconSoft
 namespace TidyHtml
 {
 
-std::string TidyHtmlData(std::string const& data, fmt::memory_buffer& err, std::string const* pRawFileBaseName)
+std::string TidyHtmlData(std::string const& data, std::string& err, std::string const* pRawFileBaseName)
 {
 	std::string tidyData;
 
@@ -59,8 +60,9 @@ std::string TidyHtmlData(std::string const& data, fmt::memory_buffer& err, std::
 		{
 			if (errbuf.size > 0)
 			{
-				std::string errmsg((const char*)errbuf.bp, errbuf.size);
-				fmt::format_to(std::back_inserter(err), "TIDY Error: {}", errmsg);
+				std::stringstream errmsg;
+				errmsg << "TIDY Error: " << std::string((const char*)errbuf.bp, errbuf.size);
+				err = errmsg.str();
 			}
 			tidyBufFree(&errbuf);
 			tidyRelease(tdoc);
@@ -71,8 +73,9 @@ std::string TidyHtmlData(std::string const& data, fmt::memory_buffer& err, std::
 		{
 			if (errbuf.size > 0)
 			{
-				std::string errmsg((const char*)errbuf.bp, errbuf.size);
-				fmt::format_to(std::back_inserter(err), "TIDY Error: {}", errmsg);
+				std::stringstream errmsg;
+				errmsg << "TIDY Error: " << std::string((const char*)errbuf.bp, errbuf.size);
+				err = errmsg.str();
 			}
 			tidyBufFree(&errbuf);
 			tidyRelease(tdoc);
@@ -87,8 +90,9 @@ std::string TidyHtmlData(std::string const& data, fmt::memory_buffer& err, std::
 		{
 			if (errbuf.size > 0)
 			{
-				std::string errmsg((const char*)errbuf.bp, errbuf.size);
-				fmt::format_to(std::back_inserter(err), "TIDY Error: {}", errmsg);
+				std::stringstream errmsg;
+				errmsg << "TIDY Error: " << std::string((const char*)errbuf.bp, errbuf.size);
+				err = errmsg.str();
 			}
 			tidyBufFree(&errbuf);
 			tidyBufFree(&output);

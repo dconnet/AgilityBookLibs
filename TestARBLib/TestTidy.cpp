@@ -49,15 +49,14 @@ TEST_CASE("LibTidy")
 
 		std::string data(filedata.str());
 
-		fmt::memory_buffer errTidy;
+		std::string errTidy;
 		std::string debug;
 		auto treeData = TidyHtml::TidyHtmlData(data, errTidy, &debug);
 		REQUIRE(!treeData.empty());
 
 		fmt::wmemory_buffer err;
-		auto msgTidy = StringUtil::stringW(fmt::to_string(errTidy));
-		if (!msgTidy.empty())
-			fmt::format_to(std::back_inserter(err), L"{}", msgTidy);
+		if (!errTidy.empty())
+			fmt::format_to(std::back_inserter(err), L"{}", StringUtil::stringW(errTidy));
 
 		ElementNodePtr tidyTree = ElementNode::New();
 		if (!tidyTree->LoadXML(treeData.data(), treeData.length(), err))

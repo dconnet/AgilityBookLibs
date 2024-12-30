@@ -39,7 +39,7 @@ void GetFields(std::vector<wxString>& fields)
 	fields.push_back(L"fld");
 	fields.push_back(L"line\n;line");
 	fields.push_back(L"\"quote\" here");
-	fields.push_back(std::wstring());
+	fields.push_back(wxString());
 	fields.push_back(L"");
 }
 
@@ -175,7 +175,7 @@ TEST_CASE("BreakLine")
 	{
 		std::vector<wxString> fields;
 		GetFields(fields);
-		std::wstring data = WriteCSV(';', fields);
+		wxString data = WriteCSV(';', fields);
 		REQUIRE(data == record5);
 	}
 }

@@ -88,8 +88,8 @@ TEST_CASE("Misc")
 {
 	SECTION("Html_Sanitize")
 	{
-		std::wstring s(L"<&amp>");
-		std::wstring s2 = SanitizeStringForHTML(s);
+		wxString s(L"<&amp>");
+		wxString s2 = SanitizeStringForHTML(s);
 		REQUIRE(L"&lt;&amp;amp&gt;" == s2);
 		s = L"1\r\n2\n3";
 		s2 = SanitizeStringForHTML(s, true);

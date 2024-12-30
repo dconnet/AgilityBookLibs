@@ -33,15 +33,15 @@ TEST_CASE("MsgDigest")
 {
 	// String
 	constexpr char RawString[] = "This is a test of a string";
-	static std::wstring DigestStringMD5(L"b36b52c4835d88fdb548087b9a829bf1");
-	static std::wstring DigestStringSHA1(L"7d56b53d54b141cb77e465abcfe63436a35ae222");
-	static std::wstring DigestStringSHA256(L"5d2819684143b99d8b9c9a254e1b5584529a3fe947862e8ae15e246eda292c37");
+	static wxString DigestStringMD5(L"b36b52c4835d88fdb548087b9a829bf1");
+	static wxString DigestStringSHA1(L"7d56b53d54b141cb77e465abcfe63436a35ae222");
+	static wxString DigestStringSHA256(L"5d2819684143b99d8b9c9a254e1b5584529a3fe947862e8ae15e246eda292c37");
 
 
 	SECTION("RawDecode")
 	{
 		std::stringstream buffer(RawString);
-		std::wstring digest = ARBMsgDigest::Compute(buffer, ARBMsgDigest::ARBDigest::MD5);
+		wxString digest = ARBMsgDigest::Compute(buffer, ARBMsgDigest::ARBDigest::MD5);
 		REQUIRE(digest == DigestStringMD5);
 	}
 
@@ -49,7 +49,7 @@ TEST_CASE("MsgDigest")
 	SECTION("RawDecodeSha1")
 	{
 		std::stringstream buffer(RawString);
-		std::wstring digest = ARBMsgDigest::Compute(buffer, ARBMsgDigest::ARBDigest::SHA1);
+		wxString digest = ARBMsgDigest::Compute(buffer, ARBMsgDigest::ARBDigest::SHA1);
 		REQUIRE(digest == DigestStringSHA1);
 	}
 
@@ -57,7 +57,7 @@ TEST_CASE("MsgDigest")
 	SECTION("RawDecodeSha256")
 	{
 		std::stringstream buffer(RawString);
-		std::wstring digest = ARBMsgDigest::Compute(buffer, ARBMsgDigest::ARBDigest::SHA256);
+		wxString digest = ARBMsgDigest::Compute(buffer, ARBMsgDigest::ARBDigest::SHA256);
 		REQUIRE(digest == DigestStringSHA256);
 	}
 }

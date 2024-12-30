@@ -34,7 +34,7 @@ using namespace ARBCommon;
 namespace
 {
 
-wxString FormNumber(std::wstring const& d1, wxChar const& dec, std::wstring const& d2)
+wxString FormNumber(wxString const& d1, wxChar const& dec, wxString const& d2)
 {
 	return wxString::Format(L"%s%lc%s", d1, dec, d2);
 }
@@ -73,19 +73,19 @@ void RunDblTests(bool bUseLocale)
 
 	p = 42;
 	s = ARBDouble::ToString(p, 0, bUseLocale);
-	REQUIRE(std::wstring(L"42") == s);
+	REQUIRE(wxString(L"42") == s);
 	s = ARBDouble::ToString(p, 1, bUseLocale);
-	REQUIRE(std::wstring(L"42") == s);
+	REQUIRE(wxString(L"42") == s);
 	s = ARBDouble::ToString(p, 2, bUseLocale);
-	REQUIRE(std::wstring(L"42") == s);
+	REQUIRE(wxString(L"42") == s);
 
 	p = 2002; // ARB alpha 1 release year!
 	s = ARBDouble::ToString(p, 0, bUseLocale);
-	REQUIRE(std::wstring(L"2002") == s);
+	REQUIRE(wxString(L"2002") == s);
 	s = ARBDouble::ToString(p, 1, bUseLocale);
-	REQUIRE(std::wstring(L"2002") == s);
+	REQUIRE(wxString(L"2002") == s);
 	s = ARBDouble::ToString(p, 2, bUseLocale);
-	REQUIRE(std::wstring(L"2002") == s);
+	REQUIRE(wxString(L"2002") == s);
 
 	// eStrip
 

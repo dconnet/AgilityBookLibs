@@ -210,11 +210,11 @@ static short RomanDigit(wchar_t digit)
 		return 0;
 	}
 }
-static short RomanToShort(std::wstring number)
+static short RomanToShort(wxString  number)
 {
 	short result = 0;
 	short oldValue = 1000;
-	for (std::wstring::const_iterator index = number.begin(); index != number.end(); ++index)
+	for (wxStringwstring::const_iterator index = number.begin(); index != number.end(); ++index)
 	{
 		short newValue = RomanDigit(*index);
 		if (newValue > oldValue)

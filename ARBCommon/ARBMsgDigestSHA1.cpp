@@ -788,7 +788,7 @@ wxString ARBMsgDigestComputeSHA1(std::istream& inFile, size_t* outSize)
 
 	unsigned int message_digest[5];
 	if (!sha.Result(message_digest))
-		return std::wstring();
+		return wxString();
 
 	return ConvertDigest(message_digest);
 }

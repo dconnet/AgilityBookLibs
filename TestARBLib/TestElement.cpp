@@ -52,7 +52,7 @@ TEST_CASE("Element")
 	SECTION("Value")
 	{
 		ElementNodePtr ele = ElementNode::New(L"name");
-		std::wstring str = L"This random & text @#$@()<>";
+		wxString str = L"This random & text @#$@()<>";
 		ele->SetValue(str);
 		REQUIRE(str == ele->GetValue());
 	}
@@ -158,7 +158,7 @@ TEST_CASE("Element")
 	SECTION("ReallyBadAttrib")
 	{
 		ElementNodePtr ele = ElementNode::New(L"name");
-		std::wstring attrib;
+		wxString attrib;
 		REQUIRE(!ele->AddAttrib(attrib, L"test"));
 	}
 

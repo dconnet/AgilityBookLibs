@@ -15,7 +15,7 @@
  *  http://www.codeproject.com/string/ammimeutils.asp
  *  AMMimeUtils, posted 3/23/2001 by Anders Molin
  *
- * Note, we are using std::wstring's mainly for consistency.
+ * Note, we are using wxString's mainly for consistency.
  * The actual contained data is still 8bit chars.
  *
  * Revision History

@@ -32,7 +32,7 @@ TEST_CASE("UniqueId")
 	{
 		CUniqueId id;
 		REQUIRE(id.IsNull());
-		std::wstring uuid(L"00000000-0000-0000-0000-000000000000");
+		wxString uuid(L"00000000-0000-0000-0000-000000000000");
 		REQUIRE(id.ToString() == uuid);
 	}
 
@@ -100,13 +100,13 @@ TEST_CASE("UniqueId")
 
 	SECTION("Strings")
 	{
-		std::wstring uuid(L"fbec55d8-6243-4142-b534-0e96c9f12270");
+		wxString uuid(L"fbec55d8-6243-4142-b534-0e96c9f12270");
 		CUniqueId id(uuid);
 		REQUIRE(!id.IsNull());
 		REQUIRE(id.ToString() == uuid);
 
 		// Uuids are not case sensitive.
-		std::wstring uuid2(L"FBEC55D8-6243-4142-B534-0E96C9F12270");
+		wxString uuid2(L"FBEC55D8-6243-4142-B534-0E96C9F12270");
 		CUniqueId id2(uuid2);
 		REQUIRE(!id2.IsNull());
 		REQUIRE(id == id2);
@@ -118,13 +118,13 @@ TEST_CASE("UniqueId")
 
 	SECTION("Parse")
 	{
-		std::wstring uuid(L"fbec55d8-6243-4142-b534-0e96c9f12270");
+		wxString uuid(L"fbec55d8-6243-4142-b534-0e96c9f12270");
 		CUniqueId id;
 		REQUIRE(id.IsNull());
 		REQUIRE(id.ParseString(uuid));
 		REQUIRE(!id.IsNull());
 
-		std::wstring uuidBad(L"fbec55d8-6243-4142-b534-0e96c");
+		wxString uuidBad(L"fbec55d8-6243-4142-b534-0e96c");
 		REQUIRE(!id.ParseString(uuidBad));
 		REQUIRE(id.IsNull());
 	}

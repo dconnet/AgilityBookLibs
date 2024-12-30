@@ -123,14 +123,14 @@ private:
 	// stduuid (with it using the system generators).
 
 	// Normalize format to "hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh"
-	std::wstring NormalizeString(std::wstring const& str)
+	wxString NormalizeString(wxString  const& str)
 	{
 		auto len = str.length();
 		if (36 == len)
 			return str;
 		if (38 == len && str[0] == '{')
 			return str.substr(1, str.length() - 2);
-		std::wstring s(str);
+		wxString s(str);
 		if (34 == len && str[0] == '{')
 			s = str.substr(1, str.length() - 2);
 		if (32 == s.length())

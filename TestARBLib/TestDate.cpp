@@ -214,7 +214,7 @@ TEST_CASE("Date")
 	{
 		ARBDate d1(1999, 3, 30);
 		ARBDate d2(1999, 3, 27);
-		std::wstring s = ARBDate::GetValidDateString(d1, d2);
+		wxString s = ARBDate::GetValidDateString(d1, d2);
 		REQUIRE(L"[1999-3-30-1999-3-27]" == s);
 		d1.clear();
 		s = ARBDate::GetValidDateString(d1, d2);

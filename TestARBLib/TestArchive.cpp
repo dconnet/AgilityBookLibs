@@ -61,56 +61,6 @@ TEST_CASE("Archive")
 #endif
 		}
 	}
-
-#ifndef __WXWINDOWS__
-	constexpr char FileData3[] = "This is test3\r\nReplaced\r\n";
-
-	static std::wstring CreateZip()
-	{
-		return std::wstring();
-	}
-
-	SECTION("Replace")
-	{
-		std::wstring file = CreateZip();
-		REQUIRE(!file.empty());
-		if (!file.empty())
-		{
-			CLibArchive archive(file);
-			std::istringstream data(FileData3);
-			REQUIRE(archive.ReplaceFile(L"test1.txt", data));
-			_unlink(StringUtil::stringA(file).c_str());
-		}
-		TODO_TEST
-		// See: http://docs.wxwidgets.org/stable/wx_wxarc.html#wxarcmodify
-	}
-
-
-	SECTION("Extract")
-	{
-		std::wstring file = CreateZip();
-		REQUIRE(!file.empty());
-
-		if (!file.empty())
-		{
-			CLibArchive archive(file);
-
-			{
-				std::ostringstream data;
-				REQUIRE(archive.Extract(L"test1.txt", data));
-				REQUIRE(data.str() == FileData1);
-			}
-
-			{
-				std::ostringstream data;
-				REQUIRE(archive.Extract(L"test2.txt", data));
-				REQUIRE(data.str() == FileData2);
-			}
-
-			_unlink(StringUtil::stringA(file).c_str());
-		}
-	}
-#endif
 }
 
 } // namespace dconSoft

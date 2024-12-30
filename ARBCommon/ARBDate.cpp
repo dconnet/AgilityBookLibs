@@ -10,7 +10,6 @@
  * @author David Connet
  *
  * Revision History
- * 2018-12-16 Convert to fmt.
  * 2012-10-26 Changed ARBDate::GetTime to avoid time_t when possible.
  * 2012-04-10 Based on wx-group thread, use std::string for internal use
  * 2011-12-30 Added eVerbose to GetString.
@@ -30,7 +29,6 @@
 #include "ARBCommon/ARBDate.h"
 
 #include "ARBCommon/StringUtil.h"
-#include "fmt/xchar.h"
 #include <time.h>
 
 #if defined(__WXWINDOWS__)
@@ -162,17 +160,17 @@ long int GregorianToSdn(int inputYear, int inputMonth, int inputDay)
 }
 
 
-int ParseFields(std::wstring inDate, char sep, unsigned short& val1, unsigned short& val2, unsigned short& val3)
+int ParseFields(wxString inDate, char sep, unsigned short& val1, unsigned short& val2, unsigned short& val3)
 {
 	int nVals = 0;
-	std::wstring::size_type pos = inDate.find(sep);
-	if (std::wstring::npos != pos)
+	wxString::size_type pos = inDate.find(sep);
+	if (wxString::npos != pos)
 	{
 		val1 = static_cast<unsigned short>(StringUtil::ToCLong(inDate));
 		++nVals;
 		inDate = inDate.substr(pos + 1);
 		pos = inDate.find(sep);
-		if (std::wstring::npos != pos)
+		if (wxString::npos != pos)
 		{
 			val2 = static_cast<unsigned short>(StringUtil::ToCLong(inDate));
 			++nVals;
@@ -197,14 +195,14 @@ ARBDate ARBDate::Today()
 
 
 // static
-ARBDate ARBDate::FromString(std::wstring const& inDate, ARBDateFormat inFormat)
+ARBDate ARBDate::FromString(wxString const& inDate, ARBDateFormat inFormat)
 {
 	ARBDate date;
 	if (ARBDateFormat::Locale == inFormat)
 	{
 #if defined(__WXWINDOWS__)
 		wxDateTime dt;
-		if (dt.ParseDate(inDate.c_str()))
+		if (dt.ParseDate(inDate))
 			date.SetDate(dt.GetYear(), static_cast<int>(dt.GetMonth()) + 1, dt.GetDay());
 #else
 #pragma PRAGMA_TODO(parse date using locale)
@@ -277,22 +275,22 @@ ARBDate ARBDate::FromString(std::wstring const& inDate, ARBDateFormat inFormat)
 
 
 // static
-std::wstring ARBDate::GetValidDateString(ARBDate const& inFrom, ARBDate const& inTo, ARBDateFormat inFormat)
+wxString ARBDate::GetValidDateString(ARBDate const& inFrom, ARBDate const& inTo, ARBDateFormat inFormat)
 {
-	std::wstring str;
+	wxString str;
 	if (inFrom.IsValid() || inTo.IsValid())
 	{
-		str += L"[";
+		str << L"[";
 		if (inFrom.IsValid())
-			str += inFrom.GetString(inFormat);
+			str << inFrom.GetString(inFormat);
 		else
-			str += L"*";
-		str += L"-";
+			str << L"*";
+		str << L"-";
 		if (inTo.IsValid())
-			str += inTo.GetString(inFormat);
+			str << inTo.GetString(inFormat);
 		else
-			str += L"*";
-		str += L"]";
+			str << L"*";
+		str << L"]";
 	}
 	return str;
 }
@@ -348,79 +346,68 @@ bool ARBDate::SetDate(int inYr, int inMon, int inDay, bool bClearOnError)
 }
 
 
-std::wstring ARBDate::GetString(ARBDateFormat inFormat, bool inForceOutput) const
+wxString ARBDate::GetString(ARBDateFormat inFormat, bool inForceOutput) const
 {
 	if (!inForceOutput && !IsValid())
-		return std::wstring();
-	std::wstring date;
+		return wxString();
+	wxString date;
 	int yr = 0;
 	int mon = 0;
 	int day = 0;
 	if (IsValid())
 		SdnToGregorian(m_Julian, &yr, &mon, &day);
+	wxDateTime dt(static_cast<wxDateTime::wxDateTime_t>(day), static_cast<wxDateTime::Month>(mon - 1), yr);
 	switch (inFormat)
 	{
 	case ARBDateFormat::Locale:
-	{
-#if defined(__WXWINDOWS__)
-		wxDateTime dt(static_cast<wxDateTime::wxDateTime_t>(day), static_cast<wxDateTime::Month>(mon - 1), yr);
 		date = dt.FormatDate();
-#else
-#pragma PRAGMA_TODO(format date using locale)
-		assert(0);
-#endif
-	}
-	break;
+		break;
+	//%d day 01
+	//%m month 01
+	//%Y year yyyy
 	case ARBDateFormat::DashMMDDYYYY: ///< MM-DD-YYYY
-		date = fmt::format(L"{:02}-{:02}-{:04}", mon, day, yr);
+		date = dt.Format(L"%m-%d-%Y");
 		break;
 	case ARBDateFormat::YYYYMMDD:
-		date = fmt::format(L"{:04}{:02}{:02}", yr, mon, day);
+		date = dt.Format(L"%Y%m%d");
 		break;
 	case ARBDateFormat::Verbose:
-	{
-#if defined(__WXWINDOWS__)
-		wxDateTime dt(static_cast<wxDateTime::wxDateTime_t>(day), static_cast<wxDateTime::Month>(mon - 1), yr);
-		date = StringUtil::stringW(dt.Format(L"%A, %B %d, %Y"));
-#else
-#pragma PRAGMA_TODO(convert wxDateTime usage)
-		assert(0);
-#endif
-	}
-	break;
+		date = dt.Format(L"%A, %B %d, %Y");
+		break;
 	case ARBDateFormat::Reserved14:
 	case ARBDateFormat::SlashMMDDYYYY: ///< MM/DD/YYYY
-		date = fmt::format(L"{:02}/{:02}/{:04}", mon, day, yr);
+		date = dt.Format(L"%m/%d/%Y");
 		break;
 	case ARBDateFormat::DashYYYYMMDD: ///< YYYY-MM-DD
-		date = fmt::format(L"{:04}-{:02}-{:02}", yr, mon, day);
+		date = dt.Format(L"%Y-%m-%d");
 		break;
 	case ARBDateFormat::SlashYYYYMMDD: ///< YYYY/MM/DD
-		date = fmt::format(L"{:04}/{:02}/{:02}", yr, mon, day);
+		date = dt.Format(L"%Y/%m/%d");
 		break;
 	case ARBDateFormat::DashDDMMYYYY: ///< DD-MM-YYYY
-		date = fmt::format(L"{:02}-{:02}-{:04}", day, mon, yr);
+		date = dt.Format(L"%d-%m-%Y");
 		break;
 	case ARBDateFormat::SlashDDMMYYYY: ///< DD/MM/YYYY
-		date = fmt::format(L"{:02}/{:02}/{:04}", day, mon, yr);
+		date = dt.Format(L"%d/%m/%Y");
 		break;
 	case ARBDateFormat::DashMDY: ///< M-D-Y
-		date = fmt::format(L"{}-{}-{}", mon, day, yr);
+		// wxDateTime only has zero/space padded days, zero padded months
+		date = wxString::Format(L"%d-%d-%d", mon, day, yr);
 		break;
 	case ARBDateFormat::SlashMDY: ///< M/D/Y
-		date = fmt::format(L"{}/{}/{}", mon, day, yr);
+		date = wxString::Format(L"%d/%d/%d", mon, day, yr);
 		break;
 	case ARBDateFormat::DashYMD: ///< Y-M-D
-		date = fmt::format(L"{}-{}-{}", yr, mon, day);
+		date = wxString::Format(L"%d-%d-%d", yr, mon, day);
 		break;
 	case ARBDateFormat::SlashYMD: ///< Y/M/D
-		date = fmt::format(L"{}/{}/{}", yr, mon, day);
+		date = wxString::Format(L"%d/%d/%d", yr, mon, day);
 		break;
 	case ARBDateFormat::DashDMY: ///< D-M-Y
-		date = fmt::format(L"{}-{}-{}", day, mon, yr);
+		date = wxString::Format(L"%d-%d-%d", day, mon, yr);
 		break;
 	case ARBDateFormat::SlashDMY: ///< D/M/Y
-		date = fmt::format(L"{}/{}/{}", day, mon, yr);
+		date = wxString::Format(L"%d/%d/%d", day, mon, yr);
 		break;
 	}
 	return date;

@@ -13,8 +13,6 @@
  * 2019-10-13 Move config test to TestARB
  * 2019-08-15 Fix tests on unix.
  * 2019-06-28 Moved ConfigPath to TestUtils
- * 2019-01-06 fmt 5.3 cannot sprintf a wide string into a narrow format anymore
- * 2018-12-16 Convert to fmt.
  * 2018-04-26 Added roman numeral tests.
  * 2017-11-09 Convert from UnitTest++ to Catch
  * 2015-11-01 Added ARBConfig/ARBBook version test.
@@ -34,8 +32,6 @@
 #include "ARBCommon/ARBTypes.h"
 #include "ARBCommon/StringUtil.h"
 #include "LibARBWin/CheckLink.h"
-#include "fmt/printf.h"
-#include "fmt/xchar.h"
 
 #include <stdarg.h>
 
@@ -186,19 +182,6 @@ TEST_CASE("Misc")
 		// REQUIRE(wxSYS_COLOUR_MENUBAR == );
 		// REQUIRE(wxSYS_COLOUR_LISTBOXTEXT == );
 #endif
-	}
-
-
-	SECTION("C99PrintfToSame")
-	{
-		std::string str("str");
-		std::wstring wstr(L"str");
-
-		std::string buffer = fmt::sprintf("%s", str);
-		std::wstring wbuffer = fmt::sprintf(L"%ls", wstr);
-
-		REQUIRE(str == buffer);
-		REQUIRE(wstr == wbuffer);
 	}
 
 

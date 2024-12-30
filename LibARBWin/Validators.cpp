@@ -249,7 +249,7 @@ bool CGenericValidator::TransferFromWindow()
 			else
 			{
 				long val;
-				if (!StringUtil::ToLong(StringUtil::stringW(textVal), val))
+				if (!textVal.ToLong(&val))
 					return false;
 				*m_pUShort = static_cast<unsigned short>(val);
 			}
@@ -264,7 +264,7 @@ bool CGenericValidator::TransferFromWindow()
 			else
 			{
 				long val;
-				if (!StringUtil::ToLong(StringUtil::stringW(textVal), val))
+				if (!textVal.ToLong(&val))
 					return false;
 				*m_pShort = static_cast<short>(val);
 			}
@@ -277,7 +277,7 @@ bool CGenericValidator::TransferFromWindow()
 				*m_pLong = m_Default.l;
 				return true;
 			}
-			return StringUtil::ToLong(StringUtil::stringW(textVal), *m_pLong);
+			return textVal.ToLong(m_pLong);
 		}
 		else if (m_pDouble)
 		{
@@ -286,7 +286,7 @@ bool CGenericValidator::TransferFromWindow()
 				*m_pDouble = m_Default.dbl;
 				return true;
 			}
-			return StringUtil::ToDouble(StringUtil::stringW(textVal), *m_pDouble);
+			return StringUtil::ToDouble(textVal, *m_pDouble);
 		}
 		else if (m_pTime)
 		{
@@ -347,7 +347,7 @@ bool CGenericValidator::TransferToWindow()
 		}
 		else if (m_pDouble)
 		{
-			pTextControl->ChangeValue(StringUtil::stringWX(ARBDouble::ToString(*m_pDouble, m_Prec, true, m_strip)));
+			pTextControl->ChangeValue(ARBDouble::ToString(*m_pDouble, m_Prec, true, m_strip));
 			return true;
 		}
 		else if (m_pTime)
@@ -420,7 +420,7 @@ bool CGenericValidator::Validate(wxWindow* parent)
 					str.Printf(L"%hu", m_Default.us);
 					pTextControl->ChangeValue(str);
 				}
-				else if (!StringUtil::ToLong(StringUtil::stringW(textVal), val))
+				else if (!textVal.ToLong(&val))
 				{
 					ok = false;
 					if (errormsg.empty())
@@ -439,7 +439,7 @@ bool CGenericValidator::Validate(wxWindow* parent)
 						str.Printf(L"%ld", m_Default.l);
 					pTextControl->ChangeValue(str);
 				}
-				else if (!StringUtil::ToLong(StringUtil::stringW(textVal), val))
+				else if (!textVal.ToLong(&val))
 				{
 					ok = false;
 					if (errormsg.empty())
@@ -451,10 +451,9 @@ bool CGenericValidator::Validate(wxWindow* parent)
 				double dbl = 0.0;
 				if (textVal.empty() && m_bUseDefOnEmpty)
 				{
-					pTextControl->ChangeValue(
-						StringUtil::stringWX(ARBDouble::ToString(m_Default.dbl, m_Prec, true, m_strip)));
+					pTextControl->ChangeValue(ARBDouble::ToString(m_Default.dbl, m_Prec, true, m_strip));
 				}
-				else if (!StringUtil::ToDouble(StringUtil::stringW(textVal), dbl))
+				else if (!StringUtil::ToDouble(textVal, dbl))
 				{
 					ok = false;
 					if (errormsg.empty())

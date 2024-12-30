@@ -24,7 +24,6 @@
 		E1AF196927F61164004764B5 /* TestARBLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1AF196827F61164004764B5 /* TestARBLib.cpp */; };
 		E1CE2E4E27F616C800701C8F /* libARBCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CE2E4D27F616C800701C8F /* libARBCommon.a */; };
 		E1CE2E5027F616CC00701C8F /* libLibARBWin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CE2E4F27F616CC00701C8F /* libLibARBWin.a */; };
-		E1CE2E5227F616D000701C8F /* libLibFmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CE2E5127F616D000701C8F /* libLibFmt.a */; };
 		E1CE2E5427F616D300701C8F /* libLibTidyHtml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CE2E5327F616D300701C8F /* libLibTidyHtml.a */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +60,6 @@
 		E1AF196827F61164004764B5 /* TestARBLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestARBLib.cpp; sourceTree = "<group>"; };
 		E1CE2E4D27F616C800701C8F /* libARBCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libARBCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1CE2E4F27F616CC00701C8F /* libLibARBWin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibARBWin.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1CE2E5127F616D000701C8F /* libLibFmt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibFmt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1CE2E5327F616D300701C8F /* libLibTidyHtml.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTidyHtml.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -70,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1CE2E5227F616D000701C8F /* libLibFmt.a in Frameworks */,
 				E1CE2E5427F616D300701C8F /* libLibTidyHtml.a in Frameworks */,
 				E1CE2E4E27F616C800701C8F /* libARBCommon.a in Frameworks */,
 				E1CE2E5027F616CC00701C8F /* libLibARBWin.a in Frameworks */,
@@ -134,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				E1CE2E5327F616D300701C8F /* libLibTidyHtml.a */,
-				E1CE2E5127F616D000701C8F /* libLibFmt.a */,
 				E1CE2E4F27F616CC00701C8F /* libLibARBWin.a */,
 				E1CE2E4D27F616C800701C8F /* libARBCommon.a */,
 			);
@@ -287,7 +283,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-I$SRCROOT/../../../Include",
-					"-I$SRCROOT/../../../3rdParty/LibFmt/include",
 					"-I$SRCROOT/../../../3rdParty/LibTidyHtml/include",
 					"-I$SRCROOT/../../../3rdParty/catch",
 					"-I$WXWIN/build-debug-fat/lib/wx/include/osx_cocoa-unicode-static-3.2",
@@ -386,7 +381,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = (
 					"-I$SRCROOT/../../../Include",
-					"-I$SRCROOT/../../../3rdParty/LibFmt/include",
 					"-I$SRCROOT/../../../3rdParty/LibTidyHtml/include",
 					"-I$SRCROOT/../../../3rdParty/catch",
 					"-I$WXWIN/build-release-fat/lib/wx/include/osx_cocoa-unicode-static-3.2",

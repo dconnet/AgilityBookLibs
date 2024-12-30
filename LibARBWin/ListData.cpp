@@ -20,8 +20,6 @@
 #include "stdafx.h"
 #include "LibARBWin/ListData.h"
 
-#include "ARBCommon/StringUtil.h"
-
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
 #endif
@@ -29,7 +27,6 @@
 
 namespace dconSoft
 {
-using namespace ARBCommon;
 namespace ARBWin
 {
 
@@ -52,7 +49,7 @@ int CListData::OnCompare(CListDataPtr const& item, long iCol) const
 void CListData::OnNeedListItem(long iCol, wxListItem& info) const
 {
 	info.SetMask(info.GetMask() | wxLIST_MASK_TEXT);
-	info.SetText(ARBCommon::StringUtil::stringWX(OnNeedText(iCol)));
+	info.SetText(OnNeedText(iCol));
 }
 
 

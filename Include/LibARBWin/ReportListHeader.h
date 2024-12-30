@@ -40,7 +40,7 @@ public:
 	{
 		long index{-1}; // For debugging to ensure integrity
 		int fmt{0};
-		std::wstring name;
+		wxString name;
 	};
 
 	CReportListHeader();
@@ -93,7 +93,7 @@ public:
 	void CreateColumns(
 		std::vector<ColumnInfo> const& inColumns,
 		long defaultSort = -1,
-		std::wstring const& baseConfig = std::wstring(),
+		wxString const& baseConfig = wxString(),
 		std::vector<int> const* pColWidths = nullptr,
 		unsigned int idFirst = 0);
 
@@ -152,7 +152,7 @@ protected:
 	CReportListCtrl* m_ctrlList;
 	std::vector<ColumnInfo> m_columnInfo; // Do not modify after Initialize is called
 	unsigned int m_idFirst;
-	std::wstring m_baseConfig;
+	wxString m_baseConfig;
 	std::vector<int> m_defaultWidths; // May be empty, if so, we don't remember widths
 	std::vector<int> m_colWidths;     // May be empty, if so, we don't remember widths
 	wxArrayInt m_columnOrder;

@@ -329,7 +329,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-I$SRCROOT/../../../Include",
-					"-I$SRCROOT/../../../3rdParty/LibFmt/include",
 					"-I$SRCROOT/../../../3rdParty/gsl/include",
 					"-I$SRCROOT/../../../3rdParty/stduuid/include",
 					"-I$WXWIN/build-debug-fat/lib/wx/include/osx_cocoa-unicode-static-3.2",
@@ -386,7 +385,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = (
 					"-I$SRCROOT/../../../Include",
-					"-I$SRCROOT/../../../3rdParty/LibFmt/include",
 					"-I$SRCROOT/../../../3rdParty/gsl/include",
 					"-I$SRCROOT/../../../3rdParty/stduuid/include",
 					"-I$WXWIN/build-release-fat/lib/wx/include/osx_cocoa-unicode-static-3.2",

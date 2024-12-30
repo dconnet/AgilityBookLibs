@@ -17,7 +17,6 @@
  * 2020-12-05 In SetColumnSort, always set the icon.
  * 2020-01-27 Add option for row coloring.
  * 2019-05-17 Enable alternate row coloring.
- * 2018-12-16 Convert to fmt.
  * 2018-10-11 Moved to Win LibARBWin
  * 2011-12-22 Switch to using Bind on wx2.9+.
  * 2010-03-28 Moved SetColumnWidth override to CListCtrl.
@@ -44,7 +43,6 @@
 #include "LibARBWin/ImageHelperBase.h"
 #include "LibARBWin/ListData.h"
 #include "LibARBWin/ResourceManager.h"
-#include "fmt/xchar.h"
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -58,19 +56,19 @@ namespace ARBWin
 
 namespace
 {
-void PushData(fmt::wmemory_buffer& data, CReportListCtrl const* ctrl, int item, bool bBold)
+void PushData(wxString& data, CReportListCtrl const* ctrl, int item, bool bBold)
 {
-	fmt::format_to(std::back_inserter(data), L"{}", L"<tr>");
-	std::vector<std::wstring> line;
+	data << L"<tr>";
+	std::vector<wxString> line;
 	ctrl->GetPrintLine(item, line);
-	for (std::vector<std::wstring>::const_iterator i = line.begin(); i != line.end(); ++i)
+	for (auto const& i : line)
 	{
 		if (bBold)
-			fmt::format_to(std::back_inserter(data), L"<td><strong>{}</strong></td>\n", *i);
+			data << L"<td><strong>" << i << L"</strong></td>\n";
 		else
-			fmt::format_to(std::back_inserter(data), L"<td>{}</td>\n", *i);
+			data << L"<td>" << i << L"</td>\n";
 	}
-	fmt::format_to(std::back_inserter(data), L"{}", L"</tr>\n");
+	data << L"</tr>\n";
 }
 } // namespace
 
@@ -379,23 +377,23 @@ CListDataPtr CReportListCtrl::GetData(long item) const
 }
 
 
-std::wstring CReportListCtrl::GetPrintDataAsHtmlTable(bool bFirstLineIsHeader) const
+wxString CReportListCtrl::GetPrintDataAsHtmlTable(bool bFirstLineIsHeader) const
 {
-	fmt::wmemory_buffer data;
-	fmt::format_to(std::back_inserter(data), L"{}", L"<table border=\"0\">");
+	wxString data;
+	data << L"<table border=\"0\">";
 	if (!bFirstLineIsHeader)
 		PushData(data, this, -1, true);
 	for (long item = 0; item < GetItemCount(); ++item)
 	{
 		PushData(data, this, item, bFirstLineIsHeader && item == 0);
 	}
-	fmt::format_to(std::back_inserter(data), L"{}", L"</table>\n");
-	return fmt::to_string(data);
+	data << L"</table>\n";
+	return data;
 }
 
 
 // This allows a derived class to print a subset of columns if it wants.
-void CReportListCtrl::GetPrintLine(long item, std::vector<std::wstring>& line) const
+void CReportListCtrl::GetPrintLine(long item, std::vector<wxString>& line) const
 {
 	line.clear();
 	CListDataPtr data = GetData(item);

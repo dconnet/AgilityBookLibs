@@ -22,7 +22,6 @@
 
 #include "LibwxARBCommon.h"
 
-#include <string>
 #include <vector>
 
 

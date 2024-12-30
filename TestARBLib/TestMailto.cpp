@@ -17,7 +17,6 @@
 #include "TestARBLib.h"
 
 #include "ARBCommon/MailTo.h"
-#include "fmt/printf.h"
 
 #include <stdarg.h>
 

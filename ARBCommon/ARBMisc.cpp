@@ -11,7 +11,6 @@
  *
  * Revision History
  * 2019-01-31 Moved GetOSInfo to LibARBWin/ARBDebug.
- * 2018-12-16 Convert to fmt.
  * 2018-04-26 Moved ShortToRoman from ARBConfigTitle.
  * 2014-06-19 Added IsWin7OrBetter.
  * 2013-07-17 Created
@@ -21,19 +20,9 @@
 #include "ARBCommon/ARBMisc.h"
 
 #include "ARBCommon/StringUtil.h"
-#include "fmt/xchar.h"
 #include <math.h>
 
-// For testing in ARB
-// #if defined(__WXWINDOWS__)
-// #undef __WXWINDOWS__
-// #endif
-
-#if defined(__WXWINDOWS__)
 #include <wx/string.h>
-#elif defined(_WIN32)
-#pragma comment(lib, "version.lib")
-#endif
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -45,50 +34,50 @@ namespace dconSoft
 namespace ARBCommon
 {
 
-std::wstring SanitizeStringForHTML(std::wstring const& inRawData, bool bConvertCR)
+wxString SanitizeStringForHTML(wxString const& inRawData, bool bConvertCR)
 {
-	std::wstring::size_type pos = inRawData.find_first_of(L"&<>");
-	if (std::wstring::npos == pos && bConvertCR)
+	auto pos = inRawData.find_first_of(L"&<>");
+	if (wxString::npos == pos && bConvertCR)
 		pos = inRawData.find_first_of(L"\r\n");
-	if (std::wstring::npos == pos)
+	if (wxString::npos == pos)
 		return inRawData;
-	fmt::wmemory_buffer data;
+	wxString data;
 	for (size_t nChar = 0; nChar < inRawData.length(); ++nChar)
 	{
-		switch (inRawData[nChar])
+		switch (inRawData[nChar].GetValue())
 		{
 		case L'&':
-			fmt::format_to(std::back_inserter(data), L"{}", L"&amp;");
+			data << L"&amp;";
 			break;
 		case L'<':
-			fmt::format_to(std::back_inserter(data), L"{}", L"&lt;");
+			data << L"&lt;";
 			break;
 		case L'>':
-			fmt::format_to(std::back_inserter(data), L"{}", L"&gt;");
+			data << L"&gt;";
 			break;
 		case L'\r':
 			if (bConvertCR)
 			{
-				if (nChar + 1 < inRawData.length() && '\n' == inRawData[nChar + 1])
+				if (nChar + 1 < inRawData.length() && '\n' == inRawData[nChar + 1].GetValue())
 					continue;
 				else
-					fmt::format_to(std::back_inserter(data), L"{}", L"<br/>");
+					data << L"<br/>";
 			}
 			else
-				fmt::format_to(std::back_inserter(data), L"{}", inRawData[nChar]);
+				data << inRawData[nChar];
 			break;
 		case '\n':
 			if (bConvertCR)
-				fmt::format_to(std::back_inserter(data), L"{}", L"<br/>");
+				data << L"<br/>";
 			else
-				fmt::format_to(std::back_inserter(data), L"{}", inRawData[nChar]);
+				data << inRawData[nChar];
 			break;
 		default:
-			fmt::format_to(std::back_inserter(data), L"{}", inRawData[nChar]);
+			data << inRawData[nChar];
 			break;
 		}
 	}
-	return fmt::to_string(data);
+	return data;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -99,7 +88,7 @@ std::wstring SanitizeStringForHTML(std::wstring const& inRawData, bool bConvertC
 //  pre v2.4.0: x86, x64, mac
 // It must also be present in the version2.xml file (that creates an
 // arch/lang to filename mapping).
-std::wstring GetARBArch()
+wxString GetARBArch()
 {
 #if defined(__WXMSW__)
 #if defined(_WIN64)
@@ -113,7 +102,7 @@ std::wstring GetARBArch()
 }
 
 
-std::wstring GetNativeARBArch()
+wxString GetNativeARBArch()
 {
 #if defined(__WXMSW__)
 	if (wxIsPlatform64Bit())
@@ -143,49 +132,11 @@ std::wstring GetNativeARBArch()
 
 bool GetOSInfo(int& verMajor, int& verMinor, int& verMicro)
 {
-	verMajor = verMinor = 0;
-
-#if defined(__WXWINDOWS__)
 	wxPlatformInfo info;
 	verMajor = info.GetOSMajorVersion();
 	verMinor = info.GetOSMinorVersion();
 	verMicro = info.GetOSMicroVersion();
 	return true;
-
-#elif defined(_WIN32)
-	std::wstring kernel(L"kernel32.dll");
-	DWORD dwHandle;
-	DWORD dwLen = GetFileVersionInfoSize(kernel.c_str(), &dwHandle);
-	if (!dwLen)
-		return false;
-
-	void* lpData = malloc(dwLen);
-	if (!lpData)
-		return false;
-
-	if (!GetFileVersionInfo(kernel.c_str(), dwHandle, dwLen, lpData))
-	{
-		free(lpData);
-		return false;
-	}
-
-	UINT BufLen;
-	VS_FIXEDFILEINFO* pFileInfo = nullptr;
-	if (VerQueryValue(lpData, L"\\", (void**)&pFileInfo, &BufLen))
-	{
-		verMajor = HIWORD(pFileInfo->dwFileVersionMS);
-		verMinor = LOWORD(pFileInfo->dwFileVersionMS);
-		verMicro = HIWORD(pFileInfo->dwFileVersionLS); // Build
-		//*RevisionNumber = LOWORD(pFileInfo->dwFileVersionLS);
-		free(lpData);
-		return true;
-	}
-	free(lpData);
-	return false;
-
-#else
-#error Unknown OS
-#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -276,7 +227,7 @@ static short RomanToShort(std::wstring number)
 }
 */
 
-std::wstring ShortToRoman(short value)
+wxString ShortToRoman(short value)
 {
 	constexpr wchar_t const* romanDigits[9][4] = {
 		// clang-format off
@@ -291,16 +242,16 @@ std::wstring ShortToRoman(short value)
 		{nullptr, L"CM",   L"XC",   L"IX"  },
 		// clang-format on
 	};
-	fmt::wmemory_buffer result;
+	wxString result;
 	for (int index = 0; index < 4; ++index)
 	{
 		short power = static_cast<short>(pow(10.0, 3 - index));
 		short digit = value / power;
 		value -= digit * power;
 		if (digit > 0)
-			fmt::format_to(std::back_inserter(result), L"{}", romanDigits[digit - 1][index]);
+			result << romanDigits[digit - 1][index];
 	}
-	return fmt::to_string(result);
+	return result;
 }
 
 } // namespace ARBCommon

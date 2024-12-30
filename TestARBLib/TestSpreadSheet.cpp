@@ -69,7 +69,7 @@ TEST_CASE("SpreadSheet")
 		{
 			if (0 > data.row)
 			{
-				std::wstring col;
+				wxString col;
 				REQUIRE(ISpreadSheet::GetCol(data.col, col));
 				REQUIRE(col == data.cell);
 			}
@@ -98,7 +98,7 @@ TEST_CASE("SpreadSheet")
 		{
 			if (0 <= data.row)
 			{
-				std::wstring cell;
+				wxString cell;
 				REQUIRE(ISpreadSheet::GetRowCol(data.row, data.col, cell));
 				REQUIRE(cell == data.cell);
 			}

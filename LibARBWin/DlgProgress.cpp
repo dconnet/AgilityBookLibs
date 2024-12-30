@@ -22,7 +22,6 @@
 #include "stdafx.h"
 #include "LibARBWin/DlgProgress.h"
 
-#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ARBWinUtilities.h"
 #include "LibARBWin/DlgPadding.h"
 #include <wx/appprogress.h>
@@ -60,8 +59,8 @@ public:
 
 	bool Show(bool show = true) override;
 
-	void SetCaption(std::wstring const& inCaption) override;
-	void SetMessage(std::wstring const& inMessage) override;
+	void SetCaption(wxString const& inCaption) override;
+	void SetMessage(wxString const& inMessage) override;
 	void SetRange(short inBar, int inRange) override;
 	void SetStep(short inBar, int inStep) override;
 	void StepIt(short inBar) override;
@@ -227,20 +226,19 @@ void CDlgProgress::OnCancel(wxCommandEvent& evt)
 
 // IDlgProgress interface
 
-void CDlgProgress::SetCaption(std::wstring const& inCaption)
+void CDlgProgress::SetCaption(wxString const& inCaption)
 {
 	assert(wxIsMainThread());
-	SetLabel(StringUtil::stringWX(inCaption));
+	SetLabel(inCaption);
 }
 
 
-void CDlgProgress::SetMessage(std::wstring const& inMessage)
+void CDlgProgress::SetMessage(wxString const& inMessage)
 {
 	assert(wxIsMainThread());
-	wxString msg(StringUtil::stringWX(inMessage));
-	if (!inMessage.empty() && msg != m_ctrlMessage->GetLabel())
+	if (!inMessage.empty() && inMessage != m_ctrlMessage->GetLabel())
 	{
-		m_ctrlMessage->SetLabel(msg);
+		m_ctrlMessage->SetLabel(inMessage);
 		// TODO: This needs to be reworked with threads. The download should happen
 		// on a worker thread that messages back here. Stnce the GUI would no longer
 		// be locked by a busy process, we would no longer need this kludge.

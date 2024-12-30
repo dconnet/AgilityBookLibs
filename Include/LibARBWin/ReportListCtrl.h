@@ -146,12 +146,12 @@ public:
 	/// Return listdata by list id
 	CListDataPtr GetData(long item) const;
 
-	std::wstring GetPrintDataAsHtmlTable(bool bFirstLineIsHeader = false) const;
+	wxString GetPrintDataAsHtmlTable(bool bFirstLineIsHeader = false) const;
 
 	/**
 	 * Returns the data required to print/copy a line.
 	 */
-	void GetPrintLine(long item, std::vector<std::wstring>& line) const;
+	void GetPrintLine(long item, std::vector<wxString>& line) const;
 
 	void RefreshItem(long item);
 

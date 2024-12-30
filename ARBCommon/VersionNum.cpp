@@ -11,7 +11,6 @@
  *
  * Revision History
  * 2021-10-26 Added 'parts' to GetVersionString.
- * 2018-12-16 Convert to fmt.
  * 2018-10-14 Treat a 0.0.0.0 vernum as not valid, even when specifically set.
  * 2018-08-15 Changed VERSION_NUMBER to std::array
  * 2012-07-28 Crap, v2.3.6 was hosed. Fix version parsing.
@@ -30,7 +29,6 @@
 #include "ARBCommon/ARBTypes.h"
 #include "ARBCommon/BreakLine.h"
 #include "ARBCommon/StringUtil.h"
-#include "fmt/xchar.h"
 
 #ifdef __WXMSW__
 #include <wx/msw/msvcrt.h>
@@ -42,10 +40,10 @@ namespace dconSoft
 namespace ARBCommon
 {
 
-bool CVersionNum::Parse(std::wstring const& inVer)
+bool CVersionNum::Parse(wxString const& inVer)
 {
 	clear();
-	std::vector<std::wstring> fields;
+	std::vector<wxString> fields;
 	if (4 == BreakLine(L'.', inVer, fields))
 	{
 		VERSION_NUMBER version = {0, 0, 0, 0};
@@ -59,29 +57,29 @@ bool CVersionNum::Parse(std::wstring const& inVer)
 }
 
 
-std::wstring CVersionNum::GetVersionString(int parts) const
+wxString CVersionNum::GetVersionString(int parts) const
 {
-	std::wstring ver;
+	wxString ver;
 	switch (parts)
 	{
 	default:
-		ver = fmt::format(L"{}.{}.{}.{}", m_Version[0], m_Version[1], m_Version[2], m_Version[3]);
+		ver << m_Version[0] << L"." << m_Version[1] << L"." << m_Version[2] << L"." << m_Version[3];
 		break;
 	case 3:
-		ver = fmt::format(L"{}.{}.{}", m_Version[0], m_Version[1], m_Version[2]);
+		ver << m_Version[0] << L"." << m_Version[1] << L"." << m_Version[2];
 		break;
 	case 2:
-		ver = fmt::format(L"{}.{}", m_Version[0], m_Version[1]);
+		ver << m_Version[0] << L"." << m_Version[1];
 		break;
 	case 1:
-		ver = fmt::format(L"{}", m_Version[0]);
+		ver << m_Version[0];
 		break;
 	}
 	return ver;
 }
 
 
-std::wstring CVersionNum::GetVersionUsage(
+wxString CVersionNum::GetVersionUsage(
 	wxString const& program,
 	std::string const& date,
 	std::string const& time,
@@ -91,22 +89,16 @@ std::wstring CVersionNum::GetVersionUsage(
 		= wxString::Format(_("%s version %s\n%s"), program, GetVersionString(4).c_str(), GetCompiledOn(date, time));
 	if (includeNewline)
 		str << L"\n";
-	return StringUtil::stringW(str);
+	return str;
 }
 
 
-wxString CVersionNum::GetCompiledOn(std::string const& date, std::string const& time, bool incCompOnText)
-{
-	return GetCompiledOn(StringUtil::stringW(date), StringUtil::stringW(time), incCompOnText);
-}
-
-
-wxString CVersionNum::GetCompiledOn(std::wstring const& date, std::wstring const& time, bool incCompOnText)
+wxString CVersionNum::GetCompiledOn(wxString const& date, wxString const& time, bool incCompOnText)
 {
 	if (incCompOnText)
-		return wxString::Format(_("Compiled on %s at %s"), date.c_str(), time.c_str());
+		return wxString::Format(_("Compiled on %s at %s"), date, time);
 	else
-		return wxString::Format(_("%s at %s"), date.c_str(), time.c_str());
+		return wxString::Format(_("%s at %s"), date, time);
 }
 
 } // namespace ARBCommon

@@ -17,7 +17,6 @@
 #include "ARBCommon/MailTo.h"
 
 #include "ARBCommon/StringUtil.h"
-#include <fmt/xchar.h>
 
 #ifdef __WXMSW__
 #include <wx/msw/msvcrt.h>
@@ -39,7 +38,7 @@ CMailTo::CMailTo()
 }
 
 
-bool CMailTo::AddTo(std::wstring const& addr)
+bool CMailTo::AddTo(wxString const& addr)
 {
 	if (std::find(m_to.begin(), m_to.end(), addr) != m_to.end())
 		return false;
@@ -54,7 +53,7 @@ void CMailTo::ClearTo()
 }
 
 
-bool CMailTo::AddCC(std::wstring const& addr)
+bool CMailTo::AddCC(wxString const& addr)
 {
 	if (std::find(m_cc.begin(), m_cc.end(), addr) != m_cc.end())
 		return false;
@@ -69,7 +68,7 @@ void CMailTo::ClearCC()
 }
 
 
-bool CMailTo::AddBCC(std::wstring const& addr)
+bool CMailTo::AddBCC(wxString const& addr)
 {
 	if (std::find(m_bcc.begin(), m_bcc.end(), addr) != m_bcc.end())
 		return false;
@@ -84,34 +83,34 @@ void CMailTo::ClearBCC()
 }
 
 
-void CMailTo::SetSubject(std::wstring const& subject)
+void CMailTo::SetSubject(wxString const& subject)
 {
 	m_subject = subject;
 }
 
 
-void CMailTo::SetBody(std::wstring const& body)
+void CMailTo::SetBody(wxString const& body)
 {
 	m_body = body;
 }
 
 
-std::string CMailTo::Uri(bool clearText) const
+wxString CMailTo::Uri(bool clearText) const
 {
-	fmt::memory_buffer buffer;
-	fmt::format_to(std::back_inserter(buffer), "{}", "mailto:");
+	wxString buffer;
+	buffer << L"mailto:";
 
 	for (size_t i = 0; i < m_to.size(); ++i)
 	{
 		if (0 < i)
-			fmt::format_to(std::back_inserter(buffer), "{}", ",");
-		fmt::format_to(std::back_inserter(buffer), "{}", Encode(m_to[i], clearText));
+			buffer << L",";
+		buffer << Encode(m_to[i], clearText);
 	}
 
 	if (m_cc.empty() && m_bcc.empty() && m_subject.empty() && m_body.empty())
-		return fmt::to_string(buffer);
+		return buffer;
 
-	fmt::format_to(std::back_inserter(buffer), "{}", "?");
+	buffer << L"?";
 	bool needAmp = false;
 
 	for (size_t i = 0; i < m_cc.size(); ++i)
@@ -119,12 +118,12 @@ std::string CMailTo::Uri(bool clearText) const
 		if (0 == i)
 		{
 			if (needAmp)
-				fmt::format_to(std::back_inserter(buffer), "{}", "&");
-			fmt::format_to(std::back_inserter(buffer), "{}", "cc=");
+				buffer << L"&";
+			buffer << L"cc=";
 		}
 		else
-			fmt::format_to(std::back_inserter(buffer), "{}", ",");
-		fmt::format_to(std::back_inserter(buffer), "{}", Encode(m_cc[i], clearText));
+			buffer << L",";
+		buffer << Encode(m_cc[i], clearText);
 		needAmp = true;
 	}
 
@@ -133,45 +132,46 @@ std::string CMailTo::Uri(bool clearText) const
 		if (0 == i)
 		{
 			if (needAmp)
-				fmt::format_to(std::back_inserter(buffer), "{}", "&");
-			fmt::format_to(std::back_inserter(buffer), "{}", "bcc=");
+				buffer << L"&";
+			buffer << L"bcc=";
 		}
 		else
-			fmt::format_to(std::back_inserter(buffer), "{}", ",");
-		fmt::format_to(std::back_inserter(buffer), "{}", Encode(m_bcc[i], clearText));
+			buffer << L",";
+		buffer << Encode(m_bcc[i], clearText);
 		needAmp = true;
 	}
 
 	if (!m_subject.empty())
 	{
 		if (needAmp)
-			fmt::format_to(std::back_inserter(buffer), "{}", "&");
-		fmt::format_to(std::back_inserter(buffer), "subject={}", Encode(m_subject, clearText));
+			buffer << L"&";
+		buffer << L"subject=" << Encode(m_subject, clearText);
 		needAmp = true;
 	}
 
 	if (!m_body.empty())
 	{
 		if (needAmp)
-			fmt::format_to(std::back_inserter(buffer), "{}", "&");
-		fmt::format_to(std::back_inserter(buffer), "body={}", Encode(m_body, clearText));
+			buffer << L"&";
+		buffer << L"body=" << Encode(m_body, clearText);
 		needAmp = true;
 	}
 
-	return fmt::to_string(buffer);
+	return buffer;
 }
 
 
-std::string CMailTo::Encode(std::wstring const& str, bool clearText) const
+std::string CMailTo::Encode(wxString const& str, bool clearText) const
 {
 	// This may not be completely correct. Reading RFCs isn't fun.
 	// But it seems close enough.
-	fmt::memory_buffer buffer;
-	std::string s = StringUtil::stringA(str);
+	// Must convert to UTF8 for encoding purposes.
+	std::string s = str.utf8_string();
 
 	if (clearText)
 		return s;
 
+	wxString buffer;
 	for (auto const& c : s)
 	{
 		if (
@@ -183,15 +183,15 @@ std::string CMailTo::Encode(std::wstring const& str, bool clearText) const
 			|| c == '!' || c == '%' || c == '\'' || c == '(' || c == ')' || c == '*' || c == '+' || c == ',' || c == ';'
 			|| c == ':' || c == '@')
 		{
-			fmt::format_to(std::back_inserter(buffer), "{}", c);
+			buffer << c;
 		}
 		else
 		{
 			// Must cast or things like 'a3' print as '-5d'
-			fmt::format_to(std::back_inserter(buffer), "%{:02x}", (unsigned char)c);
+			buffer << L"%" << wxString::Format("%02x", static_cast<unsigned char>(c));
 		}
 	}
-	return fmt::to_string(buffer);
+	return buffer.utf8_string();
 }
 
 } // namespace ARBCommon

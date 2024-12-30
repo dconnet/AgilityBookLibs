@@ -36,11 +36,6 @@
 #include "LibwxARBCommon.h"
 
 #include <array>
-#include <locale>
-#include <set>
-#include <sstream>
-#include <string>
-#include <vector>
 
 #define ARB_TYPEDEF(name) \
 	class name; \
@@ -86,12 +81,10 @@ enum class ZeroStrip
  * Trailing zeros are trimmed unless inPrec=2.
  * Then they are only trimmed if all zero (and inPrec=2).
  */
-ARBCOMMON_API std::wstring ToString(
-	double inValue,
-	int inPrec = 2,
-	bool bUseCurrentLocale = true,
-	ZeroStrip eStripZeros = ZeroStrip::Compatible);
-ARBCOMMON_API std::wstring ToString(double inValue, int inPrec, ZeroStrip eStripZeros);
+ARBCOMMON_API wxString
+ToString(double inValue, int inPrec = 2, bool bUseCurrentLocale = true, ZeroStrip eStripZeros = ZeroStrip::Compatible);
+
+ARBCOMMON_API wxString ToString(double inValue, int inPrec, ZeroStrip eStripZeros);
 
 /**
  * Compare two doubles, allowing for 'prec' error.
@@ -133,7 +126,7 @@ public:
 	{
 	}
 
-	explicit ARBVersion(std::wstring inStr);
+	explicit ARBVersion(wxString inStr);
 
 	~ARBVersion()
 	{
@@ -197,7 +190,7 @@ public:
 	{
 		return m_Version[1];
 	}
-	std::wstring str() const;
+	wxString str() const;
 
 private:
 	VERSION_ARB m_Version;

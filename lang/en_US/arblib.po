@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agility Record Book\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-19 15:30-0800\n"
-"PO-Revision-Date: 2024-02-19 15:30-0800\n"
+"POT-Creation-Date: 2024-12-28 11:46-0800\n"
+"PO-Revision-Date: 2024-12-28 11:47-0800\n"
 "Last-Translator: David Connet <help@agilityrecordbook.com>\n"
 "Language-Team: Language <help@agilityrecordbook.com>\n"
 "Language: en_US\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;arbT\n"
 "X-Poedit-Basepath: ../..\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-SearchPath-0: Include\n"
 "X-Poedit-SearchPath-1: ARBCommon\n"
 "X-Poedit-SearchPath-2: LibARBWin\n"
@@ -42,55 +42,55 @@ msgstr "Compiled on %s at %s"
 msgid "%s at %s"
 msgstr "%s at %s"
 
-#: LibARBWin/ARBDebug.cpp:208
+#: LibARBWin/ARBDebug.cpp:203
 msgid "Unable to determine version information"
 msgstr "Unable to determine version information"
 
-#: LibARBWin/About.cpp:312
+#: LibARBWin/About.cpp:319
 msgid "About..."
 msgstr "About..."
 
-#: LibARBWin/About.cpp:324
+#: LibARBWin/About.cpp:331
 msgid "Debug"
 msgstr "Debug"
 
-#: LibARBWin/About.cpp:331
+#: LibARBWin/About.cpp:338
 msgid "About"
 msgstr "About"
 
-#: LibARBWin/About.cpp:335
+#: LibARBWin/About.cpp:342
 msgid "Information"
 msgstr "Information"
 
-#: LibARBWin/About.cpp:340
+#: LibARBWin/About.cpp:347
 msgid "Copy"
 msgstr "Copy"
 
-#: LibARBWin/About.cpp:354
+#: LibARBWin/About.cpp:361
 msgid "Close"
 msgstr "Close"
 
-#: LibARBWin/About.cpp:429
+#: LibARBWin/About.cpp:436
 msgid "Version"
 msgstr "Version"
 
-#: LibARBWin/About.cpp:437
+#: LibARBWin/About.cpp:444
 msgid "Build date"
 msgstr "Build date"
 
-#: LibARBWin/About.cpp:442
+#: LibARBWin/About.cpp:449
 msgid "Appplication directory"
 msgstr "Appplication directory"
 
-#: LibARBWin/About.cpp:451
+#: LibARBWin/About.cpp:458
 msgid "User data directory"
 msgstr "User data directory"
 
-#: LibARBWin/About.cpp:461
+#: LibARBWin/About.cpp:466
 msgid "DPI scaling"
 msgstr "DPI scaling"
 
-#: LibARBWin/About.cpp:465
+#: LibARBWin/About.cpp:470
 msgid "OS"
 msgstr "OS"
 
@@ -107,137 +107,137 @@ msgstr "User Name"
 msgid "Password"
 msgstr "Password"
 
-#: LibARBWin/DlgConfigAccel.cpp:110 LibARBWin/DlgConfigAccel.cpp:240
+#: LibARBWin/DlgConfigAccel.cpp:109 LibARBWin/DlgConfigAccel.cpp:239
 msgid "Assign Key"
 msgstr "Assign Key"
 
-#: LibARBWin/DlgConfigAccel.cpp:113
+#: LibARBWin/DlgConfigAccel.cpp:112
 msgid "Key:"
 msgstr "Key:"
 
-#: LibARBWin/DlgConfigAccel.cpp:124
+#: LibARBWin/DlgConfigAccel.cpp:123
 msgid "Modifiers:"
 msgstr "Modifiers:"
 
-#: LibARBWin/DlgConfigAccel.cpp:129
+#: LibARBWin/DlgConfigAccel.cpp:128
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: LibARBWin/DlgConfigAccel.cpp:138
+#: LibARBWin/DlgConfigAccel.cpp:137
 msgid "Alt"
 msgstr "Alt"
 
-#: LibARBWin/DlgConfigAccel.cpp:147
+#: LibARBWin/DlgConfigAccel.cpp:146
 msgid "Shift"
 msgstr "Shift"
 
-#: LibARBWin/DlgConfigAccel.cpp:153 LibARBWin/DlgConfigAccel.cpp:501
+#: LibARBWin/DlgConfigAccel.cpp:152 LibARBWin/DlgConfigAccel.cpp:500
 msgid "Clear"
 msgstr "Clear"
 
-#: LibARBWin/DlgConfigAccel.cpp:239
+#: LibARBWin/DlgConfigAccel.cpp:238
 msgid "ERROR: This accelerator is already in use."
 msgstr "ERROR: This accelerator is already in use."
 
-#: LibARBWin/DlgConfigAccel.cpp:306 LibARBWin/MenuHelper.cpp:753
+#: LibARBWin/DlgConfigAccel.cpp:305 LibARBWin/MenuHelper.cpp:753
 msgid "Ctrl+"
 msgstr "Ctrl+"
 
-#: LibARBWin/DlgConfigAccel.cpp:308 LibARBWin/MenuHelper.cpp:755
+#: LibARBWin/DlgConfigAccel.cpp:307 LibARBWin/MenuHelper.cpp:755
 msgid "Alt+"
 msgstr "Alt+"
 
-#: LibARBWin/DlgConfigAccel.cpp:310 LibARBWin/MenuHelper.cpp:757
+#: LibARBWin/DlgConfigAccel.cpp:309 LibARBWin/MenuHelper.cpp:757
 msgid "Shift+"
 msgstr "Shift+"
 
-#: LibARBWin/DlgConfigAccel.cpp:469
+#: LibARBWin/DlgConfigAccel.cpp:468
 msgid "Configure Keyboard Shortcuts"
 msgstr "Configure Keyboard Shortcuts"
 
-#: LibARBWin/DlgConfigAccel.cpp:487
+#: LibARBWin/DlgConfigAccel.cpp:486
 msgid "Keyboard Shortcut"
 msgstr "Keyboard Shortcut"
 
-#: LibARBWin/DlgConfigAccel.cpp:488
+#: LibARBWin/DlgConfigAccel.cpp:487
 msgid "Description"
 msgstr "Description"
 
-#: LibARBWin/DlgConfigAccel.cpp:490
+#: LibARBWin/DlgConfigAccel.cpp:489
 msgid "Location"
 msgstr "Location"
 
-#: LibARBWin/DlgConfigAccel.cpp:495
+#: LibARBWin/DlgConfigAccel.cpp:494
 msgid "New..."
 msgstr "New..."
 
-#: LibARBWin/DlgConfigAccel.cpp:498
+#: LibARBWin/DlgConfigAccel.cpp:497
 msgid "Edit..."
 msgstr "Edit..."
 
-#: LibARBWin/DlgConfigAccel.cpp:504
+#: LibARBWin/DlgConfigAccel.cpp:503
 msgid "Set Defaults"
 msgstr "Set Defaults"
 
-#: LibARBWin/DlgFind.cpp:111
-#, c++-format
-msgid "Cannot find '{}'"
-msgstr "Cannot find '{}'"
+#: LibARBWin/DlgFind.cpp:110
+#, c-format
+msgid "Cannot find '%s'"
+msgstr "Cannot find '%s'"
 
 # DlgFind
-#: LibARBWin/DlgFind.cpp:112 LibARBWin/DlgFind.cpp:154
+#: LibARBWin/DlgFind.cpp:111 LibARBWin/DlgFind.cpp:153
 msgid "Find"
 msgstr "Find"
 
-#: LibARBWin/DlgFind.cpp:161
+#: LibARBWin/DlgFind.cpp:160
 msgid "Find &what:"
 msgstr "Find &what:"
 
-#: LibARBWin/DlgFind.cpp:170
+#: LibARBWin/DlgFind.cpp:169
 msgid "Match &case"
 msgstr "Match &case"
 
-#: LibARBWin/DlgFind.cpp:175
+#: LibARBWin/DlgFind.cpp:174
 msgid "&Match whole word"
 msgstr "&Match whole word"
 
-#: LibARBWin/DlgFind.cpp:182
+#: LibARBWin/DlgFind.cpp:181
 msgid "Use regular &expressions"
 msgstr "Use regular &expressions"
 
-#: LibARBWin/DlgFind.cpp:188
+#: LibARBWin/DlgFind.cpp:187
 msgid "&Wrap around"
 msgstr "&Wrap around"
 
-#: LibARBWin/DlgFind.cpp:194
+#: LibARBWin/DlgFind.cpp:193
 msgid "&All"
 msgstr "&All"
 
-#: LibARBWin/DlgFind.cpp:194
+#: LibARBWin/DlgFind.cpp:193
 msgid "&Visible"
 msgstr "&Visible"
 
-#: LibARBWin/DlgFind.cpp:199
+#: LibARBWin/DlgFind.cpp:198
 msgid "Fields to search"
 msgstr "Fields to search"
 
-#: LibARBWin/DlgFind.cpp:213
+#: LibARBWin/DlgFind.cpp:212
 msgid "&Up"
 msgstr "&Up"
 
-#: LibARBWin/DlgFind.cpp:213
+#: LibARBWin/DlgFind.cpp:212
 msgid "&Down"
 msgstr "&Down"
 
-#: LibARBWin/DlgFind.cpp:218
+#: LibARBWin/DlgFind.cpp:217
 msgid "Direction"
 msgstr "Direction"
 
-#: LibARBWin/DlgFind.cpp:230
+#: LibARBWin/DlgFind.cpp:229
 msgid "&Find"
 msgstr "&Find"
 
-#: LibARBWin/DlgFind.cpp:248
+#: LibARBWin/DlgFind.cpp:247
 msgid "&Find Next"
 msgstr "&Find Next"
 
@@ -255,20 +255,20 @@ msgstr "Close"
 msgid "Progress"
 msgstr "Progress"
 
-#: LibARBWin/LanguageManager.cpp:263 LibARBWin/LanguageManager.cpp:268
+#: LibARBWin/LanguageManager.cpp:262 LibARBWin/LanguageManager.cpp:267
 msgid "No other languages are available."
 msgstr "No other languages are available."
 
-#: LibARBWin/LanguageManager.cpp:273
+#: LibARBWin/LanguageManager.cpp:272
 msgid "Choose a language:"
 msgstr "Choose a language:"
 
 # DlgLanguage
-#: LibARBWin/LanguageManager.cpp:273
+#: LibARBWin/LanguageManager.cpp:272
 msgid "Language Selection"
 msgstr "Language Selection"
 
-#: LibARBWin/LanguageManager.cpp:274
+#: LibARBWin/LanguageManager.cpp:273
 msgid "Select a language to use."
 msgstr "Select a language to use."
 
@@ -293,15 +293,15 @@ msgstr "Restore"
 msgid "Report generated in \"%s\"."
 msgstr "Report generated in \"%s\"."
 
-#: LibARBWin/SpreadSheet.cpp:869
-#, c++-format
-msgid "Reading {0} rows and {1} columns"
-msgstr "Reading {0} rows and {1} columns"
+#: LibARBWin/SpreadSheet.cpp:867
+#, c-format
+msgid "Reading %1$d rows and %2$d columns"
+msgstr "Reading %1$d rows and %2$d columns"
 
-#: LibARBWin/SpreadSheet.cpp:1359
-#, c++-format
-msgid "Reading {} rows"
-msgstr "Reading {} rows"
+#: LibARBWin/SpreadSheet.cpp:1357
+#, c-format
+msgid "Reading %d rows"
+msgstr "Reading %d rows"
 
 #: LibARBWin/Validators.cpp:427 LibARBWin/Validators.cpp:446
 #: LibARBWin/Validators.cpp:461

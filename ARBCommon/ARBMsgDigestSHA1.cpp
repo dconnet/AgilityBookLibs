@@ -19,15 +19,11 @@
  * This file combines license.txt, sha1.h, sha1.cpp
  *
  * Revision History
- * 2018-12-16 Convert to fmt.
  * 2013-10-29 Created
  */
 
 #include "stdafx.h"
 #include "ARBMsgDigestImpl.h"
-
-#include "ARBCommon/StringUtil.h"
-#include "fmt/xchar.h"
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -755,14 +751,14 @@ unsigned SHA1::CircularShift(int bits, unsigned word)
 
 namespace
 {
-std::wstring ConvertDigest(const unsigned int digest[5])
+wxString ConvertDigest(const unsigned int digest[5])
 {
-	fmt::wmemory_buffer str;
+	wxString str;
 	for (int i = 0; i < 5; ++i)
 	{
-		fmt::format_to(std::back_inserter(str), L"{:08x}", digest[i]);
+		str << wxString::Format(L"%08x", digest[i]);
 	}
-	return fmt::to_string(str);
+	return str;
 }
 } // namespace
 
@@ -773,7 +769,7 @@ namespace ARBCommon
 
 // Note, error checking of arguments handled in ARBMsgDigest::Compute
 
-std::wstring ARBMsgDigestComputeSHA1(std::istream& inFile, size_t* outSize)
+wxString ARBMsgDigestComputeSHA1(std::istream& inFile, size_t* outSize)
 {
 	SHA1 sha;
 	sha.Reset();

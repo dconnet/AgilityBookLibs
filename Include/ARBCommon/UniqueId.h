@@ -35,7 +35,7 @@ class ARBCOMMON_API CUniqueId
 {
 public:
 	CUniqueId();
-	explicit CUniqueId(std::wstring const& str);
+	explicit CUniqueId(wxString const& str);
 	CUniqueId(CUniqueId const& rhs);
 	CUniqueId(CUniqueId&& rhs);
 	~CUniqueId();
@@ -66,8 +66,8 @@ public:
 		return !operator<(rhs);
 	}
 
-	std::wstring ToString() const; // Always lower-case
-	bool ParseString(std::wstring const& str);
+	wxString ToString() const; // Always lower-case
+	bool ParseString(wxString const& str);
 
 private:
 	CUniqueIdImpl* m_impl;

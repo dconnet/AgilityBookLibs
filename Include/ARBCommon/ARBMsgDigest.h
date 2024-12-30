@@ -19,7 +19,6 @@
 #include "LibwxARBCommon.h"
 
 #include <istream>
-#include <string>
 
 
 namespace dconSoft
@@ -37,7 +36,7 @@ enum class ARBDigest
 	SHA256,
 };
 
-ARBCOMMON_API std::wstring Compute(std::istream& inFile, ARBDigest type, size_t* outSize = nullptr);
+ARBCOMMON_API wxString Compute(std::istream& inFile, ARBDigest type, size_t* outSize = nullptr);
 
 } // namespace ARBMsgDigest
 } // namespace ARBCommon

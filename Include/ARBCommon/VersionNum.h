@@ -24,7 +24,6 @@
 #include "LibwxARBCommon.h"
 
 #include <array>
-#include <string>
 
 
 namespace dconSoft
@@ -47,7 +46,7 @@ public:
 		, m_Version({{inMajor, inMinor, inDot, inBuild}})
 	{
 	}
-	explicit CVersionNum(std::wstring const& inVer)
+	explicit CVersionNum(wxString const& inVer)
 		: m_Valid(false)
 		, m_Version()
 	{
@@ -88,7 +87,7 @@ public:
 	/**
 	 * Parse a version number, must be in form "n.n.n.n".
 	 */
-	bool Parse(std::wstring const& inVer);
+	bool Parse(wxString const& inVer);
 
 	void Assign(unsigned short inMajor, unsigned short inMinor, unsigned short inDot, unsigned short inBuild)
 	{
@@ -132,7 +131,7 @@ public:
 	}
 
 	// Any invalid number (<=0, >4) will return 4 parts
-	std::wstring GetVersionString(int parts = 4) const;
+	wxString GetVersionString(int parts = 4) const;
 
 	/**
 	 * Get version info for the a '-v' cmdline argument.
@@ -141,14 +140,13 @@ public:
 	 * @param time __TIME__
 	 * @param includeNewline Include an ending newline
 	 */
-	std::wstring GetVersionUsage(
+	wxString GetVersionUsage(
 		wxString const& program,
 		std::string const& date,
 		std::string const& time,
 		bool includeNewline = true) const;
 
-	static wxString GetCompiledOn(std::string const& date, std::string const& time, bool incCompOnText = true);
-	static wxString GetCompiledOn(std::wstring const& date, std::wstring const& time, bool incCompOnText = true);
+	static wxString GetCompiledOn(wxString const& date, wxString const& time, bool incCompOnText = true);
 
 	void GetVersion(VERSION_NUMBER& outVer) const
 	{

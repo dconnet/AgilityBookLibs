@@ -26,12 +26,10 @@
  * 2004-01-04 Added FromString().
  */
 
-#include "ARBTypes.h"
 #include "LibwxARBCommon.h"
 
-#if defined(__WXWINDOWS__)
+#include "ARBTypes.h"
 #include <wx/datetime.h>
-#endif
 
 
 namespace dconSoft
@@ -91,7 +89,7 @@ public:
 	 * @param inFormat Parse using this format
 	 * @return Parsed date, if parse fails, date is invalid.
 	 */
-	static ARBDate FromString(std::wstring const& inDate, ARBDateFormat inFormat);
+	static ARBDate FromString(wxString const& inDate, ARBDateFormat inFormat);
 
 	/**
 	 * Get a string showing the valid date range (if set)
@@ -100,7 +98,7 @@ public:
 	 * @param inFormat Date format.
 	 * @return Date range string
 	 */
-	static std::wstring GetValidDateString(
+	static wxString GetValidDateString(
 		ARBDate const& inFrom,
 		ARBDate const& inTo,
 		ARBDateFormat inFormat = ARBDateFormat::DashYMD);
@@ -299,7 +297,7 @@ public:
 	 * @param inForceOutput Always return a string, even if the date is not valid.
 	 * @return Date in the format defined by inFormat.
 	 */
-	std::wstring GetString(ARBDateFormat inFormat = ARBDateFormat::Locale, bool inForceOutput = false) const;
+	wxString GetString(ARBDateFormat inFormat = ARBDateFormat::Locale, bool inForceOutput = false) const;
 
 	/**
 	 * Get the current date.

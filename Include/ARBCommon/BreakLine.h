@@ -18,7 +18,6 @@
 
 #include "LibwxARBCommon.h"
 
-#include <string>
 #include <vector>
 
 
@@ -38,7 +37,7 @@ namespace ARBCommon
  * @note Return value may be larger than vector size due to removed entries.
  */
 ARBCOMMON_API size_t
-BreakLine(wchar_t inSep, std::wstring const& inStr, std::vector<std::wstring>& outFields, bool inRemoveEmpties = false);
+BreakLine(wchar_t inSep, wxString const& inStr, std::vector<wxString>& outFields, bool inRemoveEmpties = false);
 
 
 enum class ReadStatus
@@ -60,10 +59,10 @@ enum class ReadStatus
  */
 ARBCOMMON_API ReadStatus ReadCSV(
 	wchar_t inSep,
-	std::wstring inRecord,
-	std::vector<std::wstring>& ioFields,
+	wxString inRecord,
+	std::vector<wxString>& ioFields,
 	bool bContinuation = false,
-	std::wstring newLine = std::wstring(L"\n"));
+	wxString newLine = wxString(L"\n"));
 
 
 /**
@@ -73,10 +72,7 @@ ARBCOMMON_API ReadStatus ReadCSV(
  * @param includeQuote Always quote the output field (default only when needed)
  * @return A string that can be written to a file. (not newline terminated)
  */
-ARBCOMMON_API std::wstring WriteCSV(
-	wchar_t inSep,
-	std::vector<std::wstring> const& inFields,
-	bool includeQuote = false);
+ARBCOMMON_API wxString WriteCSV(wchar_t inSep, std::vector<wxString> const& inFields, bool includeQuote = false);
 
 
 /**
@@ -86,7 +82,7 @@ ARBCOMMON_API std::wstring WriteCSV(
  * @param includeQuote Always quote the output field (default only when needed)
  * @return A string that can be written to a file. (not newline terminated)
  */
-ARBCOMMON_API std::wstring WriteCSVField(wchar_t inSep, std::wstring const& inField, bool includeQuote = false);
+ARBCOMMON_API wxString WriteCSVField(wchar_t inSep, wxString const& inField, bool includeQuote = false);
 
 } // namespace ARBCommon
 } // namespace dconSoft

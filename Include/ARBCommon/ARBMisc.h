@@ -19,8 +19,6 @@
 
 #include "LibwxARBCommon.h"
 
-#include <string>
-
 
 namespace dconSoft
 {
@@ -32,19 +30,19 @@ namespace ARBCommon
  * @param inRawData String to sanitize
  * @param bConvertCR Convert \n to html-breaks.
  */
-ARBCOMMON_API std::wstring SanitizeStringForHTML(std::wstring const& inRawData, bool bConvertCR = true);
+ARBCOMMON_API wxString SanitizeStringForHTML(wxString const& inRawData, bool bConvertCR = true);
 
 /**
  * These are the strings we recognize as platforms.
  * On Windows, we use the compiled arch. Other OSs use native.
  * The reason being we don't want to deal with a 32->64 bit MSI switch.
  */
-ARBCOMMON_API std::wstring GetARBArch();
+ARBCOMMON_API wxString GetARBArch();
 
 /**
  * Get the native arch.
  */
-ARBCOMMON_API std::wstring GetNativeARBArch();
+ARBCOMMON_API wxString GetNativeARBArch();
 
 
 /**
@@ -65,7 +63,7 @@ ARBCOMMON_API bool IsWin7OrBetter();
 /**
  * Translate a short to a Roman numeral
  */
-ARBCOMMON_API std::wstring ShortToRoman(short value);
+ARBCOMMON_API wxString ShortToRoman(short value);
 
 } // namespace ARBCommon
 } // namespace dconSoft

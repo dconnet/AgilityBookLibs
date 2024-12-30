@@ -17,6 +17,6 @@ TOPBUILDDIR = ./@top_builddir@
 ##########
 # Recursively make in these subdirectories
 ##########
-SUBDIRS = LibFmt LibTidyHtml catch
+SUBDIRS = LibTidyHtml catch
 
 @NAM_RULES@

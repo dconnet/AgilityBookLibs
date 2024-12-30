@@ -11,7 +11,6 @@
  *
  * Revision History
  * 2022-09-17 Added OpenFile/Save/SaveAs to exporter.
- * 2018-12-16 Convert to fmt.
  * 2018-10-11 Moved to Win LibARBWin
  * 2012-05-16 Fixed Calc format strings.
  * 2012-02-18 Added eSpreadSheetNumberNoZero
@@ -29,7 +28,6 @@
 
 #include "ARBCommon/ARBTypes.h"
 #include "ARBCommon/StringUtil.h"
-#include "fmt/xchar.h"
 
 #if HAS_AUTOMATION
 #include "LibARBWin/DlgProgress.h"
@@ -139,14 +137,14 @@ public:
 	virtual ~CWizardExcelCommon();
 
 protected:
-	bool ImplOpenFile(std::wstring const& inFilename);
+	bool ImplOpenFile(wxString const& inFilename);
 	bool ImplSelectSheet(short index);
-	bool ImplSelectSheet(std::wstring const& sheetName);
+	bool ImplSelectSheet(wxString const& sheetName);
 	bool ImplSave();
-	bool ImplSaveAs(std::wstring const& inFilename);
+	bool ImplSaveAs(wxString const& inFilename);
 	bool ImplAllowAccess(bool bAllow);
 
-	std::wstring m_FileName;
+	wxString m_FileName;
 	wxAutomationObject& m_App;
 	wxAutomationObject m_Workbook;
 	wxAutomationObject m_Worksheet;
@@ -193,11 +191,11 @@ public:
 	static CWizardExcelExportPtr Create(wxAutomationObject& ioApp);
 	CWizardExcelExport(wxAutomationObject& ioApp);
 
-	bool OpenFile(std::wstring const& inFilename) override;
+	bool OpenFile(wxString const& inFilename) override;
 	bool SelectSheet(short index) override;
-	bool SelectSheet(std::wstring const& sheetName) override;
+	bool SelectSheet(wxString const& sheetName) override;
 	bool Save() override;
-	bool SaveAs(std::wstring const& inFilename) override;
+	bool SaveAs(wxString const& inFilename) override;
 
 	wchar_t GetSumIfSeparator() const override;
 
@@ -210,10 +208,10 @@ public:
 
 	bool SetAlignment(long inRow, long inCol, ARBSpreadSheetAlign align) override;
 	bool SetFormat(long inRow, long inCol, ARBSpreadSheetFormat format) override;
-	bool SetFormat(long inRow, long inCol, std::wstring const& format) override;
+	bool SetFormat(long inRow, long inCol, wxString const& format) override;
 
 	bool InsertData(long inRow, long inCol, double inData) override;
-	bool InsertData(long inRow, long inCol, std::wstring const& inData, bool bFormula = false) override;
+	bool InsertData(long inRow, long inCol, wxString const& inData, bool bFormula = false) override;
 
 	bool AutoFit(long inColFrom, long inColTo) override;
 };
@@ -228,10 +226,10 @@ public:
 	static CWizardExcelImportPtr Create(wxAutomationObject& ioApp);
 	CWizardExcelImport(wxAutomationObject& ioApp);
 
-	bool OpenFile(std::wstring const& inFilename) override;
+	bool OpenFile(wxString const& inFilename) override;
 	bool SelectSheet(short index) override;
-	bool SelectSheet(std::wstring const& sheetName) override;
-	bool GetData(std::vector<std::vector<std::wstring>>& outData, IDlgProgress* ioProgress) override;
+	bool SelectSheet(wxString const& sheetName) override;
+	bool GetData(std::vector<std::vector<wxString>>& outData, IDlgProgress* ioProgress) override;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -267,15 +265,15 @@ public:
 	virtual ~CWizardCalcCommon();
 
 protected:
-	bool ImplOpenFile(std::wstring const& inFilename);
+	bool ImplOpenFile(wxString const& inFilename);
 	bool ImplSelectSheet(short index);
-	bool ImplSelectSheet(std::wstring const& sheetName);
+	bool ImplSelectSheet(wxString const& sheetName);
 	bool ImplSave();
-	bool ImplSaveAs(std::wstring const& inFilename);
+	bool ImplSaveAs(wxString const& inFilename);
 
 	bool ImplAllowAccess(bool bAllow);
 
-	std::wstring m_FileName;
+	wxString m_FileName;
 	wxAutomationObject& m_Manager;
 	wxAutomationObject& m_Desktop;
 	wxAutomationObject m_Document;
@@ -292,11 +290,11 @@ public:
 	static CWizardCalcExportPtr Create(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
 	CWizardCalcExport(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
 
-	bool OpenFile(std::wstring const& inFilename) override;
+	bool OpenFile(wxString const& inFilename) override;
 	bool SelectSheet(short index) override;
-	bool SelectSheet(std::wstring const& sheetName) override;
+	bool SelectSheet(wxString const& sheetName) override;
 	bool Save() override;
-	bool SaveAs(std::wstring const& inFilename) override;
+	bool SaveAs(wxString const& inFilename) override;
 
 	wchar_t GetSumIfSeparator() const override;
 
@@ -309,10 +307,10 @@ public:
 
 	bool SetAlignment(long inRow, long inCol, ARBSpreadSheetAlign align) override;
 	bool SetFormat(long inRow, long inCol, ARBSpreadSheetFormat format) override;
-	bool SetFormat(long inRow, long inCol, std::wstring const& format) override;
+	bool SetFormat(long inRow, long inCol, wxString const& format) override;
 
 	bool InsertData(long inRow, long inCol, double inData) override;
-	bool InsertData(long inRow, long inCol, std::wstring const& inData, bool bFormula = false) override;
+	bool InsertData(long inRow, long inCol, wxString const& inData, bool bFormula = false) override;
 
 	bool AutoFit(long inColFrom, long inColTo) override;
 
@@ -330,10 +328,10 @@ public:
 	static CWizardCalcImportPtr Create(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
 	CWizardCalcImport(wxAutomationObject& ioManager, wxAutomationObject& ioDesktop);
 
-	bool OpenFile(std::wstring const& inFilename) override;
+	bool OpenFile(wxString const& inFilename) override;
 	bool SelectSheet(short index) override;
-	bool SelectSheet(std::wstring const& sheetName) override;
-	bool GetData(std::vector<std::vector<std::wstring>>& outData, IDlgProgress* ioProgress) override;
+	bool SelectSheet(wxString const& sheetName) override;
+	bool GetData(std::vector<std::vector<wxString>>& outData, IDlgProgress* ioProgress) override;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -409,7 +407,7 @@ CWizardExcelCommon::~CWizardExcelCommon()
 }
 
 
-bool CWizardExcelCommon::ImplOpenFile(std::wstring const& inFilename)
+bool CWizardExcelCommon::ImplOpenFile(wxString const& inFilename)
 {
 	if (m_Worksheet.GetDispatchPtr())
 		m_Worksheet.SetDispatchPtr(nullptr);
@@ -447,7 +445,7 @@ bool CWizardExcelCommon::ImplSelectSheet(short index)
 }
 
 
-bool CWizardExcelCommon::ImplSelectSheet(std::wstring const& sheetName)
+bool CWizardExcelCommon::ImplSelectSheet(wxString const& sheetName)
 {
 	if (!m_Workbook.GetDispatchPtr())
 		return false;
@@ -483,7 +481,7 @@ bool CWizardExcelCommon::ImplSave()
 }
 
 
-bool CWizardExcelCommon::ImplSaveAs(std::wstring const& inFilename)
+bool CWizardExcelCommon::ImplSaveAs(wxString const& inFilename)
 {
 	if (inFilename.empty() || !m_Workbook.GetDispatchPtr())
 		return false;
@@ -546,7 +544,7 @@ CWizardExcelExport::CWizardExcelExport(wxAutomationObject& ioApp)
 }
 
 
-bool CWizardExcelExport::OpenFile(std::wstring const& inFilename)
+bool CWizardExcelExport::OpenFile(wxString const& inFilename)
 {
 	return ImplOpenFile(inFilename);
 }
@@ -558,7 +556,7 @@ bool CWizardExcelExport::SelectSheet(short index)
 }
 
 
-bool CWizardExcelExport::SelectSheet(std::wstring const& sheetName)
+bool CWizardExcelExport::SelectSheet(wxString const& sheetName)
 {
 	return ImplSelectSheet(sheetName);
 }
@@ -570,7 +568,7 @@ bool CWizardExcelExport::Save()
 }
 
 
-bool CWizardExcelExport::SaveAs(std::wstring const& inFilename)
+bool CWizardExcelExport::SaveAs(wxString const& inFilename)
 {
 	return ImplSaveAs(inFilename);
 }
@@ -590,7 +588,7 @@ bool CWizardExcelExport::AllowAccess(bool bAllow)
 
 bool CWizardExcelExport::SetTextColor(long inRow, long inCol, wxColour inColor)
 {
-	std::wstring cell1;
+	wxString cell1;
 	if (!ISpreadSheet::GetRowCol(inRow, inCol, cell1))
 		return false;
 	wxAutomationObject range;
@@ -607,7 +605,7 @@ bool CWizardExcelExport::SetTextColor(long inRow, long inCol, wxColour inColor)
 
 bool CWizardExcelExport::SetBackColor(long inRow, long inCol, wxColour inColor)
 {
-	std::wstring cell1;
+	wxString cell1;
 	if (!ISpreadSheet::GetRowCol(inRow, inCol, cell1))
 		return false;
 	wxAutomationObject range;
@@ -624,7 +622,7 @@ bool CWizardExcelExport::SetBackColor(long inRow, long inCol, wxColour inColor)
 
 bool CWizardExcelExport::SetItalic(long inRow, long inCol, bool bItalic)
 {
-	std::wstring cell1;
+	wxString cell1;
 	if (!ISpreadSheet::GetRowCol(inRow, inCol, cell1))
 		return false;
 	wxAutomationObject range;
@@ -641,7 +639,7 @@ bool CWizardExcelExport::SetItalic(long inRow, long inCol, bool bItalic)
 
 bool CWizardExcelExport::SetBold(long inRow, long inCol, bool bBold)
 {
-	std::wstring cell1;
+	wxString cell1;
 	if (!ISpreadSheet::GetRowCol(inRow, inCol, cell1))
 		return false;
 	wxAutomationObject range;
@@ -660,7 +658,7 @@ bool CWizardExcelExport::SetAlignment(long inRow, long inCol, ARBSpreadSheetAlig
 {
 	if (ARBSpreadSheetAlign::None == align)
 		return true;
-	std::wstring cell1;
+	wxString cell1;
 	if (!ISpreadSheet::GetRowCol(inRow, inCol, cell1))
 		return false;
 	wxAutomationObject range;
@@ -692,7 +690,7 @@ bool CWizardExcelExport::SetAlignment(long inRow, long inCol, ARBSpreadSheetAlig
 
 bool CWizardExcelExport::SetFormat(long inRow, long inCol, ARBSpreadSheetFormat format)
 {
-	std::wstring sFormat;
+	wxString sFormat;
 
 	/*
 	 * Good tips on what to change
@@ -741,9 +739,9 @@ bool CWizardExcelExport::SetFormat(long inRow, long inCol, ARBSpreadSheetFormat 
 }
 
 
-bool CWizardExcelExport::SetFormat(long inRow, long inCol, std::wstring const& format)
+bool CWizardExcelExport::SetFormat(long inRow, long inCol, wxString const& format)
 {
-	std::wstring cell1;
+	wxString cell1;
 	if (!ISpreadSheet::GetRowCol(inRow, inCol, cell1))
 		return false;
 	wxAutomationObject range;
@@ -758,7 +756,7 @@ bool CWizardExcelExport::SetFormat(long inRow, long inCol, std::wstring const& f
 
 bool CWizardExcelExport::InsertData(long inRow, long inCol, double inData)
 {
-	std::wstring cell1;
+	wxString cell1;
 	if (!ISpreadSheet::GetRowCol(inRow, inCol, cell1))
 		return false;
 	wxAutomationObject range;
@@ -771,9 +769,9 @@ bool CWizardExcelExport::InsertData(long inRow, long inCol, double inData)
 }
 
 
-bool CWizardExcelExport::InsertData(long inRow, long inCol, std::wstring const& inData, bool bFormula)
+bool CWizardExcelExport::InsertData(long inRow, long inCol, wxString const& inData, bool bFormula)
 {
-	std::wstring cell1;
+	wxString cell1;
 	if (!ISpreadSheet::GetRowCol(inRow, inCol, cell1))
 		return false;
 	wxAutomationObject range;
@@ -781,21 +779,22 @@ bool CWizardExcelExport::InsertData(long inRow, long inCol, std::wstring const& 
 	args[0] = cell1;
 	args[1] = cell1;
 	m_Worksheet.GetObject(range, L"Range", 2, args);
-	std::wstring prop = bFormula ? L"Formula" : L"Value2";
+	wxString prop = bFormula ? L"Formula" : L"Value2";
 	if (0 < inData.length() && '=' == inData[0] && !bFormula)
 	{
-		std::wstring data = std::wstring(L"'") + inData;
-		range.PutProperty(prop, data.c_str());
+		wxString data;
+		data << L"'" << inData;
+		range.PutProperty(prop, data);
 	}
 	else
-		range.PutProperty(prop, inData.c_str());
+		range.PutProperty(prop, inData);
 	return true;
 }
 
 
 bool CWizardExcelExport::AutoFit(long inColFrom, long inColTo)
 {
-	std::wstring cell1, cell2;
+	wxString cell1, cell2;
 	if (!ISpreadSheet::GetRowCol(0, inColFrom, cell1))
 		return false;
 	if (!ISpreadSheet::GetRowCol(0, inColTo, cell2))
@@ -827,7 +826,7 @@ CWizardExcelImport::CWizardExcelImport(wxAutomationObject& ioApp)
 }
 
 
-bool CWizardExcelImport::OpenFile(std::wstring const& inFilename)
+bool CWizardExcelImport::OpenFile(wxString const& inFilename)
 {
 	return ImplOpenFile(inFilename);
 }
@@ -839,13 +838,13 @@ bool CWizardExcelImport::SelectSheet(short index)
 }
 
 
-bool CWizardExcelImport::SelectSheet(std::wstring const& sheetName)
+bool CWizardExcelImport::SelectSheet(wxString const& sheetName)
 {
 	return ImplSelectSheet(sheetName);
 }
 
 
-bool CWizardExcelImport::GetData(std::vector<std::vector<std::wstring>>& outData, IDlgProgress* ioProgress)
+bool CWizardExcelImport::GetData(std::vector<std::vector<wxString>>& outData, IDlgProgress* ioProgress)
 {
 	outData.clear();
 	if (!m_Worksheet.GetDispatchPtr())
@@ -864,9 +863,9 @@ bool CWizardExcelImport::GetData(std::vector<std::vector<std::wstring>>& outData
 		if (ioProgress)
 		{
 			wxFileName filename(m_FileName);
-			std::wstring msg = filename.GetFullPath().wc_str();
+			wxString msg = filename.GetFullPath();
 			ioProgress->SetCaption(msg);
-			std::wstring str = fmt::format(_("Reading {0} rows and {1} columns").wx_str(), nRows, nCols);
+			auto str = wxString::Format(_("Reading %1$d rows and %2$d columns"), nRows, nCols);
 			ioProgress->SetMessage(str);
 			ioProgress->SetRange(1, nRows);
 			ioProgress->ShowProgress();
@@ -881,11 +880,11 @@ bool CWizardExcelImport::GetData(std::vector<std::vector<std::wstring>>& outData
 				if (ioProgress->HasCanceled())
 					bAbort = true;
 			}
-			std::vector<std::wstring> row;
+			std::vector<wxString> row;
 			row.reserve(nCols);
 			for (int iCellCol = 0; iCellCol < nCols; ++iCellCol)
 			{
-				std::wstring cell1;
+				wxString cell1;
 				if (!ISpreadSheet::GetRowCol(iRow + iCellRow - 1, iCol + iCellCol - 1, cell1))
 				{
 					bAbort = true;
@@ -896,7 +895,7 @@ bool CWizardExcelImport::GetData(std::vector<std::vector<std::wstring>>& outData
 				args[0] = cell1;
 				args[1] = cell1;
 				range.GetObject(range2, L"Range", 2, args);
-				row.push_back(ARBCommon::StringUtil::stringW(range2.GetProperty(L"Value").GetString()));
+				row.push_back(range2.GetProperty(L"Value").GetString());
 			}
 			outData.push_back(row);
 		}
@@ -971,7 +970,7 @@ CWizardCalcCommon::~CWizardCalcCommon()
 }
 
 
-bool CWizardCalcCommon::ImplOpenFile(std::wstring const& inFilename)
+bool CWizardCalcCommon::ImplOpenFile(wxString const& inFilename)
 {
 	if (m_Worksheet.GetDispatchPtr())
 		m_Worksheet.SetDispatchPtr(nullptr);
@@ -982,7 +981,8 @@ bool CWizardCalcCommon::ImplOpenFile(std::wstring const& inFilename)
 	{
 		// 'Calc' doesn't take kindly to wxWidgets FileNameToURL syntax.
 		// Since this is windows only, screw it, just format it the way calc likes.
-		m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
+		m_FileName = inFilename;
+		m_FileName.Replace(L"\\", L"/");
 		m_FileName = L"file:///" + m_FileName;
 		wxVariant args;
 		args.NullList();
@@ -1017,7 +1017,7 @@ bool CWizardCalcCommon::ImplSelectSheet(short index)
 }
 
 
-bool CWizardCalcCommon::ImplSelectSheet(std::wstring const& sheetName)
+bool CWizardCalcCommon::ImplSelectSheet(wxString const& sheetName)
 {
 	if (!m_Document.GetDispatchPtr())
 		return false;
@@ -1041,11 +1041,12 @@ bool CWizardCalcCommon::ImplSave()
 }
 
 
-bool CWizardCalcCommon::ImplSaveAs(std::wstring const& inFilename)
+bool CWizardCalcCommon::ImplSaveAs(wxString const& inFilename)
 {
 	if (inFilename.empty() || !m_Document.GetDispatchPtr())
 		return false;
-	m_FileName = ARBCommon::StringUtil::Replace(inFilename, L"\\", L"/");
+	m_FileName = inFilename;
+	m_FileName.Replace(L"\\", L"/");
 	m_FileName = L"file:///" + m_FileName;
 	wxVariant dummy;
 	dummy.NullList();
@@ -1096,7 +1097,7 @@ bool CWizardCalcExport::CreateWorksheet()
 }
 
 
-bool CWizardCalcExport::OpenFile(std::wstring const& inFilename)
+bool CWizardCalcExport::OpenFile(wxString const& inFilename)
 {
 	return ImplOpenFile(inFilename);
 }
@@ -1108,7 +1109,7 @@ bool CWizardCalcExport::SelectSheet(short index)
 }
 
 
-bool CWizardCalcExport::SelectSheet(std::wstring const& sheetName)
+bool CWizardCalcExport::SelectSheet(wxString const& sheetName)
 {
 	return ImplSelectSheet(sheetName);
 }
@@ -1120,7 +1121,7 @@ bool CWizardCalcExport::Save()
 }
 
 
-bool CWizardCalcExport::SaveAs(std::wstring const& inFilename)
+bool CWizardCalcExport::SaveAs(wxString const& inFilename)
 {
 	return ImplSaveAs(inFilename);
 }
@@ -1210,7 +1211,7 @@ bool CWizardCalcExport::SetAlignment(long inRow, long inCol, ARBSpreadSheetAlign
 
 bool CWizardCalcExport::SetFormat(long inRow, long inCol, ARBSpreadSheetFormat format)
 {
-	std::wstring sFormat;
+	wxString sFormat;
 	switch (format)
 	{
 	case ARBSpreadSheetFormat::Text:
@@ -1231,7 +1232,7 @@ bool CWizardCalcExport::SetFormat(long inRow, long inCol, ARBSpreadSheetFormat f
 }
 
 
-bool CWizardCalcExport::SetFormat(long inRow, long inCol, std::wstring const& format)
+bool CWizardCalcExport::SetFormat(long inRow, long inCol, wxString const& format)
 {
 	if (!CreateWorksheet())
 		return false;
@@ -1273,14 +1274,14 @@ bool CWizardCalcExport::InsertData(long inRow, long inCol, double inData)
 }
 
 
-bool CWizardCalcExport::InsertData(long inRow, long inCol, std::wstring const& inData, bool bFormula)
+bool CWizardCalcExport::InsertData(long inRow, long inCol, wxString const& inData, bool bFormula)
 {
 	if (!CreateWorksheet())
 		return false;
 	wxAutomationObject cell(m_Worksheet.CallMethod(L"getCellByPosition", inCol, inRow));
 	if (!cell.GetDispatchPtr())
 		return false;
-	std::wstring property = bFormula ? L"Formula" : L"String";
+	wxString property = bFormula ? L"Formula" : L"String";
 	return cell.PutProperty(property, inData.c_str());
 }
 
@@ -1310,7 +1311,7 @@ CWizardCalcImport::CWizardCalcImport(wxAutomationObject& ioManager, wxAutomation
 }
 
 
-bool CWizardCalcImport::OpenFile(std::wstring const& inFilename)
+bool CWizardCalcImport::OpenFile(wxString const& inFilename)
 {
 	return ImplOpenFile(inFilename);
 }
@@ -1322,13 +1323,13 @@ bool CWizardCalcImport::SelectSheet(short index)
 }
 
 
-bool CWizardCalcImport::SelectSheet(std::wstring const& sheetName)
+bool CWizardCalcImport::SelectSheet(wxString const& sheetName)
 {
 	return ImplSelectSheet(sheetName);
 }
 
 
-bool CWizardCalcImport::GetData(std::vector<std::vector<std::wstring>>& outData, IDlgProgress* ioProgress)
+bool CWizardCalcImport::GetData(std::vector<std::vector<wxString>>& outData, IDlgProgress* ioProgress)
 {
 	outData.clear();
 	if (!m_Worksheet.GetDispatchPtr())
@@ -1354,9 +1355,9 @@ bool CWizardCalcImport::GetData(std::vector<std::vector<std::wstring>>& outData,
 	if (ioProgress)
 	{
 		wxFileName filename(m_FileName);
-		std::wstring msg = filename.GetFullPath().wc_str();
+		wxString msg = filename.GetFullPath();
 		ioProgress->SetCaption(msg);
-		std::wstring str = fmt::format(_("Reading {} rows").wx_str(), nRows);
+		auto str = wxString::Format(_("Reading %d rows"), nRows);
 		ioProgress->SetMessage(str);
 		ioProgress->SetRange(1, nRows);
 		ioProgress->ShowProgress();
@@ -1373,11 +1374,11 @@ bool CWizardCalcImport::GetData(std::vector<std::vector<std::wstring>>& outData,
 		if (!vRow.IsType(L"list"))
 			continue;
 		int nCols = static_cast<int>(vRow.GetCount());
-		std::vector<std::wstring> row;
+		std::vector<wxString> row;
 		row.reserve(nCols);
 		for (int iCol = 0; !bAbort && iCol < nCols; ++iCol)
 		{
-			row.push_back(ARBCommon::StringUtil::stringW(vRow[iCol].GetString()));
+			row.push_back(vRow[iCol].GetString());
 		}
 		outData.push_back(row);
 	}
@@ -1420,7 +1421,7 @@ long ISpreadSheet::GetMaxCols()
 }
 
 
-bool ISpreadSheet::GetCol(std::wstring const& inCol, long& outCol)
+bool ISpreadSheet::GetCol(wxString const& inCol, long& outCol)
 {
 	bool bOk = false;
 	outCol = -1;
@@ -1439,7 +1440,7 @@ bool ISpreadSheet::GetCol(std::wstring const& inCol, long& outCol)
 }
 
 
-bool ISpreadSheet::GetCol(long inCol, std::wstring& outCol)
+bool ISpreadSheet::GetCol(long inCol, wxString& outCol)
 {
 	bool bOk = false;
 	outCol.clear();
@@ -1452,23 +1453,21 @@ bool ISpreadSheet::GetCol(long inCol, std::wstring& outCol)
 }
 
 
-bool ISpreadSheet::GetRowCol(long inRow, long inCol, std::wstring& outCell)
+bool ISpreadSheet::GetRowCol(long inRow, long inCol, wxString& outCell)
 {
 	bool bOk = false;
-	fmt::wmemory_buffer output;
 	outCell.clear();
 	if (0 <= inRow && inRow < GetMaxRows() && 0 <= inCol && inCol < GetMaxCols())
 	{
 		// Lookup tables are nice!
-		fmt::format_to(std::back_inserter(output), L"{}{}", k_ColumnNames[inCol], inRow + 1);
+		outCell << k_ColumnNames[inCol] << inRow + 1;
 		bOk = true;
 	}
-	outCell = fmt::to_string(output);
 	return bOk;
 }
 
 
-bool ISpreadSheet::GetRowCol(std::wstring const& inCell, long& outRow, long& outCol)
+bool ISpreadSheet::GetRowCol(wxString const& inCell, long& outRow, long& outCol)
 {
 	bool bOk = false;
 	outRow = -1;
@@ -1476,7 +1475,7 @@ bool ISpreadSheet::GetRowCol(std::wstring const& inCell, long& outRow, long& out
 	if (!inCell.empty())
 	{
 		auto i = inCell.find_first_of(L"0123456789");
-		if (std::wstring::npos != i)
+		if (wxString::npos != i)
 		{
 			if (GetCol(inCell.substr(0, i), outCol))
 			{

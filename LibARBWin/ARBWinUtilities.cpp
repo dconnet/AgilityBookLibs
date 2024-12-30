@@ -24,7 +24,6 @@
 #include "stdafx.h"
 #include "LibARBWin/ARBWinUtilities.h"
 
-#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ListData.h"
 #include "LibARBWin/Widgets.h"
 #include <wx/config.h>
@@ -71,9 +70,9 @@ wxWindow* FindWindowInSizer(wxSizer* sizer, int id)
 }
 
 
-std::wstring GetListColumnText(CListCtrl const* list, long index, long col)
+wxString GetListColumnText(CListCtrl const* list, long index, long col)
 {
-	std::wstring val;
+	wxString val;
 	if (list)
 	{
 		wxListItem info;
@@ -83,26 +82,26 @@ std::wstring GetListColumnText(CListCtrl const* list, long index, long col)
 		if (-1 == index)
 		{
 			if (list->GetColumn(col, info))
-				val = ARBCommon::StringUtil::stringW(info.GetText());
+				val = info.GetText();
 		}
 		else
 		{
 			if (list->GetItem(info))
-				val = ARBCommon::StringUtil::stringW(info.GetText());
+				val = info.GetText();
 		}
 	}
 	return val;
 }
 
 
-bool SetListColumnText(CListCtrl* list, long index, long col, std::wstring const& text)
+bool SetListColumnText(CListCtrl* list, long index, long col, wxString const& text)
 {
 	if (!list)
 		return false;
 	wxListItem info;
 	info.SetId(index);
 	info.SetColumn(col);
-	info.SetText(ARBCommon::StringUtil::stringWX(text));
+	info.SetText(text);
 	return list->SetItem(info);
 }
 
@@ -116,7 +115,7 @@ void RefreshTreeItem(wxTreeCtrl* tree, wxTreeItemId item, bool bRecurse)
 			CTreeData* pData = dynamic_cast<CTreeData*>(tree->GetItemData(item));
 			if (pData)
 			{
-				tree->SetItemText(item, ARBCommon::StringUtil::stringWX(pData->OnNeedText()));
+				tree->SetItemText(item, pData->OnNeedText());
 			}
 			if (bRecurse)
 			{

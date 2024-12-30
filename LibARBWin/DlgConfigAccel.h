@@ -41,14 +41,14 @@ class CDlgConfigAccel : public wxDialog
 {
 public:
 	CDlgConfigAccel(
-		std::unordered_map<int, std::wstring> const& menuIds,
+		std::unordered_map<int, wxString> const& menuIds,
 		std::vector<CMenuHelper::ItemAccel> const& accelData,
 		std::vector<CMenuHelper::ItemAccel> const& accelDataDefaults,
 		bool bAllowDups,
 		std::vector<CMenuHelper::ItemData> const& menuItems,
 		std::unordered_map<int, KeyCodeMapping> const& keyMap,
 		wxWindow* pParent,
-		std::wstring caption = std::wstring());
+		wxString caption = wxString());
 
 	bool GetAccelData(std::vector<CMenuHelper::ItemAccel>& accelData);
 
@@ -66,14 +66,14 @@ private:
 	void OnSetDefaults(wxCommandEvent& evt);
 	void OnOk(wxCommandEvent& evt);
 
-	std::unordered_map<int, std::wstring> const& m_menuIds;
+	std::unordered_map<int, wxString> const& m_menuIds;
 	std::vector<CMenuHelper::ItemAccel> const& m_accelDataDefaults;
 	bool m_bAllowDups;
 	struct MenuData
 	{
 		CMenuHelper::ItemData const* m_data;
-		std::wstring m_path;
-		std::wstring m_item;
+		wxString m_path;
+		wxString m_item;
 		MenuData()
 			: m_data(nullptr)
 			, m_path()

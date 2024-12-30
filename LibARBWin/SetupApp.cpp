@@ -28,7 +28,6 @@
 
 #include "ARBCommon/ARBUtils.h"
 #include "ARBCommon/Element.h"
-#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ARBWinUtilities.h"
 #include "LibARBWin/LanguageManager.h"
 #include "LibARBWin/ResourceManager.h"
@@ -135,11 +134,11 @@ void CBaseApp::GenerateReport(wxDebugReport::Context ctx)
 #endif
 
 
-std::wstring CBaseApp::GetUpdateInfoKey() const
+wxString CBaseApp::GetUpdateInfoKey() const
 {
 	if (m_BaseRegName.empty())
-		return ARBCommon::StringUtil::stringW(m_BaseAppName);
-	return ARBCommon::StringUtil::stringW(m_BaseRegName);
+		return m_BaseAppName;
+	return m_BaseRegName;
 }
 
 
@@ -174,7 +173,7 @@ bool CBaseApp::OnInit()
 	// Specifically: "iCCP: known incorrect sRGB profile"
 	wxImage::SetDefaultLoadFlags(wxImage::GetDefaultLoadFlags() & ~wxImage::Load_Verbose);
 
-	std::wstring errMsg;
+	wxString errMsg;
 	if (!ARBCommon::Element::Initialize(errMsg))
 	{
 		wxMessageBox(errMsg.c_str(), GetAppName(), wxOK | wxCENTRE | wxICON_ERROR);
@@ -303,7 +302,7 @@ bool CBaseApp::SelectLanguage(wxWindow* parent)
 }
 
 
-std::wstring CBaseApp::CurrentLanguage() const
+wxString CBaseApp::CurrentLanguage() const
 {
 	return m_langMgr->CurrentLanguage();
 }

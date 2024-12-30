@@ -16,7 +16,6 @@
  * the original external interfaces are]
  *
  * Revision History
- * 2018-12-16 Convert to fmt.
  * 2015-11-27 Fixed UINT4 definition on Mac by using wx-defined sizes.
  * 2012-04-10 Based on wx-group thread, use std::string for internal use
  * 2010-02-07 Created
@@ -24,9 +23,6 @@
 
 #include "stdafx.h"
 #include "ARBMsgDigestImpl.h"
-
-#include "ARBCommon/StringUtil.h"
-#include "fmt/xchar.h"
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -384,21 +380,21 @@ void MD5Final(unsigned char digest[16], /* message digest */
 // clang-format on
 /////////////////////////////////////////////////////////////////////////////
 
-std::wstring ConvertDigest(const unsigned char digest[16])
+wxString ConvertDigest(const unsigned char digest[16])
 {
-	fmt::wmemory_buffer str;
+	wxString str;
 	for (int i = 0; i < 16; ++i)
 	{
-		fmt::format_to(std::back_inserter(str), L"{:02x}", digest[i]);
+		str << wxString::Format(L"%02x", digest[i]);
 	}
-	return fmt::to_string(str);
+	return str;
 }
 
 } // namespace
 
 // Note, error checking of arguments handled in ARBMsgDigest::Compute
 
-std::wstring ARBMsgDigestComputeMD5(std::istream& inFile, size_t* outSize)
+wxString ARBMsgDigestComputeMD5(std::istream& inFile, size_t* outSize)
 {
 	MD5_CTX context;
 	MD5Init(&context);

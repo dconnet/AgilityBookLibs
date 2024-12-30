@@ -31,18 +31,18 @@ namespace dconSoft
 namespace ARBCommon
 {
 
-std::wstring ARBMsgDigest::Compute(std::istream& inFile, ARBDigest type, size_t* outSize)
+wxString ARBMsgDigest::Compute(std::istream& inFile, ARBDigest type, size_t* outSize)
 {
 	if (outSize)
 		*outSize = 0;
 	if (!inFile.good())
-		return std::wstring();
+		return wxString();
 
 	switch (type)
 	{
 	case ARBDigest::Unknown:
 		assert(0);
-		return std::wstring();
+		return wxString();
 
 	case ARBDigest::MD5:
 		return ARBMsgDigestComputeMD5(inFile, outSize);
@@ -55,7 +55,7 @@ std::wstring ARBMsgDigest::Compute(std::istream& inFile, ARBDigest type, size_t*
 	}
 
 	// 'enum class' handles all cases via the switch above
-	return std::wstring();
+	return wxString();
 }
 
 } // namespace ARBCommon

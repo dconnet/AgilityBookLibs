@@ -74,21 +74,20 @@ CLibArchiveImpl::CLibArchiveImpl(wxString const& zipFile, ArchiveLocation locati
 #if defined(WIN32)
 	if (ArchiveLocation::ResourceOrFileSystem == location || ArchiveLocation::Resource == location)
 	{
-		std::wstring name;
+		wxString name = m_zipFile;
 
-		name = StringUtil::stringW(m_zipFile);
-		std::wstring::size_type pos = name.find_last_of('\\');
-		if (pos != std::wstring::npos)
+		wxString::size_type pos = name.find_last_of('\\');
+		if (pos != wxString::npos)
 			name = name.substr(pos + 1);
 		pos = name.find_last_of('/');
-		if (pos != std::wstring::npos)
+		if (pos != wxString::npos)
 			name = name.substr(pos + 1);
 		m_zipFileRes = name;
 
-		name = StringUtil::ToUpper(name);
-		name = StringUtil::Replace(name, L".", L"_");
+		name.MakeUpper();
+		name.Replace(L".", L"_");
 
-		HRSRC hrSrc = ::FindResource(nullptr, name.c_str(), L"DATAFILE");
+		HRSRC hrSrc = ::FindResource(nullptr, name.wc_str(), L"DATAFILE");
 		if (hrSrc)
 		{
 			m_resSize = ::SizeofResource(nullptr, hrSrc);

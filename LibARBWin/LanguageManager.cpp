@@ -32,10 +32,8 @@
 
 #include "ARBCommon/ARBUtils.h"
 #include "ARBCommon/Element.h"
-#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ARBWinUtilities.h"
 #include "LibARBWin/ResourceManager.h"
-#include "fmt/xchar.h"
 #include <wx/buffer.h>
 #include <wx/config.h>
 #include <wx/dir.h>
@@ -43,6 +41,7 @@
 #include <wx/stdpaths.h>
 #include <wx/translation.h>
 #include <wx/uilocale.h>
+#include <sstream>
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -73,7 +72,7 @@ wxMsgCatalog* wxDatTranslationsLoader::LoadCatalog(const wxString& domain, const
 	if (!resMgr)
 		return catalog;
 
-	std::wstring name = fmt::format(L"lang/{}/{}.mo", lang.wc_str(), domain.wc_str());
+	auto name = wxString::Format(L"lang/%s/%s.mo", lang, domain);
 
 	std::ostringstream str;
 	if (resMgr->LoadFile(name, str))
@@ -98,7 +97,7 @@ wxArrayString wxDatTranslationsLoader::GetAvailableTranslations(const wxString& 
 		{
 			for (auto const& dir : directories)
 			{
-				std::wstring name = fmt::format(L"lang/{}/{}.mo", dir.wc_str(), domain.wc_str());
+				auto name = wxString::Format(L"lang/%s/%s.mo", dir, domain);
 				if (resMgr->Exists(name))
 					langs.Add(dir);
 			}

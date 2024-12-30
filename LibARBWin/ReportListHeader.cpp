@@ -112,7 +112,7 @@ void CReportListHeader::Save()
 void CReportListHeader::CreateColumns(
 	std::vector<ColumnInfo> const& inColumns,
 	long defaultSort,
-	std::wstring const& baseConfig,
+	wxString const& baseConfig,
 	std::vector<int> const* pColWidths,
 	unsigned int idFirst)
 {
@@ -372,7 +372,7 @@ void CReportListHeader::OnLoad()
 		wxString str = wxConfig::Get()->Read(CFG_SORTING_ORDER2(m_baseConfig), L"");
 		for (size_t i = 0; i < m_columnInfo.size() && !str.IsEmpty(); ++i)
 		{
-			m_columnOrder[i] = ARBCommon::StringUtil::ToCLong(ARBCommon::StringUtil::stringW(str));
+			m_columnOrder[i] = ARBCommon::StringUtil::ToCLong(str);
 			int n = str.Find(',');
 			if (n > 0)
 				str = str.Mid(n + 1);
@@ -383,7 +383,7 @@ void CReportListHeader::OnLoad()
 		str = wxConfig::Get()->Read(CFG_SORTING_VISIBLE(m_baseConfig), L"");
 		for (size_t i = 0; i < m_columnInfo.size() && !str.IsEmpty(); ++i)
 		{
-			m_columnVisible[i] = (ARBCommon::StringUtil::ToCLong(ARBCommon::StringUtil::stringW(str)) != 0);
+			m_columnVisible[i] = (ARBCommon::StringUtil::ToCLong(str) != 0);
 			int n = str.Find(',');
 			if (n > 0)
 				str = str.Mid(n + 1);
@@ -401,7 +401,7 @@ void CReportListHeader::OnLoad()
 		m_colWidths.clear();
 		for (size_t i = 0; i < m_columnInfo.size() && !str.IsEmpty(); ++i)
 		{
-			m_colWidths.push_back(ARBCommon::StringUtil::ToCLong(ARBCommon::StringUtil::stringW(str)));
+			m_colWidths.push_back(ARBCommon::StringUtil::ToCLong(str));
 			int n = str.Find(',');
 			if (n > 0)
 				str = str.Mid(n + 1);
@@ -514,7 +514,7 @@ void CReportListHeader::OnColumnRClick(wxListEvent& evt)
 	for (auto col : m_columnOrder)
 	{
 		assert(col >= 0 && col < static_cast<int>(m_columnInfo.size()));
-		menu.AppendCheckItem(m_idFirst + col, ARBCommon::StringUtil::GetTranslation(m_columnInfo[col].name.c_str()));
+		menu.AppendCheckItem(m_idFirst + col, wxGetTranslation(m_columnInfo[col].name));
 	}
 	menu.AppendSeparator();
 	menu.Append(static_cast<int>(m_idFirst + m_columnInfo.size()), _("Restore"));

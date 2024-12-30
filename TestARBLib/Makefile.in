@@ -17,7 +17,7 @@ TOPBUILDDIR = ./@top_builddir@
 ##########
 # Compile flags, list include directories
 ##########
-INCLUDES += -I$(SRCDIR)/../Include -I$(SRCDIR)/../3rdParty/LibFmt/include -I$(SRCDIR)/../3rdParty/LibTidyHtml/include -I$(SRCDIR)/../3rdParty/catch -DUSING_CATCH2
+INCLUDES += -I$(SRCDIR)/../Include -I$(SRCDIR)/../3rdParty/LibTidyHtml/include -I$(SRCDIR)/../3rdParty/catch -DUSING_CATCH2
 
 ##########
 # List of programs and archives to link
@@ -49,7 +49,7 @@ PROGRAMS = @PACKAGE_TESTLIB_SHORTNAME@
 ##########
 # Extra libraries for link stage (only if needed)
 ##########
-@PACKAGE_TESTLIB_SHORTNAME@_LIBS = -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/LibARBWin -larbwin -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/ARBCommon -larbcommon -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/3rdParty/LibTidyHtml -ltidyhtml -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/3rdParty/LibFmt -lfmt
+@PACKAGE_TESTLIB_SHORTNAME@_LIBS = -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/LibARBWin -larbwin -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/ARBCommon -larbcommon -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/3rdParty/LibTidyHtml -ltidyhtml
 
 ##########
 # Precompiled headers

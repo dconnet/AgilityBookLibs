@@ -26,7 +26,7 @@ namespace dconSoft
 namespace ARBWin
 {
 
-ARBWIN_API bool CheckLink(std::wstring const& inLink, wxWindow* parent = nullptr);
+ARBWIN_API bool CheckLink(wxString const& inLink, wxWindow* parent = nullptr);
 
 } // namespace ARBWin
 } // namespace dconSoft

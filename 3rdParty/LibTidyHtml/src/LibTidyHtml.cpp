@@ -11,7 +11,6 @@
  *
  * Revision History
  * 2022-05-03 Changed API to return string (because this is compiled as MBCS)
- * 2018-12-16 Convert to fmt.
  * 2017-12-19 Added pRawFileBaseName for debugging.
  *            Fixed tidy calls to properly quote "&" from web data.
  * 2013-06-10 Separated from Win/CalendarSiteUSDAA.cpp

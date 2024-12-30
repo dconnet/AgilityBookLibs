@@ -16,12 +16,8 @@
  * Revision History
  * 2022-08-16 ColumnOrder is gone.
  * 2020-01-07 ColumnOrder and ReportListHeader settings are incompatible - separate.
- * 2018-12-25 Convert to fmt.
  * 2018-10-11 Separated from RegItems.h.
  */
-
-#include "fmt/xchar.h"
-
 
 namespace dconSoft
 {
@@ -34,33 +30,33 @@ namespace ARBWin
 // These are gone. Leave in code as reminder not to reuse (or recreate!)
 // these keys in the future.
 //	ST [key]Order (ColumnOrder.cpp)
-inline std::wstring CFG_SORTING_ORDER(std::wstring const& item)
+inline wxString CFG_SORTING_ORDER(wxString const& item)
 {
-	return fmt::format(L"{}/{}Order", CFG_KEY_SORTING, item);
+	return wxString::Format(L"%s/%sOrder", CFG_KEY_SORTING, item);
 }
 //	ST [key]Sort (ColumnOrder.cpp)
-inline std::wstring CFG_SORTING_SORT(std::wstring const& item)
+inline wxString CFG_SORTING_SORT(wxString const& item)
 {
-	return fmt::format(L"{}/{}Sort", CFG_KEY_SORTING, item);
+	return wxString::Format(L"%s/%sSort", CFG_KEY_SORTING, item);
 }
 #endif
 //	ST [key]Order2 (ReportListHeader.cpp)
-inline std::wstring CFG_SORTING_ORDER2(std::wstring const& item)
+inline wxString CFG_SORTING_ORDER2(wxString const& item)
 {
-	return fmt::format(L"{}/{}Order2", CFG_KEY_SORTING, item);
+	return wxString::Format(L"%s/%sOrder2", CFG_KEY_SORTING, item);
 }
 //	ST [key]Vis (ReportListHeader.cpp)
-inline std::wstring CFG_SORTING_VISIBLE(std::wstring const& item)
+inline wxString CFG_SORTING_VISIBLE(wxString const& item)
 {
-	return fmt::format(L"{}/{}Vis", CFG_KEY_SORTING, item);
+	return wxString::Format(L"%s/%sVis", CFG_KEY_SORTING, item);
 }
-inline std::wstring CFG_COLUMN_WIDTHS(std::wstring const& item)
+inline wxString CFG_COLUMN_WIDTHS(wxString const& item)
 {
-	return fmt::format(L"{}/{}Width", CFG_KEY_SORTING, item);
+	return wxString::Format(L"%s/%sWidth", CFG_KEY_SORTING, item);
 }
-inline std::wstring CFG_SORT_COLUMN(std::wstring const& item)
+inline wxString CFG_SORT_COLUMN(wxString const& item)
 {
-	return fmt::format(L"{}/{}Column", CFG_KEY_SORTING, item);
+	return wxString::Format(L"%s/%sColumn", CFG_KEY_SORTING, item);
 }
 
 #define CFG_KEY_ACCELERATORS L"Accelerators"

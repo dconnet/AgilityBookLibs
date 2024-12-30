@@ -32,7 +32,7 @@ using namespace ARBCommon;
 namespace
 {
 
-void GetFields(std::vector<std::wstring>& fields)
+void GetFields(std::vector<wxString>& fields)
 {
 	fields.clear();
 	// This is the same as field5 and fieldMore[12]
@@ -44,12 +44,12 @@ void GetFields(std::vector<std::wstring>& fields)
 }
 
 
-bool VerifyFields(std::vector<std::wstring> const& fields1, std::vector<std::wstring> const& fields2)
+bool VerifyFields(std::vector<wxString> const& fields1, std::vector<wxString> const& fields2)
 {
 	if (fields1.size() != fields2.size())
 		return false;
-	std::vector<std::wstring>::const_iterator i1 = fields1.begin();
-	std::vector<std::wstring>::const_iterator i2 = fields2.begin();
+	std::vector<wxString>::const_iterator i1 = fields1.begin();
+	std::vector<wxString>::const_iterator i2 = fields2.begin();
 	for (; i1 != fields1.end(); ++i1, ++i2)
 	{
 		if (*i1 != *i2)
@@ -79,7 +79,7 @@ TEST_CASE("BreakLine")
 
 	SECTION("BreakLine")
 	{
-		std::vector<std::wstring> fields;
+		std::vector<wxString> fields;
 		REQUIRE(4u == BreakLine(';', record4, fields));
 		REQUIRE(4u == fields.size());
 		REQUIRE(4u == BreakLine(';', record4, fields, true));
@@ -93,14 +93,14 @@ TEST_CASE("BreakLine")
 
 	SECTION("ReadCSV")
 	{
-		std::vector<std::wstring> fields;
+		std::vector<wxString> fields;
 		REQUIRE(ReadStatus::Error == ReadCSV(';', L"f\";", fields));
 		REQUIRE(ReadStatus::Error == ReadCSV(';', record7, fields));
 		REQUIRE(ReadStatus::Ok == ReadCSV(';', record5, fields));
 		REQUIRE(5u == fields.size());
 		if (5u == fields.size())
 		{
-			std::vector<std::wstring> fields2;
+			std::vector<wxString> fields2;
 			GetFields(fields2);
 			REQUIRE(VerifyFields(fields, fields2));
 		}
@@ -109,13 +109,13 @@ TEST_CASE("BreakLine")
 
 	SECTION("ReadCSVMultiLine1")
 	{
-		std::vector<std::wstring> fields;
+		std::vector<wxString> fields;
 		REQUIRE(ReadStatus::NeedMore == ReadCSV(';', recordMore1a, fields));
 		REQUIRE(ReadStatus::Ok == ReadCSV(';', recordMore2a, fields, true));
 		REQUIRE(5u == fields.size());
 		if (5u == fields.size())
 		{
-			std::vector<std::wstring> fields2;
+			std::vector<wxString> fields2;
 			GetFields(fields2);
 			REQUIRE(VerifyFields(fields, fields2));
 		}
@@ -124,7 +124,7 @@ TEST_CASE("BreakLine")
 
 	SECTION("ReadCSVMultiLine2")
 	{
-		std::vector<std::wstring> fields;
+		std::vector<wxString> fields;
 		REQUIRE(ReadStatus::NeedMore == ReadCSV(';', recordMore1b, fields));
 		REQUIRE(ReadStatus::Ok == ReadCSV(';', recordMore2b, fields, true));
 		REQUIRE(4u == fields.size());
@@ -140,7 +140,7 @@ TEST_CASE("BreakLine")
 
 	SECTION("ReadCSVMultiLine3")
 	{
-		std::vector<std::wstring> fields;
+		std::vector<wxString> fields;
 		REQUIRE(ReadStatus::NeedMore == ReadCSV(';', recordMore1c, fields));
 		REQUIRE(ReadStatus::NeedMore == ReadCSV(';', recordMore2c, fields, true));
 		REQUIRE(ReadStatus::Ok == ReadCSV(';', recordMore3c, fields, true));
@@ -156,7 +156,7 @@ TEST_CASE("BreakLine")
 
 	SECTION("ReadCSVMultiLine4")
 	{
-		std::vector<std::wstring> fields;
+		std::vector<wxString> fields;
 		REQUIRE(ReadStatus::NeedMore == ReadCSV(';', recordMore1c, fields));
 		REQUIRE(ReadStatus::NeedMore == ReadCSV(';', recordMore2c, fields, true));
 		REQUIRE(ReadStatus::NeedMore == ReadCSV(';', recordMore2cb, fields, true));
@@ -173,7 +173,7 @@ TEST_CASE("BreakLine")
 
 	SECTION("WriteCSV")
 	{
-		std::vector<std::wstring> fields;
+		std::vector<wxString> fields;
 		GetFields(fields);
 		std::wstring data = WriteCSV(';', fields);
 		REQUIRE(data == record5);

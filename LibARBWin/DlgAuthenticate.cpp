@@ -20,7 +20,6 @@
 #include "stdafx.h"
 #include "LibARBWin/DlgAuthenticate.h"
 
-#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/DlgPadding.h"
 #include "LibARBWin/Widgets.h"
 #include <wx/sizer.h>
@@ -33,20 +32,15 @@
 
 namespace dconSoft
 {
-using namespace ARBCommon;
 namespace ARBWin
 {
 
-CDlgAuthenticate::CDlgAuthenticate(
-	std::wstring const& userName,
-	wxWindow* parent,
-	std::wstring caption,
-	std::wstring message)
+CDlgAuthenticate::CDlgAuthenticate(wxString const& userName, wxWindow* parent, wxString caption, wxString message)
 	: wxDialog()
 	, m_Name(userName.c_str())
 {
 	if (caption.empty())
-		caption = ARBCommon::StringUtil::stringW(_("Authentication"));
+		caption = _("Authentication");
 	Create(parent, wxID_ANY, caption.c_str(), wxDefaultPosition, wxDefaultSize);
 	// Controls (these are done first to control tab order)
 
@@ -117,15 +111,15 @@ CDlgAuthenticate::CDlgAuthenticate(
 }
 
 
-std::wstring CDlgAuthenticate::GetUserName() const
+wxString CDlgAuthenticate::GetUserName() const
 {
-	return ARBCommon::StringUtil::stringW(m_Name);
+	return m_Name;
 }
 
 
-std::wstring CDlgAuthenticate::GetPassword() const
+wxString CDlgAuthenticate::GetPassword() const
 {
-	return ARBCommon::StringUtil::stringW(m_Password);
+	return m_Password;
 }
 
 } // namespace ARBWin

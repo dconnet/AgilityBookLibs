@@ -13,7 +13,6 @@
  * 2022-01-02 Add wx version to about dlg.
  * 2021-12-10 Change About API: Move CompiledOn to header. Otherwise, time
  *            reflects when the library was compiled.
- * 2018-12-14 Convert to fmt.
  * 2015-08-22 Fix hiDPI issues.
  * 2013-12-14 2.0.0 Standardized History
  * 2010-11-21       Cleaned up wx code (first use)
@@ -31,7 +30,6 @@
 #include "LibARBWin/ImageHelperBase.h"
 #include "LibARBWin/Logger.h"
 #include "LibARBWin/ResourceManager.h"
-#include "fmt/xchar.h"
 
 #include <wx/stdpaths.h>
 #include <tuple>
@@ -466,12 +464,11 @@ std::pair<wxString, wxString> CDlgAbout::GetAboutText(AboutText text) const
 		break;
 	case AboutText::Scaling:
 		label = _("DPI scaling");
-		content = fmt::format(L"{}", GetDPIScaleFactor());
+		content << GetDPIScaleFactor();
 		break;
 	case AboutText::OS:
 		label = _("OS");
-		content
-			= fmt::format(L"{}, {}, {}", ARBDebug::GetOSName(), ARBDebug::GetArchName(), ARBDebug::GetEndiannessName());
+		content << ARBDebug::GetOSName() << L", " << ARBDebug::GetArchName() << L", " << ARBDebug::GetEndiannessName();
 		break;
 	}
 	return std::make_pair(label, content);
@@ -573,10 +570,6 @@ AboutInfo::AboutInfo()
 	frameworks.push_back(std::make_pair(
 		L"wxWidgets",
 		wxString::Format("%d.%d.%d.%d", wxMAJOR_VERSION, wxMINOR_VERSION, wxRELEASE_NUMBER, wxSUBRELEASE_NUMBER)));
-	// The fmt library version in the form major * 10000 + minor * 100 + patch.
-	frameworks.push_back(std::make_pair(
-		L"libFmt",
-		wxString::Format("%d.%d.%d", FMT_VERSION / 10000, (FMT_VERSION % 10000) / 100, FMT_VERSION % 100)));
 	// These are used via ARBCommon
 	ADD_ABOUT_GSL(frameworks);
 	ADD_ABOUT_STDUUID(frameworks);

@@ -10,7 +10,6 @@
  * @author David Connet
  *
  * Revision History
- * 2018-12-16 Convert to fmt.
  * 2017-11-09 Convert from UnitTest++ to Catch
  * 2017-08-03 Added basic read verification
  * 2012-03-16 Renamed LoadXML functions, added stream version.
@@ -67,7 +66,7 @@ TEST_CASE("Element")
 		ARBAttribLookup rc = ele->GetAttrib(L"name", b);
 		REQUIRE(ARBAttribLookup::Found == rc);
 		REQUIRE(b);
-		std::wstring s;
+		wxString s;
 		rc = ele->GetAttrib(L"name", s);
 		REQUIRE(ARBAttribLookup::Found == rc);
 		REQUIRE(L"y" == s);
@@ -79,7 +78,7 @@ TEST_CASE("Element")
 		ElementNodePtr ele = ElementNode::New(L"name");
 		short i = 42;
 		ele->AddAttrib(L"test", i);
-		std::wstring s;
+		wxString s;
 		ele->GetAttrib(L"test", s);
 		REQUIRE(L"42" == s);
 		i = 0;
@@ -93,7 +92,7 @@ TEST_CASE("Element")
 		ElementNodePtr ele = ElementNode::New(L"name");
 		long i = 42;
 		ele->AddAttrib(L"test", i);
-		std::wstring s;
+		wxString s;
 		ele->GetAttrib(L"test", s);
 		REQUIRE(L"42" == s);
 		i = 0;
@@ -107,7 +106,7 @@ TEST_CASE("Element")
 		ElementNodePtr ele = ElementNode::New(L"name");
 		double i = 42.446;
 		ele->AddAttrib(L"test", i);
-		std::wstring s;
+		wxString s;
 		ele->GetAttrib(L"test", s);
 		REQUIRE(L"42.45" == s);
 		i = 0.0;
@@ -255,11 +254,11 @@ TEST_CASE("Element")
 			 << "</Test>";
 		// clang-format on
 
-		fmt::wmemory_buffer errMsg;
+		wxString errMsg;
 		ElementNodePtr tree(ElementNode::New());
 		REQUIRE(tree->LoadXML(data, errMsg));
 
-		std::wstring str;
+		wxString str;
 		REQUIRE(tree->GetName() == L"Test");
 		REQUIRE(tree->GetAttribCount() == 1);
 		REQUIRE(tree->GetAttrib(L"attrib", str) == ARBAttribLookup::Found);
@@ -283,19 +282,24 @@ TEST_CASE("Element")
 			 << "<ele>Content</ele>\n"
 			 << "<ele ele='2'>More content</ele>"
 			 << "</Test>";
+		const std::string formattedData("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\
+<Test attrib=\"a\">\n\
+  <ele>Content</ele>\n\
+  <ele ele=\"2\">More content</ele>\n\
+</Test>\n");
 		// clang-format on
 
-		fmt::wmemory_buffer errMsg;
+		wxString errMsg;
 		ElementNodePtr tree(ElementNode::New());
 		REQUIRE(tree->LoadXML(data, errMsg));
 
-		std::wstring tmpFile(L"data.tmp");
+		wxString tmpFile(L"data.tmp");
 		std::stringstream tmp1;
 		REQUIRE(tree->SaveXML(tmpFile));
 		REQUIRE(tree->SaveXML(tmp1));
 
 		ElementNodePtr tree2(ElementNode::New());
-		fmt::wmemory_buffer errs;
+		wxString errs;
 		REQUIRE(tree2->LoadXML(tmpFile.c_str(), errs));
 
 #if defined(__WXWINDOWS__)
@@ -310,6 +314,7 @@ TEST_CASE("Element")
 		std::string tmp1data = tmp1.str();
 		std::string tmp2data = tmp2.str();
 		REQUIRE(tmp1data == tmp2data);
+		REQUIRE(tmp1data == formattedData);
 	}
 }
 

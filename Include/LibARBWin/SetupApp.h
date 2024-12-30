@@ -97,7 +97,7 @@ public:
 	/**
 	 * Key to use in UpdateInfo (default registry value)
 	 */
-	virtual std::wstring GetUpdateInfoKey() const;
+	virtual wxString GetUpdateInfoKey() const;
 
 	/**
 	 * Called after setting config path. Derived app should create settings here.
@@ -118,7 +118,7 @@ public:
 	/**
 	 * Currectly selected language.
 	 */
-	std::wstring CurrentLanguage() const;
+	wxString CurrentLanguage() const;
 	wxLanguage CurrentLanguageId() const;
 	size_t AvailableLanguages() const;
 

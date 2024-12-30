@@ -169,7 +169,7 @@ public:
 		std::vector<CMenuHelper::ItemData> const& menuItems,
 		std::vector<CMenuHelper::ItemAccel> const& accels,
 		std::vector<int> const& toolbarItems,
-		std::unordered_map<int, std::wstring> const& menuIds,
+		std::unordered_map<int, wxString> const& menuIds,
 		bool doTranslation = false,
 		bool bAllowDups = false); // Accelerator dups
 	~CMenuHelper();
@@ -219,8 +219,8 @@ private:
 	struct TranslationData
 	{
 		int id;
-		std::wstring name;
-		std::wstring desc;
+		wxString name;
+		wxString desc;
 		TranslationData()
 			: id(wxID_ANY)
 			, name()
@@ -245,7 +245,7 @@ private:
 	{
 		wxMenu* pMenu;
 		int idx; // Index in parent
-		std::wstring item;
+		wxString item;
 		std::vector<TranslationData> items;
 		std::vector<MenuHandle> subMenus;
 		MenuHandle(int index)
@@ -285,7 +285,7 @@ private:
 	std::vector<CMenuHelper::ItemData> const& m_menuItems;
 	std::vector<ItemAccel> const& m_accelDataDefaults;
 	std::vector<int> const& m_toolbarItems;
-	std::unordered_map<int, std::wstring> m_menuIds;
+	std::unordered_map<int, wxString> m_menuIds;
 
 	wxFrame* m_Frame;
 	wxMenuBar* m_MenuBar;

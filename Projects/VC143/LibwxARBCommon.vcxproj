@@ -129,73 +129,61 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugLibARM64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLibARM64.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugLib32.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLib32.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugLib64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLib64.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugDllARM64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDllARM64.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugDll32.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDll32.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugDll64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDll64.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseLibARM64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLibARM64.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseLib32.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLib32.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseLib64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLib64.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseDllARM64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDllARM64.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseDll32.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDll32.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseDll64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDll64.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -345,11 +333,6 @@
     <ClInclude Include="..\..\Include\VersionNumber.h" />
     <ClInclude Include="..\..\ARBCommon\stdafx.h" />
     <ClInclude Include="..\..\ARBCommon\ARBMsgDigestImpl.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="LibFmt.vcxproj">
-      <Project>{c28fcb5f-b8a7-4214-9b3f-9d1d9fb6976e}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\ARBCommon\ARBCommon.rc" />

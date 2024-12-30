@@ -18,7 +18,6 @@
 #include "stdafx.h"
 #include "LibARBWin/DlgMessage.h"
 
-#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/DlgPadding.h"
 #include "LibARBWin/Widgets.h"
 

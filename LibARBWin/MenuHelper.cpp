@@ -284,7 +284,7 @@ CMenuHelper::CMenuHelper(
 	std::vector<CMenuHelper::ItemData> const& menuItems,
 	std::vector<CMenuHelper::ItemAccel> const& accels,
 	std::vector<int> const& toolbarItems,
-	std::unordered_map<int, std::wstring> const& menuIds,
+	std::unordered_map<int, wxString> const& menuIds,
 	bool doTranslation,
 	bool bAllowDups)
 	: m_menuItems(menuItems)

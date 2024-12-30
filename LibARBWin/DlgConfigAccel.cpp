@@ -16,14 +16,13 @@
 #include "stdafx.h"
 #include "DlgConfigAccel.h"
 
-#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/DlgPadding.h"
 #include "LibARBWin/ListData.h"
 #include "LibARBWin/MenuHelper.h"
 #include "LibARBWin/ReportListCtrl.h"
 #include "LibARBWin/Validators.h"
-#include "fmt/xchar.h"
 #include <wx/utils.h>
+#include <set>
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -53,9 +52,9 @@ wxString GetKeyCode(std::unordered_map<int, KeyCodeMapping> const& keyMap, int c
 }
 
 
-std::wstring TrimDots(wxString const& str)
+wxString TrimDots(wxString const& str)
 {
-	std::wstring s = StringUtil::stringW(str);
+	wxString s(str);
 	if (s.length() > 3)
 	{
 		if (s.substr(s.length() - 3) == L"...")
@@ -74,7 +73,7 @@ public:
 		std::vector<CMenuHelper::ItemAccel> const& accelData,
 		CMenuHelper::ItemAccel const& item,
 		std::unordered_map<int, KeyCodeMapping> const& keyMap,
-		std::wstring const& action,
+		wxString const& action,
 		bool bAllowDups,
 		wxWindow* pParent);
 
@@ -98,7 +97,7 @@ CDlgEditAccel::CDlgEditAccel(
 	std::vector<CMenuHelper::ItemAccel> const& accelData,
 	CMenuHelper::ItemAccel const& item,
 	std::unordered_map<int, KeyCodeMapping> const& keyMap,
-	std::wstring const& action,
+	wxString const& action,
 	bool bAllowDups,
 	wxWindow* pParent)
 	: m_accelData(accelData)
@@ -257,9 +256,9 @@ public:
 	CMenuData(
 		std::unordered_map<int, KeyCodeMapping> const& keyMap,
 		std::vector<CMenuHelper::ItemAccel> const& accels,
-		std::wstring const& path,
-		std::wstring const& item,
-		std::wstring const& location,
+		wxString const& path,
+		wxString const& item,
+		wxString const& location,
 		int order)
 		: m_keyMap(keyMap)
 		, m_accels(accels)
@@ -286,41 +285,38 @@ public:
 		return nRet;
 	}
 
-	std::wstring OnNeedText(long iCol) const override
+	wxString OnNeedText(long iCol) const override
 	{
+		wxString str;
 		switch (iCol)
 		{
 		case 0:
-			if (0 == m_accels.size())
+			if (0 < m_accels.size())
 			{
-				return std::wstring();
-			}
-			else
-			{
-				fmt::wmemory_buffer data;
 				for (size_t i = 0; i < m_accels.size(); ++i)
 				{
 					if (0 < i)
-						fmt::format_to(std::back_inserter(data), L"{}", L", ");
+						str << L", ";
 					if (m_accels[i].bCtrl)
-						fmt::format_to(std::back_inserter(data), L"{}", _("Ctrl+").wx_str());
+						str << _("Ctrl+");
 					if (m_accels[i].bAlt)
-						fmt::format_to(std::back_inserter(data), L"{}", _("Alt+").wx_str());
+						str << _("Alt+");
 					if (m_accels[i].bShift)
-						fmt::format_to(std::back_inserter(data), L"{}", _("Shift+").wx_str());
-					fmt::format_to(std::back_inserter(data), L"{}", GetKeyCode(m_keyMap, m_accels[i].keyCode).wx_str());
+						str << _("Shift+");
+					str << GetKeyCode(m_keyMap, m_accels[i].keyCode);
 				}
-				return fmt::to_string(data);
 			}
 			break;
 		case 1:
-			return m_path;
+			str = m_path;
+			break;
 		case 2:
-			return m_location;
+			str = m_location;
+			break;
 		default:
 			assert(0);
 		}
-		return std::wstring();
+		return str;
 	}
 
 	std::vector<CMenuHelper::ItemAccel> const& Accels() const
@@ -407,23 +403,23 @@ public:
 private:
 	std::unordered_map<int, KeyCodeMapping> const& m_keyMap;
 	std::vector<CMenuHelper::ItemAccel> m_accels;
-	std::wstring m_path;
-	std::wstring m_item;
-	std::wstring m_location;
+	wxString m_path;
+	wxString m_item;
+	wxString m_location;
 	int m_order;
 };
 
 /////////////////////////////////////////////////////////////////////////////
 
 CDlgConfigAccel::CDlgConfigAccel(
-	std::unordered_map<int, std::wstring> const& menuIds,
+	std::unordered_map<int, wxString> const& menuIds,
 	std::vector<CMenuHelper::ItemAccel> const& accelData,
 	std::vector<CMenuHelper::ItemAccel> const& accelDataDefaults,
 	bool bAllowDups,
 	std::vector<CMenuHelper::ItemData> const& menuItems,
 	std::unordered_map<int, KeyCodeMapping> const& keyMap,
 	wxWindow* pParent,
-	std::wstring caption)
+	wxString caption)
 	: m_menuIds(menuIds)
 	, m_accelDataDefaults(accelDataDefaults)
 	, m_bAllowDups(bAllowDups)
@@ -437,7 +433,7 @@ CDlgConfigAccel::CDlgConfigAccel(
 	, m_ctrlClear(nullptr)
 {
 	{
-		std::vector<std::wstring> path;
+		std::vector<wxString> path;
 		path.push_back(TrimDots(wxStripMenuCodes(wxGetTranslation(menuItems[0].menu))));
 
 		for (size_t i = 1; i < menuItems.size(); ++i)
@@ -445,28 +441,28 @@ CDlgConfigAccel::CDlgConfigAccel(
 			while (path.size() > menuItems[i].menuLevel)
 				path.pop_back();
 
-			std::wstring menuItem = TrimDots(wxStripMenuCodes(wxGetTranslation(menuItems[i].menu)));
+			wxString menuItem = TrimDots(wxStripMenuCodes(wxGetTranslation(menuItems[i].menu)));
 			path.push_back(menuItem);
 
-			fmt::wmemory_buffer data;
+			wxString data;
 			for (size_t n = 0; n < path.size(); ++n)
 			{
 				if (0 == n)
-					fmt::format_to(std::back_inserter(data), L"{}", path[n]);
+					data << path[n];
 				else
-					fmt::format_to(std::back_inserter(data), L" | {}", path[n]);
+					data << L" | " << path[n];
 			}
 
 			MenuData menudata;
 			menudata.m_data = &menuItems[i];
-			menudata.m_path = fmt::to_string(data);
+			menudata.m_path = data;
 			menudata.m_item = menuItem;
 			m_menuItems.push_back(menudata);
 		}
 	}
 
 	if (caption.empty())
-		caption = StringUtil::stringW(_("Configure Keyboard Shortcuts"));
+		caption = _("Configure Keyboard Shortcuts");
 	Create(pParent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
 	// Controls (these are done first to control tab order)
@@ -585,13 +581,8 @@ void CDlgConfigAccel::LoadData()
 			{
 				lastMenuId = m_menuItems[i].m_data->menuId;
 				if (m_ctrlItems->GetItemCount() > 0)
-					m_ctrlItems->InsertItem(std::make_shared<CMenuData>(
-						m_keyMap,
-						accels,
-						std::wstring(),
-						std::wstring(),
-						std::wstring(),
-						-1));
+					m_ctrlItems->InsertItem(
+						std::make_shared<CMenuData>(m_keyMap, accels, wxString(), wxString(), wxString(), -1));
 			}
 
 #if defined(_DEBUG) || defined(__WXDEBUG__)
@@ -621,7 +612,7 @@ void CDlgConfigAccel::LoadData()
 			assert(accels.size() > 0);
 
 			auto menuStr = m_menuIds.find(m_menuItems[i].m_data->menuId);
-			std::wstring location;
+			wxString location;
 			if (menuStr != m_menuIds.end())
 				location = menuStr->second;
 			m_ctrlItems->InsertItem(std::make_shared<CMenuData>(

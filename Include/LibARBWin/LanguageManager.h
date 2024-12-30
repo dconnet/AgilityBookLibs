@@ -50,7 +50,7 @@ public:
 
 	bool InitLanguage();
 
-	std::wstring CurrentLanguage() const
+	wxString CurrentLanguage() const
 	{
 		return m_dirLoadedLang;
 	}
@@ -72,7 +72,7 @@ private:
 
 	ILanguageCallback* m_pCallback;
 	wxLanguage m_CurLang;
-	std::wstring m_dirLoadedLang; /// 'en'/'fr' etc
+	wxString m_dirLoadedLang; /// 'en'/'fr' etc
 	std::unique_ptr<wxLocale> m_locale;
 };
 

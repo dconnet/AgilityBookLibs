@@ -21,7 +21,6 @@
  * 2013-01-27 Split/moved stdafx.h.
  */
 
-// VC9/VC10 defines _HAS_TR1 if tr1 is present (via yvals.h).
 #include <memory>
 #if defined(__WXMAC__)
 #include <AvailabilityMacros.h>

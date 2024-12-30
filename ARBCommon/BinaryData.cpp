@@ -24,27 +24,10 @@
 #include "ARBCommon/ARBBase64.h"
 #include "ARBCommon/StringUtil.h"
 
-#if defined(USE_POCO)
-#include "Poco/Buffer.h"
-#include "Poco/DeflatingStream.h"
-#include "Poco/InflatingStream.h"
-#include "Poco/MemoryStream.h"
-#include "Poco/StreamCopier.h"
-#include <fstream>
-
-#elif defined(__WXWINDOWS__)
 #include <wx/mstream.h>
 #include <wx/wfstream.h>
 #include <wx/zstream.h>
 #include <fstream>
-
-#else
-#ifdef WIN32
-#pragma PRAGMA_MESSAGE("WARNING: Need Poco or wxWidgets")
-#else
-#pragma message("WARNING: Need Poco or wxWidgets")
-#endif
-#endif
 
 #ifdef __WXMSW__
 #include <wx/msw/msvcrt.h>
@@ -66,18 +49,6 @@ bool BinaryData::Decode(std::string const& inBase64, std::vector<unsigned char>&
 	std::vector<unsigned char> pData;
 	if (ARBBase64::Decode(inBase64, pData))
 	{
-#if defined(USE_POCO)
-		Poco::MemoryInputStream input(reinterpret_cast<char*>(pData), len);
-		Poco::InflatingInputStream inflater(input);
-		std::stringstream output;
-		Poco::StreamCopier::copyStream(inflater, output);
-		std::string const& data = output.str();
-		size_t outBytes = output.GetSize();
-		outBinData = std::vector<unsigned char>(outBytes);
-		memcpy(outBinData.data(), data.data(), outBytes);
-		bOk = true;
-
-#elif defined(__WXWINDOWS__)
 		wxMemoryOutputStream output;
 		{
 			wxZlibInputStream strm(new wxMemoryInputStream(pData.data(), pData.size()), wxZLIB_ZLIB);
@@ -88,8 +59,6 @@ bool BinaryData::Decode(std::string const& inBase64, std::vector<unsigned char>&
 		outBinData = std::vector<unsigned char>(outBytes);
 		output.CopyTo(outBinData.data(), outBytes);
 		bOk = true;
-
-#endif
 	}
 
 	return bOk;
@@ -105,18 +74,6 @@ bool BinaryData::Encode(std::vector<unsigned char> const& inBinData, std::string
 	bool bOk = false;
 	size_t nData = 0;
 
-#if defined(USE_POCO)
-	Poco::MemoryInputStream input(reinterpret_cast<char const*>(inBinData.data()), inBinData.size());
-	Poco::DeflatingInputStream deflater(input);
-	std::stringstream output;
-	Poco::StreamCopier::copyStream(deflater, output);
-	std::string const& data = output.str();
-	nData = data.size();
-	auto pData = std::vector<unsigned char>(nData);
-	memcpy(pData.data(), data.data(), nData);
-
-#elif defined(__WXWINDOWS__)
-
 	wxMemoryOutputStream output;
 	{
 		wxZlibOutputStream strm(output);
@@ -127,47 +84,24 @@ bool BinaryData::Encode(std::vector<unsigned char> const& inBinData, std::string
 	auto pData = std::vector<unsigned char>(nData);
 	output.CopyTo(pData.data(), nData);
 
-#endif
-
 	if (!pData.empty())
 	{
-		std::string tmp;
-		bOk = ARBBase64::Encode(pData, tmp);
-		outBase64 = tmp;
+		bOk = ARBBase64::Encode(pData, outBase64);
 	}
 
 	return bOk;
 }
 
 
-bool BinaryData::EncodeFile(std::wstring const& inFileName, std::string& outBase64)
+bool BinaryData::EncodeFile(wxString const& inFileName, std::string& outBase64)
 {
 	outBase64.clear();
 
 	bool bOk = false;
 	size_t nData = 0;
 
-#if defined(USE_POCO)
-#ifdef ARB_HAS_ISTREAM_WCHAR
-	std::ifstream file(inFileName, std::ios::binary);
-#else
-	std::string filename(StringUtil::stringA(inFileName));
-	std::ifstream file(filename.c_str(), std::ios::binary);
-#endif
-	if (!file.good())
-		return false;
-
-	Poco::DeflatingInputStream deflater(file);
-	std::stringstream output;
-	Poco::StreamCopier::copyStream(deflater, output);
-	std::string const& data = output.str();
-	nData = data.size();
-	auto pData = std::vector<unsigned char>(nData);
-	memcpy(pData.data(), data.data(), nData);
-
-#elif defined(__WXWINDOWS__)
 	wxFFile file;
-	if (!file.Open(inFileName.c_str(), L"rb"))
+	if (!file.Open(inFileName, L"rb"))
 		return false;
 
 	wxMemoryOutputStream output;
@@ -180,8 +114,6 @@ bool BinaryData::EncodeFile(std::wstring const& inFileName, std::string& outBase
 	nData = output.GetSize();
 	auto pData = std::vector<unsigned char>(nData);
 	output.CopyTo(pData.data(), nData);
-
-#endif
 
 	if (!pData.empty())
 	{

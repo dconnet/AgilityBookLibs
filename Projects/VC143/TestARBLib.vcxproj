@@ -129,7 +129,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugLibARM64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLibARM64.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -137,7 +136,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugLib32.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLib32.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -145,7 +143,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugLib64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLib64.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -153,7 +150,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugDllARM64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDllARM64.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -161,7 +157,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugDll32.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDll32.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -169,7 +164,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonDebugDll64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDll64.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -177,7 +171,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseLibARM64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLibARM64.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -185,7 +178,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseLib32.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLib32.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -193,7 +185,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseLib64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtLib.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsLib64.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -201,7 +192,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseDllARM64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDllARM64.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -209,7 +199,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseDll32.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDll32.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -217,7 +206,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(ProjectDir)\..\props\CommonReleaseDll64.props" />
-    <Import Project="$(ProjectDir)\..\props\LibFmtDll.props" />
     <Import Project="$(ProjectDir)\..\props\wxWidgetsDll64.props" />
     <Import Project="$(ProjectDir)\..\props\LibTidyHtml.props" />
     <Import Project="$(ProjectDir)\..\props\UnitTest.props" />
@@ -531,9 +519,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\AgilityBook\AgilityBook\AgilityBookLibs\Projects\VC143\UTcatch3.vcxproj">
       <Project>{98390979-9e94-4a4f-80e6-d686270cbb98}</Project>
-    </ProjectReference>
-    <ProjectReference Include="LibFmt.vcxproj">
-      <Project>{c28fcb5f-b8a7-4214-9b3f-9d1d9fb6976e}</Project>
     </ProjectReference>
     <ProjectReference Include="LibTidyHtml.vcxproj">
       <Project>{05967875-9726-4f06-8ec8-db6170c00bf3}</Project>

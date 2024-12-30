@@ -29,13 +29,13 @@ class ARBWIN_API CDlgAuthenticate : public wxDialog
 {
 public:
 	CDlgAuthenticate(
-		std::wstring const& userName,
+		wxString const& userName,
 		wxWindow* parent,
-		std::wstring caption = std::wstring(),
-		std::wstring message = std::wstring());
+		wxString caption = wxString(),
+		wxString message = wxString());
 
-	std::wstring GetUserName() const;
-	std::wstring GetPassword() const;
+	wxString GetUserName() const;
+	wxString GetPassword() const;
 
 private:
 	wxString m_Name;

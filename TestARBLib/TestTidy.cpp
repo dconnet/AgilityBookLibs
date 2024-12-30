@@ -21,7 +21,6 @@
 #include "ARBCommon/StringUtil.h"
 #include "LibARBWin/ResourceManager.h"
 #include "LibTidyHtml/LibTidyHtml.h"
-#include "fmt/printf.h"
 
 #include <stdarg.h>
 
@@ -54,9 +53,9 @@ TEST_CASE("LibTidy")
 		auto treeData = TidyHtml::TidyHtmlData(data, errTidy, &debug);
 		REQUIRE(!treeData.empty());
 
-		fmt::wmemory_buffer err;
+		wxString err;
 		if (!errTidy.empty())
-			fmt::format_to(std::back_inserter(err), L"{}", StringUtil::stringW(errTidy));
+			err << errTidy;
 
 		ElementNodePtr tidyTree = ElementNode::New();
 		if (!tidyTree->LoadXML(treeData.data(), treeData.length(), err))
@@ -66,10 +65,9 @@ TEST_CASE("LibTidy")
 		REQUIRE(tidyTree);
 		// if (!tidyTree)
 		//{
-		//	std::wstring msg = fmt::to_string(err);
-		//	if (msg.empty())
-		//		msg = fmt::format(_("IDS_ERR_PARSING_DATA").wx_str(), inAddress);
-		//	wxMessageBox(msg, wxMessageBoxCaptionStr, wxOK | wxCENTRE);
+		//	if (err.empty())
+		//		err = <some error msg>
+		//	wxMessageBox(err, wxMessageBoxCaptionStr, wxOK | wxCENTRE);
 		//}
 	}
 }

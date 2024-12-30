@@ -18,9 +18,9 @@
  * 2007-12-25 Created
  */
 
-#define ARB_VER_MAJOR 3
-#define ARB_VER_MINOR 8
-#define ARB_VER_DOT   10
+#define ARB_VER_MAJOR 4
+#define ARB_VER_MINOR 0
+#define ARB_VER_DOT   0
 #define ARB_VER_BUILD 127
 
 // Number of parts in the caption version string

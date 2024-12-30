@@ -52,14 +52,14 @@ ARBWIN_API wxWindow* FindWindowInSizer(wxSizer* sizer, int id);
  * This is just a simple wrapper around wxListItem/GetItem
  * @note index = -1 implies getting the column header text
  */
-ARBWIN_API std::wstring GetListColumnText(CListCtrl const* list, long index, long col);
+ARBWIN_API wxString GetListColumnText(CListCtrl const* list, long index, long col);
 
 
 /**
  * Set the text for a column.
  * This is just a simple wrapper around wxListItem/SetItem
  */
-ARBWIN_API bool SetListColumnText(CListCtrl* list, long index, long col, std::wstring const& text);
+ARBWIN_API bool SetListColumnText(CListCtrl* list, long index, long col, wxString const& text);
 
 
 /**

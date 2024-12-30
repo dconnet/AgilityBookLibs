@@ -12,7 +12,7 @@
  * 2013-10-29 Added more hash algorithms
  */
 
-#include <string>
+#include <istream>
 
 
 namespace dconSoft
@@ -20,11 +20,11 @@ namespace dconSoft
 namespace ARBCommon
 {
 
-extern std::wstring ARBMsgDigestComputeMD5(std::istream& inFile, size_t* outSize);
+extern wxString ARBMsgDigestComputeMD5(std::istream& inFile, size_t* outSize);
 
-extern std::wstring ARBMsgDigestComputeSHA1(std::istream& inFile, size_t* outSize);
+extern wxString ARBMsgDigestComputeSHA1(std::istream& inFile, size_t* outSize);
 
-extern std::wstring ARBMsgDigestComputeSHA256(std::istream& inFile, size_t* outSize);
+extern wxString ARBMsgDigestComputeSHA256(std::istream& inFile, size_t* outSize);
 
 } // namespace ARBCommon
 } // namespace dconSoft

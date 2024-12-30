@@ -16,8 +16,9 @@
  * 2007-01-03 Created
  */
 
-#include "ARBTypes.h"
 #include "LibwxARBCommon.h"
+
+#include "ARBTypes.h"
 
 
 namespace dconSoft
@@ -40,7 +41,7 @@ ARBCOMMON_API bool Decode(std::string const& inBase64, std::vector<unsigned char
  * @param outBase64 Base64 encoded string of compressed (zlib) data.
  */
 ARBCOMMON_API bool Encode(std::vector<unsigned char> const& inBinData, std::string& outBase64);
-ARBCOMMON_API bool EncodeFile(std::wstring const& inFileName, std::string& outBase64);
+ARBCOMMON_API bool EncodeFile(wxString const& inFileName, std::string& outBase64);
 
 ARBCOMMON_API bool DecodeString(std::string const& inBase64, std::string& outData);
 ARBCOMMON_API bool EncodeString(std::string const& inData, std::string& outBase64);

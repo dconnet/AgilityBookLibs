@@ -10,7 +10,6 @@
  * @author David Connet
  *
  * Revision History
- * 2018-12-16 Convert to fmt.
  * 2012-07-25 Fix a CSV read problem with multiline continuation data.
  * 2012-04-10 Based on wx-group thread, use std::string for internal use
  * 2010-10-30 Moved BreakLine from Globals.cpp, added CSV routines.
@@ -18,8 +17,6 @@
 
 #include "stdafx.h"
 #include "ARBCommon/BreakLine.h"
-
-#include "fmt/xchar.h"
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -31,7 +28,7 @@ namespace dconSoft
 namespace ARBCommon
 {
 
-size_t BreakLine(wchar_t inSep, std::wstring const& inStr, std::vector<std::wstring>& outFields, bool inRemoveEmpties)
+size_t BreakLine(wchar_t inSep, wxString const& inStr, std::vector<wxString>& outFields, bool inRemoveEmpties)
 {
 	outFields.clear();
 
@@ -43,7 +40,7 @@ size_t BreakLine(wchar_t inSep, std::wstring const& inStr, std::vector<std::wstr
 	wchar_t const* npos = wcschr(pos, inSep);
 	while (npos)
 	{
-		std::wstring str(pos, npos - pos);
+		wxString str(pos, npos - pos);
 		if (!(inRemoveEmpties && str.empty()))
 			outFields.push_back(str);
 		++fld;
@@ -52,7 +49,7 @@ size_t BreakLine(wchar_t inSep, std::wstring const& inStr, std::vector<std::wstr
 	}
 	if (pos)
 	{
-		std::wstring str(pos);
+		wxString str(pos);
 		if (!(inRemoveEmpties && str.empty()))
 			outFields.push_back(str);
 	}
@@ -82,10 +79,10 @@ size_t BreakLine(wchar_t inSep, std::wstring const& inStr, std::vector<std::wstr
 
 ReadStatus ReadCSV(
 	wchar_t inSep,
-	std::wstring inRecord,
-	std::vector<std::wstring>& ioFields,
+	wxString inRecord,
+	std::vector<wxString>& ioFields,
 	bool bContinuation,
-	std::wstring newLine)
+	wxString newLine)
 {
 	if (!bContinuation)
 		ioFields.clear();
@@ -98,12 +95,12 @@ ReadStatus ReadCSV(
 	bool bAddEmpty = false;
 	while (!inRecord.empty())
 	{
-		std::wstring str;
-		std::wstring::size_type posSep = inRecord.find(inSep);
+		wxString str;
+		wxString ::size_type posSep = inRecord.find(inSep);
 		if (bContinuation || L'"' == inRecord[0])
 		{
-			std::wstring::size_type posQuote = inRecord.find(L'"', bContinuation ? 0 : 1);
-			if (std::wstring::npos == posQuote)
+			wxString ::size_type posQuote = inRecord.find(L'"', bContinuation ? 0 : 1);
+			if (wxString ::npos == posQuote)
 			{
 				if (bContinuation)
 					str = inRecord;
@@ -114,8 +111,8 @@ ReadStatus ReadCSV(
 			}
 			else
 			{
-				fmt::wmemory_buffer data;
-				std::wstring::iterator iStr = inRecord.begin();
+				wxString data;
+				wxString::iterator iStr = inRecord.begin();
 				if (!bContinuation)
 					++iStr;
 				bool bInQuote = true;
@@ -140,7 +137,7 @@ ReadStatus ReadCSV(
 						{
 							if (*(iStr + 1) == L'"')
 							{
-								fmt::format_to(std::back_inserter(data), L"{}", *iStr);
+								data += *iStr;
 								++iStr;
 							}
 							else if (*(iStr + 1) == inSep)
@@ -149,23 +146,23 @@ ReadStatus ReadCSV(
 							{
 								if (bInQuote)
 									return ReadStatus::Error;
-								fmt::format_to(std::back_inserter(data), L"{}", *iStr);
+								data += *iStr;
 							}
 						}
 					}
 					else
-						fmt::format_to(std::back_inserter(data), L"{}", *iStr);
+						data += *iStr;
 				}
-				str = fmt::to_string(data);
+				str = data;
 				if (iStr == inRecord.end())
 					inRecord.clear();
 				else
-					inRecord = std::wstring(iStr, inRecord.end());
+					inRecord = wxString(iStr, inRecord.end());
 			}
 		}
 		else
 		{
-			if (std::wstring::npos == posSep)
+			if (wxString ::npos == posSep)
 			{
 				str = inRecord;
 				inRecord.clear();
@@ -179,7 +176,7 @@ ReadStatus ReadCSV(
 			}
 			// If there is a quote in the string,
 			// the field itself must be quoted.
-			if (std::wstring::npos != str.find(L'"'))
+			if (wxString ::npos != str.find(L'"'))
 				return ReadStatus::Error;
 		}
 		if (bContinuation && 0 < ioFields.size())
@@ -189,58 +186,58 @@ ReadStatus ReadCSV(
 		bContinuation = false;
 	}
 	if (bAddEmpty)
-		ioFields.push_back(std::wstring());
+		ioFields.push_back(wxString());
 	return status;
 }
 
 
-std::wstring WriteCSV(wchar_t inSep, std::vector<std::wstring> const& inFields, bool includeQuote)
+wxString WriteCSV(wchar_t inSep, std::vector<wxString> const& inFields, bool includeQuote)
 {
 	size_t fld = 0;
-	fmt::wmemory_buffer val;
-	for (std::vector<std::wstring>::const_iterator i = inFields.begin(); i != inFields.end(); ++i, ++fld)
+	wxString val;
+	for (std::vector<wxString>::const_iterator i = inFields.begin(); i != inFields.end(); ++i, ++fld)
 	{
 		if (0 < fld)
-			fmt::format_to(std::back_inserter(val), L"{}", inSep);
-		fmt::format_to(std::back_inserter(val), L"{}", WriteCSVField(inSep, *i, includeQuote));
+			val << inSep;
+		val << WriteCSVField(inSep, *i, includeQuote);
 	}
-	return fmt::to_string(val);
+	return val;
 }
 
 
-std::wstring WriteCSVField(wchar_t inSep, std::wstring const& inField, bool includeQuote)
+wxString WriteCSVField(wchar_t inSep, wxString const& inField, bool includeQuote)
 {
-	fmt::wmemory_buffer val;
-	if (std::wstring::npos != inField.find(L'"') || std::wstring::npos != inField.find(L'\n')
-		|| std::wstring::npos != inField.find(inSep))
+	wxString val;
+	if (wxString ::npos != inField.find(L'"') || wxString ::npos != inField.find(L'\n')
+		|| wxString ::npos != inField.find(inSep))
 	{
-		std::wstring str(inField);
-		fmt::format_to(std::back_inserter(val), L"{}", L"\"");
+		wxString str(inField);
+		val << L"\"";
 		while (!str.empty())
 		{
-			std::wstring::size_type pos = str.find(L'"');
-			if (std::wstring::npos == pos)
+			wxString ::size_type pos = str.find(L'"');
+			if (wxString ::npos == pos)
 			{
-				fmt::format_to(std::back_inserter(val), L"{}", str);
+				val << str;
 				str.clear();
 			}
 			else
 			{
-				fmt::format_to(std::back_inserter(val), L"{}\"\"", str.substr(0, pos));
+				val << str.substr(0, pos) << L"\"\"";
 				str = str.substr(pos + 1);
 			}
 		}
-		fmt::format_to(std::back_inserter(val), L"{}", L"\"");
+		val << L"\"";
 	}
 	else if (includeQuote)
 	{
-		fmt::format_to(std::back_inserter(val), L"\"{}\"", inField);
+		val << L"\"" << inField << L"\"";
 	}
 	else
 	{
-		fmt::format_to(std::back_inserter(val), L"{}", inField);
+		val << inField;
 	}
-	return fmt::to_string(val);
+	return val;
 }
 
 } // namespace ARBCommon

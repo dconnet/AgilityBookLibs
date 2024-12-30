@@ -55,7 +55,7 @@ struct ARBWIN_API AboutInfo
 	wxString compiledOn{ARBCommon::CVersionNum::GetCompiledOn(__DATE__, __TIME__, false)}; // Compiled-on information
 	wxString userDir; // User data directory (logging)
 	// 3rd party frameworks
-	//  wxWidgets and libfmt are automatically added.
+	//  wxWidgets is automatically added.
 	std::vector<std::pair<wxString, wxString>> frameworks;
 };
 

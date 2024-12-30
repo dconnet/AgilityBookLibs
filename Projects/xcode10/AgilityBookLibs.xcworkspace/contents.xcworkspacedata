@@ -5,9 +5,6 @@
       location = "group:TestARBLib/TestARBLib.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:LibFmt/LibFmt.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:LibARBWin/LibARBWin.xcodeproj">
    </FileRef>
    <FileRef

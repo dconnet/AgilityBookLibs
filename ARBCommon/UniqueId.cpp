@@ -99,14 +99,14 @@ public:
 		return m_uuid < rhs->m_uuid;
 	}
 
-	std::wstring ToString() const
+	wxString ToString() const
 	{
 		return uuids::to_string<wchar_t>(m_uuid);
 	}
 
-	bool ParseString(std::wstring const& str)
+	bool ParseString(wxString const& str)
 	{
-		auto uuid = uuids::uuid::from_string(str);
+		auto uuid = uuids::uuid::from_string(str.wc_str());
 		if (uuid)
 			m_uuid = *uuid;
 		else
@@ -155,7 +155,7 @@ CUniqueId::CUniqueId()
 }
 
 
-CUniqueId::CUniqueId(std::wstring const& str)
+CUniqueId::CUniqueId(wxString const& str)
 	: CUniqueId()
 {
 	m_impl->ParseString(str);
@@ -226,13 +226,13 @@ bool CUniqueId::operator<(CUniqueId const& rhs) const
 }
 
 
-std::wstring CUniqueId::ToString() const
+wxString CUniqueId::ToString() const
 {
 	return m_impl->ToString();
 }
 
 
-bool CUniqueId::ParseString(std::wstring const& str)
+bool CUniqueId::ParseString(wxString const& str)
 {
 	return m_impl->ParseString(str);
 }

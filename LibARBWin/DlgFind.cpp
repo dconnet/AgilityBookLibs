@@ -21,11 +21,9 @@
 #include "stdafx.h"
 #include "LibARBWin/DlgFind.h"
 
-#include "ARBCommon/StringUtil.h"
 #include "LibARBWin/DlgPadding.h"
 #include "LibARBWin/ReportListCtrl.h"
 #include "LibARBWin/Widgets.h"
-#include "fmt/xchar.h"
 #include <wx/grid.h>
 
 #ifdef __WXMSW__
@@ -108,7 +106,7 @@ int CFindDataBase::GetNext(int sel) const
 
 void CFindDataBase::NotFound() const
 {
-	auto msg = fmt::format(_("Cannot find '{}'").wc_str(), m_search.wc_str());
+	auto msg = wxString::Format(_("Cannot find '%s'"), m_search);
 	wxMessageBox(msg, _("Find"), wxOK | wxCENTRE | wxICON_INFORMATION);
 }
 

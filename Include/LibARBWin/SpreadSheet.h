@@ -77,11 +77,11 @@ class ARBWIN_API ISpreadSheetExporter
 public:
 	virtual ~ISpreadSheetExporter() = default;
 
-	virtual bool OpenFile(std::wstring const& inFilename) = 0;
+	virtual bool OpenFile(wxString const& inFilename) = 0;
 	virtual bool SelectSheet(short index) = 0;
-	virtual bool SelectSheet(std::wstring const& sheetName) = 0;
+	virtual bool SelectSheet(wxString const& sheetName) = 0;
 	virtual bool Save() = 0; // Only valid after OpenFile or SaveAs
-	virtual bool SaveAs(std::wstring const& inFilename) = 0;
+	virtual bool SaveAs(wxString const& inFilename) = 0;
 
 	virtual wchar_t GetSumIfSeparator() const = 0;
 
@@ -95,10 +95,10 @@ public:
 	virtual bool SetAlignment(long inRow, long inCol, ARBSpreadSheetAlign align) = 0;
 	virtual bool SetFormat(long inRow, long inCol, ARBSpreadSheetFormat format) = 0;
 	// Direct formatting
-	virtual bool SetFormat(long inRow, long inCol, std::wstring const& format) = 0;
+	virtual bool SetFormat(long inRow, long inCol, wxString const& format) = 0;
 
 	virtual bool InsertData(long inRow, long inCol, double inData) = 0;
-	virtual bool InsertData(long inRow, long inCol, std::wstring const& inData, bool bFormula = false) = 0;
+	virtual bool InsertData(long inRow, long inCol, wxString const& inData, bool bFormula = false) = 0;
 
 	virtual bool AutoFit(long inColFrom, long inColTo) = 0;
 };
@@ -110,10 +110,10 @@ class ARBWIN_API ISpreadSheetImporter
 {
 public:
 	virtual ~ISpreadSheetImporter() = default;
-	virtual bool OpenFile(std::wstring const& inFilename) = 0;
+	virtual bool OpenFile(wxString const& inFilename) = 0;
 	virtual bool SelectSheet(short index) = 0;
-	virtual bool SelectSheet(std::wstring const& sheetName) = 0;
-	virtual bool GetData(std::vector<std::vector<std::wstring>>& outData, IDlgProgress* ioProgress = nullptr) = 0;
+	virtual bool SelectSheet(wxString const& sheetName) = 0;
+	virtual bool GetData(std::vector<std::vector<wxString>>& outData, IDlgProgress* ioProgress = nullptr) = 0;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -133,13 +133,13 @@ public:
 	/// Get the maximum number of columns Excel can handle.
 	static long GetMaxCols();
 	/// Get the column index
-	static bool GetCol(std::wstring const& inCol, long& outCol);
+	static bool GetCol(wxString const& inCol, long& outCol);
 	/// Get the column letter
-	static bool GetCol(long inCol, std::wstring& outCol);
+	static bool GetCol(long inCol, wxString& outCol);
 	/// Translate a given row/col into Excel notation: (0,0) -> "A1"
-	static bool GetRowCol(long inRow, long inCol, std::wstring& outCell);
+	static bool GetRowCol(long inRow, long inCol, wxString& outCell);
 	/// Translate Excel notation into row/col
-	static bool GetRowCol(std::wstring const& inCell, long& outRow, long& outCol);
+	static bool GetRowCol(wxString const& inCell, long& outRow, long& outCol);
 
 	virtual ISpreadSheetExporterPtr GetExporter() const = 0;
 	virtual ISpreadSheetImporterPtr GetImporter() const = 0;

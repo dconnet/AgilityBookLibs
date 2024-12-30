@@ -15,25 +15,6 @@ Catch: v3.7.1
 -- #include "catch2/catch_all.hpp"
 
 
-LibFmt: fmtlib v11.0.2
-.../LibFmt/
-DevNote: When updating, update .../res/LibFmt.rc2 with version number and copyright
-- https://github.com/fmtlib/fmt/releases
-- http://fmtlib.net/dev/index.html
-- Only README.md, LICENSE, include, src
--- Changes
-  - In format.h, add (and ending ifdef/pop block)
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4061) // enumerator '<value>' in switch of enum '<enum>' is not explicitly handled by a case label
-#endif
-  - In chrono.h, add (and ending ifdef/pop block)
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4583) // 'fmt::v11::detail::get_locale::locale_': destructor is not implicitly called
-#endif
-
-
 LibTidyHtml: tidy v5.8.0: My wrapper to hide tidy
 .../LibTidyHtml/
 DevNote: When updating, update .../res/LibTidyHtml.rc2 with version number and copyright

@@ -15,7 +15,6 @@
  * framework, then include SetupARBPost.h
  *
  * Revision History
- * 2021-11-19 Added C4582 suppression in order to update to fmtv8.
  * 2020-04-09 Min WINVER check was wrong, should be 0x601.
  * 2019-01-27 Min C++ is now 14 (for make_unique)
  * 2018-10-06 Dropping support for pre VS2017 (and XP).
@@ -33,7 +32,7 @@
 #if defined(_WIN32)
 
 // _MSC_VER
-// http://support.microsoft.com/kb/65472 (define values thru vc6)
+// http://support.microsoft.com/kb/65472 (define values thru vc6) [404 now!]
 //  600: C Compiler version 6.0
 //  700: C/C++ compiler version 7.0
 //  800: Visual C++, Windows, version 1.0
@@ -64,10 +63,15 @@
 // 1914: VC14.14 Visual Studio 2017 version 15.7
 // 1915: VC14.15 Visual Studio 2017 version 15.8
 // 1920: VC14.2 Visual Studio 2019 version 16.0
-// 1921: VC14.2 Visual Studio 2019 version 16.1
-// 1922: VC14.2 Visual Studio 2019 version 16.2
-// 1923: VC14.2 Visual Studio 2019 version 16.3
-// 1924: VC14.2 Visual Studio 2019 version 16.4
+// 1921: VC14.21 Visual Studio 2019 version 16.1
+// 1922: VC14.22 Visual Studio 2019 version 16.2
+// 1923: VC14.23 Visual Studio 2019 version 16.3
+// 1924: VC14.24 Visual Studio 2019 version 16.4
+// 1929: VC14.29 Visual Studio 2019 version 16.11
+// 1934: VC14.34 Visual Studio 2022 version 17.4
+// 1937: VC14.37 Visual Studio 2022 version 17.7
+// 1942: VC14.42 Visual Studio 2022 version 17.12
+// Note: VCversion can be found in the INCLUDE path "<vs>\Community\VC\Tools\MSVC\xxx"
 //
 // _M_IX86: Defined for x86 (value specifies processor)
 // _M_X64: Defined for x64 processors
@@ -104,25 +108,23 @@
 
 // Disable some warnings from /Wall
 // clang-format off
-// 4365: signed/unsigned mismatch
-// 4623: default constructor was implicitly defined as deleted
-// 4625: copy constructor was implicitly defined as deleted
-// 4626: assignment operator was implicitly defined as deleted
-// 5026: move constructor was implicitly defined as deleted
-// 5027: move assignment operator was implicitly defined as deleted
-#pragma warning(disable : 4365 4623 4625 4626 5026 5027) // Needed to use fmt
 
 #pragma warning(disable : 4266) // no override available for virtual member function; function is hidden
 #pragma warning(disable : 4355) // 'this': used in base member initializer list
+#pragma warning(disable : 4365) // signed/unsigned mismatch
 #pragma warning(disable : 4371) // layout of class may have changed from a previous version of the compiler due to better packing of member '<name>'
 #pragma warning(disable : 4464) // relative include path contains '..'
 #pragma warning(disable : 4514) // unreferenced inline function has been removed
-#pragma warning(disable : 4582) // '<name>': constructor is not implicitly called
+#pragma warning(disable : 4623) // default constructor was implicitly defined as deleted
+#pragma warning(disable : 4625) // copy constructor was implicitly defined as deleted
+#pragma warning(disable : 4626) // assignment operator was implicitly defined as deleted
 #pragma warning(disable : 4668) // '<name>' is not defined as a preprocessor macro, replacing with '0' for '#if/#elif'
 #pragma warning(disable : 4710) // function not inlined
 #pragma warning(disable : 4711) // function '<name>' selected for automatic inline expansion
 #pragma warning(disable : 4774) // 'string' : format string expected in argument number is not a string literal
 #pragma warning(disable : 4820) // '<n>' bytes padding added after data member '<name>'
+#pragma warning(disable : 5026) // move constructor was implicitly defined as deleted
+#pragma warning(disable : 5027) // move assignment operator was implicitly defined as deleted
 #pragma warning(disable : 5031) // likely mismatch, popping warning state pushed in different file
 #pragma warning(disable : 5032) // detected #pragma warning(push) with no corresponding #pragma warning(pop)
 #pragma warning(disable : 5039) // pointer or reference to potentially throwing function passed to 'extern "C"' function under -EHc.

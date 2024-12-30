@@ -21,8 +21,6 @@
 #include "stdafx.h"
 #include "ARBMsgDigestImpl.h"
 
-#include "ARBCommon/StringUtil.h"
-
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
 #endif
@@ -1352,7 +1350,7 @@ namespace ARBCommon
 {
 // Note, error checking of arguments handled in ARBMsgDigest::Compute
 
-std::wstring ARBMsgDigestComputeSHA256(std::istream& inFile, size_t* outSize)
+wxString ARBMsgDigestComputeSHA256(std::istream& inFile, size_t* outSize)
 {
 	SHA256_CTX ctx256;
 	SHA256_Init(&ctx256);
@@ -1372,7 +1370,7 @@ std::wstring ARBMsgDigestComputeSHA256(std::istream& inFile, size_t* outSize)
 	char buf[1024];
 	SHA256_End(&ctx256, buf);
 
-	return StringUtil::stringW(std::string(buf));
+	return wxString(buf);
 }
 
 } // namespace ARBCommon

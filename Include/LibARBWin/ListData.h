@@ -45,7 +45,7 @@ public:
 	/// Ascending/descending will be handled by the sort routine.
 	virtual int OnCompare(CListDataPtr const& item, long iCol) const;
 	/// If iCol == -1, return all columns
-	virtual std::wstring OnNeedText(long iCol) const = 0;
+	virtual wxString OnNeedText(long iCol) const = 0;
 	/// By default, just uses OnNeedText to fill in text.
 	virtual void OnNeedListItem(long iCol, wxListItem& info) const;
 	/// When checkboxes are enabled, is this item checked?
@@ -60,7 +60,7 @@ class ARBWIN_API CTreeData : public wxTreeItemData
 public:
 	CTreeData();
 	~CTreeData();
-	virtual std::wstring OnNeedText() const = 0;
+	virtual wxString OnNeedText() const = 0;
 };
 
 } // namespace ARBWin

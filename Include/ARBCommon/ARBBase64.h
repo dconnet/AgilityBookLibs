@@ -24,8 +24,9 @@
  * 2004-03-06 Created
  */
 
-#include "ARBTypes.h"
 #include "LibwxARBCommon.h"
+
+#include "ARBTypes.h"
 
 
 namespace dconSoft

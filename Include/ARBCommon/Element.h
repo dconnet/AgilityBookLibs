@@ -14,7 +14,6 @@
  * Revision History
  * 2022-08-29 Add UTC wxDateTime support.
  * 2022-01-31 Add wxDateTime support.
- * 2018-12-16 Convert to fmt.
  * 2012-11-25 Add libxml support back in.
  * 2012-04-10 Based on wx-group thread, use std::string for internal use
  * 2012-03-16 Renamed LoadXML functions, added stream version.
@@ -27,10 +26,10 @@
  * 2003-10-22 Added a DTD parameter to SaveXML.
  */
 
-#include "ARBTypes.h"
 #include "LibwxARBCommon.h"
 
-#include "fmt/xchar.h"
+#include "ARBTypes.h"
+
 #include <istream>
 #include <map>
 #include <vector>
@@ -92,7 +91,7 @@ public:
 	 * @param outMsg In case of failure, error message.
 	 * @return Initialization success.
 	 */
-	static bool Initialize(std::wstring& outMsg);
+	static bool Initialize(wxString& outMsg);
 
 	/**
 	 * Call once (at program termination) to cleanup XML subsystem.
@@ -112,18 +111,18 @@ public:
 	/**
 	 * Get the name of this element.
 	 */
-	virtual std::wstring const& GetName() const = 0;
+	virtual wxString const& GetName() const = 0;
 
 	/**
 	 * Set the name of this element.
 	 * @param inName New name for this element.
 	 */
-	virtual void SetName(std::wstring const& inName) = 0;
+	virtual void SetName(wxString const& inName) = 0;
 
 	/**
 	 * Get the value of this element. This will concatenate all text nodes.
 	 */
-	virtual std::wstring GetValue() const = 0;
+	virtual wxString GetValue() const = 0;
 
 	/**
 	 * Set the value of this element. If this element has text nodes, they
@@ -131,10 +130,7 @@ public:
 	 * @pre GetElementCount() must be 0.
 	 * @param inValue New value for this element.
 	 */
-	virtual void SetValue(std::string const& inValue) = 0;
-	virtual void SetValue(std::wstring const& inValue) = 0;
-	virtual void SetValue(char const* const inValue) = 0;
-	virtual void SetValue(wchar_t const* const inValue) = 0;
+	virtual void SetValue(wxString const& inValue) = 0;
 	virtual void SetValue(short inValue) = 0;
 	virtual void SetValue(unsigned short inValue) = 0;
 	virtual void SetValue(long inValue) = 0;
@@ -154,22 +150,19 @@ class ARBCOMMON_API ElementNode : public Element
 {
 protected:
 	ElementNode();
-	explicit ElementNode(std::wstring const& inName);
+	explicit ElementNode(wxString const& inName);
 	DECLARE_NO_COPY_IMPLEMENTED(ElementNode);
 
 public:
 	static ElementNodePtr New();
-	static ElementNodePtr New(std::wstring const& inName);
+	static ElementNodePtr New(wxString const& inName);
 
 	void Dump(int inLevel = 0) const override;
 	ARBElementType GetType() const override;
-	std::wstring const& GetName() const override;
-	void SetName(std::wstring const& inName) override;
-	std::wstring GetValue() const override;
-	void SetValue(std::string const& inValue) override;
-	void SetValue(std::wstring const& inValue) override;
-	void SetValue(char const* const inValue) override;
-	void SetValue(wchar_t const* const inValue) override;
+	wxString const& GetName() const override;
+	void SetName(wxString const& inName) override;
+	wxString GetValue() const override;
+	void SetValue(wxString const& inValue) override;
 	void SetValue(short inValue) override;
 	void SetValue(unsigned short inValue) override;
 	void SetValue(long inValue) override;
@@ -196,7 +189,7 @@ public:
 	 * @param outValue Value of the attribute.
 	 * @return Result of lookup.
 	 */
-	ARBAttribLookup GetNthAttrib(int inIndex, std::wstring& outName, std::wstring& outValue) const;
+	ARBAttribLookup GetNthAttrib(int inIndex, wxString& outName, wxString& outValue) const;
 
 	/**
 	 * Get the value of an attribute.
@@ -204,20 +197,18 @@ public:
 	 * @param outValue Value of attribute
 	 * @return Result of lookup.
 	 */
-	ARBAttribLookup GetAttrib(std::wstring const& inName, std::wstring& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, ARBVersion& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, ARBDate& outValue) const;
-#if defined(__WXWINDOWS__)
-	ARBAttribLookup GetAttribUTC(std::wstring const& inName, wxDateTime& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, wxDateTime& outValue) const;
-#endif
-	ARBAttribLookup GetAttrib(std::wstring const& inName, bool& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, short& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, unsigned short& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, long& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, unsigned long& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, double& outValue) const;
-	ARBAttribLookup GetAttrib(std::wstring const& inName, CUniqueId& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, wxString& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, ARBVersion& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, ARBDate& outValue) const;
+	ARBAttribLookup GetAttribUTC(wxString const& inName, wxDateTime& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, wxDateTime& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, bool& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, short& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, unsigned short& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, long& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, unsigned long& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, double& outValue) const;
+	ARBAttribLookup GetAttrib(wxString const& inName, CUniqueId& outValue) const;
 
 	/**
 	 * Add an attribute.
@@ -226,20 +217,18 @@ public:
 	 * @return This always returns true.
 	 * @post If inName already exists, the previous value will be overwritten.
 	 */
-	bool AddAttrib(std::wstring const& inName, std::wstring const& inValue);
-	bool AddAttrib(std::wstring const& inName, wchar_t const* const inValue);
-	bool AddAttrib(std::wstring const& inName, ARBVersion const& inValue);
-	bool AddAttrib(std::wstring const& inName, ARBDate const& inValue);
-#if defined(__WXWINDOWS__)
-	bool AddAttribUTC(std::wstring const& inName, wxDateTime const& inValue);
-	bool AddAttrib(std::wstring const& inName, wxDateTime const& inValue);
-#endif
-	bool AddAttrib(std::wstring const& inName, bool inValue);
-	bool AddAttrib(std::wstring const& inName, short inValue);
-	bool AddAttrib(std::wstring const& inName, unsigned short inValue);
-	bool AddAttrib(std::wstring const& inName, long inValue);
-	bool AddAttrib(std::wstring const& inName, unsigned long inValue);
-	bool AddAttrib(std::wstring const& inName, CUniqueId const& inValue);
+	bool AddAttrib(wxString const& inName, wxString const& inValue);
+	bool AddAttrib(wxString const& inName, wchar_t const* const inValue);
+	bool AddAttrib(wxString const& inName, ARBVersion const& inValue);
+	bool AddAttrib(wxString const& inName, ARBDate const& inValue);
+	bool AddAttribUTC(wxString const& inName, wxDateTime const& inValue);
+	bool AddAttrib(wxString const& inName, wxDateTime const& inValue);
+	bool AddAttrib(wxString const& inName, bool inValue);
+	bool AddAttrib(wxString const& inName, short inValue);
+	bool AddAttrib(wxString const& inName, unsigned short inValue);
+	bool AddAttrib(wxString const& inName, long inValue);
+	bool AddAttrib(wxString const& inName, unsigned long inValue);
+	bool AddAttrib(wxString const& inName, CUniqueId const& inValue);
 
 	/**
 	 * Add an attribute.
@@ -249,14 +238,14 @@ public:
 	 * @return This always returns true.
 	 * @post If inName already exists, the previous value will be overwritten.
 	 */
-	bool AddAttrib(std::wstring const& inName, double inValue, int inPrec = 2);
+	bool AddAttrib(wxString const& inName, double inValue, int inPrec = 2);
 
 	/**
 	 * Remove an attribute.
 	 * @param inName Attribute to remove
 	 * @return Whether or not the attribute was removed.
 	 */
-	bool RemoveAttrib(std::wstring const& inName);
+	bool RemoveAttrib(wxString const& inName);
 
 	/**
 	 * Remove all attributes.
@@ -313,7 +302,7 @@ public:
 	 * @param inAt Add the new element at the specified location.
 	 * @return The new element.
 	 */
-	ElementNodePtr AddElementNode(std::wstring const& inName, int inAt = -1);
+	ElementNodePtr AddElementNode(wxString const& inName, int inAt = -1);
 
 	/**
 	 * Add an element.
@@ -324,7 +313,7 @@ public:
 	 * @param inAt Add the new element at the specified location.
 	 * @return The new element.
 	 */
-	ElementTextPtr AddElementText(std::wstring const& inText, int inAt = -1);
+	ElementTextPtr AddElementText(wxString const& inText, int inAt = -1);
 
 	/**
 	 * Remove the specified element.
@@ -344,7 +333,7 @@ public:
 	 * @param inStartFrom Start the search from this location.
 	 * @return Index of the first element to match the search.
 	 */
-	int FindElement(std::wstring const& inName, int inStartFrom = 0) const;
+	int FindElement(wxString const& inName, int inStartFrom = 0) const;
 
 	/**
 	 * Search for the specified element, depth.
@@ -358,8 +347,8 @@ public:
 	bool FindElementDeep(
 		ElementNode const*& outParentNode,
 		int& outElementIndex,
-		std::wstring const& inName,
-		std::wstring const* inValue = nullptr) const;
+		wxString const& inName,
+		wxString const* inValue = nullptr) const;
 
 	/**
 	 * Populate this element from the given stream.
@@ -367,7 +356,7 @@ public:
 	 * @param ioErrMsg Accumulated error messages.
 	 * @return Whether file loaded successfully.
 	 */
-	bool LoadXML(std::istream& inStream, fmt::wmemory_buffer& ioErrMsg);
+	bool LoadXML(std::istream& inStream, wxString& ioErrMsg);
 
 	/**
 	 * Populate this element from the given buffer.
@@ -376,7 +365,7 @@ public:
 	 * @param ioErrMsg Accumulated error messages.
 	 * @return Whether file loaded successfully.
 	 */
-	bool LoadXML(char const* inData, size_t nData, fmt::wmemory_buffer& ioErrMsg);
+	bool LoadXML(char const* inData, size_t nData, wxString& ioErrMsg);
 
 	/**
 	 * Populate this element from the given file.
@@ -384,7 +373,7 @@ public:
 	 * @param ioErrMsg Accumulated error messages.
 	 * @return Whether file loaded successfully.
 	 */
-	bool LoadXML(wchar_t const* inFileName, fmt::wmemory_buffer& ioErrMsg);
+	bool LoadXML(wchar_t const* inFileName, wxString& ioErrMsg);
 
 	/**
 	 * Save this element to the given output stream.
@@ -401,7 +390,7 @@ public:
 	 * @retval true Tree successfully written.
 	 * @retval false Tree failed to save.
 	 */
-	bool SaveXML(std::ostream& outStream, std::string const& inDTD) const;
+	bool SaveXML(std::ostream& outStream, wxString const& inDTD) const;
 
 	/**
 	 * Save this element to the given file.
@@ -409,7 +398,7 @@ public:
 	 * @retval true Tree successfully written.
 	 * @retval false Tree failed to save.
 	 */
-	bool SaveXML(std::wstring const& outFile) const;
+	bool SaveXML(wxString const& outFile) const;
 
 	/**
 	 * Save this element to the given file.
@@ -418,14 +407,14 @@ public:
 	 * @retval true Tree successfully written.
 	 * @retval false Tree failed to save.
 	 */
-	bool SaveXML(std::wstring const& outFile, std::string const& inDTD) const;
+	bool SaveXML(wxString const& outFile, wxString const& inDTD) const;
 
 protected:
 	void RemoveAllTextNodes();
 
-	std::wstring m_Name;
-	typedef std::map<std::wstring, std::wstring> MyAttributes;
-	std::wstring m_Value;
+	wxString m_Name;
+	typedef std::map<wxString, wxString> MyAttributes;
+	wxString m_Value;
 	MyAttributes m_Attribs;
 	std::vector<ElementPtr> m_Elements;
 };
@@ -435,22 +424,19 @@ class ARBCOMMON_API ElementText : public Element
 {
 protected:
 	ElementText();
-	explicit ElementText(std::wstring const& inText);
+	explicit ElementText(wxString const& inText);
 	DECLARE_NO_COPY_IMPLEMENTED(ElementText);
 
 public:
 	static ElementTextPtr New();
-	static ElementTextPtr New(std::wstring const& inText);
+	static ElementTextPtr New(wxString const& inText);
 
 	void Dump(int inLevel = 0) const override;
 	ARBElementType GetType() const override;
-	std::wstring const& GetName() const override;
-	void SetName(std::wstring const& inName) override;
-	std::wstring GetValue() const override;
-	void SetValue(std::string const& inValue) override;
-	void SetValue(std::wstring const& inValue) override;
-	void SetValue(char const* const inValue) override;
-	void SetValue(wchar_t const* const inValue) override;
+	wxString const& GetName() const override;
+	void SetName(wxString const& inName) override;
+	wxString GetValue() const override;
+	void SetValue(wxString const& inValue) override;
 	void SetValue(short inValue) override;
 	void SetValue(unsigned short inValue) override;
 	void SetValue(long inValue) override;
@@ -458,7 +444,7 @@ public:
 	void SetValue(double inValue, int inPrec = 2) override;
 
 protected:
-	std::wstring m_Value;
+	wxString m_Value;
 };
 
 } // namespace ARBCommon

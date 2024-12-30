@@ -10,8 +10,6 @@
  * @author David Connet
  *
  * Revision History
- * 2020-04-10 Update to fmt 6.2.
- * 2018-12-16 Convert to fmt.
  * 2018-08-15 Changed ARBVersion to use std::array
  * 2016-09-04 Add a ToString wrapper.
  * 2015-12-22 Changed bAlwaysStripZeros to eStripZeros.
@@ -38,7 +36,6 @@
 
 #include "ARBCommon/Element.h"
 #include "ARBCommon/StringUtil.h"
-#include "fmt/xchar.h"
 #include <wx/numformatter.h>
 #include <math.h>
 #include <time.h>
@@ -57,27 +54,23 @@ namespace ARBCommon
 
 // Trailing zeros are trimmed unless inPrec=2.
 // Then they are only trimmed if all zero (and inPrec=2).
-std::wstring ARBDouble::ToString(double inValue, int inPrec, bool bUseCurrentLocale, ZeroStrip eStripZeros)
+wxString ARBDouble::ToString(double inValue, int inPrec, bool bUseCurrentLocale, ZeroStrip eStripZeros)
 {
-	std::wstring retVal;
+	wxString retVal;
 
-	// libfmt v6 changed how formatting works.
-	// It is now locale-independent (backwards from before).
-	// As of v6.2, 'f' format is not supported with locales ('n'/'L' imply 'g')
-	// So give up on fmt for locale formating, use wxWidgets instead.
 	if (bUseCurrentLocale)
 	{
 		if (0 < inPrec)
-			retVal = wxString::Format(L"%.*f", inPrec, inValue).wc_str();
+			retVal = wxString::FromDouble(inValue, inPrec);
 		else
-			retVal = wxString::Format(L"%g", inValue).wc_str();
+			retVal = wxString::FromDouble(inValue);
 	}
 	else
 	{
 		if (0 < inPrec)
-			retVal = fmt::format(L"{:.{}f}", inValue, inPrec);
+			retVal = wxString::FromCDouble(inValue, inPrec);
 		else
-			retVal = fmt::format(L"{:g}", inValue);
+			retVal = wxString::FromCDouble(inValue);
 	}
 
 	wxChar pt(L'.');
@@ -86,13 +79,13 @@ std::wstring ARBDouble::ToString(double inValue, int inPrec, bool bUseCurrentLoc
 
 	if (ZeroStrip::AsIs != eStripZeros)
 	{
-		std::wstring::size_type pos = retVal.find(pt);
-		if (std::wstring::npos != pos)
+		wxString::size_type pos = retVal.find(pt);
+		if (wxString::npos != pos)
 		{
 			// Strip trailing zeros iff they are all 0.
 			if (2 == inPrec && ZeroStrip::Compatible == eStripZeros)
 			{
-				std::wstring twoZeros;
+				wxString twoZeros;
 				twoZeros = pt;
 				twoZeros += L"00";
 				if (retVal.substr(pos) == twoZeros)
@@ -123,7 +116,7 @@ std::wstring ARBDouble::ToString(double inValue, int inPrec, bool bUseCurrentLoc
 }
 
 
-std::wstring ARBDouble::ToString(double inValue, int inPrec, ARBDouble::ZeroStrip eStripZeros)
+wxString ARBDouble::ToString(double inValue, int inPrec, ARBDouble::ZeroStrip eStripZeros)
 {
 	return ARBDouble::ToString(inValue, inPrec, true, eStripZeros);
 }
@@ -145,11 +138,11 @@ bool ARBDouble::equal(double const& inVal1, double const& inVal2, double inPrec)
 
 /////////////////////////////////////////////////////////////////////////////
 
-ARBVersion::ARBVersion(std::wstring inStr)
+ARBVersion::ARBVersion(wxString inStr)
 	: m_Version({{0, 0}})
 {
-	std::wstring::size_type pos = inStr.find('.');
-	if (std::wstring::npos != pos)
+	wxString::size_type pos = inStr.find('.');
+	if (wxString::npos != pos)
 	{
 		m_Version[0] = static_cast<unsigned short>(StringUtil::ToCLong(inStr));
 		inStr = inStr.substr(pos + 1);
@@ -161,9 +154,11 @@ ARBVersion::ARBVersion(std::wstring inStr)
 	}
 }
 
-std::wstring ARBVersion::str() const
+wxString ARBVersion::str() const
 {
-	return fmt::format(L"{}.{}", Major(), Minor());
+	wxString str;
+	str << Major() << L"." << Minor();
+	return str;
 }
 
 } // namespace ARBCommon

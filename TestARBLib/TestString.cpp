@@ -10,7 +10,6 @@
  * @author David Connet
  *
  * Revision History
- * 2018-12-16 Convert to fmt.
  * 2017-11-09 Convert from UnitTest++ to Catch
  * 2015-11-27 Remove WIN32 ifdef from tests.
  * 2008-06-29 Created
@@ -21,8 +20,6 @@
 
 #include "ARBCommon/ARBMisc.h"
 #include "ARBCommon/StringUtil.h"
-#include "fmt/printf.h"
-#include "fmt/xchar.h"
 #include <algorithm>
 #include <locale>
 
@@ -41,24 +38,20 @@ TEST_CASE("String")
 	SECTION("Convert_ToWide")
 	{
 		std::string s("narrow");
-		std::wstring s1 = StringUtil::stringW(s);
+		std::wstring s1 = wxString(s).ToStdWstring();
 		REQUIRE(L"narrow" == s1);
-#if defined(__WXWINDOWS__)
-		wxString s2 = StringUtil::stringWX(s);
+		wxString s2 = s;
 		REQUIRE(L"narrow" == s2);
-#endif
 	}
 
 
 	SECTION("Convert_ToNarrow")
 	{
 		std::wstring s(L"wide");
-		std::string s1 = StringUtil::stringA(s);
+		std::string s1 = wxString(s).utf8_string();
 		REQUIRE("wide" == s1);
-#if defined(__WXWINDOWS__)
-		wxString s2 = StringUtil::stringWX(s);
+		wxString s2 = s;
 		REQUIRE(L"wide" == s2);
-#endif
 	}
 
 
@@ -68,7 +61,7 @@ TEST_CASE("String")
 		// http://www.ftrain.com/unicode/#65275
 		wchar_t w = 0xFEFB; // In courier new, Arabic Ligature Lam With Alef Isolated Form (see 'Character Map' program)
 		std::wstring s(1, w);
-		std::string s2 = StringUtil::stringA(s);
+		std::string s2 = wxString(s).utf8_string();
 		REQUIRE(s.length() == 1u);
 		// MBCS: 0, UTF8: 3
 		REQUIRE(s2.length() == 3u);
@@ -80,7 +73,7 @@ TEST_CASE("String")
 		// http://www.ftrain.com/unicode/#247
 		wchar_t w = 0x00f7; // Division sign
 		std::wstring s(1, w);
-		std::string s2 = StringUtil::stringA(s);
+		std::string s2 = wxString(s).utf8_string();
 		REQUIRE(s.length() == 1u);
 		// MBCS: 1, UTF8: 2
 		REQUIRE(s2.length() > 0u);
@@ -89,7 +82,7 @@ TEST_CASE("String")
 
 	SECTION("AtolGoodData")
 	{
-		std::wstring s1(L"123");
+		wxString s1(L"123");
 		long a1 = StringUtil::ToCLong(s1);
 		REQUIRE(a1 == 123);
 		REQUIRE(StringUtil::ToCLong(s1, a1));
@@ -98,7 +91,7 @@ TEST_CASE("String")
 
 	SECTION("AtolBadData")
 	{
-		std::wstring s2(L"12-3");
+		wxString s2(L"12-3");
 		long a2 = StringUtil::ToCLong(s2);
 		REQUIRE(a2 == 12);
 		REQUIRE(!StringUtil::ToCLong(s2, a2));
@@ -110,18 +103,18 @@ TEST_CASE("String")
 
 	SECTION("AtodGoodData")
 	{
-		std::wstring s1(L"12.3");
+		wxString s1(L"12.3");
 		double a1 = StringUtil::ToCDouble(s1);
 		REQUIRE(a1 == 12.3);
-		REQUIRE(StringUtil::ToCDouble(s1, a1));
+		REQUIRE(s1.ToCDouble(&a1));
 	}
 
 
 	SECTION("AtodBadData")
 	{
-		std::wstring s2(L"1.3-12");
+		wxString s2(L"1.3-12");
 		double a2;
-		REQUIRE(!StringUtil::ToCDouble(s2, a2));
+		REQUIRE(!s2.ToCDouble(&a2));
 		REQUIRE(a2 == 1.3);
 	}
 
@@ -129,10 +122,10 @@ TEST_CASE("String")
 	SECTION("AtodUS")
 	{
 		wxLocale locale(wxLANGUAGE_ENGLISH_US, wxLOCALE_DONT_LOAD_DEFAULT);
-		std::wstring s1(L"12.3");
+		wxString s1(L"12.3");
 		double a1 = StringUtil::ToDouble(s1);
 		REQUIRE(a1 == 12.3);
-		std::wstring s2(L"1.3-12");
+		wxString s2(L"1.3-12");
 		double a2;
 		bool bParsed = StringUtil::ToDouble(s2, a2);
 		REQUIRE(a2 == 1.3);
@@ -143,10 +136,10 @@ TEST_CASE("String")
 	SECTION("AtodFR")
 	{
 		wxLocale locale(wxLANGUAGE_FRENCH, wxLOCALE_DONT_LOAD_DEFAULT);
-		std::wstring s1(L"12,3");
+		wxString s1(L"12,3");
 		double a1 = StringUtil::ToDouble(s1);
 		REQUIRE(a1 == 12.3);
-		std::wstring s2(L"1,3-12");
+		wxString s2(L"1,3-12");
 		double a2;
 		bool bParsed = StringUtil::ToDouble(s2, a2);
 		REQUIRE(a2 == 1.3);
@@ -158,76 +151,34 @@ TEST_CASE("String")
 	{
 		// Even in French, I want to have "." separators parse properly.
 		wxLocale locale(wxLANGUAGE_FRENCH, wxLOCALE_DONT_LOAD_DEFAULT);
-		std::wstring s1(L"12.3");
+		wxString s1(L"12.3");
 		double a1 = StringUtil::ToDouble(s1);
 		REQUIRE(a1 == 12.3);
 	}
 
 
-	SECTION("ReplaceA")
+	SECTION("Replace")
 	{
-		std::string s("This is a test");
-		std::string s2 = StringUtil::Replace(s, "is a", "");
-		REQUIRE("This  test" == s2);
-		s2 = StringUtil::Replace(s2, " test", "good");
-		REQUIRE("This good" == s2);
-	}
-
-
-	SECTION("ReplaceW")
-	{
-		std::wstring s(L"This is a test");
-		std::wstring s2 = StringUtil::Replace(s, L"is a", L"");
+		wxString s(L"This is a test");
+		wxString s2 = StringUtil::Replace(s, L"is a", L"");
 		REQUIRE(L"This  test" == s2);
 		s2 = StringUtil::Replace(s2, L" test", L"good");
 		REQUIRE(L"This good" == s2);
 	}
 
 
-	SECTION("ToLowerA")
-	{
-		std::string s("This is a TEST");
-		std::string s2 = StringUtil::ToLower(s);
-		REQUIRE("this is a test" == s2);
-	}
-
-
-	SECTION("ToLowerW")
-	{
-		std::wstring s(L"This is a TEST");
-		std::wstring s2 = StringUtil::ToLower(s);
-		REQUIRE(L"this is a test" == s2);
-	}
-
-
-	SECTION("ToUpperA")
-	{
-		std::string s("This is a TEST");
-		std::string s2 = StringUtil::ToUpper(s);
-		REQUIRE("THIS IS A TEST" == s2);
-	}
-
-
-	SECTION("ToUpperW")
-	{
-		std::wstring s(L"This is a TEST");
-		std::wstring s2 = StringUtil::ToUpper(s);
-		REQUIRE(L"THIS IS A TEST" == s2);
-	}
-
-
 	SECTION("Formatting")
 	{
-		REQUIRE(L"two one" == fmt::sprintf(L"%2$s %1$s", L"one", L"two"));
-		REQUIRE(L"two one" == fmt::format(L"{1} {0}", L"one", L"two"));
-		REQUIRE(L"    " == fmt::format(L"{:{}}", L" ", 4));
-		REQUIRE(L"000 " == fmt::format(L"{:0>{}}", L" ", 4));
+		REQUIRE(L"two one" == wxString::Format(L"%2$s %1$s", L"one", L"two"));
+		REQUIRE(L"    " == wxString::Format(L"%*s", 4, L" "));
+		REQUIRE(L"    s" == wxString::Format(L"%*s", 5, L"s"));
+		REQUIRE(L"s    " == wxString::Format(L"%-*s", 5, L"s"));
 	}
 
 
 	SECTION("Trim")
 	{
-		std::wstring str(L"  xyx  ");
+		wxString str(L"  xyx  ");
 		REQUIRE(StringUtil::Trim(str) == L"xyx");
 		REQUIRE(StringUtil::TrimLeft(str) == L"xyx  ");
 		REQUIRE(StringUtil::TrimRight(str) == L"  xyx");
@@ -236,7 +187,7 @@ TEST_CASE("String")
 
 	SECTION("TrimChar")
 	{
-		std::wstring str(L"\"xyx\"");
+		wxString str(L"\"xyx\"");
 		REQUIRE(StringUtil::Trim(str, '"') == L"xyx");
 		REQUIRE(StringUtil::TrimLeft(str, '"') == L"xyx\"");
 		REQUIRE(StringUtil::TrimRight(str, '"') == L"\"xyx");
@@ -248,12 +199,12 @@ TEST_CASE("String")
 		if (StringUtil::CanCompareDigits())
 		{
 
-			std::vector<std::wstring> items;
+			std::vector<wxString> items;
 			items.push_back(L"1a");
 			items.push_back(L"10a");
 			items.push_back(L"2a");
 
-			std::stable_sort(items.begin(), items.end(), [](std::wstring const& one, std::wstring const& two) {
+			std::stable_sort(items.begin(), items.end(), [](wxString const& one, wxString const& two) {
 				return StringUtil::CompareNoCase(one, two) < 0;
 			});
 
@@ -268,14 +219,14 @@ TEST_CASE("String")
 	{
 		if (StringUtil::CanCompareDigits())
 		{
-			std::vector<std::wstring> items;
+			std::vector<wxString> items;
 			items.push_back(L"bob");
 			items.push_back(L"Bob");
 			items.push_back(L"Aa");
 			items.push_back(L"2a");
 			items.push_back(L"a");
 
-			std::stable_sort(items.begin(), items.end(), [](std::wstring const& one, std::wstring const& two) {
+			std::stable_sort(items.begin(), items.end(), [](wxString const& one, wxString const& two) {
 				return StringUtil::CompareNoCase(one, two) < 0;
 			});
 
@@ -293,7 +244,7 @@ TEST_CASE("String")
 	{
 		if (StringUtil::CanCompareDigits())
 		{
-			std::vector<std::wstring> items;
+			std::vector<wxString> items;
 			items.push_back(L"Bob");
 			items.push_back(L"bob");
 			items.push_back(L"Aa");
@@ -302,7 +253,7 @@ TEST_CASE("String")
 
 			// Note: Ignore case simply means "bob" == "Bob".
 			// It does not mean that lower case sorts before (or after) upper case.
-			std::stable_sort(items.begin(), items.end(), [](std::wstring const& one, std::wstring const& two) {
+			std::stable_sort(items.begin(), items.end(), [](wxString const& one, wxString const& two) {
 				return StringUtil::CompareNoCase(one, two) < 0;
 			});
 

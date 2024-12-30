@@ -11,7 +11,6 @@
  * Revision History
  * 2019-10-13 Separated ARB specific things from TestLib.
  * 2019-08-15 wx3.1.2 (maybe earlier) has fixed GetExecutablePath on Mac cmdline
- * 2018-12-16 Convert to fmt.
  * 2017-11-09 Convert from UnitTest++ to Catch
  * 2015-11-27 Added test duration to verbose option.
  * 2013-08-18 Reuse Win/LanguageManager
@@ -61,41 +60,22 @@ namespace
 {
 wxString GetDataFile()
 {
-#if defined(__WXWINDOWS__)
 	wxFileName fileName(wxStandardPaths::Get().GetExecutablePath());
 	wxString datafile = GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".dat";
-#else
-#pragma PRAGMA_TODO(write LoadXMLData)
-#ifdef WIN32
-	wchar_t fileName[MAX_PATH];
-	GetModuleFileNameW(nullptr, fileName, _countof(fileName));
-	std::wstring datafile(fileName);
-	size_t n = datafile.find_last_of('.');
-	datafile = datafile.substr(0, n);
-	datafile += L".dat";
-#else
-	wxString datafile = L"./testarb.dat";
-#endif
-#endif
 	return datafile;
 }
 } // namespace
 
 
-class CCallbackManager
-#if defined(__WXWINDOWS__)
-	: public IResourceManagerCallback
-#endif
+class CCallbackManager : public IResourceManagerCallback
 {
 	DECLARE_NO_COPY_IMPLEMENTED(CCallbackManager);
 
 public:
 	CCallbackManager()
 	{
-#if defined(__WXWINDOWS__)
 		auto datafile = GetDataFile();
 		CResourceManager::Get()->Initialize(this, &datafile);
-#endif
 	}
 	virtual ~CCallbackManager()
 	{
@@ -167,7 +147,6 @@ int main(int argc, char** argv)
 		}
 	}
 
-#if defined(__WXWINDOWS__)
 	wxInitializer initializer(ac, av);
 #if defined(__WXMSW__)
 	// By default, the path directories are tweaked to remove debug/release.
@@ -175,23 +154,18 @@ int main(int argc, char** argv)
 	// Now I don't need to tweak the wx source!
 	wxStandardPaths::Get().DontIgnoreAppSubDir();
 #endif
-#endif
 
-	std::wstring errs;
+	wxString errs;
 	if (!Element::Initialize(errs))
 	{
 		return 1;
 	}
 
-#if defined(__WXWINDOWS__)
 	wxFileSystem::AddHandler(new wxArchiveFSHandler);
 	wxFileSystem::AddHandler(new wxMemoryFSHandler);
-#endif
 
 	bool bRunTests = true;
-#if defined(__WXWINDOWS__)
 	g_callbackMgr = new CCallbackManager();
-#endif
 
 	int rc = -1;
 	if (bRunTests)

@@ -20,7 +20,6 @@
 #include "stdafx.h"
 #include "ARBCommon/ARBUtils.h"
 
-#include "fmt/xchar.h"
 #include <wx/config.h>
 #include <wx/filename.h>
 #include <wx/stdpaths.h>

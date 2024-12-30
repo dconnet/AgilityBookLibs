@@ -621,7 +621,7 @@ void CMenuHelper::UpdateMenu(bool bLoadAccelerators)
 	{
 		for (std::vector<MenuHandle>::iterator i = m_MenuData.begin(); i != m_MenuData.end(); ++i)
 		{
-			m_MenuBar->SetMenuLabel(i->idx, wxGetTranslation(i->item.c_str()) + GetAccelString(m_accelData, i->idx));
+			m_MenuBar->SetMenuLabel(i->idx, wxGetTranslation(i->item) + GetAccelString(m_accelData, i->idx));
 			DoSubMenu(nullptr, *i);
 			// TODO: m_MenuData should be verified too
 			VerifyMenuShortcuts((*i).pMenu);
@@ -637,8 +637,8 @@ void CMenuHelper::UpdateMenu(bool bLoadAccelerators)
 				wxToolBarToolBase* btn = toolbar->FindById(i->id);
 				if (btn)
 				{
-					btn->SetLabel(wxGetTranslation(i->name.c_str()));
-					btn->SetShortHelp(wxGetTranslation(i->desc.c_str()));
+					btn->SetLabel(wxGetTranslation(i->name));
+					btn->SetShortHelp(wxGetTranslation(i->desc));
 				}
 			}
 		}
@@ -929,7 +929,7 @@ void CMenuHelper::DoSubMenu(wxMenu const* parent, MenuHandle const& handle)
 {
 	if (parent)
 	{
-		parent->FindItemByPosition(handle.idx)->SetItemLabel(wxGetTranslation(handle.item.c_str()));
+		parent->FindItemByPosition(handle.idx)->SetItemLabel(wxGetTranslation(handle.item));
 	}
 	for (std::vector<MenuHandle>::const_iterator data = handle.subMenus.begin(); data != handle.subMenus.end(); ++data)
 	{
@@ -937,8 +937,8 @@ void CMenuHelper::DoSubMenu(wxMenu const* parent, MenuHandle const& handle)
 	}
 	for (std::vector<TranslationData>::const_iterator data = handle.items.begin(); data != handle.items.end(); ++data)
 	{
-		handle.pMenu->SetLabel(data->id, wxGetTranslation(data->name.c_str()) + GetAccelString(m_accelData, data->id));
-		handle.pMenu->SetHelpString(data->id, wxGetTranslation(data->desc.c_str()));
+		handle.pMenu->SetLabel(data->id, wxGetTranslation(data->name) + GetAccelString(m_accelData, data->id));
+		handle.pMenu->SetHelpString(data->id, wxGetTranslation(data->desc));
 	}
 }
 

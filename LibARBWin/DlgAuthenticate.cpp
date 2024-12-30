@@ -37,17 +37,17 @@ namespace ARBWin
 
 CDlgAuthenticate::CDlgAuthenticate(wxString const& userName, wxWindow* parent, wxString caption, wxString message)
 	: wxDialog()
-	, m_Name(userName.c_str())
+	, m_Name(userName)
 {
 	if (caption.empty())
 		caption = _("Authentication");
-	Create(parent, wxID_ANY, caption.c_str(), wxDefaultPosition, wxDefaultSize);
+	Create(parent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize);
 	// Controls (these are done first to control tab order)
 
 	wxStaticText* textMsg = nullptr;
 	if (!message.empty())
 	{
-		textMsg = new wxStaticText(this, wxID_ANY, message.c_str(), wxDefaultPosition, wxDefaultSize, 0);
+		textMsg = new wxStaticText(this, wxID_ANY, message, wxDefaultPosition, wxDefaultSize, 0);
 		textMsg->Wrap(-1);
 	}
 

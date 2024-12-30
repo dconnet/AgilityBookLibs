@@ -125,7 +125,7 @@ void CBaseApp::GenerateReport(wxDebugReport::Context ctx)
 	{
 		if (report.Process())
 		{
-			wxLogMessage(_("Report generated in \"%s\"."), report.GetCompressedFileName().c_str());
+			wxLogMessage(_("Report generated in \"%s\"."), report.GetCompressedFileName());
 			report.Reset();
 		}
 	}
@@ -176,7 +176,7 @@ bool CBaseApp::OnInit()
 	wxString errMsg;
 	if (!ARBCommon::Element::Initialize(errMsg))
 	{
-		wxMessageBox(errMsg.c_str(), GetAppName(), wxOK | wxCENTRE | wxICON_ERROR);
+		wxMessageBox(errMsg, GetAppName(), wxOK | wxCENTRE | wxICON_ERROR);
 		return false;
 	}
 

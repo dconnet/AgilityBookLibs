@@ -329,7 +329,7 @@ bool CLanguageManager::SetLang(wxLanguage langId)
 	}
 	else
 	{
-		wxString str = wxString::Format(L"ERROR: Unable to load '%s.mo'.", m_pCallback->OnGetCatalogName().c_str());
+		wxString str = wxString::Format(L"ERROR: Unable to load '%s.mo'.", m_pCallback->OnGetCatalogName());
 		m_pCallback->OnErrorMessage(str);
 	}
 

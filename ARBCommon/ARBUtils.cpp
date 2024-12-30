@@ -134,7 +134,7 @@ bool CreateBackupFile(wxString const& inFilename, int nBackups, wxString const& 
 		int i;
 		for (i = 1; i <= nBackups; ++i)
 		{
-			wxString backup = wxString::Format(L"%s.bck%d", filename.c_str(), i);
+			wxString backup = wxString::Format(L"%s.bck%d", filename, i);
 			if (!wxFile::Exists(backup))
 			{
 				nHole = i;
@@ -146,10 +146,10 @@ bool CreateBackupFile(wxString const& inFilename, int nBackups, wxString const& 
 		// Then shift all the files into the hole.
 		for (i = nHole; i > 1; --i)
 		{
-			wxString backup = wxString::Format(L"%s.bck%d", filename.c_str(), i);
+			wxString backup = wxString::Format(L"%s.bck%d", filename, i);
 			if (wxFile::Exists(backup))
 				wxRemoveFile(backup);
-			wxString oldFilename = wxString::Format(L"%s.bck%d", filename.c_str(), i - 1);
+			wxString oldFilename = wxString::Format(L"%s.bck%d", filename, i - 1);
 			wxRenameFile(oldFilename, backup);
 			bChanged = true;
 		}
@@ -171,7 +171,7 @@ bool GetFileTimes(wxFileName const& filename, wxDateTime* dtAccess, wxDateTime* 
 	// Using wx to get the times on network files is really slow.
 	// I suspect it's the win32 CreateFile/GetFileTime apis.
 	struct __stat64 s;
-	if (0 != _tstat64(filename.GetFullPath().wx_str(), &s))
+	if (0 != _tstat64(filename.GetFullPath().wc_str(), &s))
 		return false;
 	if (dtAccess)
 		*dtAccess = wxDateTime(s.st_atime);

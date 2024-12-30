@@ -300,10 +300,10 @@ TEST_CASE("Element")
 
 		ElementNodePtr tree2(ElementNode::New());
 		wxString errs;
-		REQUIRE(tree2->LoadXML(tmpFile.c_str(), errs));
+		REQUIRE(tree2->LoadXML(tmpFile, errs));
 
 #if defined(__WXWINDOWS__)
-		wxRemoveFile(tmpFile.c_str());
+		wxRemoveFile(tmpFile);
 #else
 #pragma PRAGMA_TODO(remove file)
 #endif

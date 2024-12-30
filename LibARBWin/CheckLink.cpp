@@ -40,7 +40,7 @@ bool CheckLink(wxString const& inLink, wxWindow* parent)
 	if (0 < inLink.length())
 	{
 		// Check local file first
-		bOk = wxFile::Access(inLink.c_str(), wxFile::read);
+		bOk = wxFile::Access(inLink, wxFile::read);
 		if (!bOk)
 		{
 			// Ok, check URL

@@ -106,7 +106,7 @@ CDlgEditAccel::CDlgEditAccel(
 	, m_bAllowDups(bAllowDups)
 	, m_ctrlKey(nullptr)
 {
-	wxString caption = wxString::Format(L"%s : %s", _("Assign Key"), action.c_str());
+	wxString caption = wxString::Format(L"%s : %s", _("Assign Key"), action);
 	Create(pParent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE);
 
 	wxStaticText* textKey = new wxStaticText(this, wxID_ANY, _("Key:"), wxDefaultPosition, wxDefaultSize, 0);

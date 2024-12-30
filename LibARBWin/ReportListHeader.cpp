@@ -238,7 +238,7 @@ void CReportListHeader::CreateColumns(
 			width = m_colWidths[iCol];
 
 		m_ctrlList
-			->InsertColumn(iCol, wxGetTranslation(m_columnInfo[iCol].name.c_str()), m_columnInfo[iCol].fmt, width);
+			->InsertColumn(iCol, wxGetTranslation(m_columnInfo[iCol].name), m_columnInfo[iCol].fmt, width);
 		if (!m_columnVisible[iCol])
 			m_ctrlList->SetColumnWidth(iCol, 0);
 	}
@@ -257,7 +257,7 @@ void CReportListHeader::UpdateColumns()
 		wxListItem item;
 		if (m_ctrlList->GetColumn(iCol, item))
 		{
-			item.SetText(wxGetTranslation(m_columnInfo[iCol].name.c_str()));
+			item.SetText(wxGetTranslation(m_columnInfo[iCol].name));
 			m_ctrlList->SetColumn(iCol, item);
 		}
 	}

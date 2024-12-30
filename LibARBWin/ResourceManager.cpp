@@ -71,7 +71,7 @@ void CResourceManager::Initialize(IResourceManagerCallback* pCallback, wxString 
 		datafile = ARBCommon::GetARBResourceDir() + wxFileName::GetPathSeparator() + fileName.GetName() + L".dat";
 	}
 	// The archive isn't actually opened until we extract. So we can't verify here.
-	m_archive = new ARBCommon::CLibArchive(datafile.wc_str());
+	m_archive = new ARBCommon::CLibArchive(datafile);
 }
 
 

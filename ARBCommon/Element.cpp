@@ -671,7 +671,7 @@ bool ElementNode::AddAttribUTC(wxString const& inName, wxDateTime const& inValue
 bool ElementNode::AddAttrib(wxString const& inName, wxDateTime const& inValue)
 {
 	if (inValue.IsValid())
-		AddAttrib(inName, inValue.FormatISOCombined(' ').wc_str());
+		AddAttrib(inName, inValue.FormatISOCombined(' '));
 	return false;
 }
 
@@ -988,7 +988,7 @@ bool ElementNode::LoadXML(wchar_t const* inFileName, wxString& ioErrMsg)
 	std::ifstream input(inFileName);
 #else
 	std::string filename(wxString(inFileName).utf8_string()));
-	std::ifstream input(filename.c_str());
+	std::ifstream input(filename);
 #endif
 	if (!input.good())
 		return false;

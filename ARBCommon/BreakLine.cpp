@@ -36,7 +36,7 @@ size_t BreakLine(wchar_t inSep, wxString const& inStr, std::vector<wxString>& ou
 		return 0;
 
 	size_t fld = 0;
-	wchar_t const* pos = inStr.c_str();
+	wchar_t const* pos = inStr.wc_str();
 	wchar_t const* npos = wcschr(pos, inSep);
 	while (npos)
 	{

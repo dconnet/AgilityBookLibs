@@ -418,7 +418,7 @@ bool CWizardExcelCommon::ImplOpenFile(wxString const& inFilename)
 		m_Workbook.SetDispatchPtr(nullptr);
 	}
 
-	m_Workbook.SetDispatchPtr(m_App.CallMethod(L"Workbooks.Open", inFilename.c_str()));
+	m_Workbook.SetDispatchPtr(m_App.CallMethod(L"Workbooks.Open", inFilename));
 	if (!m_Workbook.GetDispatchPtr())
 		return false;
 	m_FileName = inFilename;
@@ -486,7 +486,7 @@ bool CWizardExcelCommon::ImplSaveAs(wxString const& inFilename)
 	if (inFilename.empty() || !m_Workbook.GetDispatchPtr())
 		return false;
 	m_FileName = inFilename;
-	m_Workbook.CallMethod(L"SaveAs", m_FileName.c_str());
+	m_Workbook.CallMethod(L"SaveAs", m_FileName);
 	return true;
 }
 
@@ -749,7 +749,7 @@ bool CWizardExcelExport::SetFormat(long inRow, long inCol, wxString const& forma
 	args[0] = cell1;
 	args[1] = cell1;
 	m_Worksheet.GetObject(range, L"Range", 2, args);
-	range.PutProperty(L"NumberFormat", format.c_str());
+	range.PutProperty(L"NumberFormat", format);
 	return true;
 }
 
@@ -986,7 +986,7 @@ bool CWizardCalcCommon::ImplOpenFile(wxString const& inFilename)
 		m_FileName = L"file:///" + m_FileName;
 		wxVariant args;
 		args.NullList();
-		wxVariant file = m_Desktop.CallMethod(L"loadComponentFromURL", m_FileName.c_str(), L"_blank", 0, args);
+		wxVariant file = m_Desktop.CallMethod(L"loadComponentFromURL", m_FileName, L"_blank", 0, args);
 		if (file.IsNull())
 		{
 			m_FileName.clear();
@@ -1027,7 +1027,7 @@ bool CWizardCalcCommon::ImplSelectSheet(wxString const& sheetName)
 	wxAutomationObject sheets(m_Document.CallMethod(L"getSheets").GetAny().As<WXIDISPATCH*>());
 	if (!sheets.GetDispatchPtr())
 		return false;
-	m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByName", sheetName.c_str()));
+	m_Worksheet.SetDispatchPtr(sheets.CallMethod(L"getByName", sheetName));
 	return !!m_Worksheet.GetDispatchPtr();
 }
 
@@ -1050,7 +1050,7 @@ bool CWizardCalcCommon::ImplSaveAs(wxString const& inFilename)
 	m_FileName = L"file:///" + m_FileName;
 	wxVariant dummy;
 	dummy.NullList();
-	m_Document.CallMethod(L"storeAsURL", m_FileName.c_str(), dummy);
+	m_Document.CallMethod(L"storeAsURL", m_FileName, dummy);
 	return true;
 }
 
@@ -1255,9 +1255,9 @@ bool CWizardCalcExport::SetFormat(long inRow, long inCol, wxString const& format
 	localSettings.PutProperty(L"Country", wxString(L"US"));
 
 	wxVariant numberFormatId
-		= numberFormats.CallMethod(L"queryKey", format.c_str(), localSettings.GetDispatchPtr(), true);
+		= numberFormats.CallMethod(L"queryKey", format, localSettings.GetDispatchPtr(), true);
 	if (numberFormatId.GetInteger() == -1)
-		numberFormatId = numberFormats.CallMethod(L"addNew", format.c_str(), localSettings.GetDispatchPtr());
+		numberFormatId = numberFormats.CallMethod(L"addNew", format, localSettings.GetDispatchPtr());
 
 	return cell.PutProperty(L"NumberFormat", numberFormatId);
 }
@@ -1282,7 +1282,7 @@ bool CWizardCalcExport::InsertData(long inRow, long inCol, wxString const& inDat
 	if (!cell.GetDispatchPtr())
 		return false;
 	wxString property = bFormula ? L"Formula" : L"String";
-	return cell.PutProperty(property, inData.c_str());
+	return cell.PutProperty(property, inData);
 }
 
 

@@ -86,7 +86,7 @@ wxString CVersionNum::GetVersionUsage(
 	bool includeNewline) const
 {
 	auto str
-		= wxString::Format(_("%s version %s\n%s"), program, GetVersionString(4).c_str(), GetCompiledOn(date, time));
+		= wxString::Format(_("%s version %s\n%s"), program, GetVersionString(4), GetCompiledOn(date, time));
 	if (includeNewline)
 		str << L"\n";
 	return str;

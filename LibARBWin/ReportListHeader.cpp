@@ -237,8 +237,7 @@ void CReportListHeader::CreateColumns(
 		if (iCol < static_cast<long>(m_colWidths.size()))
 			width = m_colWidths[iCol];
 
-		m_ctrlList
-			->InsertColumn(iCol, wxGetTranslation(m_columnInfo[iCol].name), m_columnInfo[iCol].fmt, width);
+		m_ctrlList->InsertColumn(iCol, wxGetTranslation(m_columnInfo[iCol].name), m_columnInfo[iCol].fmt, width);
 		if (!m_columnVisible[iCol])
 			m_ctrlList->SetColumnWidth(iCol, 0);
 	}

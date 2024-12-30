@@ -1254,8 +1254,7 @@ bool CWizardCalcExport::SetFormat(long inRow, long inCol, wxString const& format
 	localSettings.PutProperty(L"Language", wxString(L"en"));
 	localSettings.PutProperty(L"Country", wxString(L"US"));
 
-	wxVariant numberFormatId
-		= numberFormats.CallMethod(L"queryKey", format, localSettings.GetDispatchPtr(), true);
+	wxVariant numberFormatId = numberFormats.CallMethod(L"queryKey", format, localSettings.GetDispatchPtr(), true);
 	if (numberFormatId.GetInteger() == -1)
 		numberFormatId = numberFormats.CallMethod(L"addNew", format, localSettings.GetDispatchPtr());
 

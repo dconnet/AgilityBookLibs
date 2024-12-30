@@ -24,6 +24,7 @@
 #include "ARBCommon/ARBDate.h"
 #include "ARBCommon/Element.h"
 #include "ARBCommon/StringUtil.h"
+#include <sstream>
 
 #if defined(__WXWINDOWS__)
 #include <wx/filefn.h>

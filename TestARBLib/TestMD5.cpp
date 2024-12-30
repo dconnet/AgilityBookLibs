@@ -18,6 +18,7 @@
 #include "TestARBLib.h"
 
 #include "ARBCommon/ARBMsgDigest.h"
+#include <sstream>
 
 #ifdef __WXMSW__
 #include <wx/msw/msvcrt.h>

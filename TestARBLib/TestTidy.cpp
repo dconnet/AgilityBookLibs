@@ -22,6 +22,7 @@
 #include "LibARBWin/ResourceManager.h"
 #include "LibTidyHtml/LibTidyHtml.h"
 
+#include <sstream>
 #include <stdarg.h>
 
 #if defined(__WXWINDOWS__)

@@ -19,6 +19,7 @@
 
 #include "ARBCommon/LibArchive.h"
 #include "ARBCommon/StringUtil.h"
+#include <sstream>
 
 #ifdef __WXMSW__
 #include <wx/msw/msvcrt.h>

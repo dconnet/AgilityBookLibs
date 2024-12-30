@@ -987,7 +987,7 @@ bool ElementNode::LoadXML(wchar_t const* inFileName, wxString& ioErrMsg)
 #ifdef ARB_HAS_ISTREAM_WCHAR
 	std::ifstream input(inFileName);
 #else
-	std::string filename(wxString(inFileName).utf8_string()));
+	std::string filename(wxString(inFileName).utf8_string());
 	std::ifstream input(filename);
 #endif
 	if (!input.good())

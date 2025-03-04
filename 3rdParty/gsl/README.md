@@ -1,5 +1,6 @@
 # GSL: Guidelines Support Library
-[![Build Status](https://dev.azure.com/cppstat/GSL/_apis/build/status/microsoft.GSL?branchName=main)](https://dev.azure.com/cppstat/GSL/_build/latest?definitionId=1&branchName=main)
+[![CI](https://github.com/Microsoft/GSL/actions/workflows/compilers.yml/badge.svg)](https://github.com/microsoft/GSL/actions/workflows/compilers.yml?query=branch%3Amain)
+[![vcpkg](https://img.shields.io/vcpkg/v/ms-gsl)](https://vcpkg.io/en/package/ms-gsl)
 
 The Guidelines Support Library (GSL) contains functions and types that are suggested for use by the
 [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines) maintained by the [Standard C++ Foundation](https://isocpp.org).
@@ -39,8 +40,6 @@ span_p                                                                   | &#x26
 [u32zstring](docs/headers.md#user-content-H-zstring)                     | &#x2611;   | An alias to `basic_zstring` with dynamic extent and a char type of `char32_t`
 [cu32zstring](docs/headers.md#user-content-H-zstring)                    | &#x2611;   | An alias to `basic_zstring` with dynamic extent and a char type of `const char32_t`
 [**2. Owners**][cg-owners]                                               |            |
-[unique_ptr](docs/headers.md#user-content-H-pointers-unique_ptr)         | &#x2611;   | An alias to `std::unique_ptr`
-[shared_ptr](docs/headers.md#user-content-H-pointers-shared_ptr)         | &#x2611;   | An alias to `std::shared_ptr`
 stack_array                                                              | &#x2610;   | A stack-allocated array
 dyn_array                                                                | &#x2610;   | A heap-allocated array
 [**3. Assertions**][cg-assertions]                                       |            |
@@ -48,13 +47,11 @@ dyn_array                                                                | &#x26
 [Ensures](docs/headers.md#user-content-H-assert-ensures)                 | &#x2611;   | A postcondition assertion; on failure it terminates
 [**4. Utilities**][cg-utilities]                                         |            |
 move_owner                                                               | &#x2610;   | A helper function that moves one `owner` to the other
-[byte](docs/headers.md#user-content-H-byte-byte)                         | &#x2611;   | Either an alias to `std::byte` or a byte type
 [final_action](docs/headers.md#user-content-H-util-final_action)         | &#x2611;   | A RAII style class that invokes a functor on its destruction
 [finally](docs/headers.md#user-content-H-util-finally)                   | &#x2611;   | A helper function instantiating [final_action](docs/headers.md#user-content-H-util-final_action)
 [GSL_SUPPRESS](docs/headers.md#user-content-H-assert-gsl_suppress)       | &#x2611;   | A macro that takes an argument and turns it into `[[gsl::suppress(x)]]` or `[[gsl::suppress("x")]]`
 [[implicit]]                                                             | &#x2610;   | A "marker" to put on single-argument constructors to explicitly make them non-explicit
 [index](docs/headers.md#user-content-H-util-index)                       | &#x2611;   | A type to use for all container and array indexing (currently an alias for `std::ptrdiff_t`)
-joining_thread                                                           | &#x2610;   | A RAII style version of `std::thread` that joins
 [narrow](docs/headers.md#user-content-H-narrow-narrow)                   | &#x2611;   | A checked version of `narrow_cast`; it can throw [narrowing_error](docs/headers.md#user-content-H-narrow-narrowing_error)
 [narrow_cast](docs/headers.md#user-content-H-util-narrow_cast)           | &#x2611;   | A narrowing cast for values and a synonym for `static_cast`
 [narrowing_error](docs/headers.md#user-content-H-narrow-narrowing_error) | &#x2611;   | A custom exception type thrown by [narrow](docs/headers.md#user-content-H-narrow-narrow)
@@ -76,6 +73,14 @@ cu16string_span                    | &#x2610;   | Deprecated. An alias to `basic
 u32string_span                     | &#x2610;   | Deprecated. An alias to `basic_string_span` with a char type of `char32_t`
 cu32string_span                    | &#x2610;   | Deprecated. An alias to `basic_string_span` with a char type of `const char32_t`
 
+## The following features have been adopted by WG21. They are deprecated in GSL.
+Feature                                                           | Deprecated Since | Notes
+------------------------------------------------------------------|------------------|------
+[unique_ptr](docs/headers.md#user-content-H-pointers-unique_ptr)  | C++11            | Use std::unique_ptr instead.
+[shared_ptr](docs/headers.md#user-content-H-pointers-shared_ptr)  | C++11            | Use std::shared_ptr instead.
+[byte](docs/headers.md#user-content-H-byte-byte)                  | C++17            | Use std::byte instead.
+joining_thread                                                    | C++20 (Note: Not yet implemented in GSL) | Use std::jthread instead.
+
 This is based on [CppCoreGuidelines semi-specification](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#gsl-guidelines-support-library).
 
 [cg-views]: https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#gslview-views
@@ -92,9 +97,9 @@ Below is a table showing the versions currently being tested (also see [.github/
 
 Compiler |Toolset Versions Currently Tested
 :------- |--:
- GCC | 10, 11, 12
+ GCC | 12, 13, 14
  XCode | 14.3.1, 15.4
- Clang | 13, 14, 15
+ Clang | 16, 17, 18
  Visual Studio with MSVC | VS2019, VS2022 
  Visual Studio with LLVM | VS2019, VS2022
 
@@ -106,8 +111,8 @@ If you successfully port GSL to another platform, we would love to hear from you
 
 Target | CI/CD Status
 :------- | -----------:
-iOS | ![CI_iOS](https://github.com/microsoft/GSL/workflows/CI_iOS/badge.svg)
-Android | ![CI_Android](https://github.com/microsoft/GSL/workflows/CI_Android/badge.svg)
+iOS | [![CI_iOS](https://github.com/microsoft/GSL/workflows/CI_iOS/badge.svg?branch=main)](https://github.com/microsoft/GSL/actions/workflows/ios.yml?query=branch%3Amain)
+Android | [![CI_Android](https://github.com/microsoft/GSL/workflows/CI_Android/badge.svg?branch=main)](https://github.com/microsoft/GSL/actions/workflows/android.yml?query=branch%3Amain)
 
 Note: These CI/CD steps are run with each pull request, however failures in them are non-blocking.
 

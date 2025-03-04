@@ -17,7 +17,7 @@
 #ifndef GSL_UTIL_H
 #define GSL_UTIL_H
 
-#include "assert" // for Expects
+#include "./assert" // for Expects
 
 #include <array>
 #include <cstddef>          // for ptrdiff_t, size_t
@@ -59,6 +59,32 @@
 #else
 #define GSL_INLINE
 #endif
+
+#if defined(__has_cpp_attribute)
+#if __has_cpp_attribute(deprecated)
+#define GSL_DEPRECATED(msg) [[deprecated(msg)]]
+#endif // __has_cpp_attribute(deprecated)
+#endif // defined(__has_cpp_attribute)
+
+#if !defined(GSL_DEPRECATED)
+#if defined(__cplusplus)
+#if __cplusplus >= 201309L
+#define GSL_DEPRECATED(msg) [[deprecated(msg)]]
+#endif // __cplusplus >= 201309L
+#endif // defined(__cplusplus)
+#endif // !defined(GSL_DEPRECATED)
+
+#if !defined(GSL_DEPRECATED)
+#if defined(_MSC_VER)
+#define GSL_DEPRECATED(msg) __declspec(deprecated(msg))
+#elif defined(__GNUC__)
+#define GSL_DEPRECATED(msg) __attribute__((deprecated(msg)))
+#endif // defined(_MSC_VER)
+#endif // !defined(GSL_DEPRECATED)
+
+#if !defined(GSL_DEPRECATED)
+#define GSL_DEPRECATED(msg)
+#endif // !defined(GSL_DEPRECATED)
 
 namespace gsl
 {
@@ -145,6 +171,9 @@ GSL_SUPPRESS(bounds.1) // NO-FORMAT: attribute
     Expects(i >= 0 && i < narrow_cast<index>(cont.size()));
     return *(cont.begin() + i);
 }
+
+template <class T, std::enable_if_t<std::is_move_assignable<T>::value && std::is_move_constructible<T>::value>>
+void swap(T& a, T& b) { std::swap(a, b); }
 
 #if defined(__cpp_lib_span) && __cpp_lib_span >= 202002L
 template <class T, std::size_t extent = std::dynamic_extent>

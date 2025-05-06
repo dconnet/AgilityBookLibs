@@ -309,11 +309,15 @@ bool CGenericValidator::TransferFromWindow()
 				m_pDate->clear();
 			return true;
 		}
+#if 0
+		// Note, in theory a wxTimePickerCtrl should work. It doesn't.
+		// Also, this never worked in a DatePicker.
 		else if (m_pTime)
 		{
 			*m_pTime = pControl->GetValue();
 			return true;
 		}
+#endif
 	}
 	return false;
 }
@@ -387,11 +391,15 @@ bool CGenericValidator::TransferToWindow()
 				return true;
 			}
 		}
+#if 0
+		// Note, in theory a wxTimePickerCtrl should work. It doesn't.
+		// Also, this never worked in a DatePicker.
 		else if (m_pTime)
 		{
 			pControl->SetValue(*m_pTime);
 			return true;
 		}
+#endif
 	}
 	return false;
 }

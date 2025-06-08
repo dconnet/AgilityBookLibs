@@ -221,8 +221,8 @@ bool CanCompareDigits()
 
 int CompareNoCase(wxString const& inStr1, wxString const& inStr2)
 {
-#if !defined(WIN32) || (defined(WINAPI_FAMILY) \
-	&& (WINAPI_FAMILY == WINAPI_FAMILY_PC_APP || WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP))
+#if !defined(WIN32) \
+	|| (defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PC_APP || WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP))
 	int ret = inStr1.CmpNoCase(inStr2);
 	// Normalize to Windows return values (so unit tests pass - sorted correctly, but returned -2)
 	if (0 > ret)

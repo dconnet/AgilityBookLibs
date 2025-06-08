@@ -210,25 +210,28 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	std::vector<std::tuple<wxStaticText*, wxStaticText*, wxBitmapButton*>> controls;
 
 	auto info = dlg->GetAboutText(AboutText::Version);
-	controls.push_back(std::make_tuple(
-		new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
-		new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
-		nullptr));
+	controls.push_back(
+		std::make_tuple(
+			new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+			new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+			nullptr));
 
 	info = dlg->GetAboutText(AboutText::CompiledOn);
 	if (!info.second.empty())
 	{
-		controls.push_back(std::make_tuple(
-			new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
-			new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
-			nullptr));
+		controls.push_back(
+			std::make_tuple(
+				new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+				new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+				nullptr));
 	}
 
 	info = dlg->GetAboutText(AboutText::AppDir);
-	controls.push_back(std::make_tuple(
-		new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
-		new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
-		nullptr));
+	controls.push_back(
+		std::make_tuple(
+			new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+			new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+			nullptr));
 
 	info = dlg->GetAboutText(AboutText::UserDir);
 	if (!aboutInfo.userDir.empty())
@@ -239,32 +242,36 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 			wxID_ANY,
 			CResourceManager::Get()
 				->GetBitmap(ImageMgrFolderOpened, wxART_TOOLBAR, wxSize(parent->FromDIP(16), parent->FromDIP(16))));
-		controls.push_back(std::make_tuple(
-			new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
-			new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
-			ctrlOpen));
+		controls.push_back(
+			std::make_tuple(
+				new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+				new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+				ctrlOpen));
 		ctrlOpen->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [dir](wxCommandEvent& evt) { wxLaunchDefaultApplication(dir); });
 	}
 
 	for (auto frame : aboutInfo.frameworks)
 	{
-		controls.push_back(std::make_tuple(
-			new wxStaticText(this, wxID_ANY, frame.first, wxDefaultPosition, wxDefaultSize),
-			new wxStaticText(this, wxID_ANY, frame.second, wxDefaultPosition, wxDefaultSize),
-			nullptr));
+		controls.push_back(
+			std::make_tuple(
+				new wxStaticText(this, wxID_ANY, frame.first, wxDefaultPosition, wxDefaultSize),
+				new wxStaticText(this, wxID_ANY, frame.second, wxDefaultPosition, wxDefaultSize),
+				nullptr));
 	}
 
 	info = dlg->GetAboutText(AboutText::Scaling);
-	controls.push_back(std::make_tuple(
-		new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
-		new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
-		nullptr));
+	controls.push_back(
+		std::make_tuple(
+			new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+			new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+			nullptr));
 
 	info = dlg->GetAboutText(AboutText::OS);
-	controls.push_back(std::make_tuple(
-		new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
-		new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
-		nullptr));
+	controls.push_back(
+		std::make_tuple(
+			new wxStaticText(this, wxID_ANY, info.first, wxDefaultPosition, wxDefaultSize),
+			new wxStaticText(this, wxID_ANY, info.second, wxDefaultPosition, wxDefaultSize),
+			nullptr));
 
 	// Sizers
 	const ARBWin::CDlgPadding padding(this);
@@ -567,9 +574,10 @@ void About(HMODULE inInst, wxIcon inIcon, wxWindow* inParent, wxString const& in
 
 AboutInfo::AboutInfo()
 {
-	frameworks.push_back(std::make_pair(
-		L"wxWidgets",
-		wxString::Format("%d.%d.%d.%d", wxMAJOR_VERSION, wxMINOR_VERSION, wxRELEASE_NUMBER, wxSUBRELEASE_NUMBER)));
+	frameworks.push_back(
+		std::make_pair(
+			L"wxWidgets",
+			wxString::Format("%d.%d.%d.%d", wxMAJOR_VERSION, wxMINOR_VERSION, wxRELEASE_NUMBER, wxSUBRELEASE_NUMBER)));
 	// These are used via ARBCommon
 	ADD_ABOUT_GSL(frameworks);
 	ADD_ABOUT_STDUUID(frameworks);

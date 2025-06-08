@@ -615,13 +615,9 @@ void CDlgConfigAccel::LoadData()
 			wxString location;
 			if (menuStr != m_menuIds.end())
 				location = menuStr->second;
-			m_ctrlItems->InsertItem(std::make_shared<CMenuData>(
-				m_keyMap,
-				accels,
-				m_menuItems[i].m_path,
-				m_menuItems[i].m_item,
-				location,
-				count++));
+			m_ctrlItems->InsertItem(
+				std::make_shared<
+					CMenuData>(m_keyMap, accels, m_menuItems[i].m_path, m_menuItems[i].m_item, location, count++));
 		}
 	}
 #if defined(_DEBUG) || defined(__WXDEBUG__)

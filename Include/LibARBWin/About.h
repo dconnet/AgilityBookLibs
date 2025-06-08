@@ -63,23 +63,25 @@ struct ARBWIN_API AboutInfo
 // Usage "ADD_THING(aboutinfo.frameworks);" - yes, use a trailing ';' so it "looks" right.
 // #include "wx/wxsqlite3_version.h"
 #define ADD_ABOUT_WXSQLITE3(frameworks) \
-	frameworks.push_back(std::make_pair( \
-		L"wxSqlite3", \
-		wxString::Format( \
-			"%d.%d.%d.%d", \
-			WXSQLITE3_MAJOR_VERSION, \
-			WXSQLITE3_MINOR_VERSION, \
-			WXSQLITE3_RELEASE_NUMBER, \
-			WXSQLITE3_SUBRELEASE_NUMBER)))
+	frameworks.push_back( \
+		std::make_pair( \
+			L"wxSqlite3", \
+			wxString::Format( \
+				"%d.%d.%d.%d", \
+				WXSQLITE3_MAJOR_VERSION, \
+				WXSQLITE3_MINOR_VERSION, \
+				WXSQLITE3_RELEASE_NUMBER, \
+				WXSQLITE3_SUBRELEASE_NUMBER)))
 // #include "nlohmann/json_fwd.hpp"
 #define ADD_ABOUT_JSON(info) \
-	info.frameworks.push_back(std::make_pair( \
-		L"nlohmann/json", \
-		wxString::Format( \
-			"%d.%d.%d", \
-			NLOHMANN_JSON_VERSION_MAJOR, \
-			NLOHMANN_JSON_VERSION_MINOR, \
-			NLOHMANN_JSON_VERSION_PATCH)))
+	info.frameworks.push_back( \
+		std::make_pair( \
+			L"nlohmann/json", \
+			wxString::Format( \
+				"%d.%d.%d", \
+				NLOHMANN_JSON_VERSION_MAJOR, \
+				NLOHMANN_JSON_VERSION_MINOR, \
+				NLOHMANN_JSON_VERSION_PATCH)))
 // I also use 'gsl', 'tidy', 'stduuid' - but they don't have versions in their headers.
 #define ADD_ABOUT_GSL(frameworks)     frameworks.push_back(std::make_pair(L"gsl", L"4.1.0"))
 #define ADD_ABOUT_TIDY(frameworks)    frameworks.push_back(std::make_pair(L"tidy", L"5.8.0"))

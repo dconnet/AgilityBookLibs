@@ -90,6 +90,12 @@ public:
 		bool bHasBorder = false,
 		bool bHasImageList = true);
 
+	/**
+	 * Update the alternate row color.
+	 * This is a wrapper around EnableAlternateRowColours for wx3.3 dark mode.
+	 */
+	void UpdateAlternateRowColor(bool enable);
+
 	int ImageEmpty() const
 	{
 		return m_imgEmpty;

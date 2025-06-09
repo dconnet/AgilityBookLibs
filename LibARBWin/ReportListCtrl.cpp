@@ -123,6 +123,23 @@ CReportListCtrl::CReportListCtrl(
 }
 
 
+void CReportListCtrl::UpdateAlternateRowColor(bool enable)
+{
+	// Note EnableAlternateRowColours(bool) currently (as of 3.3.0) uses a value of '150'
+	// in dark mode. This is quite jarring.
+	if (enable)
+	{
+		// So for now, directly set the row color.
+		const wxColour bgColour = GetBackgroundColour();
+		// The only difference on this line is s/150/110/ .
+		int alpha = bgColour.GetRGB() > 0x808080 ? 97 : 110;
+		SetAlternateRowColour(bgColour.ChangeLightness(alpha));
+	}
+	else
+		EnableAlternateRowColours(enable);
+}
+
+
 bool CReportListCtrl::Create(
 	wxWindow* parent,
 	const wxPoint& pos,
@@ -143,18 +160,8 @@ bool CReportListCtrl::Create(
 	{
 		return false;
 	}
-	// Note EnableAlternateRowColours(bool) currently (as of 3.3.0) uses a value of '150'
-	// in dark mode. This is quite jarring.
-	if (bEnableRowColors)
-	{
-		// So for now, directly set the row color.
-		const wxColour bgColour = GetBackgroundColour();
-		// The only difference on this line is s/150/110/ .
-		int alpha = bgColour.GetRGB() > 0x808080 ? 97 : 110;
-		SetAlternateRowColour(bgColour.ChangeLightness(alpha));
-	}
-	else
-		EnableAlternateRowColours(bEnableRowColors);
+
+	UpdateAlternateRowColor(bEnableRowColors);
 
 	Bind(wxEVT_COMMAND_LIST_DELETE_ALL_ITEMS, &CReportListCtrl::OnDeleteAllItems, this);
 	Bind(wxEVT_COMMAND_LIST_DELETE_ITEM, &CReportListCtrl::OnDeleteItem, this);
@@ -169,7 +176,6 @@ bool CReportListCtrl::Create(
 	}
 	return true;
 }
-
 
 wxItemAttr* CReportListCtrl::OnGetItemAttr(long item) const
 {

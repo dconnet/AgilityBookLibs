@@ -105,9 +105,9 @@ CDlgAuthenticate::CDlgAuthenticate(wxString const& userName, wxWindow* parent, w
 	CenterOnParent();
 
 	if (userName.empty())
-		IMPLEMENT_ON_INIT(CDlgAuthenticate, ctrlUsername)
+		IMPLEMENT_ON_INIT(ctrlUsername)
 	else
-		IMPLEMENT_ON_INIT(CDlgAuthenticate, ctrlPassword)
+		IMPLEMENT_ON_INIT(ctrlPassword)
 }
 
 

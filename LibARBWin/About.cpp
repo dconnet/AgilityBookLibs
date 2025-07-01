@@ -410,7 +410,7 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	SetSizeHints(GetSize(), wxDefaultSize);
 	CenterOnParent();
 
-	IMPLEMENT_ON_INIT(CDlgAbout, ctrlOk)
+	IMPLEMENT_ON_INIT(ctrlOk)
 }
 
 

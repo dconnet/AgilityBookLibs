@@ -135,7 +135,7 @@
 /**
  * Macros to enable easy first control focus.
  */
-#define IMPLEMENT_ON_INIT(cls, ctrl) \
+#define IMPLEMENT_ON_INIT(ctrl) \
 	{ \
 		wxWindow* localVar = ctrl; \
 		Bind(wxEVT_INIT_DIALOG, [this, localVar](wxInitDialogEvent& evt) { \

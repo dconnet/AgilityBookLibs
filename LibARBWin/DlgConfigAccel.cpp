@@ -185,7 +185,7 @@ CDlgEditAccel::CDlgEditAccel(
 	SetSizeHints(GetSize(), wxDefaultSize);
 	CenterOnParent();
 
-	IMPLEMENT_ON_INIT(CDlgEditAccel, m_ctrlKey)
+	IMPLEMENT_ON_INIT(m_ctrlKey)
 }
 
 

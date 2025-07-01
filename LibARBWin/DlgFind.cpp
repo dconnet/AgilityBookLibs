@@ -294,7 +294,7 @@ CDlgFind::CDlgFind(CFindCallback& callback, wxWindow* pParent)
 	GetSizer()->Fit(this);
 	CenterOnParent();
 
-	IMPLEMENT_ON_INIT(CDlgFind, m_textCtrl)
+	IMPLEMENT_ON_INIT(m_textCtrl)
 }
 
 } // namespace ARBWin

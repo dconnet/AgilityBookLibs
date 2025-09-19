@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2025-09-19 Fix wxTimePickerCtrl
  * 2018-10-11 Moved to Win LibARBWin
  * 2012-10-26 Changed ARBDate::GetTime to avoid time_t when possible.
  * 2012-08-13 Moved CQualifyingValidator to separate file.
@@ -29,6 +30,7 @@
 #include "ARBCommon/ARBTypes.h"
 #include "ARBCommon/StringUtil.h"
 #include <wx/datectrl.h>
+#include <wx/timectrl.h>
 
 #if defined(__WXMSW__)
 #include <wx/msw/msvcrt.h>
@@ -297,9 +299,9 @@ bool CGenericValidator::TransferFromWindow()
 				return m_pTime->ParseFormat(textVal, k_TimeFormatHM);
 		}
 	}
-	else if (m_validatorWindow->IsKindOf(CLASSINFO(wxDatePickerCtrlBase)))
+	else if (m_validatorWindow->IsKindOf(CLASSINFO(wxDatePickerCtrl)))
 	{
-		wxDatePickerCtrlBase* pControl = dynamic_cast<wxDatePickerCtrlBase*>(m_validatorWindow);
+		wxDatePickerCtrl* pControl = dynamic_cast<wxDatePickerCtrl*>(m_validatorWindow);
 		if (m_pDate)
 		{
 			wxDateTime date = pControl->GetValue();
@@ -309,16 +311,22 @@ bool CGenericValidator::TransferFromWindow()
 				m_pDate->clear();
 			return true;
 		}
-#if 0
-		// Note, in theory a wxTimePickerCtrl should work. It doesn't.
-		// Also, this never worked in a DatePicker.
 		else if (m_pTime)
 		{
 			*m_pTime = pControl->GetValue();
 			return true;
 		}
-#endif
 	}
+	else if (m_validatorWindow->IsKindOf(CLASSINFO(wxTimePickerCtrl)))
+	{
+		wxTimePickerCtrl* pControl = dynamic_cast<wxTimePickerCtrl*>(m_validatorWindow);
+		if (m_pTime)
+		{
+			*m_pTime = pControl->GetValue();
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -363,9 +371,9 @@ bool CGenericValidator::TransferToWindow()
 			return true;
 		}
 	}
-	else if (m_validatorWindow->IsKindOf(CLASSINFO(wxDatePickerCtrlBase)))
+	else if (m_validatorWindow->IsKindOf(CLASSINFO(wxDatePickerCtrl)))
 	{
-		wxDatePickerCtrlBase* pControl = dynamic_cast<wxDatePickerCtrlBase*>(m_validatorWindow);
+		wxDatePickerCtrl* pControl = dynamic_cast<wxDatePickerCtrl*>(m_validatorWindow);
 		if (m_pDate)
 		{
 			if (m_pDate->IsValid())
@@ -391,15 +399,55 @@ bool CGenericValidator::TransferToWindow()
 				return true;
 			}
 		}
-#if 0
-		// Note, in theory a wxTimePickerCtrl should work. It doesn't.
-		// Also, this never worked in a DatePicker.
 		else if (m_pTime)
 		{
-			pControl->SetValue(*m_pTime);
-			return true;
+			if (m_pTime->IsValid())
+			{
+				pControl->SetValue(*m_pTime);
+				return true;
+			}
+			else
+			{
+				if (pControl->HasFlag(wxDP_ALLOWNONE))
+				{
+					wxDateTime date;
+					pControl->SetValue(date);
+				}
+				else
+				{
+					wxDateTime date;
+					if (ARBDate::Today().GetDate(date))
+						pControl->SetValue(date);
+				}
+				return true;
+			}
 		}
-#endif
+	}
+	else if (m_validatorWindow->IsKindOf(CLASSINFO(wxTimePickerCtrl)))
+	{
+		wxTimePickerCtrl* pControl = dynamic_cast<wxTimePickerCtrl*>(m_validatorWindow);
+		if (m_pTime)
+		{
+			if (m_pTime->IsValid())
+			{
+				pControl->SetValue(*m_pTime);
+				return true;
+			}
+			else
+			{
+				if (pControl->HasFlag(wxDP_ALLOWNONE))
+				{
+					wxDateTime date;
+					pControl->SetValue(date);
+				}
+				else
+				{
+					wxDateTime date = wxDateTime::Now();
+					pControl->SetValue(date);
+				}
+				return true;
+			}
+		}
 	}
 	return false;
 }

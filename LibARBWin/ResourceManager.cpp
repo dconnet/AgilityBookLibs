@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2025-10-01 Remove use of gsl::narrow. This was causing an exception on a user machine. (no-repro here)
  * 2022-04-15 Use wx DPI support.
  * 2021-12-18 Created.
  */
@@ -24,7 +25,6 @@
 #include <wx/bmpbndl.h>
 #include <wx/mstream.h>
 #include <wx/stdpaths.h>
-#include <gsl/narrow>
 #include <sstream>
 
 #ifdef __WXMSW__
@@ -162,12 +162,7 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 				std::ostringstream str;
 
 				wxLogNull suppress;
-				/*
-1>D:\dcon\WinUtils\AgilityBookLibs\LibARBWin\ResourceManager.cpp(164): warning C26467: Converting from floating point to
-unsigned integral types results in non-portable code if the double/float has a negative value. Use gsl::narrow_cast or
-gsl::narrow instead to guard against undefined behavior and potential data loss (es.46).
-				*/
-				unsigned int scale = gsl::narrow<unsigned int>(pWindow->GetDPIScaleFactor() * 100);
+				unsigned int scale = static_cast<unsigned int>(fabs(pWindow->GetDPIScaleFactor()) * 100.0);
 				unsigned int rescale = 1;
 #if defined(wxHAS_DPI_INDEPENDENT_PIXELS)
 				scale = 100;

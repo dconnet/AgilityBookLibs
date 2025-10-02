@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2025-10-02 Fix rescaling. We know what size we want, no need to compute (and get it wrong).
  * 2025-10-01 Remove use of gsl::narrow. This was causing an exception on a user machine. (no-repro here)
  * 2022-04-15 Use wx DPI support.
  * 2021-12-18 Created.
@@ -194,9 +195,7 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 				if (100 * rescale != scale && bmp.IsOk())
 				{
 					wxImage image = bmp.ConvertToImage();
-					int x = (bmp.GetWidth() * scale / 100) / rescale;
-					int y = (bmp.GetHeight() * scale / 100) / rescale;
-					image.Rescale(x, y);
+					image.Rescale(imageSize, imageSize);
 					bmp = wxBitmap(image);
 				}
 				assert(bmp.IsOk());

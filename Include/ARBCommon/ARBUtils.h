@@ -85,7 +85,7 @@ ARBCOMMON_API bool GetFileTimes(
 // Debugging performance aid
 
 #ifndef USE_STACKTRACER
-#ifdef _DEBUG
+#ifdef __WXDEBUG__
 #define USE_STACKTRACER 1
 #else
 #define USE_STACKTRACER 0

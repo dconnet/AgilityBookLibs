@@ -146,11 +146,11 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 			{
 				name += L".svg";
 				std::ostringstream str;
-#ifdef _DEBUG
+#ifdef __WXDEBUG__
 				bool extracted =
 #endif
 					m_archive->Extract(name, str);
-#ifdef _DEBUG
+#ifdef __WXDEBUG__
 				assert(extracted);
 #endif
 

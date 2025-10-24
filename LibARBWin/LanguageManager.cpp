@@ -164,7 +164,7 @@ bool CLanguageManager::InitLanguage()
 
 	SetNewTranslation();
 
-#ifdef _DEBUG
+#ifdef __WXDEBUG__
 	// Add support for a pseudo language for i18n testing. Since this is not
 	// added in Release, when we query for available languages, FindLanguageInfo
 	// will fail and we won't show it.

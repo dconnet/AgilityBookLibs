@@ -60,10 +60,25 @@ ARBWIN_API wxIcon CreateIconFromBitmap(const wxBitmap& bitmap);
 #define ImageMgrFolderOpened wxART_MAKE_ART_ID(ImageMgrFolderOpened)
 
 #define ImageMgrBlank     wxART_MAKE_ART_ID(ImageMgrBlank)
+#define ImageMgrCheck     wxART_MAKE_ART_ID(ImageMgrCheck)
 #define ImageMgrChecked   wxART_MAKE_ART_ID(ImageMgrChecked)
 #define ImageMgrUnChecked wxART_MAKE_ART_ID(ImageMgrUnChecked)
-#define ImageMgrCheck     wxART_MAKE_ART_ID(ImageMgrCheck)
 #define ImageMgrQuestion  wxART_MAKE_ART_ID(ImageMgrQuestion)
+
+#define ImageMgrAbout     wxART_MAKE_ART_ID(ImageMgrAbout)
+#define ImageMgrCalendar  wxART_MAKE_ART_ID(ImageMgrCalendar)
+#define ImageMgrCopy      wxART_MAKE_ART_ID(ImageMgrCopy)
+#define ImageMgrCut       wxART_MAKE_ART_ID(ImageMgrCut)
+#define ImageMgrDelete    wxART_MAKE_ART_ID(ImageMgrDelete)
+#define ImageMgrDuplicate wxART_MAKE_ART_ID(ImageMgrDuplicate)
+#define ImageMgrFind      wxART_MAKE_ART_ID(ImageMgrFind)
+#define ImageMgrNew       wxART_MAKE_ART_ID(ImageMgrNew)
+#define ImageMgrOpen      wxART_MAKE_ART_ID(ImageMgrOpen)
+#define ImageMgrPaste     wxART_MAKE_ART_ID(ImageMgrPaste)
+#define ImageMgrPreview   wxART_MAKE_ART_ID(ImageMgrPreview)
+#define ImageMgrPrint     wxART_MAKE_ART_ID(ImageMgrPrint)
+#define ImageMgrSave      wxART_MAKE_ART_ID(ImageMgrSave)
+#define ImageMgrSettings  wxART_MAKE_ART_ID(ImageMgrSettings)
 
 } // namespace ImageHelper
 } // namespace ARBWin

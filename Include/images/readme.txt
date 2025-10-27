@@ -4,9 +4,9 @@ From www.iconfinder.com
   Author: https://www.iconfinder.com/encoderxsolutions
 
 https://freesvg.org/duplicate-icon
-  clone.svg
-  License: Public Domain
-  Author: OpenClipart
+ 9035317_duplicate_outline_icon.svg
+  License: MIT License
+  Author: Ionicons Icons
 
 Note: Pretty much all the original SVGs have been edited
 
@@ -14,7 +14,7 @@ HdrDown.png
 HdrUp.png
 
 question.svg 1815562_question_faq_help_icon.svg
-toolbarDuplicate.svg clone.svg
+toolbarDuplicate.svg 9035317_duplicate_outline_icon.svg
 
 check.svg VS2015 Image Library\2015_VSIcon\Checkmark\Checkmark_16xMD.svg
 checked.svg VS2015 Image Library\2015_VSIcon\Checkbox\Checkbox_16x.svg

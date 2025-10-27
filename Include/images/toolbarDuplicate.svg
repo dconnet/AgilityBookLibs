@@ -1,310 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
-   id="svg7354"
-   sodipodi:docname="clone.svg"
-   inkscape:export-filename="clone.png"
-   viewBox="0 0 48 48"
-   sodipodi:version="0.32"
-   inkscape:export-xdpi="96"
+   height="512"
+   viewBox="0 0 512 512"
+   width="512"
    version="1.1"
-   inkscape:export-ydpi="96"
+   id="svg2"
+   sodipodi:docname="9035317_duplicate_outline_icon.svg"
+   inkscape:export-filename="9035317_duplicate_outline_icon.png"
+   inkscape:export-xdpi="9"
+   inkscape:export-ydpi="9"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <title
-     id="title4128">Duplicate Icon</title>
+   xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs3">
-    <linearGradient
-       id="graytolightgray">
-      <stop
-         id="stop5101"
-         style="stop-color:#d4d3d3"
-         offset="0" />
-      <stop
-         id="stop5102"
-         style="stop-color:#ffffff"
-         offset="1" />
-    </linearGradient>
-    <linearGradient
-       id="light75to0">
-      <stop
-         id="stop2769"
-         style="stop-color:#ffffff;stop-opacity:.72917"
-         offset="0" />
-      <stop
-         id="stop2770"
-         style="stop-color:#ffffff;stop-opacity:0"
-         offset="1" />
-    </linearGradient>
-    <linearGradient
-       id="garylighttowite">
-      <stop
-         id="stop5106"
-         style="stop-color:#7d7d7d"
-         offset="0" />
-      <stop
-         id="stop5107"
-         style="stop-color:#d3d4d4"
-         offset="1" />
-    </linearGradient>
-    <linearGradient
-       id="linearGradient1099"
-       y2="323.77"
-       xlink:href="#graytolightgray"
-       gradientUnits="userSpaceOnUse"
-       x2="272.47"
-       gradientTransform="matrix(.20017 0 0 .20813 .30546 1.3308)"
-       y1="59.054"
-       x1="122.43"
-       inkscape:collect="always" />
-    <linearGradient
-       id="linearGradient1100"
-       y2="273.81"
-       xlink:href="#graytolightgray"
-       gradientUnits="userSpaceOnUse"
-       x2="330.94"
-       gradientTransform="matrix(.20017 0 0 .21279 -.19940 1.4508)"
-       y1="340.21"
-       x1="284.17"
-       inkscape:collect="always" />
-    <radialGradient
-       id="radialGradient1101"
-       xlink:href="#light75to0"
-       gradientUnits="userSpaceOnUse"
-       cy="52.578"
-       cx="53.183"
-       gradientTransform="matrix(.24431 0 0 .17435 .30706 1.0722)"
-       r="508.3"
-       inkscape:collect="always" />
-    <linearGradient
-       id="linearGradient1105"
-       y2="513.91"
-       xlink:href="#garylighttowite"
-       gradientUnits="userSpaceOnUse"
-       x2="561.86"
-       gradientTransform="matrix(.20017 0 0 .21279 .038997 1.4315)"
-       y1="248.02"
-       x1="245.91"
-       inkscape:collect="always" />
-    <linearGradient
-       id="linearGradient1106"
-       y2="648.3"
-       xlink:href="#garylighttowite"
-       gradientUnits="userSpaceOnUse"
-       x2="578.44"
-       gradientTransform="matrix(.20017 0 0 .21279 .38723 1.4328)"
-       y1="-50.29"
-       x1="-37.332"
-       inkscape:collect="always" />
-    <linearGradient
-       id="linearGradient2105"
-       y2="143.87"
-       xlink:href="#garylighttowite"
-       gradientUnits="userSpaceOnUse"
-       x2="142.39"
-       gradientTransform="scale(.9248 1.0813)"
-       y1="-20.138"
-       x1="-17.6"
-       inkscape:collect="always" />
-  </defs>
+     id="defs2" />
   <sodipodi:namedview
-     id="base"
-     bordercolor="#666666"
-     inkscape:pageshadow="2"
-     inkscape:window-y="1519"
+     id="namedview2"
      pagecolor="#ffffff"
-     inkscape:window-height="1295"
-     inkscape:grid-bbox="false"
-     inkscape:window-maximized="0"
-     inkscape:zoom="4"
-     inkscape:window-x="267"
-     showgrid="false"
+     bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:current-layer="layer1"
-     inkscape:cx="65.625"
-     inkscape:cy="26"
-     inkscape:window-width="1770"
-     inkscape:pageopacity="0.0"
      inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1">
-    <inkscape:grid
-       id="GridFromPre046Settings"
-       opacity=".2"
-       visible="true"
-       color="#0000ff"
-       enabled="true"
-       originy="0.0000000pt"
-       originx="0px"
-       empspacing="5"
-       spacingy="1.0000000pt"
-       spacingx="1.0000000pt"
-       snapvisiblegridlinesonly="true"
-       units="pt"
-       empopacity="0.4"
-       type="xygrid"
-       empcolor="#0000ff" />
-  </sodipodi:namedview>
-  <g
-     id="layer1"
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     transform="translate(0,-32)">
-    <g
-       id="g2107"
-       transform="matrix(.42503 0 0 .42503 14.347 41.28)">
-      <path
-         id="path2109"
-         style="fill-rule:evenodd;fill:#cbcbcb"
-         d="m39.849 9.4347 33.38-0.3305v50.731l-18.508 19.499h-41.643l-0.16525-9.5844 26.935-60.316z"
-         inkscape:export-ydpi="48.818890"
-         sodipodi:nodetypes="ccccccc"
-         inkscape:connector-curvature="0"
-         inkscape:export-xdpi="48.818890" />
-      <path
-         id="path2111"
-         style="fill-rule:evenodd;fill:#ffffff"
-         inkscape:connector-curvature="0"
-         d="m10.741 6.1341 59.324 0.1653-0.33 50.401-17.682 18.673-41.477 0.496 0.165-69.735z" />
-      <path
-         id="path2113"
-         style="fill:url(#linearGradient1099)"
-         inkscape:connector-curvature="0"
-         d="m68.096 7.5h-56.008l-0.08329 66.465h39.845l16.246-16.935v-49.53z" />
-      <path
-         id="path2115"
-         inkscape:connector-curvature="0"
-         style="fill:#ffffff"
-         transform="matrix(1.0972 0 0 .99487 -4.7051 .38795)"
-         d="m52.081 75.153 15.973-18.726h-15.973v18.726z" />
-      <path
-         id="path2117"
-         style="fill:url(#linearGradient1100)"
-         inkscape:connector-curvature="0"
-         d="m53.068 74.814 15.424-16.395h-15.424v16.395z" />
-      <path
-         id="path2119"
-         sodipodi:nodetypes="ccccc"
-         style="fill:url(#radialGradient1101)"
-         inkscape:connector-curvature="0"
-         d="m68.24 13.585v-6.2503h-56.185l-0.05043 36.2c21.582 7.4188 52.821-11.304 56.235-29.95z" />
-      <path
-         id="path2121"
-         style="stroke:url(#linearGradient2105);stroke-width:.69573;fill:url(#linearGradient1106)"
-         inkscape:connector-curvature="0"
-         d="m69.584 6.5013v50.545c-0.2193 0.23312-17.082 18.158-17.301 18.392h-41.518v-68.936c0.749-0.001 58.07-0.001 58.819-0.001zm0.382-0.8122h-59.966v70.561h42.598l17.749-18.868v-51.693h-0.38205z" />
-      <path
-         id="path2123"
-         style="fill:url(#linearGradient1105)"
-         inkscape:connector-curvature="0"
-         d="m52.092 56.807c-0.21089 0-0.38205 0.18195-0.38205 0.40613v18.63c0 0.16489 0.09322 0.31272 0.23611 0.37607 0.14288 0.06173 0.30716 0.02843 0.41643-0.08854l17.525-18.63c0.10927-0.11615 0.14213-0.29078 0.08329-0.44268-0.0596-0.15189-0.19867-0.25099-0.35378-0.25099h-17.525zm16.603 0.81226c-1.1622 1.2354-15.059 16.007-16.221 17.243v-17.243h16.221z" />
-    </g>
-    <g
-       id="g1090"
-       transform="matrix(.42503 0 0 .42503 -.61483 30.685)">
-      <path
-         id="path1105"
-         style="fill-rule:evenodd;fill:#000000;fill-opacity:.23810"
-         d="m39.849 9.4347 33.38-0.3305v50.731l-18.508 19.499h-41.643l-0.16525-9.5844 26.935-60.316z"
-         inkscape:export-ydpi="48.818890"
-         sodipodi:nodetypes="ccccccc"
-         inkscape:connector-curvature="0"
-         inkscape:export-xdpi="48.818890" />
-      <path
-         id="path1727"
-         style="fill-rule:evenodd;fill:#ffffff"
-         inkscape:connector-curvature="0"
-         d="m10.741 6.1341 59.324 0.1653-0.33 50.401-17.682 18.673-41.477 0.496 0.165-69.735z" />
-      <path
-         id="path146"
-         style="fill:url(#linearGradient1099)"
-         inkscape:connector-curvature="0"
-         d="m68.096 7.5h-56.008l-0.08329 66.465h39.845l16.246-16.935v-49.53z" />
-      <path
-         id="path163"
-         inkscape:connector-curvature="0"
-         style="fill:#ffffff"
-         transform="matrix(1.0972 0 0 .99487 -4.7051 .38795)"
-         d="m52.081 75.153 15.973-18.726h-15.973v18.726z" />
-      <path
-         id="path178"
-         style="fill:url(#linearGradient1100)"
-         inkscape:connector-curvature="0"
-         d="m53.068 74.814 15.424-16.395h-15.424v16.395z" />
-      <path
-         id="path195"
-         sodipodi:nodetypes="ccccc"
-         style="fill:url(#radialGradient1101)"
-         inkscape:connector-curvature="0"
-         d="m68.24 13.585v-6.2503h-56.185l-0.05043 36.2c21.582 7.4188 52.821-11.304 56.235-29.95z" />
-      <path
-         id="path225"
-         style="stroke:url(#linearGradient2105);stroke-width:.69573;fill:url(#linearGradient1106)"
-         inkscape:connector-curvature="0"
-         d="m69.584 6.5013v50.545c-0.2193 0.23312-17.082 18.158-17.301 18.392h-41.518v-68.936c0.749-0.001 58.07-0.001 58.819-0.001zm0.382-0.8122h-59.966v70.561h42.598l17.749-18.868v-51.693h-0.38205z" />
-      <path
-         id="path210"
-         style="fill:url(#linearGradient1105)"
-         inkscape:connector-curvature="0"
-         d="m52.092 56.807c-0.21089 0-0.38205 0.18195-0.38205 0.40613v18.63c0 0.16489 0.09322 0.31272 0.23611 0.37607 0.14288 0.06173 0.30716 0.02843 0.41643-0.08854l17.525-18.63c0.10927-0.11615 0.14213-0.29078 0.08329-0.44268-0.0596-0.15189-0.19867-0.25099-0.35378-0.25099h-17.525zm16.603 0.81226c-1.1622 1.2354-15.059 16.007-16.221 17.243v-17.243h16.221z" />
-    </g>
-    <path
-       id="path2177-7"
-       d="m8.2477 45.674c-8.852 9.5918-7.7521 24.944 9.1419 24.483l0.153 7.843 12.001-11.999-12.175-12.109 0.01002 7.8692c-14.107 0.35-12.713-9.577-9.1313-16.087z"
-       sodipodi:nodetypes="ccccccc"
-       style="color:#000000;display:block;fill:#8dba64"
-       inkscape:connector-curvature="0" />
-  </g>
-  <metadata
-     id="metadata1">
-    <rdf:RDF>
-      <cc:Work>
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <cc:license
-           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
-        <dc:publisher>
-          <cc:Agent
-             rdf:about="http://openclipart.org/">
-            <dc:title>Openclipart</dc:title>
-          </cc:Agent>
-        </dc:publisher>
-        <dc:title>Duplicate icon</dc:title>
-        <dc:date>2011-02-18T22:05:53</dc:date>
-        <dc:description>A duplicate/clone icon</dc:description>
-        <dc:source>https://openclipart.org/detail/120787/duplicate-icon-by-ben</dc:source>
-        <dc:creator>
-          <cc:Agent>
-            <dc:title>ben</dc:title>
-          </cc:Agent>
-        </dc:creator>
-        <dc:subject>
-          <rdf:Bag>
-            <rdf:li>clone</rdf:li>
-            <rdf:li>duplicate</rdf:li>
-            <rdf:li>icon</rdf:li>
-          </rdf:Bag>
-        </dc:subject>
-      </cc:Work>
-      <cc:License
-         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#Reproduction" />
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#Distribution" />
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
-      </cc:License>
-    </rdf:RDF>
-  </metadata>
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1"
+     inkscape:cx="178.5"
+     inkscape:cy="378"
+     inkscape:window-width="2033"
+     inkscape:window-height="1777"
+     inkscape:window-x="41"
+     inkscape:window-y="1377"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title1" />
+  <rect
+     height="336"
+     rx="57"
+     ry="57"
+     style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"
+     width="336"
+     x="128"
+     y="128"
+     id="rect1" />
+  <path
+     d="M383.5,128l.5-24a56.16,56.16,0,0,0-56-56H112a64.19,64.19,0,0,0-64,64V328a56.16,56.16,0,0,0,56,56h24"
+     style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+     id="path1" />
+  <line
+     style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+     x1="296"
+     x2="296"
+     y1="216"
+     y2="376"
+     id="line1" />
+  <line
+     style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+     x1="376"
+     x2="216"
+     y1="296"
+     y2="296"
+     id="line2" />
 </svg>

@@ -89,6 +89,7 @@ public:
 		SortHeader sortHeader = SortHeader::Sort,
 		bool bHasBorder = false,
 		bool bHasImageList = true);
+	~CReportListCtrl() override;
 
 	/**
 	 * Update the alternate row color.

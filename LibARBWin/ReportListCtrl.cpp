@@ -123,6 +123,15 @@ CReportListCtrl::CReportListCtrl(
 }
 
 
+CReportListCtrl::~CReportListCtrl()
+{
+#if defined(__WXGTK__)
+	// Not unbinding this is causing memory corruptinn when deleting the m_items array on Ubuntu.
+	Unbind(wxEVT_COMMAND_LIST_DELETE_ALL_ITEMS, &CReportListCtrl::OnDeleteAllItems, this);
+#endif
+}
+
+
 void CReportListCtrl::UpdateAlternateRowColor(bool enable)
 {
 	// Note EnableAlternateRowColours(bool) currently (as of 3.3.0) uses a value of '150'

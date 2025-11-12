@@ -493,7 +493,7 @@
     <ClInclude Include="..\..\TestARBLib\TestARBLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\AgilityBook\AgilityBook\AgilityBookLibs\Projects\VC143\UTcatch3.vcxproj">
+    <ProjectReference Include="UTcatch3.vcxproj">
       <Project>{98390979-9e94-4a4f-80e6-d686270cbb98}</Project>
     </ProjectReference>
     <ProjectReference Include="LibTidyHtml.vcxproj">

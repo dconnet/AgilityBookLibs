@@ -51,76 +51,76 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{73C15F6D-530F-4B95-9A2C-81AD1958573F}</ProjectGuid>
+    <ProjectGuid>{B8E4CEE7-CD97-4355-B998-C5C37FA2F285}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>LibwxARBWin</RootNamespace>
+    <RootNamespace>LibwxARBCommon</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -191,102 +191,95 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|ARM64'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|ARM64'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>ARBWIN_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARBCOMMON_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\gsl\include;$(SolutionDir)..\..\..\AgilityBookLibs\3rdParty\stduuid\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\LibARBWin\About.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ARBDebug.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ARBWinUtilities.cpp" />
-    <ClCompile Include="..\..\LibARBWin\CheckLink.cpp" />
-    <ClCompile Include="..\..\LibARBWin\CheckTreeCtrl.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ConfigPosition.cpp" />
-    <ClCompile Include="..\..\LibARBWin\DlgAuthenticate.cpp" />
-    <ClCompile Include="..\..\LibARBWin\DlgConfigAccel.cpp" />
-    <ClCompile Include="..\..\LibARBWin\DlgFind.cpp" />
-    <ClCompile Include="..\..\LibARBWin\DlgMessage.cpp" />
-    <ClCompile Include="..\..\LibARBWin\DlgProgress.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ImageHelperBase.cpp" />
-    <ClCompile Include="..\..\LibARBWin\LanguageManager.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ListData.cpp" />
-    <ClCompile Include="..\..\LibARBWin\Logger.cpp" />
-    <ClCompile Include="..\..\LibARBWin\MenuHelper.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ReadHttp.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ReportListCtrl.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ReportListHeader.cpp" />
-    <ClCompile Include="..\..\LibARBWin\ResourceManager.cpp" />
-    <ClCompile Include="..\..\LibARBWin\RichEditCtrl2.cpp" />
-    <ClCompile Include="..\..\LibARBWin\SetupApp.cpp" />
-    <ClCompile Include="..\..\LibARBWin\SpreadSheet.cpp" />
-    <ClCompile Include="..\..\LibARBWin\StatusBarHelper.cpp" />
-    <ClCompile Include="..\..\LibARBWin\stdafx.cpp">
+    <ClCompile Include="..\..\ARBCommon\ARBBase64.cpp" />
+    <ClCompile Include="..\..\ARBCommon\ARBDate.cpp" />
+    <ClCompile Include="..\..\ARBCommon\ARBMisc.cpp" />
+    <ClCompile Include="..\..\ARBCommon\ARBMsgDigest.cpp" />
+    <ClCompile Include="..\..\ARBCommon\ARBMsgDigestMD5.cpp" />
+    <ClCompile Include="..\..\ARBCommon\ARBMsgDigestSHA1.cpp" />
+    <ClCompile Include="..\..\ARBCommon\ARBMsgDigestSHA256.cpp" />
+    <ClCompile Include="..\..\ARBCommon\ARBTypes.cpp" />
+    <ClCompile Include="..\..\ARBCommon\ARBUtils.cpp" />
+    <ClCompile Include="..\..\ARBCommon\BinaryData.cpp" />
+    <ClCompile Include="..\..\ARBCommon\BreakLine.cpp" />
+    <ClCompile Include="..\..\ARBCommon\Element.cpp" />
+    <ClCompile Include="..\..\ARBCommon\LibArchive.cpp" />
+    <ClCompile Include="..\..\ARBCommon\MailTo.cpp" />
+    <ClCompile Include="..\..\ARBCommon\StringUtil.cpp" />
+    <ClCompile Include="..\..\ARBCommon\UniqueId.cpp" />
+    <ClCompile Include="..\..\ARBCommon\VersionNum.cpp" />
+    <ClCompile Include="..\..\ARBCommon\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -312,37 +305,23 @@
       <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">false</MultiProcessorCompilation>
       <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">false</MultiProcessorCompilation>
     </ClCompile>
-    <ClCompile Include="..\..\LibARBWin\Validators.cpp" />
-    <ClCompile Include="..\..\LibARBWin\Widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Include\LibARBWin\About.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ARBDebug.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ARBWinUtilities.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\CheckLink.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\CheckTreeCtrl.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ConfigPosition.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\DlgAuthenticate.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\DlgFind.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\DlgMessage.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\DlgProgress.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ImageHelperBase.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\LanguageManager.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\LibwxARBWin.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ListData.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\Logger.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\MenuHelper.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ReadHttp.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\RegItemsBase.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ReportListCtrl.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ReportListHeader.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\ResourceManager.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\RichEditCtrl2.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\SetupApp.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\SpreadSheet.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\StatusBarHelper.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\Validators.h" />
-    <ClInclude Include="..\..\Include\LibARBWin\Widgets.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\ARBBase64.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\ARBDate.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\ARBMisc.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\ARBMsgDigest.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\ARBTypes.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\ARBUtils.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\BinaryData.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\BreakLine.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\Element.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\LibArchive.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\LibwxARBCommon.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\MailTo.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\StringUtil.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\UniqueId.h" />
+    <ClInclude Include="..\..\Include\ARBCommon\VersionNum.h" />
     <ClInclude Include="..\..\Include\Platform\arbWarningPop.h" />
     <ClInclude Include="..\..\Include\Platform\arbWarningPush.h" />
     <ClInclude Include="..\..\Include\Platform\SetupARBPost.h" />
@@ -351,19 +330,14 @@
     <ClInclude Include="..\..\Include\Platform\SetupWX.h" />
     <ClInclude Include="..\..\Include\VersionInfoARB.h" />
     <ClInclude Include="..\..\Include\VersionNumber.h" />
-    <ClInclude Include="..\..\LibARBWin\DlgConfigAccel.h" />
-    <ClInclude Include="..\..\LibARBWin\stdafx.h" />
+    <ClInclude Include="..\..\ARBCommon\stdafx.h" />
+    <ClInclude Include="..\..\ARBCommon\ARBMsgDigestImpl.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="LibwxARBCommon.vcxproj">
-      <Project>{b8e4cee7-cd97-4355-b998-c5c37fa2f285}</Project>
-    </ProjectReference>
+    <ResourceCompile Include="..\..\ARBCommon\ARBCommon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\LibARBWin\res\LibARBWin.rc2" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\..\LibARBWin\LibARBWin.rc" />
+    <None Include="..\..\ARBCommon\res\ARBCommon.rc2" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

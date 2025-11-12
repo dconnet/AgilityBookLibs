@@ -3,18 +3,6 @@
   <PropertyGroup Label="UserMacros">
     <BuildScriptDir>$(SolutionDir)..\..\..\AgilityBookLibs\Projects\</BuildScriptDir>
   </PropertyGroup>
-  <PropertyGroup Label="UserMacros" Condition="'$(VisualStudioVersion)'=='10.0'">
-    <OutputPlatform>vc100</OutputPlatform>
-  </PropertyGroup>
-  <PropertyGroup Label="UserMacros" Condition="'$(VisualStudioVersion)'=='11.0'">
-    <OutputPlatform>vc110</OutputPlatform>
-  </PropertyGroup>
-  <PropertyGroup Label="UserMacros" Condition="'$(VisualStudioVersion)'=='12.0'">
-    <OutputPlatform>vc120</OutputPlatform>
-  </PropertyGroup>
-  <PropertyGroup Label="UserMacros" Condition="'$(VisualStudioVersion)'=='14.0'">
-    <OutputPlatform>vc140</OutputPlatform>
-  </PropertyGroup>
   <PropertyGroup Label="UserMacros" Condition="'$(OutputPlatform)'==''">
     <OutputPlatform>vc$(PlatformToolsetVersion)</OutputPlatform>
   </PropertyGroup>

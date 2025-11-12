@@ -55,6 +55,7 @@
 // https://blogs.msdn.microsoft.com/vcblog/2016/10/05/visual-c-compiler-version/
 // > Starting with VS "15" Preview 5, the Visual C++ Team is monotonically updating the value of the built-in
 // preprocessor macro _MSC_VER at every Visual C++ toolset update.
+// (new url): https://learn.microsoft.com/en-us/cpp/overview/compiler-versions
 //
 // 1910: VC14.1 Visual Studio 2017
 // 1911: VC14.11 Visual Studio 2017 version 15.3
@@ -71,6 +72,8 @@
 // 1934: VC14.34 Visual Studio 2022 version 17.4
 // 1937: VC14.37 Visual Studio 2022 version 17.7
 // 1942: VC14.42 Visual Studio 2022 version 17.12
+// 1944: VC14.44 Visual Studio 2022 version 17.14
+// 1950: VC14.50 Visual Studio 2026 version 18.0
 // Note: VCversion can be found in the INCLUDE path "<vs>\Community\VC\Tools\MSVC\xxx"
 //
 // _M_IX86: Defined for x86 (value specifies processor)
@@ -108,6 +111,11 @@
 
 // Disable some warnings from /Wall
 // clang-format off
+
+// New VS2026 suppression
+#if _MSC_VER >= 1950
+#pragma warning(disable : 4865) // <name>': the underlying type will change from 'int' to '__int64' when '/Zc:enumTypes' is specified on the command line
+#endif
 
 #pragma warning(disable : 4266) // no override available for virtual member function; function is hidden
 #pragma warning(disable : 4355) // 'this': used in base member initializer list

@@ -49,6 +49,8 @@ def GenInfo(contents, name, shortVer, ver, copyright, icnsFile, loc, ext, extDes
 	print('<dict>', file=output)
 	print('\t<key>CFBundleDevelopmentRegion</key>', file=output)
 	print('\t<string>English</string>', file=output)
+	print('\t<key>CFBundleSignature</key>', file=output)
+	print('\t<string>????</string>', file=output)
 	print('\t<key>CFBundleExecutable</key>', file=output)
 	print('\t<string>' + name + '</string>', file=output)
 	print('\t<key>CFBundleGetInfoString</key>', file=output)

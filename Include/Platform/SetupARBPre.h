@@ -115,6 +115,7 @@
 // New VS2026 suppression
 #if _MSC_VER >= 1950
 #pragma warning(disable : 4865) // <name>': the underlying type will change from 'int' to '__int64' when '/Zc:enumTypes' is specified on the command line
+#pragma warning(disable : 5291) // 'wxStdOutputStream': deriving from the base class 'std::basic_ostream<char,std::char_traits<char>>' can cause potential runtime issues due to an ABI bug. Recommend adding a 4-byte data member to the base class for the padding at the end of it to work around this bug.
 #endif
 
 #pragma warning(disable : 4266) // no override available for virtual member function; function is hidden

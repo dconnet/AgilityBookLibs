@@ -2,13 +2,8 @@
 Note: When bumping 'gsl', 'tidy', 'stduuid', update AgilityBookLibs\Include\LibARBWin\About.h
 Those libs don't have a version number in their headers.
 
-Catch: v2.13.10
-.../catch/catch2/
-- https://github.com/philsquared/Catch/releases
--- #include "catch2/catch.hpp"
 
-
-Catch: v3.11.0
+Catch: v3.12.0
 .../catch/catch3/
 - https://github.com/philsquared/Catch/releases
 - Only copied 'src' from github, plus LICENSE.txt, README.md

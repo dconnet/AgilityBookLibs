@@ -283,6 +283,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_jsonwriter.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_lazy_expr.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_leak_detector.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_lifetimebound.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_list.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_logical_traits.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_message_info.hpp" />
@@ -325,6 +326,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_registry.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_test_spec_parser.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_textflow.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_thread_local.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_thread_support.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_to_string.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_uncaught_exceptions.hpp" />

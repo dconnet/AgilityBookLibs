@@ -14,7 +14,7 @@ AC_ARG_ENABLE(official, [--enable-official official build], USE_OFFICIAL_BUILD=$
 AC_SUBST(ARBLIBS_DIR, "")
 
 AC_SUBST(PACKAGE_TESTLIB_SHORTNAME, "TestARBLib")
-AC_SUBST(PACKAGE_COPYRIGHT, "Copyright (c) 2002-2025 David Connet. All Rights Reserved.")
+AC_SUBST(PACKAGE_COPYRIGHT, "Copyright (c) 2002-2026 David Connet. All Rights Reserved.")
 
 ################################################################################
 # Check for programs used to build my_prg                                      #

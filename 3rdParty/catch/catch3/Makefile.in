@@ -46,6 +46,7 @@ libcatch3_SRCS = \
 	src/catch2/generators/catch_generator_exception.cpp \
 	src/catch2/generators/catch_generators.cpp \
 	src/catch2/generators/catch_generators_random.cpp \
+	src/catch2/generators/catch_generators_throw.cpp \
 	src/catch2/interfaces/catch_interfaces_capture.cpp \
 	src/catch2/interfaces/catch_interfaces_config.cpp \
 	src/catch2/interfaces/catch_interfaces_exception.cpp \

@@ -45,6 +45,9 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_random.hpp">
       <Filter>Source Files\generators</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_throw.hpp">
+      <Filter>Source Files\generators</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_range.hpp">
       <Filter>Source Files\generators</Filter>
     </ClInclude>
@@ -205,6 +208,9 @@
       <Filter>Source Files\internal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_parse_numbers.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_path_filter.hpp">
       <Filter>Source Files\internal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_platform.hpp">
@@ -555,6 +561,9 @@
       <Filter>Source Files\generators</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_random.cpp">
+      <Filter>Source Files\generators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_throw.cpp">
       <Filter>Source Files\generators</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_capture.cpp">

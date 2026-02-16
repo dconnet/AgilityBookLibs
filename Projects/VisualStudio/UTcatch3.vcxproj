@@ -238,6 +238,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_adapters.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_all.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_random.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_throw.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_range.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_all.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_capture.hpp" />
@@ -293,6 +294,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_optional.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_output_redirect.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_parse_numbers.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_path_filter.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_platform.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_polyfills.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_preprocessor.hpp" />
@@ -389,6 +391,7 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generator_exception.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_random.cpp" />
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\generators\catch_generators_throw.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_capture.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_config.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_exception.cpp" />

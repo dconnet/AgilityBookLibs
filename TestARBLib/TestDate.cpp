@@ -278,6 +278,14 @@ TEST_CASE("Date")
 			REQUIRE(d1.isLeap() == sDates[i].isLeep);
 		}
 	}
+
+
+	SECTION("InvalidForce")
+	{
+		ARBDate date;
+		REQUIRE(date.GetString(ARBDateFormat::DashYMD).empty());
+		REQUIRE(!date.GetString(ARBDateFormat::DashYMD, true).empty());
+	}
 }
 
 } // namespace dconSoft

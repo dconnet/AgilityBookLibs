@@ -355,7 +355,16 @@ wxString ARBDate::GetString(ARBDateFormat inFormat, bool inForceOutput) const
 	int mon = 0;
 	int day = 0;
 	if (IsValid())
+	{
 		SdnToGregorian(m_Julian, &yr, &mon, &day);
+	}
+	else
+	{
+		auto dt = wxDateTime::Today();
+		yr = dt.GetYear();
+		mon = static_cast<int>(dt.GetMonth()) + 1; // Because of below
+		day = static_cast<int>(dt.GetDay());
+	}
 	wxDateTime dt(static_cast<wxDateTime::wxDateTime_t>(day), static_cast<wxDateTime::Month>(mon - 1), yr);
 	switch (inFormat)
 	{

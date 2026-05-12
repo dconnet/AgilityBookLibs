@@ -65,7 +65,7 @@ libcatch3_SRCS = \
 	src/catch2/internal/catch_debugger.cpp \
 	src/catch2/internal/catch_decomposer.cpp \
 	src/catch2/internal/catch_enforce.cpp \
-	src/catch2/internal/catch_enum_values_registry.cpp \
+	src/catch2/internal/catch_enum_info.cpp \
 	src/catch2/internal/catch_errno_guard.cpp \
 	src/catch2/internal/catch_exception_translator_registry.cpp \
 	src/catch2/internal/catch_fatal_condition_handler.cpp \

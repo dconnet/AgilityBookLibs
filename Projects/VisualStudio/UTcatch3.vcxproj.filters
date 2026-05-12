@@ -60,9 +60,6 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_config.hpp">
       <Filter>Source Files\interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_enum_values_registry.hpp">
-      <Filter>Source Files\interfaces</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_exception.hpp">
       <Filter>Source Files\interfaces</Filter>
     </ClInclude>
@@ -150,7 +147,10 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enforce.hpp">
       <Filter>Source Files\internal</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enum_values_registry.hpp">
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enum_info.hpp">
+      <Filter>Source Files\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enum_info.hpp">
       <Filter>Source Files\internal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_errno_guard.hpp">

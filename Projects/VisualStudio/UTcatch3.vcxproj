@@ -243,7 +243,6 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_all.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_capture.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_config.hpp" />
-    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_enum_values_registry.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_exception.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_generatortracker.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\interfaces\catch_interfaces_registry_hub.hpp" />
@@ -273,7 +272,7 @@
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_decomposer.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_deprecation_macro.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enforce.hpp" />
-    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enum_values_registry.hpp" />
+    <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enum_info.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_errno_guard.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_exception_translator_registry.hpp" />
     <ClInclude Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_fatal_condition_handler.hpp" />
@@ -410,7 +409,7 @@
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_debugger.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_decomposer.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enforce.cpp" />
-    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enum_values_registry.cpp" />
+    <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_enum_info.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_errno_guard.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_exception_translator_registry.cpp" />
     <ClCompile Include="..\..\3rdParty\catch\catch3\src\catch2\internal\catch_fatal_condition_handler.cpp" />

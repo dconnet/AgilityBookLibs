@@ -83,7 +83,7 @@ struct ARBWIN_API AboutInfo
 				NLOHMANN_JSON_VERSION_MINOR, \
 				NLOHMANN_JSON_VERSION_PATCH)))
 // I also use 'gsl', 'tidy', 'stduuid' - but they don't have versions in their headers.
-#define ADD_ABOUT_GSL(frameworks)     frameworks.push_back(std::make_pair(L"gsl", L"4.1.0"))
+#define ADD_ABOUT_GSL(frameworks)     frameworks.push_back(std::make_pair(L"gsl", L"4.2.2"))
 #define ADD_ABOUT_TIDY(frameworks)    frameworks.push_back(std::make_pair(L"tidy", L"5.8.0"))
 #define ADD_ABOUT_STDUUID(frameworks) frameworks.push_back(std::make_pair(L"stduuid", L"1.2.3"))
 

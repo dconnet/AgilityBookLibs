@@ -10,6 +10,7 @@
  * @author David Connet
  *
  * Revision History
+ * 2026-06-01 Change ARBDebug::GetOSName of just use wxGetOsDescription.
  * 2024-01-29 Remove 'default' in wxConfig switch so compiler errors on new one
  * 2023-08-07 Return x.y.z for OS version, use shorter name for OS name.
  * 2022-04-15 Use wx DPI support.
@@ -58,17 +59,16 @@ wxString GetOSName()
 {
 	wxString str;
 
+#if defined(__WXWINDOWS__)
+	str = wxGetOsDescription();
+
+#elif defined(_WIN32)
 	int majVer;
 	int minVer;
 	int verMicro;
 	if (!GetOSInfo(majVer, minVer, verMicro))
 		return wxString();
 
-#if defined(__WXWINDOWS__)
-	wxPlatformInfo info;
-	str = wxString::Format(L"%s %d.%d.%d", info.GetOperatingSystemFamilyName(), majVer, minVer, verMicro);
-
-#elif defined(_WIN32)
 	switch (majVer)
 	{
 	default:

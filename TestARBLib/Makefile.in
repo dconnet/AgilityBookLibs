@@ -17,7 +17,7 @@ TOPBUILDDIR = ./@top_builddir@
 ##########
 # Compile flags, list include directories
 ##########
-INCLUDES += -I$(SRCDIR)/../Include -I$(SRCDIR)/../3rdParty/LibTidyHtml/include -I$(SRCDIR)/../3rdParty/catch -DUSING_CATCH2
+INCLUDES += -I$(SRCDIR)/../Include -I$(SRCDIR)/../3rdParty/LibTidyHtml/include -I$(TOPSRCDIR)/AgilityBookLibs/3rdParty/catch/catch3/src -DUSING_CATCH3
 
 ##########
 # List of programs and archives to link
@@ -49,7 +49,7 @@ PROGRAMS = @PACKAGE_TESTLIB_SHORTNAME@
 ##########
 # Extra libraries for link stage (only if needed)
 ##########
-@PACKAGE_TESTLIB_SHORTNAME@_LIBS = -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/LibARBWin -larbwin -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/ARBCommon -larbcommon -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/3rdParty/LibTidyHtml -ltidyhtml
+@PACKAGE_TESTLIB_SHORTNAME@_LIBS = -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/LibARBWin -larbwin -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/ARBCommon -larbcommon -L$(TOPBUILDDIR)/@ARBLIBS_DIR@/3rdParty/LibTidyHtml -ltidyhtml -L$(TOPBUILDDIR)/AgilityBookLibs/3rdParty/catch/catch3 -lcatch3
 
 ##########
 # Precompiled headers

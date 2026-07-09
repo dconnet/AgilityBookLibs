@@ -4,6 +4,7 @@
 # Requires msgcat/msgfmt (gettext) in PATH
 #
 # Revision History
+# 2026-07-09 Change to get wx po file directly from wx.
 # 2022-05-05 Don't create lang dir until we know skip status.
 # 2022-05-04 Change msgcat '-u' to '--use-first'
 # 2020-12-27 Add missing '-u' option in msgcat to remove duplicates.
@@ -22,7 +23,9 @@
 # 2009-03-05 Fixed some parameter passing issues (spaces/hyphens in names)
 # 2009-03-01 Support multiple po files (by using msgcat)
 # 2009-01-02 Updated to support creation of data files
-"""CompileDatafile.py [-d] -s sourceDir firstFile outputDir targetname
+"""CompileDatafile.py -w WXWIN [-t] [-d] -s sourceDir firstFile outputDir targetname
+-t: Test only
+-w: WXWIN directory
 -d: Debugging mode (does not delete generated autogen.po file)
 -s sourceDir: Directory where .po files are [assumption - all subdirs are lang (en-US)]
               Note: Can be specified multiple times.
@@ -42,6 +45,7 @@ import zipfile
 
 # This file is generated with msgcat of all po files ('firstFile' is first)
 autogenFile = 'autogen.po'
+testOnly = False
 
 
 class LockFile:
@@ -102,7 +106,11 @@ def ReadPipe(logFile, cmd):
 # Some commands generate messages on stderr that are interesting.
 # Some are just plain annoying (wzzip)
 def RunCommand(command, toastErr):
+	global testOnly
+
 	print('Running:', command)
+	if testOnly:
+		return
 	if toastErr:
 		# Map stderr to a pipe that we ignore
 		p = subprocess.Popen(command, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
@@ -112,12 +120,14 @@ def RunCommand(command, toastErr):
 	ReadPipe(sys.stdout, p.stdout)
 
 
-# wxBaseName: base of wx ('trunk', 'wxWidgets-2.8.12', 'wxWidgets-3.0.2', etc)
+# wxwin: wx directory
 # sourceDirs: set of directories to search, each is assumed to contain language names (like 'en-US')
 # firstFile: Name of the first file is list in msgcat command
 # outputDir: Directory where we will create a 'lang' dir containing language names
 # targetname: Name of the MO file to be created in outputDir/lang/<langName>/
-def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDebug):
+def CompilePoFiles(wxwin, sourceDirs, firstFile, outputDir, targetname, bDebug):
+	global testOnly
+
 	if not os.access(outputDir, os.F_OK):
 		print(outputDir, 'does not exist')
 		return False
@@ -139,12 +149,15 @@ def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDe
 					langNames.add(langName)
 
 	if len(langNames) == 0:
-		print('ERROR: No languages found');
+		print('ERROR: No languages found')
 		return False
 
 	langDir = os.path.join(outputDir, r'lang')
 	if not os.access(langDir, os.F_OK):
-		os.mkdir(langDir)
+		if testOnly:
+			print('mkdir ' + langDir)
+		else:
+			os.mkdir(langDir)
 
 	skipped = 0
 	for langName in langNames:
@@ -160,10 +173,25 @@ def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDe
 						poFile1 = srcPathFirstFile
 					else:
 						poFiles += [po]
-				# Look for additional PO files based on wx version
-				wxLangDir = os.path.join(srcPath, wxBaseName)
-				for po in glob.glob(os.path.join(wxLangDir, r'*.po')):
-					poFiles += [po]
+				# Look for additional PO files
+				# We used to copy the wx .po file. Now let the locale.txt file
+				# tell us what additional ones to access in $WXWIN/locale/
+				wxPO = os.path.join(srcPath, 'locale.txt')
+				if os.access(wxPO, os.F_OK):
+					file = open(wxPO)
+					while 1:
+						line = file.readline()
+						if line:
+							line = line.rstrip()
+							if len(line) > 0 and line[0] != '#':
+								poFile = os.path.join(os.path.join(wxwin, 'locale'), line)
+								if os.access(poFile, os.F_OK):
+									poFiles += [poFile]
+								else:
+									print('Warning: File does not exist: ' + poFile)
+
+						else:
+							break
 
 		# If we can't find the firstFile, assume we've included some library PO
 		# files for languages that the program does not (yet) support.
@@ -173,7 +201,10 @@ def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDe
 
 		installPath = os.path.join(langDir, langName)
 		if not os.access(installPath, os.F_OK):
-			os.mkdir(installPath)
+			if testOnly:
+				print('mkdir ' + installPath)
+			else:
+				os.mkdir(installPath)
 
 		# This is the temporary file created by msgcat
 		autogen = os.path.join(installPath, autogenFile)
@@ -181,7 +212,7 @@ def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDe
 		# -t: output encoding
 		cmd = ['msgcat', '--use-first', '-t', 'utf-8', '-o', autogen, poFile1]
 		for po in poFiles:
-			cmd += [po];
+			cmd += [po]
 		RunCommand(cmd, 0)
 
 		cmd = ['msgfmt', '--verbose', '--check-domain', '--use-fuzzy', '--strict', '-o', os.path.join(installPath, targetname + r'.mo'), autogen]
@@ -189,7 +220,10 @@ def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDe
 		RunCommand(cmd, 0)
 
 		if not bDebug and os.access(autogen, os.F_OK):
-			os.remove(autogen)
+			if testOnly:
+				print('rm ' + autogen)
+			else:
+				os.remove(autogen)
 
 	if skipped == len(langNames):
 		print('ERROR: No languages compiled')
@@ -199,11 +233,13 @@ def CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDe
 
 
 def main():
+	global testOnly
+
 	bDebug = False
 	sourceDirs = set()
 	wxwin = ''
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], 'ds:w:')
+		opts, args = getopt.getopt(sys.argv[1:], 'ds:w:t')
 	except getopt.error as msg:
 		print(msg)
 		print('Usage:', __doc__)
@@ -211,6 +247,8 @@ def main():
 	for o, a in opts:
 		if '-d' == o:
 			bDebug = True
+		elif '-t' == o:
+			testOnly = True
 		elif '-s' == o:
 			sourceDirs.add(a)
 		elif '-w' == o:
@@ -228,7 +266,6 @@ def main():
 		print(wxwin, 'does not exist')
 		return False
 
-	wxBaseName = os.path.basename(wxwin)
 	firstFile = args[0]
 	outputDir = args[1]
 	targetname = args[2]
@@ -237,7 +274,7 @@ def main():
 	lockfile = LockFile(os.path.join(outputDir, "CompileDatafile.lck"))
 	if lockfile.acquire():
 		try:
-			if not CompilePoFiles(wxBaseName, sourceDirs, firstFile, outputDir, targetname, bDebug):
+			if not CompilePoFiles(wxwin, sourceDirs, firstFile, outputDir, targetname, bDebug):
 				rc = 1
 		except:
 			lockfile.release()

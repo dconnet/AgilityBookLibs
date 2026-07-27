@@ -3,7 +3,7 @@ Note: When bumping 'gsl', 'tidy', 'stduuid', update AgilityBookLibs\Include\LibA
 Those libs don't have a version number in their headers.
 
 
-Catch: v3.15.2
+Catch: v3.15.3
 .../catch/catch3/
 - https://github.com/philsquared/Catch/releases
 - Only copied 'src' from github, plus LICENSE.txt, README.md

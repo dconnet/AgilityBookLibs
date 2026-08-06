@@ -64,6 +64,7 @@ typedef int(
 class ARBWIN_API CReportListCtrl : public CListCtrl
 {
 	DECLARE_CLASS(CReportListCtrl)
+	DECLARE_NO_COPY_IMPLEMENTED(CReportListCtrl)
 	static bool m_enableRowColors;
 
 public:

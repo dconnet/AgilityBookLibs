@@ -119,7 +119,7 @@ wxBitmap CResourceManager::CreateBitmap(wxArtID const& id, wxArtClient const& cl
 	// MESSAGE_BOX does not - these should all be 32px icons
 	int imageSize = size.x;
 	if (imageSize <= 0)
-		imageSize = wxArtProvider::GetNativeSizeHint(client).x;
+		imageSize = wxArtProvider::GetNativeDIPSizeHint(client).x;
 	if (imageSize <= 0)
 	{
 		if (wxART_OTHER == client)

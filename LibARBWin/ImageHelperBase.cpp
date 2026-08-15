@@ -37,7 +37,7 @@ wxBitmap GetBitmap(wxWindow* pWindow, const wxArtID& id, const wxArtClient& clie
 	wxSize sz(size);
 	if (sz == wxDefaultSize)
 	{
-		sz = wxArtProvider::GetNativeSizeHint(client);
+		sz = wxArtProvider::GetNativeDIPSizeHint(client);
 	}
 	return wxArtProvider::GetBitmap(id, client, sz);
 }
@@ -48,7 +48,7 @@ wxIcon GetIcon(wxWindow* pWindow, const wxArtID& id, const wxArtClient& client, 
 	wxSize sz(size);
 	if (sz == wxDefaultSize)
 	{
-		sz = wxArtProvider::GetNativeSizeHint(client);
+		sz = wxArtProvider::GetNativeDIPSizeHint(client);
 	}
 	return wxArtProvider::GetIcon(id, client, sz);
 }

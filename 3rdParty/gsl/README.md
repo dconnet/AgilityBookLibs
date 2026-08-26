@@ -41,7 +41,7 @@ span_p                                                                   | &#x26
 [cu32zstring](docs/headers.md#user-content-H-zstring)                    | &#x2611;   | An alias to `basic_zstring` with dynamic extent and a char type of `const char32_t`
 [**2. Owners**][cg-owners]                                               |            |
 stack_array                                                              | &#x2610;   | A stack-allocated array
-dyn_array                                                                | &#x2610;   | A heap-allocated array
+dyn_array                                                                | &#x2611;   | A heap-allocated array
 [**3. Assertions**][cg-assertions]                                       |            |
 [Expects](docs/headers.md#user-content-H-assert-expects)                 | &#x2611;   | A precondition assertion; on failure it terminates
 [Ensures](docs/headers.md#user-content-H-assert-ensures)                 | &#x2611;   | A postcondition assertion; on failure it terminates
@@ -102,19 +102,6 @@ Compiler |Toolset Versions Currently Tested
  Clang | 16, 17, 18
  Visual Studio with MSVC | VS2019, VS2022 
  Visual Studio with LLVM | VS2019, VS2022
-
----
-If you successfully port GSL to another platform, we would love to hear from you!
-- Submit an issue specifying the platform and target.
-- Consider contributing your changes by filing a pull request with any necessary changes.
-- If at all possible, add a CI/CD step and add the button to the table below!
-
-Target | CI/CD Status
-:------- | -----------:
-iOS | [![CI_iOS](https://github.com/microsoft/GSL/workflows/CI_iOS/badge.svg?branch=main)](https://github.com/microsoft/GSL/actions/workflows/ios.yml?query=branch%3Amain)
-Android | [![CI_Android](https://github.com/microsoft/GSL/workflows/CI_Android/badge.svg?branch=main)](https://github.com/microsoft/GSL/actions/workflows/android.yml?query=branch%3Amain)
-
-Note: These CI/CD steps are run with each pull request, however failures in them are non-blocking.
 
 ## Building the tests
 To build the tests, you will require the following:
@@ -202,7 +189,7 @@ include(FetchContent)
 
 FetchContent_Declare(GSL
     GIT_REPOSITORY "https://github.com/microsoft/GSL"
-    GIT_TAG "v4.2.0"
+    GIT_TAG "v5.0.0"
     GIT_SHALLOW ON
 )
 

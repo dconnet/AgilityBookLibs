@@ -291,19 +291,21 @@ CAboutInfo::CAboutInfo(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 		if (std::get<2>(ctrls))
 		{
 			wxBoxSizer* sizerDir = new wxBoxSizer(wxHORIZONTAL);
-			sizerGrid->Add(std::get<0>(ctrls), 0, wxALIGN_CENTER_VERTICAL);
-			sizerDir->Add(std::get<1>(ctrls), 1, wxALIGN_CENTER_VERTICAL);
-			sizerDir->Add(std::get<2>(ctrls), 0, wxLEFT | wxALIGN_CENTER_VERTICAL, padding.Inner());
+			sizerGrid->Add(std::get<0>(ctrls), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			sizerDir->Add(std::get<1>(ctrls), wxSizerFlags(1).Align(wxALIGN_CENTER_VERTICAL));
+			sizerDir->Add(
+				std::get<2>(ctrls),
+				wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL).Border(wxLEFT, padding.Inner()));
 			sizerGrid->Add(sizerDir);
 		}
 		else
 		{
-			sizerGrid->Add(std::get<0>(ctrls), 0, wxALIGN_CENTER_VERTICAL);
-			sizerGrid->Add(std::get<1>(ctrls), 0, wxALIGN_CENTER_VERTICAL);
+			sizerGrid->Add(std::get<0>(ctrls), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			sizerGrid->Add(std::get<1>(ctrls), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
 		}
 	}
 
-	bSizer->Add(sizerGrid, 0, wxALL, padding.Controls());
+	bSizer->Add(sizerGrid, wxSizerFlags().Border(wxALL, padding.Controls()));
 
 	SetSizer(bSizer);
 	Layout();

@@ -81,7 +81,7 @@ CDlgAuthenticate::CDlgAuthenticate(wxString const& userName, wxWindow* parent, w
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	if (textMsg)
-		bSizer->Add(textMsg, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
+		bSizer->Add(textMsg, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxTOP, padding.Controls()));
 
 	wxFlexGridSizer* sizerItems = new wxFlexGridSizer(2, 2, padding.Inner(), padding.Inner());
 	sizerItems->SetFlexibleDirection(wxBOTH);

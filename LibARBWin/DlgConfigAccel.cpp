@@ -506,20 +506,20 @@ CDlgConfigAccel::CDlgConfigAccel(
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	wxBoxSizer* sizerItems = new wxBoxSizer(wxHORIZONTAL);
-	sizerItems->Add(m_ctrlItems, 1, wxEXPAND | wxRIGHT, padding.Controls());
+	sizerItems->Add(m_ctrlItems, wxSizerFlags(1).Expand().Border(wxRIGHT, padding.Controls()));
 
 	wxBoxSizer* sizerBtns = new wxBoxSizer(wxVERTICAL);
-	sizerBtns->Add(m_ctrlNew, 0, wxEXPAND | wxBOTTOM, padding.Inner());
-	sizerBtns->Add(m_ctrlEdit, 0, wxEXPAND | wxBOTTOM, padding.Inner());
-	sizerBtns->Add(m_ctrlClear, 0, wxEXPAND | wxBOTTOM, padding.Inner());
-	sizerBtns->Add(ctrlDefaults, 0, wxEXPAND);
+	sizerBtns->Add(m_ctrlNew, wxSizerFlags().Expand().Border(wxBOTTOM, padding.Inner()));
+	sizerBtns->Add(m_ctrlEdit, wxSizerFlags().Expand().Border(wxBOTTOM, padding.Inner()));
+	sizerBtns->Add(m_ctrlClear, wxSizerFlags().Expand().Border(wxBOTTOM, padding.Inner()));
+	sizerBtns->Add(ctrlDefaults, wxSizerFlags().Expand());
 
-	sizerItems->Add(sizerBtns, 0, wxEXPAND);
+	sizerItems->Add(sizerBtns, wxSizerFlags().Expand());
 
-	bSizer->Add(sizerItems, 1, wxEXPAND | wxALL, padding.Controls());
+	bSizer->Add(sizerItems, wxSizerFlags(1).Expand().Border(wxALL, padding.Controls()));
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer());
+	bSizer->Add(sdbSizer, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer()));
 
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgConfigAccel::OnOk, this, wxID_OK);
 

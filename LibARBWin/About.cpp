@@ -158,15 +158,15 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	if (textName)
-		bSizer->Add(textName, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
+		bSizer->Add(textName, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxTOP, padding.Controls()));
 	if (textCopyright)
-		bSizer->Add(textCopyright, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
+		bSizer->Add(textCopyright, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxTOP, padding.Controls()));
 	if (textDesc)
-		bSizer->Add(textDesc, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
+		bSizer->Add(textDesc, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxTOP, padding.Controls()));
 	if (!links.empty())
 	{
 		bool bReset = false;
-		int flags = wxEXPAND | wxLEFT | wxRIGHT;
+		int flags = wxLEFT | wxRIGHT;
 		for (auto const& link : links)
 		{
 			if (!link.first)
@@ -179,10 +179,10 @@ CAboutMain::CAboutMain(CDlgAbout* dlg, wxWindow* parent, AboutInfo const& aboutI
 			if (link.second)
 			{
 				sizerLinks = new wxBoxSizer(wxHORIZONTAL);
-				sizerLinks->Add(padding.CheckboxOffset(), 0, 0, wxEXPAND, 0);
+				sizerLinks->Add(padding.CheckboxOffset(), 0, wxSizerFlags().Expand());
 				bSizer->Add(sizerLinks);
 			}
-			sizerLinks->Add(link.first, 0, flags, padding.Controls());
+			sizerLinks->Add(link.first, wxSizerFlags().Expand().Border(flags, padding.Controls()));
 			if (bReset)
 				flags &= ~wxTOP;
 		}
@@ -380,15 +380,15 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 		wxBoxSizer* sizerIcons = new wxBoxSizer(wxVERTICAL);
 		if (icon)
 		{
-			sizerIcons->Add(0, 0, 1, wxEXPAND, 0);
-			sizerIcons->Add(icon, 0, wxALL, padding.Inner());
-			sizerIcons->Add(0, 0, 1, wxEXPAND, 0);
+			sizerIcons->Add(0, 0, wxSizerFlags(1).Expand());
+			sizerIcons->Add(icon, wxSizerFlags().Border(wxALL, padding.Inner()));
+			sizerIcons->Add(0, 0, wxSizerFlags(1).Expand());
 		}
 		if (debug)
 		{
-			sizerIcons->Add(debug, 0, wxALL, padding.Inner());
+			sizerIcons->Add(debug, wxSizerFlags().Border(wxALL, padding.Inner()));
 		}
-		sizerMain->Add(sizerIcons, 0, wxEXPAND, 0);
+		sizerMain->Add(sizerIcons, wxSizerFlags().Expand());
 	}
 
 	// Instead of using CreateStdDialogButtonSizer, create buttons directly.
@@ -398,8 +398,8 @@ CDlgAbout::CDlgAbout(AboutInfo const& aboutInfo, wxWindow* inParent, wxString co
 	sdbSizer->Add(ctrlOk);
 
 	wxBoxSizer* sizerPanels = new wxBoxSizer(wxVERTICAL);
-	sizerPanels->Add(notebook, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
-	sizerPanels->Add(sdbSizer, 0, wxEXPAND | wxALL, padding.Controls());
+	sizerPanels->Add(notebook, wxSizerFlags(1).Expand().Border(wxLEFT | wxRIGHT | wxTOP, padding.Controls()));
+	sizerPanels->Add(sdbSizer, wxSizerFlags().Expand().Border(wxALL, padding.Controls()));
 	sizerMain->Add(sizerPanels);
 
 	bSizer->Add(sizerMain);

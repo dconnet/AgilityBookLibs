@@ -66,6 +66,15 @@ TEST_CASE("ARBVersion")
 	}
 
 
+	SECTION("str3")
+	{
+		ARBVersion v(L"1");
+		REQUIRE(v.Major() == 1);
+		REQUIRE(v.Minor() == 0);
+		REQUIRE(L"1.0" == v.str());
+	}
+
+
 	SECTION("Comparison")
 	{
 		ARBVersion v1(1, 2);

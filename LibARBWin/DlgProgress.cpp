@@ -153,12 +153,14 @@ CDlgProgress::CDlgProgress(short nBars, wxWindow* parent)
 	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
-	bSizer->Add(m_ctrlMessage, 0, wxEXPAND | wxALL, padding.Controls());
+	bSizer->Add(m_ctrlMessage, wxSizerFlags().Expand().Border(wxALL, padding.Controls()));
 	for (size_t i = 0; i < m_ctrlBars.size(); ++i)
-		bSizer->Add(m_ctrlBars[i].gauge, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.Controls());
+		bSizer->Add(
+			m_ctrlBars[i].gauge,
+			wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM, padding.Controls()));
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer());
+	bSizer->Add(sdbSizer, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer()));
 	m_ctrlCancel = wxDynamicCast(FindWindowInSizer(sdbSizer, wxID_CANCEL), wxButton);
 	m_ctrlCancel->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgProgress::OnCancel, this);
 

@@ -87,15 +87,15 @@ CDlgAuthenticate::CDlgAuthenticate(wxString const& userName, wxWindow* parent, w
 	sizerItems->SetFlexibleDirection(wxBOTH);
 	sizerItems->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
 
-	sizerItems->Add(textUserName, 0, wxALIGN_CENTER_VERTICAL);
-	sizerItems->Add(ctrlUsername, 1, wxALIGN_CENTER_VERTICAL);
-	sizerItems->Add(textPassword, 0, wxALIGN_CENTER_VERTICAL);
-	sizerItems->Add(ctrlPassword, 1, wxALIGN_CENTER_VERTICAL);
+	sizerItems->Add(textUserName, wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+	sizerItems->Add(ctrlUsername, wxSizerFlags(1).Align(wxALIGN_CENTER_VERTICAL));
+	sizerItems->Add(textPassword, wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+	sizerItems->Add(ctrlPassword, wxSizerFlags(1).Align(wxALIGN_CENTER_VERTICAL));
 
-	bSizer->Add(sizerItems, 1, wxEXPAND | wxALL, padding.Controls());
+	bSizer->Add(sizerItems, wxSizerFlags(1).Expand().Border(wxALL, padding.Controls()));
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer());
+	bSizer->Add(sdbSizer, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer()));
 
 	SetSizer(bSizer);
 	Layout();

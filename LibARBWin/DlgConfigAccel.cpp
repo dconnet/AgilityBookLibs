@@ -166,16 +166,16 @@ CDlgEditAccel::CDlgEditAccel(
 	sizerCtrls->AddGrowableCol(1);
 	sizerCtrls->SetFlexibleDirection(wxBOTH);
 	sizerCtrls->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
-	sizerCtrls->Add(textKey, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL, 0);
-	sizerCtrls->Add(m_ctrlKey, 0, wxALIGN_CENTER_VERTICAL | wxEXPAND, 0);
-	sizerCtrls->Add(textMod, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL, 0);
-	sizerCtrls->Add(sizerModifiers, 0, wxALIGN_CENTER_VERTICAL, 0);
+	sizerCtrls->Add(textKey, wxSizerFlags().Align(wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL));
+	sizerCtrls->Add(m_ctrlKey, wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL).Expand());
+	sizerCtrls->Add(textMod, wxSizerFlags().Align(wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL));
+	sizerCtrls->Add(sizerModifiers, wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
 
-	bSizer->Add(sizerCtrls, 0, wxLEFT | wxRIGHT | wxTOP, padding.Controls());
-	bSizer->Add(ctrlClear, 0, wxALIGN_RIGHT | wxALL, padding.Controls());
+	bSizer->Add(sizerCtrls, wxSizerFlags().Border(wxLEFT | wxRIGHT | wxTOP, padding.Controls()));
+	bSizer->Add(ctrlClear, wxSizerFlags().Align(wxALIGN_RIGHT).Border(wxALL, padding.Controls()));
 
 	wxSizer* sdbSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
-	bSizer->Add(sdbSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer());
+	bSizer->Add(sdbSizer, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM, padding.ButtonSizer()));
 
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CDlgEditAccel::OnOk, this, wxID_OK);
 

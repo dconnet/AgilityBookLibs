@@ -56,8 +56,8 @@ CDlgMessage::CDlgMessage(wxString const& msg, wxString caption, wxWindow* pParen
 	const ARBWin::CDlgPadding padding(this);
 
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
-	bSizer->Add(m_textCtrl, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, padding.Controls());
-	bSizer->Add(btnClose, 0, wxALIGN_RIGHT | wxALL, padding.Controls());
+	bSizer->Add(m_textCtrl, wxSizerFlags(1).Expand().Border(wxLEFT | wxRIGHT | wxTOP, padding.Controls()));
+	bSizer->Add(btnClose, wxSizerFlags().Align(wxALIGN_RIGHT).Border(wxALL, padding.Controls()));
 
 	SetSizer(bSizer);
 	Layout();

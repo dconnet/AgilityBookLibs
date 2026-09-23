@@ -260,34 +260,34 @@ CDlgFind::CDlgFind(CFindCallback& callback, wxWindow* pParent)
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	wxBoxSizer* sizerWhat = new wxBoxSizer(wxHORIZONTAL);
-	sizerWhat->Add(staticText, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, padding.Inner());
-	sizerWhat->Add(m_textCtrl, 1, wxALIGN_CENTER_VERTICAL);
+	sizerWhat->Add(staticText, wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL).Border(wxRIGHT, padding.Inner()));
+	sizerWhat->Add(m_textCtrl, wxSizerFlags(1).Align(wxALIGN_CENTER_VERTICAL));
 
-	bSizer->Add(sizerWhat, 0, wxEXPAND | wxALL, padding.Controls());
+	bSizer->Add(sizerWhat, wxSizerFlags().Expand().Border(wxALL, padding.Controls()));
 
 	wxBoxSizer* sizerOptions = new wxBoxSizer(wxHORIZONTAL);
 
 	wxBoxSizer* sizerChecks = new wxBoxSizer(wxVERTICAL);
 	sizerChecks->Add(m_ctrlMatchCase);
 	if (m_ctrlMatchWord)
-		sizerChecks->Add(m_ctrlMatchWord, 0, wxTOP, padding.Controls());
+		sizerChecks->Add(m_ctrlMatchWord, wxSizerFlags().Border(wxTOP, padding.Controls()));
 	if (m_ctrlRegex)
-		sizerChecks->Add(m_ctrlRegex, 0, wxTOP, padding.Controls());
+		sizerChecks->Add(m_ctrlRegex, wxSizerFlags().Border(wxTOP, padding.Controls()));
 	if (m_ctrlWrap)
-		sizerChecks->Add(m_ctrlWrap, 0, wxTOP, padding.Controls());
+		sizerChecks->Add(m_ctrlWrap, wxSizerFlags().Border(wxTOP, padding.Controls()));
 
-	sizerOptions->Add(sizerChecks, 0, wxLEFT | wxBOTTOM | wxRIGHT, padding.Controls());
+	sizerOptions->Add(sizerChecks, wxSizerFlags().Border(wxLEFT | wxBOTTOM | wxRIGHT, padding.Controls()));
 	if (m_radioBoxSearch)
-		sizerOptions->Add(m_radioBoxSearch, 0, wxRIGHT | wxBOTTOM, padding.Controls());
+		sizerOptions->Add(m_radioBoxSearch, wxSizerFlags().Border(wxRIGHT | wxBOTTOM, padding.Controls()));
 	if (m_radioBoxDir)
-		sizerOptions->Add(m_radioBoxDir, 0, wxRIGHT | wxBOTTOM, padding.Controls());
+		sizerOptions->Add(m_radioBoxDir, wxSizerFlags().Border(wxRIGHT | wxBOTTOM, padding.Controls()));
 	bSizer->Add(sizerOptions);
 
 	wxBoxSizer* bSizerBtns = new wxBoxSizer(wxHORIZONTAL);
 	bSizerBtns->AddStretchSpacer();
 	bSizerBtns->Add(m_btnFind);
 
-	bSizer->Add(bSizerBtns, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, padding.Controls());
+	bSizer->Add(bSizerBtns, wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM, padding.Controls()));
 
 	SetSizer(bSizer);
 	Layout();

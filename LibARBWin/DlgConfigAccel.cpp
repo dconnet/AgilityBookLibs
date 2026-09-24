@@ -158,8 +158,8 @@ CDlgEditAccel::CDlgEditAccel(
 	wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 
 	wxBoxSizer* sizerModifiers = new wxBoxSizer(wxHORIZONTAL);
-	sizerModifiers->Add(ctrlCtrl, 0, wxRIGHT, padding.Inner());
-	sizerModifiers->Add(ctrlAlt, 0, wxRIGHT, padding.Inner());
+	sizerModifiers->Add(ctrlCtrl, wxSizerFlags().Border(wxRIGHT, padding.Inner()));
+	sizerModifiers->Add(ctrlAlt, wxSizerFlags().Border(wxRIGHT, padding.Inner()));
 	sizerModifiers->Add(ctrlShift);
 
 	wxFlexGridSizer* sizerCtrls = new wxFlexGridSizer(2, 2, padding.Inner(), padding.Inner());

@@ -23,6 +23,7 @@
 
 xcuserdata/
 /Projects/xcode*/build/*
+/Projects/xcode*/**/xcshareddata/*
 .DS_Store
 *~.nib
 

@@ -96,11 +96,11 @@ ReadStatus ReadCSV(
 	while (!inRecord.empty())
 	{
 		wxString str;
-		wxString ::size_type posSep = inRecord.find(inSep);
+		wxString::size_type posSep = inRecord.find(inSep);
 		if (bContinuation || L'"' == inRecord[0])
 		{
-			wxString ::size_type posQuote = inRecord.find(L'"', bContinuation ? 0 : 1);
-			if (wxString ::npos == posQuote)
+			wxString::size_type posQuote = inRecord.find(L'"', bContinuation ? 0 : 1);
+			if (wxString::npos == posQuote)
 			{
 				if (bContinuation)
 					str = inRecord;
@@ -162,7 +162,7 @@ ReadStatus ReadCSV(
 		}
 		else
 		{
-			if (wxString ::npos == posSep)
+			if (wxString::npos == posSep)
 			{
 				str = inRecord;
 				inRecord.clear();
@@ -176,7 +176,7 @@ ReadStatus ReadCSV(
 			}
 			// If there is a quote in the string,
 			// the field itself must be quoted.
-			if (wxString ::npos != str.find(L'"'))
+			if (wxString::npos != str.find(L'"'))
 				return ReadStatus::Error;
 		}
 		if (bContinuation && 0 < ioFields.size())
@@ -208,15 +208,15 @@ wxString WriteCSV(wchar_t inSep, std::vector<wxString> const& inFields, bool inc
 wxString WriteCSVField(wchar_t inSep, wxString const& inField, bool includeQuote)
 {
 	wxString val;
-	if (wxString ::npos != inField.find(L'"') || wxString ::npos != inField.find(L'\n')
-		|| wxString ::npos != inField.find(inSep))
+	if (wxString::npos != inField.find(L'"') || wxString::npos != inField.find(L'\n')
+		|| wxString::npos != inField.find(inSep))
 	{
 		wxString str(inField);
 		val << L"\"";
 		while (!str.empty())
 		{
-			wxString ::size_type pos = str.find(L'"');
-			if (wxString ::npos == pos)
+			wxString::size_type pos = str.find(L'"');
+			if (wxString::npos == pos)
 			{
 				val << str;
 				str.clear();
